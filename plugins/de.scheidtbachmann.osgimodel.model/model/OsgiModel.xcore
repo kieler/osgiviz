@@ -1,0 +1,115 @@
+@GenModel(modelDirectory="de.scheidtbachmann.osgimodel.model/src")
+
+package de.scheidtbachmann.osgimodel
+
+
+class  OsgiProject
+{
+    String projectName
+    int numberOfJavaFiles
+    contains Bundle[] bundles
+    contains Feature[] features
+    refers ServiceComponent[] serviceComponents
+    contains ServiceInterface[] serviceInterfaces
+    contains Product[] products
+    contains PackageObject[] importedPackages
+    refers PackageObject[] exportedPackages
+    contains BundleCategory[] bundleCategories
+}
+
+/*
+ * Basic Objects
+ */
+ 
+abstract class BasicOsgiObject
+{
+    String uniqueId
+    String descriptiveName
+    String version
+    String about
+}
+
+@GenModel(labelFeature="uniqueId")
+class Product extends BasicOsgiObject
+{
+    refers Feature[0..*] features
+}
+
+@GenModel(labelFeature="uniqueId")
+class Feature extends BasicOsgiObject
+{
+    boolean isExternal
+    refers Bundle[0..*] bundles opposite features
+}
+
+@GenModel(labelFeature="uniqueId")
+class Bundle extends BasicOsgiObject
+{
+    boolean isExternal
+    refers Feature[] features opposite bundles
+    String vendor
+    contains ServiceComponent[0..*] serviceComponents opposite bundle
+    refers Bundle[0..*] requiredBundles opposite usedByBundle
+    refers Bundle[] usedByBundle opposite requiredBundles
+    refers PackageObject[] importedPackages opposite implementedBy
+    contains PackageObject[0..*] exportedPackages
+    contains AttributeData[0..*] moreData
+    contains EclipseInjection[] eclipseInjections
+    refers BundleCategory[] bundleCategory opposite bundle
+}
+
+class PackageObject
+{
+    String uniqueId
+    refers Bundle[0..*] implementedBy opposite importedPackages
+    String javaDocPath
+}
+
+class ServiceComponent
+{
+    String name
+    String path
+    String about
+    String implementationClass
+    refers Bundle bundle opposite serviceComponents
+    refers ServiceInterface[] serviceInterfaces opposite serviceComponent
+    contains Reference[] reference
+    String javaDocPath = ""
+}
+
+class ServiceInterface
+{
+    refers ServiceComponent[] serviceComponent opposite serviceInterfaces
+    String name
+    String about
+    refers Bundle implementedIn
+    refers Reference[] referencedBy opposite serviceInterface
+}
+
+class BundleCategory
+{
+    String categoryName
+    refers Bundle[] bundle opposite bundleCategory
+}
+
+class EclipseInjection
+{
+    String injectedInterface
+    String usedInClass
+}
+
+class AttributeData
+{
+    String attributeName
+    String attributeData
+}
+
+class Reference
+{
+    String referenceName
+    refers ServiceInterface serviceInterface opposite referencedBy
+    String cardinality
+    String policy
+    String bind
+    String unbind
+}

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>de.cau.cs.kieler.osgiviz</groupId>
+  <artifactId>parent</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  
+  
+  <!-- Define a few properties used throughout all build profiles. -->
+  <properties>
+    <targetJdk>1.8</targetJdk>
+    <tycho-version>1.2.0</tycho-version>
+    <xtext-version>2.18.0</xtext-version>
+    <openkieler-version>${project.version}</openkieler-version>
+    
+    <!-- chsch: copied from https://eclipse.googlesource.com/recommenders/org.eclipse.recommenders/+/3dae4575d3370da2da25a1cbce3dfcff198f0611/features/pom.xml -->
+    <!-- Non-breakable space, as normal spaces are trimmed. -->
+    <sourceFeatureLabelSuffix>&#xA0;(Sources)</sourceFeatureLabelSuffix>
+    
+    <!-- guarantee that we use utf8 for compilation, this is especially required
+         due to xtend's template symbols («) when running maven on windows. -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
+    <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+  </properties>
+  
+  
+  <!-- Define one profile for each output target we have -->
+  <profiles>
+    <profile>
+      <id>repo</id>
+
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      
+      <modules>
+        <module>de.cau.cs.kieler.openkieler.targetplatform</module>
+        <module>../plugins/de.cau.cs.kieler.osgiviz</module>
+        <module>../plugins/de.scheidtbachmann.osgimodel.model</module>
+        <module>../plugins/de.scheidtbachmann.osgimodel.model.edit</module>
+        <module>../plugins/de.scheidtbachmann.osgimodel.model.editor</module>
+        <module>../features/de.cau.cs.kieler.osgiviz.feature</module>
+        <module>de.cau.cs.kieler.osgiviz.repository</module>
+      </modules>
+    </profile>
+  </profiles>
+  
+  
+  <!-- Additional plug-in repositories. -->
+  <pluginRepositories>
+    <pluginRepository>
+      <id>jboss-public-repository-group</id>
+      <name>JBoss Public Repository Group</name>
+      <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+    </pluginRepository>
+    <pluginRepository>
+      <id>jboss-snapshots-repository</id>
+      <name>JBoss Snapshots Repository</name>
+      <url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+
+  <!-- Modify the build process to add Tycho and configure some utility plug-ins. -->
+  <build>
+    <plugins>
+
+      <!-- We need tycho to build eclipse plugins -->
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-maven-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <extensions>true</extensions>
+      </plugin>
+
+      <!-- Setup our target platform for the build -->
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>target-platform-configuration</artifactId>
+        <version>${tycho-version}</version>
+        <configuration>
+          <target>
+            <artifact>
+              <groupId>de.cau.cs.kieler.osgiviz</groupId>
+              <artifactId>de.cau.cs.kieler.openkieler.targetplatform</artifactId>
+              <version>${openkieler-version}</version>
+            </artifact>
+          </target>
+          <environments>
+            <environment>
+              <os>win32</os>
+              <ws>win32</ws>
+              <arch>x86</arch>
+            </environment>
+            <environment>
+              <os>linux</os>
+              <ws>gtk</ws>
+              <arch>x86_64</arch>
+            </environment>
+            <environment>
+              <os>macosx</os>
+              <ws>cocoa</ws>
+              <arch>x86_64</arch>
+            </environment>
+          </environments>
+        </configuration>
+      </plugin>
+
+      <!-- Build source plugin bundles -->
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-source-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <executions>
+          <execution>
+            <id>plugin-source</id>
+            <goals>
+              <goal>plugin-source</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+
+    <pluginManagement>
+      <plugins>
+
+        <!-- Maven Xtend plugin to tell maven how to compile Xtend code -->
+        <plugin>
+          <groupId>org.eclipse.xtend</groupId>
+          <artifactId>xtend-maven-plugin</artifactId>
+          <version>${xtext-version}</version>
+          <configuration>
+            <outputDirectory>${basedir}/xtend-gen</outputDirectory>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>compile</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- Add src-gen and xtend-gen to source-directories -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>1.3</version>
+          <executions>
+            <execution>
+              <id>add-source</id>
+              <phase>generate-sources</phase>
+              <goals>
+                <goal>add-source</goal>
+              </goals>
+              <configuration>
+                <sources>
+                  <source>src-gen</source>
+                  <source>${project.build.directory}/xtend-gen</source>
+                </sources>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- Generated code needs cleanup too -->
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.0.0</version>
+          <configuration>
+            <filesets>
+              <fileset>
+                <directory>xtend-gen</directory>
+                <includes>
+                  <include>**</include>
+                </includes>
+              </fileset>
+            </filesets>
+          </configuration>
+        </plugin>
+
+      </plugins>
+    </pluginManagement>
+  </build>
+
+</project>

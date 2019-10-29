@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="osgimodel" nsURI="de.scheidtbachmann.osgimodel" nsPrefix="osgimodel">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+    <details key="modelDirectory" value="de.scheidtbachmann.osgimodel.model/src"/>
+    <details key="basePackage" value="de.scheidtbachmann"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="OsgiProject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="projectName" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberOfJavaFiles" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bundles" upperBound="-1"
+        eType="#//Bundle" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
+        eType="#//Feature" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceComponents" upperBound="-1"
+        eType="#//ServiceComponent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceInterfaces" upperBound="-1"
+        eType="#//ServiceInterface" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="products" upperBound="-1"
+        eType="#//Product" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importedPackages" upperBound="-1"
+        eType="#//PackageObject" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exportedPackages" upperBound="-1"
+        eType="#//PackageObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bundleCategories" upperBound="-1"
+        eType="#//BundleCategory" containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BasicOsgiObject" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Basic Objects"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uniqueId" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="descriptiveName" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="about" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Product" eSuperTypes="#//BasicOsgiObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="labelFeature" value="uniqueId"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
+        eType="#//Feature"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Feature" eSuperTypes="#//BasicOsgiObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="labelFeature" value="uniqueId"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isExternal" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bundles" upperBound="-1"
+        eType="#//Bundle" eOpposite="#//Bundle/features"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Bundle" eSuperTypes="#//BasicOsgiObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="labelFeature" value="uniqueId"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isExternal" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
+        eType="#//Feature" eOpposite="#//Feature/bundles"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vendor" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceComponents" upperBound="-1"
+        eType="#//ServiceComponent" containment="true" resolveProxies="false" eOpposite="#//ServiceComponent/bundle"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="requiredBundles" upperBound="-1"
+        eType="#//Bundle" eOpposite="#//Bundle/usedByBundle"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usedByBundle" upperBound="-1"
+        eType="#//Bundle" eOpposite="#//Bundle/requiredBundles"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importedPackages" upperBound="-1"
+        eType="#//PackageObject" eOpposite="#//PackageObject/implementedBy"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exportedPackages" upperBound="-1"
+        eType="#//PackageObject" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="moreData" upperBound="-1"
+        eType="#//AttributeData" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="eclipseInjections" upperBound="-1"
+        eType="#//EclipseInjection" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bundleCategory" upperBound="-1"
+        eType="#//BundleCategory" eOpposite="#//BundleCategory/bundle"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PackageObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uniqueId" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="implementedBy" upperBound="-1"
+        eType="#//Bundle" eOpposite="#//Bundle/importedPackages"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="javaDocPath" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ServiceComponent">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="about" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementationClass" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bundle" eType="#//Bundle"
+        eOpposite="#//Bundle/serviceComponents"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceInterfaces" upperBound="-1"
+        eType="#//ServiceInterface" eOpposite="#//ServiceInterface/serviceComponent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reference" upperBound="-1"
+        eType="#//Reference" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="javaDocPath" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+        defaultValueLiteral=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ServiceInterface">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceComponent" upperBound="-1"
+        eType="#//ServiceComponent" eOpposite="#//ServiceComponent/serviceInterfaces"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="about" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="implementedIn" eType="#//Bundle"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referencedBy" upperBound="-1"
+        eType="#//Reference" eOpposite="#//Reference/serviceInterface"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BundleCategory">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="categoryName" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bundle" upperBound="-1"
+        eType="#//Bundle" eOpposite="#//Bundle/bundleCategory"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EclipseInjection">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="injectedInterface" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="usedInClass" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeData">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="attributeName" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="attributeData" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Reference">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="referenceName" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceInterface" eType="#//ServiceInterface"
+        eOpposite="#//ServiceInterface/referencedBy"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cardinality" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="policy" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bind" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unbind" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

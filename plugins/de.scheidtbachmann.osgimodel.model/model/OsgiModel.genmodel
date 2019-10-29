@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="de.scheidtbachmann.osgimodel.model/src" modelPluginID="de.scheidtbachmann.osgimodel.model"
+    runtimeJar="true" modelName="OsgiModel" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    testsDirectory="" booleanFlagsField="eFlags" booleanFlagsReservedBits="8" importerID="org.eclipse.emf.ecore.xcore.importer"
+    containmentProxies="true" complianceLevel="8.0" language="en" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    operationReflection="true" importOrganizing="true" decoration="Live" oSGiCompatible="true"
+    eclipsePlatformVersion="Juno" autoResizeProperties="true" autoExpandProperties="10"
+    findAction="true" expandAllAction="true" collapseAllAction="true" revertAction="true">
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+    <genAnnotations source="selectedPackages">
+      <details key="http://www.eclipse.org/emf/2002/Ecore" value="Ecore.xsd"/>
+    </genAnnotations>
+    <details key="directoryURI" value="."/>
+  </genAnnotations>
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter.xmi">
+    <genAnnotations source="selectedPackages">
+      <details key="http://www.eclipse.org/emf/2002/Ecore" value="EcoreXMI.xsd"/>
+    </genAnnotations>
+    <details key="directoryURI" value="."/>
+  </genAnnotations>
+  <foreignModel>OsgiModel.xcore</foreignModel>
+  <modelPluginVariables>org.eclipse.xtext.xbase.lib</modelPluginVariables>
+  <modelPluginVariables>org.eclipse.emf.ecore.xcore.lib</modelPluginVariables>
+  <genPackages prefix="Osgimodel" basePackage="de.scheidtbachmann" disposableProviderFactory="true"
+      ecorePackage="osgimodel.ecore#/">
+    <genClasses ecoreClass="osgimodel.ecore#//OsgiProject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//OsgiProject/projectName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//OsgiProject/numberOfJavaFiles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference osgimodel.ecore#//OsgiProject/bundles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference osgimodel.ecore#//OsgiProject/features"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference osgimodel.ecore#//OsgiProject/serviceComponents"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference osgimodel.ecore#//OsgiProject/serviceInterfaces"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference osgimodel.ecore#//OsgiProject/products"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference osgimodel.ecore#//OsgiProject/importedPackages"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference osgimodel.ecore#//OsgiProject/exportedPackages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference osgimodel.ecore#//OsgiProject/bundleCategories"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="osgimodel.ecore#//BasicOsgiObject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//BasicOsgiObject/uniqueId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//BasicOsgiObject/descriptiveName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//BasicOsgiObject/version"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//BasicOsgiObject/about"/>
+    </genClasses>
+    <genClasses ecoreClass="osgimodel.ecore#//Product" labelFeature="#//osgimodel/BasicOsgiObject/uniqueId">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference osgimodel.ecore#//Product/features"/>
+    </genClasses>
+    <genClasses ecoreClass="osgimodel.ecore#//Feature" labelFeature="#//osgimodel/BasicOsgiObject/uniqueId">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//Feature/isExternal"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference osgimodel.ecore#//Feature/bundles"/>
+    </genClasses>
+    <genClasses ecoreClass="osgimodel.ecore#//Bundle" labelFeature="#//osgimodel/BasicOsgiObject/uniqueId">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//Bundle/isExternal"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference osgimodel.ecore#//Bundle/features"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//Bundle/vendor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference osgimodel.ecore#//Bundle/serviceComponents"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference osgimodel.ecore#//Bundle/requiredBundles"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference osgimodel.ecore#//Bundle/usedByBundle"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference osgimodel.ecore#//Bundle/importedPackages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference osgimodel.ecore#//Bundle/exportedPackages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference osgimodel.ecore#//Bundle/moreData"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference osgimodel.ecore#//Bundle/eclipseInjections"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference osgimodel.ecore#//Bundle/bundleCategory"/>
+    </genClasses>
+    <genClasses ecoreClass="osgimodel.ecore#//PackageObject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//PackageObject/uniqueId"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference osgimodel.ecore#//PackageObject/implementedBy"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//PackageObject/javaDocPath"/>
+    </genClasses>
+    <genClasses ecoreClass="osgimodel.ecore#//ServiceComponent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//ServiceComponent/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//ServiceComponent/path"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//ServiceComponent/about"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//ServiceComponent/implementationClass"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference osgimodel.ecore#//ServiceComponent/bundle"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference osgimodel.ecore#//ServiceComponent/serviceInterfaces"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference osgimodel.ecore#//ServiceComponent/reference"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//ServiceComponent/javaDocPath"/>
+    </genClasses>
+    <genClasses ecoreClass="osgimodel.ecore#//ServiceInterface">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference osgimodel.ecore#//ServiceInterface/serviceComponent"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//ServiceInterface/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//ServiceInterface/about"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference osgimodel.ecore#//ServiceInterface/implementedIn"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference osgimodel.ecore#//ServiceInterface/referencedBy"/>
+    </genClasses>
+    <genClasses ecoreClass="osgimodel.ecore#//BundleCategory">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//BundleCategory/categoryName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference osgimodel.ecore#//BundleCategory/bundle"/>
+    </genClasses>
+    <genClasses ecoreClass="osgimodel.ecore#//EclipseInjection">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//EclipseInjection/injectedInterface"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//EclipseInjection/usedInClass"/>
+    </genClasses>
+    <genClasses ecoreClass="osgimodel.ecore#//AttributeData">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//AttributeData/attributeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//AttributeData/attributeData"/>
+    </genClasses>
+    <genClasses ecoreClass="osgimodel.ecore#//Reference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//Reference/referenceName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference osgimodel.ecore#//Reference/serviceInterface"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//Reference/cardinality"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//Reference/policy"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//Reference/bind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//Reference/unbind"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

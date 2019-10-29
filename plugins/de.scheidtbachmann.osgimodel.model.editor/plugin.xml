@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated OsgiModel -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="de.scheidtbachmann.osgimodel.presentation.OsgimodelModelWizardID"
+            name="%_UI_OsgimodelModelWizard_label"
+            class="de.scheidtbachmann.osgimodel.presentation.OsgimodelModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/OsgimodelModelFile.gif">
+         <description>%_UI_OsgimodelModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated OsgiModel -->
+      <editor
+            id="de.scheidtbachmann.osgimodel.presentation.OsgimodelEditorID"
+            name="%_UI_OsgimodelEditor_label"
+            icon="icons/full/obj16/OsgimodelModelFile.gif"
+            extensions="osgimodel"
+            class="de.scheidtbachmann.osgimodel.presentation.OsgimodelEditor"
+            contributorClass="de.scheidtbachmann.osgimodel.presentation.OsgimodelActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
