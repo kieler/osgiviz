@@ -16,7 +16,4 @@
    <feature url="features/de.cau.cs.kieler.osgiviz_0.1.0.qualifier.jar" id="de.cau.cs.kieler.osgiviz.feature" version="0.1.0.qualifier">
       <category name="osgiviz"/>
    </feature>
-   <feature url="features/de.cau.cs.kieler.osgiviz.source_0.1.0.qualifier.jar" id="de.cau.cs.kieler.osgiviz.feature.source" version="0.1.0.qualifier">
-      <category name="osgiviz"/>
-   </feature>
 </site>
