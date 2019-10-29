@@ -102,8 +102,8 @@ abstract class AbstractVisualizationContextChangingAction implements IAction {
      * actions, if additional layout or animation settings need to be set.
      */
     protected def ActionResult getActionResult(ActionContext context) {
-        return ActionResult.createResult(true).doSynthesis.doZoomToStay(
-            KGraphUtil.getAbsolute(context.KGraphElement), context.KGraphElement)
+        return ActionResult.createResult(true).doSynthesis//.doZoomToStay(
+            //KGraphUtil.getAbsolute(context.KGraphElement), context.KGraphElement)
     }
     
 }
