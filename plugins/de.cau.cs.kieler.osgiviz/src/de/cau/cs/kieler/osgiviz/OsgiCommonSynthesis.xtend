@@ -33,28 +33,32 @@ final class OsgiCommonSynthesis {
         extension KEdgeExtensions edgeExtensions, extension KNodeExtensions nodeExtensions,
         extension OsgiStyles styles) {
         implementedInterfaceEdges.forEach [
-                // Connects the service component and -interface via an arrow in UML style,
-                // so [component] ---implements--|> [interface]
-                val component = key
-                val interface = value
-                val componentNode = component.node
-                val interfaceNode = interface.node
-                val componentPort = componentNode.ports.findFirst [
-                    data.filter(KIdentifier).head?.id === "implementedServiceInterfaces"
-                ]
-                val interfacePort = interfaceNode.ports.findFirst [
-                    data.filter(KIdentifier).head?.id === "implementingServiceComponents"
-                ]
-                
-                val edge = createEdge(component, interface) => [
-                    addImplementingComponentEdgeRendering
-                    sourcePort = componentPort
-                    targetPort = interfacePort
-                    source = componentNode
-                    target = interfaceNode
-                ]
-                componentNode.outgoingEdges += edge
+            // Connects the service component and -interface via an arrow in UML style,
+            // so [component] ---implements--|> [interface]
+            val component = key
+            val interface = value
+            if (!nodeExists(component) || !nodeExists(interface)) {
+                // Only Add edges if the nodes are actually shown.
+                return
+            }
+            val componentNode = component.node
+            val interfaceNode = interface.node
+            val componentPort = componentNode.ports.findFirst [
+                data.filter(KIdentifier).head?.id === "implementedServiceInterfaces"
             ]
+            val interfacePort = interfaceNode.ports.findFirst [
+                data.filter(KIdentifier).head?.id === "implementingServiceComponents"
+            ]
+            
+            val edge = createEdge(component, interface) => [
+                addImplementingComponentEdgeRendering
+                sourcePort = componentPort
+                targetPort = interfacePort
+                source = componentNode
+                target = interfaceNode
+            ]
+            componentNode.outgoingEdges += edge
+        ]
     }
     
     /**
@@ -74,6 +78,10 @@ final class OsgiCommonSynthesis {
             // Connects the service component and -interface via an arrow.
             val component = it.serviceComponentContext
             val interface = it.serviceInterfaceContext
+            if (!nodeExists(component) || !nodeExists(interface)) {
+                // Only Add edges if the nodes are actually shown.
+                return
+            }
             val reference = it.reference
             val componentNode = component.node
             val interfaceNode = interface.node

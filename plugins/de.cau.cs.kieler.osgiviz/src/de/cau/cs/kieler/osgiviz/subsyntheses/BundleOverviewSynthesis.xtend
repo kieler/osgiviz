@@ -142,6 +142,10 @@ class BundleOverviewSynthesis extends AbstractSubSynthesis<BundleOverviewContext
                 // so [usedByBundleNode] ----- uses -----> [sourceBundleNode]
                 val requiring = key
                 val required = value
+                if (!nodeExists(requiring) || !nodeExists(required)) {
+                    // Only Add edges if the nodes are actually shown.
+                    return
+                }
                 val requiringNode = requiring.node
                 val requiredNode = required.node
                 val requiringPort = requiringNode.ports.findFirst [
@@ -163,6 +167,10 @@ class BundleOverviewSynthesis extends AbstractSubSynthesis<BundleOverviewContext
             
             // Add all used packages edges of bundles.
             bundleOverviewContext.usedPackagesOfBundleEdges.forEach [ connection |
+                if (!nodeExists(connection.sourceBundleContext) || !nodeExists(connection.targetBundleContext)) {
+                    // Only Add edges if the nodes are actually shown.
+                    return
+                }
                 val sourceBundleNode = connection.sourceBundleContext.node
                 val sourceBundlePort = sourceBundleNode.ports.findFirst [
                     data.filter(KIdentifier).head?.id === "importedPackages"
@@ -186,6 +194,10 @@ class BundleOverviewSynthesis extends AbstractSubSynthesis<BundleOverviewContext
             
             // Add all other used package edges.
             bundleOverviewContext.usedPackageEdges.forEach [
+                if (!nodeExists(key) || !nodeExists(value)) {
+                    // Only Add edges if the nodes are actually shown.
+                    return
+                }
                 val bundleNode = key.node
                 val bundlePort = bundleNode.ports.findFirst [
                     data.filter(KIdentifier).head?.id === "importedPackages"
