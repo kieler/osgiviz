@@ -82,6 +82,8 @@ class OsgiStyles {
     public static final String SERVICE_INTERFACE_COLOR_1 = "#FFE0E0" // HSV 0 12 100
     public static final String SERVICE_INTERFACE_COLOR_2 = "#FFC2C2" // HSV 0 24 100
     
+    public static final String DEFAULT_BACKGROUND_COLOR  = "white"
+    
     // Port colors.
     public static final String ALL_SHOWN_COLOR = "white"
     public static final String NOT_ALL_SHOWN_COLOR = "black"
@@ -145,6 +147,7 @@ class OsgiStyles {
             addHorizontalSeperatorLine(1, 0)
             addChildArea
             setShadow(SHADOW_COLOR.color, 4, 4)
+            background = DEFAULT_BACKGROUND_COLOR.color
             tooltip = tooltipText
             setSelectionStyle
         ]
@@ -165,6 +168,7 @@ class OsgiStyles {
                 addOverviewContextCollapseExpandButton(true)
             ]
             setShadow(SHADOW_COLOR.color, 4, 4)
+            background = DEFAULT_BACKGROUND_COLOR.color
             tooltip = tooltipText
             setSelectionStyle
         ]
@@ -333,6 +337,7 @@ class OsgiStyles {
             addHorizontalSeperatorLine(1, 0)
             addChildArea
             setShadow(SHADOW_COLOR.color, 4, 4)
+            background = DEFAULT_BACKGROUND_COLOR.color
             tooltip = "The overview of all available views for this OSGi project."
             setSelectionStyle
         ]
