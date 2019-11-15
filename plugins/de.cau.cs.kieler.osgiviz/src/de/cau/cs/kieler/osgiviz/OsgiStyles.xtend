@@ -22,13 +22,6 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KEdgeExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KLabelExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KPolylineExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KRenderingExtensions
-import de.scheidtbachmann.osgimodel.Bundle
-import de.scheidtbachmann.osgimodel.Feature
-import de.scheidtbachmann.osgimodel.PackageObject
-import de.scheidtbachmann.osgimodel.Product
-import de.scheidtbachmann.osgimodel.Reference
-import de.scheidtbachmann.osgimodel.ServiceComponent
-import de.scheidtbachmann.osgimodel.ServiceInterface
 import de.cau.cs.kieler.osgiviz.actions.ConnectAllAction
 import de.cau.cs.kieler.osgiviz.actions.ContextCollapseExpandAction
 import de.cau.cs.kieler.osgiviz.actions.ContextExpandAllAction
@@ -43,6 +36,13 @@ import de.cau.cs.kieler.osgiviz.actions.RevealRequiredBundlesAction
 import de.cau.cs.kieler.osgiviz.actions.RevealUsedByBundlesAction
 import de.cau.cs.kieler.osgiviz.actions.RevealUsedPackagesAction
 import de.cau.cs.kieler.osgiviz.actions.SelectRelatedAction
+import de.scheidtbachmann.osgimodel.Bundle
+import de.scheidtbachmann.osgimodel.Feature
+import de.scheidtbachmann.osgimodel.PackageObject
+import de.scheidtbachmann.osgimodel.Product
+import de.scheidtbachmann.osgimodel.Reference
+import de.scheidtbachmann.osgimodel.ServiceComponent
+import de.scheidtbachmann.osgimodel.ServiceInterface
 import java.util.List
 
 import static de.cau.cs.kieler.osgiviz.OsgiOptions.*
@@ -129,7 +129,7 @@ class OsgiStyles {
             setGridPlacement(1)
             addDoubleClickAction(OverviewContextCollapseExpandAction.ID)
             addRectangle => [
-                setGridPlacement(9)
+                setGridPlacement(6)
                 invisible = true
                 addRectangle => [
                     invisible = true
@@ -137,11 +137,8 @@ class OsgiStyles {
                 ]
                 addVerticalLine
                 addFocusButton
-                addVerticalLine
                 addExpandAllButton
-                addVerticalLine
                 addConnectAllButton
-                addVerticalLine
                 addOverviewContextCollapseExpandButton(false)
             ]
             addHorizontalSeperatorLine(1, 0)
@@ -219,14 +216,19 @@ class OsgiStyles {
      * collapsing.
      */
     def KRectangle addCollapseExpandButton(KContainerRendering container, boolean expand) {
-        val label = if (expand) "+" else "-"
+        val imagePath = if (expand) "icons/restore128.png" else "icons/minimize128.png"
         val doWhat = if (expand) "Expand" else "Collapse"
-        return container.addButton(label, ContextCollapseExpandAction::ID) => [
+        return container.addRectangle => [
             setGridPlacementData => [
                 flexibleWidth = false
             ]
+            addSingleOrMultiClickAction(ContextCollapseExpandAction::ID)
             lineWidth = 0
             tooltip = doWhat + " this element."
+            addImage("de.cau.cs.kieler.osgiviz", imagePath) => [
+                setPointPlacementData(RIGHT, 0, 0.5f, TOP, 0, 0.5f, H_CENTRAL, V_CENTRAL, 4f, 4f, 12, 12)
+                addSingleOrMultiClickAction(ContextCollapseExpandAction::ID)
+            ]
         ]
     }
     
@@ -236,12 +238,17 @@ class OsgiStyles {
      * @param container The parent rendering this button should be added to.
      */
     def KRectangle addExpandAllButton(KContainerRendering container) {
-        return container.addButton("Expand all", ContextExpandAllAction::ID) => [
+        return container.addRectangle => [
             setGridPlacementData => [
                 flexibleWidth = false
             ]
+            addSingleOrMultiClickAction(ContextExpandAllAction::ID)
             lineWidth = 0
             tooltip = "Expand all elements in this overview."
+            addImage("de.cau.cs.kieler.osgiviz", "icons/expand128.png") => [
+                setPointPlacementData(RIGHT, 0, 0.5f, TOP, 0, 0.5f, H_CENTRAL, V_CENTRAL, 4f, 4f, 12, 12)
+                addSingleOrMultiClickAction(ContextExpandAllAction::ID)
+            ]
         ]
     }
     
@@ -251,12 +258,17 @@ class OsgiStyles {
      * @param container The parent rendering this button should be added to.
      */
     def KRectangle addConnectAllButton(KContainerRendering container) {
-        return container.addButton("Connect all", ConnectAllAction::ID) => [
+        return container.addRectangle => [
             setGridPlacementData => [
                 flexibleWidth = false
             ]
+            addSingleOrMultiClickAction(ConnectAllAction::ID)
             lineWidth = 0
             tooltip = "Connects all elements in this overview."
+            addImage("de.cau.cs.kieler.osgiviz", "icons/connect128.png") => [
+                setPointPlacementData(RIGHT, 0, 0.5f, TOP, 0, 0.5f, H_CENTRAL, V_CENTRAL, 4f, 4f, 12, 12)
+                addSingleOrMultiClickAction(ConnectAllAction::ID)
+            ]
         ]
     }
     
@@ -283,14 +295,19 @@ class OsgiStyles {
      * collapsing.
      */
     def KRectangle addOverviewContextCollapseExpandButton(KContainerRendering container, boolean expand) {
-        val label = if (expand) "+" else "-"
+        val imagePath = if (expand) "icons/restore128.png" else "icons/minimize128.png"
         val doWhat = if (expand) "Expand" else "Collapse"
-        return container.addButton(label, OverviewContextCollapseExpandAction.ID) => [
+        return container.addRectangle => [
             setGridPlacementData => [
                 flexibleWidth = false
             ]
+            addSingleOrMultiClickAction(OverviewContextCollapseExpandAction::ID)
             lineWidth = 0
             tooltip = doWhat + " this overview."
+            addImage("de.cau.cs.kieler.osgiviz", imagePath) => [
+                setPointPlacementData(RIGHT, 0, 0.5f, TOP, 0, 0.5f, H_CENTRAL, V_CENTRAL, 4f, 4f, 12, 12)
+                addSingleOrMultiClickAction(OverviewContextCollapseExpandAction::ID)
+            ]
         ]
     }
     
@@ -300,12 +317,17 @@ class OsgiStyles {
      * @param container The parent rendering this button should be added to.
      */
     def KRectangle addFocusButton(KContainerRendering container) {
-        return container.addButton("Focus", FocusAction::ID) => [
+        return container.addRectangle => [
             setGridPlacementData => [
                 flexibleWidth = false
             ]
+            addSingleOrMultiClickAction(FocusAction::ID)
             lineWidth = 0
             tooltip = "Focus the view to this overview alone."
+            addImage("de.cau.cs.kieler.osgiviz", "icons/loupe128.png") => [
+                setPointPlacementData(RIGHT, 0, 0.5f, TOP, 0, 0.5f, H_CENTRAL, V_CENTRAL, 4f, 4f, 12, 12)
+                addSingleOrMultiClickAction(FocusAction::ID)
+            ]
         ]
     }
     
