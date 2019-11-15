@@ -35,6 +35,8 @@ import org.eclipse.elk.alg.layered.options.LayeredMetaDataProvider
 import org.eclipse.elk.alg.layered.options.LayeredOptions
 
 import static de.cau.cs.kieler.osgiviz.OsgiOptions.*
+import org.eclipse.elk.core.util.BoxLayoutProvider.PackingMode
+import org.eclipse.elk.core.options.BoxLayouterOptions
 
 /**
  * Main diagram synthesis for {@link OsgiProject} models.
@@ -135,6 +137,8 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
             modelNode.children += createNode => [
                 associateWith(model)
                 data += createKIdentifier => [ it.id = visContext.hashCode.toString ]
+                SynthesisUtils.configureBoxLayout(it)
+                setLayoutOption(BoxLayouterOptions.BOX_PACKING_MODE, PackingMode.GROUP_MIXED)
                 addProjectRendering
                 
                 val overviewProductNodes = productOverviewSynthesis.transform(visContext.productOverviewContext)

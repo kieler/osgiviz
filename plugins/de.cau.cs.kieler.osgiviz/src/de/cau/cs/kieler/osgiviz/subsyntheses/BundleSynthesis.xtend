@@ -6,19 +6,21 @@ import de.cau.cs.kieler.klighd.kgraph.KNode
 import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KPortExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
-import de.scheidtbachmann.osgimodel.Bundle
-import de.scheidtbachmann.osgimodel.OsgiProject
 import de.cau.cs.kieler.osgiviz.OsgiOptions
 import de.cau.cs.kieler.osgiviz.OsgiStyles
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
 import de.cau.cs.kieler.osgiviz.context.BundleContext
 import de.cau.cs.kieler.osgiviz.context.BundleOverviewContext
 import de.cau.cs.kieler.osgiviz.context.IOverviewVisualizationContext
+import de.scheidtbachmann.osgimodel.Bundle
+import de.scheidtbachmann.osgimodel.OsgiProject
 import java.util.EnumSet
+import org.eclipse.elk.core.options.BoxLayouterOptions
 import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.PortConstraints
 import org.eclipse.elk.core.options.PortSide
 import org.eclipse.elk.core.options.SizeConstraint
+import org.eclipse.elk.core.util.BoxLayoutProvider.PackingMode
 
 import static extension de.cau.cs.kieler.klighd.syntheses.DiagramSyntheses.*
 
@@ -95,6 +97,8 @@ class BundleSynthesis extends AbstractSubSynthesis<BundleContext, KNode> {
                 if (usedContext.getOptionValue(OsgiOptions.BUNDLE_SHOW_SERVICE_COMPONENTS) === true
                     && bc.serviceComponentOverviewContext !== null) {
                     setLayoutOption(CoreOptions::NODE_SIZE_CONSTRAINTS, EnumSet.of(SizeConstraint.MINIMUM_SIZE))
+                    SynthesisUtils.configureBoxLayout(it)
+                    setLayoutOption(BoxLayouterOptions.BOX_PACKING_MODE, PackingMode.GROUP_MIXED)
                     val componentOverviewNodes = serviceComponentOverviewSynthesis.transform(
                         bc.serviceComponentOverviewContext)
                     children += componentOverviewNodes

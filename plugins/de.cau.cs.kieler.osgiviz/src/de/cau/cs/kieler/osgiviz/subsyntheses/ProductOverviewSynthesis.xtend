@@ -5,16 +5,18 @@ import de.cau.cs.kieler.klighd.kgraph.KGraphFactory
 import de.cau.cs.kieler.klighd.kgraph.KNode
 import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
-import de.scheidtbachmann.osgimodel.Product
 import de.cau.cs.kieler.osgiviz.OsgiOptions.SimpleTextType
 import de.cau.cs.kieler.osgiviz.OsgiStyles
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
 import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
 import de.cau.cs.kieler.osgiviz.context.ProductContext
 import de.cau.cs.kieler.osgiviz.context.ProductOverviewContext
+import de.scheidtbachmann.osgimodel.Product
 import java.util.EnumSet
+import org.eclipse.elk.core.options.BoxLayouterOptions
 import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.SizeConstraint
+import org.eclipse.elk.core.util.BoxLayoutProvider.PackingMode
 
 import static de.cau.cs.kieler.osgiviz.OsgiOptions.*
 
@@ -44,6 +46,7 @@ class ProductOverviewSynthesis extends AbstractSubSynthesis<ProductOverviewConte
                     initiallyCollapse
                 }
                 configureBoxLayout
+                setLayoutOption(BoxLayouterOptions.BOX_PACKING_MODE, PackingMode.GROUP_MIXED)
                 setLayoutOption(CoreOptions::NODE_SIZE_CONSTRAINTS, EnumSet.of(SizeConstraint.MINIMUM_SIZE))
                 addOverviewRendering("Products", productOverviewContext.overviewText)
                 

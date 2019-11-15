@@ -5,15 +5,18 @@ import de.cau.cs.kieler.klighd.kgraph.KGraphFactory
 import de.cau.cs.kieler.klighd.kgraph.KNode
 import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
-import de.scheidtbachmann.osgimodel.Feature
-import de.scheidtbachmann.osgimodel.OsgiProject
 import de.cau.cs.kieler.osgiviz.OsgiStyles
+import de.cau.cs.kieler.osgiviz.SynthesisUtils
 import de.cau.cs.kieler.osgiviz.context.FeatureContext
 import de.cau.cs.kieler.osgiviz.context.FeatureOverviewContext
+import de.scheidtbachmann.osgimodel.Feature
+import de.scheidtbachmann.osgimodel.OsgiProject
 import java.util.EnumSet
+import org.eclipse.elk.core.options.BoxLayouterOptions
 import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.PortConstraints
 import org.eclipse.elk.core.options.SizeConstraint
+import org.eclipse.elk.core.util.BoxLayoutProvider.PackingMode
 
 import static extension de.cau.cs.kieler.klighd.syntheses.DiagramSyntheses.*
 
@@ -39,6 +42,8 @@ class FeatureSynthesis extends AbstractSubSynthesis<FeatureContext, KNode> {
                 // Show a bundle overview of all bundles provided by this feature.
                 if (fc.bundleOverviewContext !== null) {
                     setLayoutOption(CoreOptions::NODE_SIZE_CONSTRAINTS, EnumSet.of(SizeConstraint.MINIMUM_SIZE))
+                    SynthesisUtils.configureBoxLayout(it)
+                    setLayoutOption(BoxLayouterOptions.BOX_PACKING_MODE, PackingMode.GROUP_MIXED)
                     val bundleOverviewNodes = bundleOverviewSynthesis.transform(
                         fc.bundleOverviewContext)
                     children += bundleOverviewNodes
