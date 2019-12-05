@@ -23,10 +23,9 @@ Run Configuration:
 
 Für die run configuration sollten folgende Goals gesetzt sein: 
 
-`clean -X de.scheidtbachmann.common.osgimodel:model.generate:generate-documentation -N -Dmaven.test.skip=true -Dtycho.localArtifacts=ignore`
+**`clean -X de.scheidtbachmann.common.osgimodel:model.generate:generate-documentation -N -Dmaven.test.skip=true -Dtycho.localArtifacts=ignore`**
 
-`de.scheidtbachmann.common.osgimodel:model.generate:generate-documentation:` Ruft das maven plugin mit dem goal generate-documentation auf.
-
+`de.scheidtbachmann.common.osgimodel:model.generate:generate-documentation:` Ruft das maven plugin mit dem goal generate-documentation auf.<br>
 `-X`: für debug logging, wenn gewünscht<br>
 `-N`: non-recursive, es wird nur die parent-pom beachtet<br>
 `-Dmaven.test.skip=true`: Tests übersrpingen<br>
@@ -40,27 +39,18 @@ Für die run configuration sollten folgende Goals gesetzt sein:
 	<inherited>false</inherited>
 	<configuration>
 		<projectNames>
-			<ibs>IBS</ibs>
-			<gpGraphics>GP Graphics</gpGraphics>
-			<gpDialogs>GP Dialogs</gpDialogs>
-			<gpNatTable>GP NatTable</gpNatTable>
-			<gpOsgi>GP OSGi</gpOsgi>
+			<example1>ExampleName</example1>
+			<example2>ExampleName2</example2>
 		</projectNames>
-		<projectPaths>			
-			<ibs>C:\ws_intern\svn\IBS\src\ibs\java</ibs>
-			<gpNatTable>C:\ws_intern\svn\GenericProducts\src\gp\java\p2Repositories\NatTable</gpNatTable>
-			<gpOsgi>C:\ws_intern\svn\GenericProducts\src\gp\java\p2Repositories\osgi</gpOsgi>
-			<gpGraphics>C:\ws_intern\svn\GenericProducts\src\gp\java\p2Repositories\Graphics</gpGraphics>
-			<gpDialogs>C:\ws_intern\svn\GenericProducts\src\gp\java\p2Repositories\Dialogs</gpDialogs>
+		<projectPaths>	
+			<example1>C:\ws_intern\svn\example1\src\example1\java</example1>
+			<example2>C:\ws_intern\svn\example2\src\example2\java</example2>
 		</projectPaths>
 		<projectJavadocUrls>
-			<ibs>http://ki-vl-statweb.ki.lan/docs/ibs/site/trunk/apidocs/index.html</ibs>
-			<gpOsgi>http://ki-vl-statweb.ki.lan/docs/gp/osgi/site/trunk/apidocs/</gpOsgi>
-			<gpGraphics>http://ki-vl-statweb.ki.lan/docs/gp/graphics/site/trunk/apidocs/</gpGraphics>
-			<gpDialogs>http://ki-vl-statweb.ki.lan/docs/gp/dialogs/site/trunk/apidocs/</gpDialogs>
-			<gpNatTable>http://ki-vl-statweb.ki.lan/docs/gp/nattable/site/trunk/apidocs/</gpNatTable>
+			<example1[...]site/trunk/apidocs/index.html</example1>
+			<example2>[...]site/trunk/apidocs/index.html</example2>
 		</projectJavadocUrls>
-        <modelSaveFilePath>
+       		<modelSaveFilePath>
    			${project.basedir}/OSGiModel/models
 		</modelSaveFilePath>
 	</configuration>
