@@ -111,8 +111,9 @@ class BundleSynthesis extends AbstractSubSynthesis<BundleContext, KNode> {
                 if (usedContext.getOptionValue(OsgiOptions.BUNDLE_SHOW_SERVICE_COMPONENTS) === true
                     && bc.serviceComponentOverviewContext !== null) {
                     setLayoutOption(CoreOptions::NODE_SIZE_CONSTRAINTS, EnumSet.of(SizeConstraint.MINIMUM_SIZE))
-                    SynthesisUtils.configureBoxLayout(it)
-                    setLayoutOption(BoxLayouterOptions.BOX_PACKING_MODE, PackingMode.GROUP_MIXED)
+                    // Commented out due to null pointer in ELK caused by a possible hierarchic edge going over this box layout
+//                    SynthesisUtils.configureBoxLayout(it)
+//                    setLayoutOption(BoxLayouterOptions.BOX_PACKING_MODE, PackingMode.GROUP_MIXED)
                     val componentOverviewNodes = serviceComponentOverviewSynthesis.transform(
                         bc.serviceComponentOverviewContext)
                     children += componentOverviewNodes
