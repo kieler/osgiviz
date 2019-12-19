@@ -71,6 +71,10 @@ class OsgiOptions {
     public static final SynthesisOption FILTER_SERVICE_INTERFACES = SynthesisOption.createCheckOption(
         "Apply to service interfaces", true).setCategory(TEXT_FILTER_CATEGORY)
     
+    /** Option that indicates if the {@link #FILTER_BY} option should be applied to shown eclipse injections. */
+    public static final SynthesisOption FILTER_ECLIPSE_INJECTIONS = SynthesisOption.createCheckOption(
+        "Apply to eclipse injections", true).setCategory(TEXT_FILTER_CATEGORY)
+    
     
     /** Category option containing options for view filtering. */
     public static final SynthesisOption VIEW_FILTER_CATEGORY = SynthesisOption.createCategory("View filter", false)

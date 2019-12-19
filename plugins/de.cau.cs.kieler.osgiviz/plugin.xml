@@ -75,12 +75,16 @@
             id="de.cau.cs.kieler.osgiviz.actions.RevealReferencingServiceComponentsAction">
       </action>
       <action
+            class="de.cau.cs.kieler.osgiviz.actions.ToggleServiceComponentVisualization"
+            id="de.cau.cs.kieler.osgiviz.actions.ToggleServiceComponentVisualization">
+      </action>
+      <action
             class="de.cau.cs.kieler.osgiviz.actions.RevealReferencedServiceInterfacesAction"
             id="de.cau.cs.kieler.osgiviz.actions.RevealReferencedServiceInterfacesAction">
       </action>
       <action
-            class="de.cau.cs.kieler.osgiviz.actions.ToggleServiceComponentVisualization"
-            id="de.cau.cs.kieler.osgiviz.actions.ToggleServiceComponentVisualization">
+            class="de.cau.cs.kieler.osgiviz.actions.RevealInjectedServiceInterfaceAction"
+            id="de.cau.cs.kieler.osgiviz.actions.RevealInjectedServiceInterfaceAction">
       </action>
    </extension>
 

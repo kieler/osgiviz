@@ -20,15 +20,17 @@ import de.cau.cs.kieler.klighd.internal.util.KlighdInternalProperties
 import de.cau.cs.kieler.klighd.kgraph.KGraphElement
 import de.cau.cs.kieler.klighd.kgraph.KNode
 import de.cau.cs.kieler.klighd.syntheses.DiagramSyntheses
+import de.cau.cs.kieler.osgiviz.context.IOverviewVisualizationContext
+import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
 import de.scheidtbachmann.osgimodel.Bundle
 import de.scheidtbachmann.osgimodel.BundleCategory
+import de.scheidtbachmann.osgimodel.EclipseInjection
 import de.scheidtbachmann.osgimodel.Feature
+import de.scheidtbachmann.osgimodel.OsgiProject
 import de.scheidtbachmann.osgimodel.PackageObject
 import de.scheidtbachmann.osgimodel.Product
 import de.scheidtbachmann.osgimodel.ServiceComponent
 import de.scheidtbachmann.osgimodel.ServiceInterface
-import de.cau.cs.kieler.osgiviz.context.IOverviewVisualizationContext
-import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
 import java.util.List
 import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.Direction
@@ -112,26 +114,29 @@ final class SynthesisUtils {
         val regex = ".*" + usedContext.getOptionValue(FILTER_BY) as String + ".*"
         if (!regex.empty && !elementsInContext.empty) {
             val (M) => boolean filter = switch (elementsInContext.head) {
-                Bundle case usedContext.getOptionValue(FILTER_BUNDLES) === true: {
-                    [ (it as Bundle)          .uniqueId    .matches(regex) ]
+                Bundle           case usedContext.getOptionValue(FILTER_BUNDLES)            === true: {
+                    [ (it as Bundle)          .uniqueId       .matches(regex) ]
                 }
-                Feature case usedContext.getOptionValue(FILTER_FEATURES) === true: {
-                    [ (it as Feature)         .uniqueId    .matches(regex) ]
+                Feature          case usedContext.getOptionValue(FILTER_FEATURES)           === true: {
+                    [ (it as Feature)         .uniqueId       .matches(regex) ]
                 }
-                Product case usedContext.getOptionValue(FILTER_PRODUCTS) === true: {
-                    [ (it as Product)         .uniqueId    .matches(regex) ]
+                Product          case usedContext.getOptionValue(FILTER_PRODUCTS)           === true: {
+                    [ (it as Product)         .uniqueId       .matches(regex) ]
                 }
-                BundleCategory case usedContext.getOptionValue(FILTER_BUNDLE_CATEGORIES) === true: {
-                    [ (it as BundleCategory)  .categoryName.matches(regex) ]
+                BundleCategory   case usedContext.getOptionValue(FILTER_BUNDLE_CATEGORIES)  === true: {
+                    [ (it as BundleCategory)  .categoryName   .matches(regex) ]
                 }
-                PackageObject case usedContext.getOptionValue(FILTER_PACKAGE_OBJECTS) === true: {
-                    [ (it as PackageObject)   .uniqueId    .matches(regex) ]
+                PackageObject    case usedContext.getOptionValue(FILTER_PACKAGE_OBJECTS)    === true: {
+                    [ (it as PackageObject)   .uniqueId       .matches(regex) ]
                 }
                 ServiceComponent case usedContext.getOptionValue(FILTER_SERVICE_COMPONENTS) === true: {
-                    [ (it as ServiceComponent).name        .matches(regex) ]
+                    [ (it as ServiceComponent).name           .matches(regex) ]
                 }
                 ServiceInterface case usedContext.getOptionValue(FILTER_SERVICE_INTERFACES) === true: {
-                    [ (it as ServiceInterface).name        .matches(regex) ]
+                    [ (it as ServiceInterface).name           .matches(regex) ]
+                }
+                EclipseInjection case usedContext.getOptionValue(FILTER_ECLIPSE_INJECTIONS) === true: {
+                    [ (it as EclipseInjection).displayedString.matches(regex) ]
                 }
                 default: {
                     // In case the option for the filter is turned off, just return the given list.
@@ -160,8 +165,8 @@ final class SynthesisUtils {
         val regex = ".*" + usedContext.getOptionValue(FILTER_BY) as String + ".*"
         if (!regex.empty && !visualizationContexts.empty) {
             val (IVisualizationContext<M>) => boolean filter = switch (visualizationContexts.head.modelElement) {
-                Bundle case usedContext.getOptionValue(FILTER_BUNDLES) === true: {
-                    [ (modelElement as Bundle)          .uniqueId    .matches(regex) 
+                Bundle           case usedContext.getOptionValue(FILTER_BUNDLES)            === true: {
+                    [ (modelElement as Bundle)          .uniqueId       .matches(regex) 
                         && if (usedContext.getOptionValue(OsgiOptions.SHOW_EXTERNAL) === true) {
                             true
                         } else {
@@ -169,8 +174,8 @@ final class SynthesisUtils {
                         }
                     ]
                 }
-                Feature case usedContext.getOptionValue(FILTER_FEATURES) === true: {
-                    [ (modelElement as Feature)         .uniqueId    .matches(regex)
+                Feature          case usedContext.getOptionValue(FILTER_FEATURES)           === true: {
+                    [ (modelElement as Feature)         .uniqueId       .matches(regex)
                         && if (usedContext.getOptionValue(OsgiOptions.SHOW_EXTERNAL) === true) {
                             true
                         } else {
@@ -178,20 +183,23 @@ final class SynthesisUtils {
                         }
                     ]
                 }
-                Product case usedContext.getOptionValue(FILTER_PRODUCTS) === true: {
-                    [ (modelElement as Product)         .uniqueId    .matches(regex) ]
+                Product          case usedContext.getOptionValue(FILTER_PRODUCTS)           === true: {
+                    [ (modelElement as Product)         .uniqueId       .matches(regex) ]
                 }
-                BundleCategory case usedContext.getOptionValue(FILTER_BUNDLE_CATEGORIES) === true: {
-                    [ (modelElement as BundleCategory)  .categoryName.matches(regex) ]
+                BundleCategory   case usedContext.getOptionValue(FILTER_BUNDLE_CATEGORIES)  === true: {
+                    [ (modelElement as BundleCategory)  .categoryName   .matches(regex) ]
                 }
-                PackageObject case usedContext.getOptionValue(FILTER_PACKAGE_OBJECTS) === true: {
-                    [ (modelElement as PackageObject)   .uniqueId    .matches(regex) ]
+                PackageObject    case usedContext.getOptionValue(FILTER_PACKAGE_OBJECTS)    === true: {
+                    [ (modelElement as PackageObject)   .uniqueId       .matches(regex) ]
                 }
                 ServiceComponent case usedContext.getOptionValue(FILTER_SERVICE_COMPONENTS) === true: {
-                    [ (modelElement as ServiceComponent).name        .matches(regex) ]
+                    [ (modelElement as ServiceComponent).name           .matches(regex) ]
                 }
                 ServiceInterface case usedContext.getOptionValue(FILTER_SERVICE_INTERFACES) === true: {
-                    [ (modelElement as ServiceInterface).name        .matches(regex) ]
+                    [ (modelElement as ServiceInterface).name           .matches(regex) ]
+                }
+                EclipseInjection case usedContext.getOptionValue(FILTER_ECLIPSE_INJECTIONS) === true: {
+                    [ (modelElement as EclipseInjection).displayedString.matches(regex) ]
                 }
                 default: {
                     null
@@ -246,6 +254,38 @@ final class SynthesisUtils {
             setLayoutOption(CoreOptions::DIRECTION, Direction.RIGHT)
             setLayoutOption(CoreOptions::EDGE_ROUTING, EdgeRouting.POLYLINE)
         ]
+    }
+    
+    /**
+     * Returns the displayed string for {@link EclipseInjection}s by taking the file name.
+     * 
+     * @param ei The EclipseInjection.
+     * @return The displayed string for {@link EclipseInjection}s.  
+     */
+    def static String displayedString(EclipseInjection ei) {
+        return ei.usedInClass.replace("\\", "/").split("/").last
+    }
+    
+    /**
+     * Returns the injected interface of the given injection.
+     * 
+     * @param ei The EclipseInjection.
+     * @return The injected interface.
+     */
+    def static ServiceInterface injectedInterface(EclipseInjection ei) {
+        // Look for the osgiProject container.
+        var EObject current = ei
+        while (!(current instanceof OsgiProject)) {
+            current = current.eContainer
+        }
+        val OsgiProject osgiProject = current as OsgiProject
+        
+        // Look in the project's interfaces and match the searched for interface.
+        val interface = osgiProject.serviceInterfaces.findFirst [
+            it.name.endsWith(ei.injectedInterface)
+        ]
+        
+        return interface
     }
     
 }

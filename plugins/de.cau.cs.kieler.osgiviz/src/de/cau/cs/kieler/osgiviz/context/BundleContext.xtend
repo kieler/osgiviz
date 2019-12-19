@@ -59,6 +59,12 @@ class BundleContext implements IVisualizationContext<Bundle> {
     @Accessors
     ServiceComponentOverviewContext serviceComponentOverviewContext
     
+    /**
+     * The context for the eclipse injection overview shown in detailed bundles.
+     */
+    @Accessors
+    EclipseInjectionOverviewContext eclipseInjectionOverviewContext
+    
     private new() {}
     
     new(Bundle bundle, IOverviewVisualizationContext<?> parent) {
@@ -68,7 +74,7 @@ class BundleContext implements IVisualizationContext<Bundle> {
     }
     
     override getChildContexts() {
-        return #[serviceComponentOverviewContext]
+        return #[serviceComponentOverviewContext, eclipseInjectionOverviewContext]
     }
     
     override getModelElement() {
@@ -92,6 +98,10 @@ class BundleContext implements IVisualizationContext<Bundle> {
                 serviceComponentOverviewContext.expanded = true
             }
         }
+        // Same for the eclipse injections
+        if (!bundle.eclipseInjections.empty) {
+            eclipseInjectionOverviewContext = new EclipseInjectionOverviewContext(bundle.eclipseInjections, this)
+        }
     }
     
     override deepCopy(Map<IVisualizationContext<?>, IVisualizationContext<?>> seenContexts) {
@@ -106,6 +116,12 @@ class BundleContext implements IVisualizationContext<Bundle> {
                 as ServiceComponentOverviewContext
             clone.serviceComponentOverviewContext.parentVisualizationContext = clone
         }
+        if (eclipseInjectionOverviewContext !== null) {
+            clone.eclipseInjectionOverviewContext = eclipseInjectionOverviewContext.deepCopy(seenContexts)
+                as EclipseInjectionOverviewContext
+            clone.eclipseInjectionOverviewContext.parentVisualizationContext = clone
+        } 
+        
         clone.allRequiredBundlesShown = allRequiredBundlesShown
         clone.allRequiringBundlesShown = allRequiringBundlesShown
         clone.allUsedPackagesShown = allUsedPackagesShown

@@ -21,7 +21,6 @@ import de.cau.cs.kieler.klighd.kgraph.KGraphFactory
 import de.cau.cs.kieler.klighd.krendering.ViewSynthesisShared
 import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractDiagramSynthesis
-import de.scheidtbachmann.osgimodel.OsgiProject
 import de.cau.cs.kieler.osgiviz.actions.RedoAction
 import de.cau.cs.kieler.osgiviz.actions.ResetViewAction
 import de.cau.cs.kieler.osgiviz.actions.ToggleServiceComponentVisualization
@@ -43,14 +42,15 @@ import de.cau.cs.kieler.osgiviz.subsyntheses.PackageObjectOverviewSynthesis
 import de.cau.cs.kieler.osgiviz.subsyntheses.ProductOverviewSynthesis
 import de.cau.cs.kieler.osgiviz.subsyntheses.ServiceComponentOverviewSynthesis
 import de.cau.cs.kieler.osgiviz.subsyntheses.ServiceInterfaceOverviewSynthesis
+import de.scheidtbachmann.osgimodel.OsgiProject
 import java.util.LinkedHashSet
 import org.eclipse.elk.alg.layered.options.CrossingMinimizationStrategy
 import org.eclipse.elk.alg.layered.options.LayeredMetaDataProvider
 import org.eclipse.elk.alg.layered.options.LayeredOptions
+import org.eclipse.elk.core.options.BoxLayouterOptions
+import org.eclipse.elk.core.util.BoxLayoutProvider.PackingMode
 
 import static de.cau.cs.kieler.osgiviz.OsgiOptions.*
-import org.eclipse.elk.core.util.BoxLayoutProvider.PackingMode
-import org.eclipse.elk.core.options.BoxLayouterOptions
 
 /**
  * Main diagram synthesis for {@link OsgiProject} models.
@@ -84,6 +84,7 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
                 "Redoes the last action that was undone on the view model."),
             DisplayedActionData.create(ResetViewAction.ID, "Reset View",
                 "Resets the view to its default overview state."),
+            // TODO: This should not be an action but rather an option.
             DisplayedActionData.create(ToggleServiceComponentVisualization.ID, "Toggle service component visualization",
                 "Toggles between visualizing service components on their own and visualizing them in their bundle "
                 + "context.\n\n"
@@ -111,7 +112,8 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
         
         // Add all text filter options.
         options.addAll(FILTER_BY, FILTER_BUNDLE_CATEGORIES, FILTER_BUNDLES, FILTER_FEATURES,
-            FILTER_PACKAGE_OBJECTS, FILTER_PRODUCTS, FILTER_SERVICE_COMPONENTS, FILTER_SERVICE_INTERFACES)
+            FILTER_PACKAGE_OBJECTS, FILTER_PRODUCTS, FILTER_SERVICE_COMPONENTS, FILTER_SERVICE_INTERFACES,
+            FILTER_ECLIPSE_INJECTIONS)
         
         // Add all view filter options.
         options.addAll(SHOW_EXTERNAL, BUNDLE_SHOW_SERVICE_COMPONENTS, FILTER_CARDINALITY_LABEL, FILTER_DESCRIPTIONS,

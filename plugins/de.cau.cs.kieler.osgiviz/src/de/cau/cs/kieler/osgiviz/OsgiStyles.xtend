@@ -44,6 +44,7 @@ import de.cau.cs.kieler.osgiviz.actions.FocusAction
 import de.cau.cs.kieler.osgiviz.actions.OverviewContextCollapseExpandAction
 import de.cau.cs.kieler.osgiviz.actions.RevealImplementedServiceInterfacesAction
 import de.cau.cs.kieler.osgiviz.actions.RevealImplementingServiceComponentsAction
+import de.cau.cs.kieler.osgiviz.actions.RevealInjectedServiceInterfaceAction
 import de.cau.cs.kieler.osgiviz.actions.RevealReferencedServiceInterfacesAction
 import de.cau.cs.kieler.osgiviz.actions.RevealReferencingServiceComponentsAction
 import de.cau.cs.kieler.osgiviz.actions.RevealRequiredBundlesAction
@@ -51,6 +52,7 @@ import de.cau.cs.kieler.osgiviz.actions.RevealUsedByBundlesAction
 import de.cau.cs.kieler.osgiviz.actions.RevealUsedPackagesAction
 import de.cau.cs.kieler.osgiviz.actions.SelectRelatedAction
 import de.scheidtbachmann.osgimodel.Bundle
+import de.scheidtbachmann.osgimodel.EclipseInjection
 import de.scheidtbachmann.osgimodel.Feature
 import de.scheidtbachmann.osgimodel.PackageObject
 import de.scheidtbachmann.osgimodel.Product
@@ -83,6 +85,8 @@ class OsgiStyles {
     public static final String BUNDLE_COLOR_2            = "#C2F0FF" // HSV 195 24 100
     public static final String EXTERNAL_BUNDLE_COLOR_1   = "#F7FDFF" // HSV 195 3 100
     public static final String EXTERNAL_BUNDLE_COLOR_2   = "#F0FBFF" // HSV 195 6 100
+    public static final String ECLIPSE_INJECTION_COLOR_1 = "#F5FFE0" // HSV 79 12 100
+    public static final String ECLIPSE_INJECTION_COLOR_2 = "#ECFFC2" // HSV 79 24 100
     public static final String FEATURE_COLOR_1           = "#E0FFE9" // HSV 137 12 100
     public static final String FEATURE_COLOR_2           = "#C2FFD3" // HSV 137 24 100
     public static final String EXTERNAL_FEATURE_COLOR_1  = "#F7FFFA" // HSV 137 3 100
@@ -842,7 +846,8 @@ class OsgiStyles {
     
     /**
      * Adds a simple rendering for a {@link ServiceInterface} to the given node that can be expanded to call the
-     * {link ReferencedSynthesisExpandAction} to dynamically call the service interface synthesis for the given bundle.
+     * {link ReferencedSynthesisExpandAction} to dynamically call the service interface synthesis for the given
+     * interface.
      */
     def addServiceInterfaceInOverviewRendering(KNode node, ServiceInterface s, String name) {
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
@@ -963,7 +968,8 @@ class OsgiStyles {
     
     /**
      * Adds a simple rendering for a {@link ServiceComponent} to the given node that can be expanded to call the
-     * {link ReferencedSynthesisExpandAction} to dynamically call the service component synthesis for the given bundle.
+     * {link ReferencedSynthesisExpandAction} to dynamically call the service component synthesis for the given
+     * component.
      */
     def addServiceComponentInOverviewRendering(KNode node, ServiceComponent s, String name) {
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
@@ -1099,6 +1105,84 @@ class OsgiStyles {
             val tooltipText = "Show service interfaces referenced by this component (" + numReferences + " total)."
             tooltip = tooltipText
             addSingleClickAction(RevealReferencedServiceInterfacesAction::ID)
+        ]
+    }
+    
+    // ------------------------------------- EclipseInjection renderings -------------------------------------
+    
+    /**
+     * Adds a simple rendering for an {@link EclipseInjection} to the given node that can be expanded to call the
+     * {link ReferencedSynthesisExpandAction} to dynamically call the eclipse injection synthesis for the given
+     * injection.
+     */
+    def addEclipseInjectionInOverviewRendering(KNode node, EclipseInjection ei, String name) {
+        node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
+            setGridPlacement(3)
+            addRectangle => [
+                invisible = true
+                addSimpleLabel(name)
+            ]
+            addVerticalLine
+            addCollapseExpandButton(true)
+            setBackgroundGradient(ECLIPSE_INJECTION_COLOR_1.color, ECLIPSE_INJECTION_COLOR_2.color, 90)
+            addDoubleClickAction(ContextCollapseExpandAction::ID)
+            addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
+                ModifierState.NOT_PRESSED)
+            setShadow(SHADOW_COLOR.color, 4, 4)
+            tooltip = ei.usedInClass
+            setSelectionStyle
+        ]
+    }
+    
+    /**
+     * Adds a rendering for a {@link EclipseInjection} to the given node.
+     * 
+     * @param node The KNode this rendering should be attached to.
+     * @param ei The eclipse injection this rendering represents.
+     * @param context The view context used in the synthesis.
+     * 
+     * @return The entire rendering for a eclipse injection.
+     */
+    def KRoundedRectangle addEclipseInjectionRendering(KNode node, EclipseInjection ei, boolean inOverview,
+        boolean hasChildren, ViewContext context) {
+        node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
+            setBackgroundGradient(ECLIPSE_INJECTION_COLOR_1.color, ECLIPSE_INJECTION_COLOR_2.color, 90)
+            setGridPlacement(1)
+            addRectangle => [
+                setGridPlacement(3)
+                invisible = true
+                addRectangle => [
+                    invisible = true
+                    addSimpleLabel(SynthesisUtils.displayedString(ei)) => [
+                        tooltip = ei.usedInClass
+                        addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
+                            ModifierState.NOT_PRESSED)
+                    ]
+                ]
+                addVerticalLine
+                if (inOverview) {
+                    addCollapseExpandButton(false)
+                } else {
+                    addRemoveButton
+                }
+            ]
+            setShadow(SHADOW_COLOR.color, 4, 4)
+            addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
+                ModifierState.NOT_PRESSED)
+            setSelectionStyle
+        ]
+    }
+    
+    /**
+     * The rendering of a port that connects a eclipse injection with the service interfaces it injects. Issues the
+     * {@link RevealInjectedServiceInterfaceAction} if clicked.
+     */
+    def KRectangle addInjectedServiceInterfacePortRendering(KPort port, boolean allShown) {
+        return port.addRectangle => [
+            background = if (allShown) ALL_SHOWN_COLOR.color else NOT_ALL_SHOWN_COLOR.color
+            val tooltipText = "Show injected interface."
+            tooltip = tooltipText
+            addSingleClickAction(RevealInjectedServiceInterfaceAction::ID)
         ]
     }
     

@@ -25,7 +25,7 @@ import de.cau.cs.kieler.osgiviz.context.ServiceInterfaceOverviewContext
 
 /**
  * Puts the service components referenced by this service interface next to this service interface and connects them 
- * with an edge from this service interface's 'referencingServiceInterfaces' port to the new service interface.
+ * with an edge from this service interface's 'referencingServiceInterfaces' port to the new service component.
  * 
  * @author nre
  */

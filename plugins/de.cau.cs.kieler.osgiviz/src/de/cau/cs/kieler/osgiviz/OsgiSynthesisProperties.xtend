@@ -46,6 +46,7 @@ class OsgiSynthesisProperties {
     public static final IProperty<Integer> CURRENT_VISUALIZATION_CONTEXT_INDEX
         = new Property<Integer>("osgimodel.currentVisualizationContextIndex", null)
     
+    // TODO rename and rephrase this as it also alters the behavior for eclipse injections.
     /**
      * Property indicating whether service components should be synthesized shown in the bundles they are defined by
      * IN_BUNDLES or if they should be synthesized plain PLAIN.

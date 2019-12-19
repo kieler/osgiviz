@@ -165,6 +165,15 @@ class ContextUtils {
         // There are no edges in package object overview contexts. So do nothing.
     }
     
+    def dispatch static void removeEdges(EclipseInjectionOverviewContext overviewContext, EclipseInjectionContext context) {
+        val injectedInterfaceView = overviewContext.injectedInterfaceEdges.clone
+        injectedInterfaceView.forEach [
+            if (key === context) {
+                overviewContext.injectedInterfaceEdges.remove(it)
+            }
+        ]
+    }
+    
     def dispatch static void removeEdges(ServiceInterfaceOverviewContext overviewContext,
         ServiceInterfaceContext context) {
         // PLAIN variant:
@@ -660,6 +669,31 @@ class ContextUtils {
             ]) {
                 serviceInterfaceContext.allReferencingComponentsShownInBundles = true
             }
+        }
+    }
+    
+    /**
+     * Adds an injected service interface edge to the parent eclipse injection overview context.
+     * The direction of the edge indicates that the service interface of the {@code serviceInterfaceContext} is
+     * injected by the class represented by the {@code eclipseInjectionContext}.
+     * 
+     * @param serviceComponentContext The service component context that is injected.
+     * @param eclipseInjectionContext The eclipse injection context for the injection.
+     */
+    def static void addInjectedServiceInterfaceEdge(EclipseInjectionContext eclipseInjectionContext,
+        ServiceInterfaceContext serviceInterfaceContext) {
+        val parentContext = eclipseInjectionContext.parentVisualizationContext as EclipseInjectionOverviewContext
+        if (serviceInterfaceContext.parentVisualizationContext !== parentContext) {
+            throw new IllegalArgumentException(DIFFERENT_PARENT_ERROR_MSG)
+        }
+        val injectedInterfaceEdges = parentContext.injectedInterfaceEdges
+        
+        // Only if this edge does not exist yet, add it to the list of referenced service component edges.
+        if (!injectedInterfaceEdges.exists [
+            key === eclipseInjectionContext &&
+            value === serviceInterfaceContext
+        ]) {
+            injectedInterfaceEdges += eclipseInjectionContext -> serviceInterfaceContext
         }
     }
     

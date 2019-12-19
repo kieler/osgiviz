@@ -48,6 +48,7 @@ class BundleSynthesis extends AbstractSubSynthesis<BundleContext, KNode> {
     @Inject extension KPortExtensions
     @Inject extension OsgiStyles
     @Inject ServiceComponentOverviewSynthesis serviceComponentOverviewSynthesis
+    @Inject EclipseInjectionOverviewSynthesis eclipseInjectionOverviewSynthesis
     extension KGraphFactory = KGraphFactory.eINSTANCE
         
     override transform(BundleContext bc) {
@@ -117,6 +118,14 @@ class BundleSynthesis extends AbstractSubSynthesis<BundleContext, KNode> {
                     val componentOverviewNodes = serviceComponentOverviewSynthesis.transform(
                         bc.serviceComponentOverviewContext)
                     children += componentOverviewNodes
+                }
+                
+                // Show an overview of all Eclipse Injections of this bundle.
+                if (bc.eclipseInjectionOverviewContext !== null) {
+                    setLayoutOption(CoreOptions::NODE_SIZE_CONSTRAINTS, EnumSet.of(SizeConstraint.MINIMUM_SIZE))
+                    val injectionOverviewNodes = eclipseInjectionOverviewSynthesis.transform(
+                        bc.eclipseInjectionOverviewContext)
+                    children += injectionOverviewNodes
                 }
                 
                 // Add the rendering.
