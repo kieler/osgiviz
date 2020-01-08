@@ -25,7 +25,7 @@ import java.util.Map
  * 
  * @author nre
  */
-class ProductOverviewContext implements IOverviewVisualizationContext<Product> {
+class ProductOverviewContext extends IOverviewVisualizationContext<Product> {
     
     /**
      * All products that should be drawn in their detailed form.

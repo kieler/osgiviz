@@ -23,14 +23,14 @@ import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiStyles
 import de.cau.cs.kieler.osgiviz.OsgiSynthesisProperties
 import de.cau.cs.kieler.osgiviz.context.EclipseInjectionContext
-import de.cau.cs.kieler.osgiviz.context.EclipseInjectionOverviewContext
+import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
 import de.scheidtbachmann.osgimodel.EclipseInjection
 import de.scheidtbachmann.osgimodel.OsgiProject
 import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.PortConstraints
 import org.eclipse.elk.core.options.PortSide
 
-import static extension de.cau.cs.kieler.osgiviz.SynthesisUtils.*
+import static de.cau.cs.kieler.osgiviz.SynthesisUtils.*
 
 /**
  * Sub-synthesis of {@link OsgiProject}s that handles expanded {@link EclipseInjection} views.
@@ -64,7 +64,7 @@ class EclipseInjectionSynthesis extends AbstractSubSynthesis<EclipseInjectionCon
                         addLayoutParam(CoreOptions::PORT_SIDE, PortSide::WEST)
                         
                         val boolean injectedInterfaceShown = switch (usedContext.getProperty(
-                            OsgiSynthesisProperties.CURRENT_SERVICE_COMPONENT_VISUALIZATION_MODE)) {
+                            OsgiSynthesisProperties.CURRENT_SERVICE_CONNECTION_VISUALIZATION_MODE)) {
                             case PLAIN: {
                                 eic.injectedInterfaceShownPlain
                             }
@@ -82,7 +82,7 @@ class EclipseInjectionSynthesis extends AbstractSubSynthesis<EclipseInjectionCon
                 // Add the rendering.
                 val hasChildren = !children.empty
                 addEclipseInjectionRendering(eclipseInjection,
-                    eic.parentVisualizationContext instanceof EclipseInjectionOverviewContext, hasChildren, usedContext)
+                    eic.parentVisualizationContext instanceof ServiceOverviewContext, hasChildren, usedContext)
             ]
         ]
     }

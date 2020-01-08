@@ -25,7 +25,7 @@ import java.util.Map
  * 
  * @author nre
  */
-class PackageObjectOverviewContext implements IOverviewVisualizationContext<PackageObject> {
+class PackageObjectOverviewContext extends IOverviewVisualizationContext<PackageObject> {
     
     /**
      * The package object contexts for all package objects in their collapsed form.

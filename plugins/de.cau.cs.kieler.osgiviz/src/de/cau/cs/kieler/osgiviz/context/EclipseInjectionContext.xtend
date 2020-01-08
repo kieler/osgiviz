@@ -33,7 +33,7 @@ class EclipseInjectionContext implements IVisualizationContext<EclipseInjection>
     /**
      * The parent visualization context.
      */
-    IOverviewVisualizationContext<EclipseInjection> parent
+    IOverviewVisualizationContext<?> parent
     
     /**
      * Indicates whether the injected interface is shown and connected to this.
@@ -51,7 +51,7 @@ class EclipseInjectionContext implements IVisualizationContext<EclipseInjection>
     
     private new() {}
     
-    new(EclipseInjection eclipseInjection, IOverviewVisualizationContext<EclipseInjection> parent) {
+    new(EclipseInjection eclipseInjection, IOverviewVisualizationContext<?> parent) {
         this.parent = parent
         this.eclipseInjection = eclipseInjection
     }
@@ -64,7 +64,7 @@ class EclipseInjectionContext implements IVisualizationContext<EclipseInjection>
        return eclipseInjection
     }
     
-    override IOverviewVisualizationContext<EclipseInjection> getParentVisualizationContext() {
+    override IOverviewVisualizationContext<?> getParentVisualizationContext() {
         return parent
     }
     

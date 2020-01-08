@@ -14,7 +14,6 @@
  */
 package de.cau.cs.kieler.osgiviz.actions
 
-import de.cau.cs.kieler.osgiviz.context.ContextUtils
 import de.cau.cs.kieler.osgiviz.context.IOverviewVisualizationContext
 import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
 import org.eclipse.emf.ecore.EObject
@@ -41,7 +40,7 @@ class ContextExpandAllAction extends AbstractVisualizationContextChangingAction 
         
         val collapsedElements = ovc.collapsedElements.clone
         collapsedElements.forEach [
-            ContextUtils.makeDetailed(ovc, it)
+            ovc.makeDetailed(it)
         ]
         return null
     }

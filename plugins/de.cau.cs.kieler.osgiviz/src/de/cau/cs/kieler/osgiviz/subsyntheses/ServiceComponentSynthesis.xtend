@@ -20,12 +20,12 @@ import de.cau.cs.kieler.klighd.kgraph.KNode
 import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KPortExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
-import de.scheidtbachmann.osgimodel.OsgiProject
-import de.scheidtbachmann.osgimodel.ServiceComponent
 import de.cau.cs.kieler.osgiviz.OsgiStyles
 import de.cau.cs.kieler.osgiviz.OsgiSynthesisProperties
 import de.cau.cs.kieler.osgiviz.context.ServiceComponentContext
-import de.cau.cs.kieler.osgiviz.context.ServiceComponentOverviewContext
+import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
+import de.scheidtbachmann.osgimodel.OsgiProject
+import de.scheidtbachmann.osgimodel.ServiceComponent
 import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.PortConstraints
 import org.eclipse.elk.core.options.PortSide
@@ -63,7 +63,7 @@ class ServiceComponentSynthesis extends AbstractSubSynthesis<ServiceComponentCon
                         addLayoutParam(CoreOptions::PORT_SIDE, PortSide::EAST)
                         
                         val boolean allImplementingInterfacesShown = switch (usedContext.getProperty(
-                            OsgiSynthesisProperties.CURRENT_SERVICE_COMPONENT_VISUALIZATION_MODE)) {
+                            OsgiSynthesisProperties.CURRENT_SERVICE_CONNECTION_VISUALIZATION_MODE)) {
                             case PLAIN: {
                                 sc.allImplementedInterfacesShownPlain
                             }
@@ -92,7 +92,7 @@ class ServiceComponentSynthesis extends AbstractSubSynthesis<ServiceComponentCon
                         addLayoutParam(CoreOptions::PORT_SIDE, PortSide::WEST)
                         
                         val boolean allReferencedInterfacesShown = switch (usedContext.getProperty(
-                            OsgiSynthesisProperties.CURRENT_SERVICE_COMPONENT_VISUALIZATION_MODE)) {
+                            OsgiSynthesisProperties.CURRENT_SERVICE_CONNECTION_VISUALIZATION_MODE)) {
                             case PLAIN: {
                                 sc.allReferencedInterfacesShownPlain
                             }
@@ -110,7 +110,7 @@ class ServiceComponentSynthesis extends AbstractSubSynthesis<ServiceComponentCon
                 // Add the rendering.
                 val hasChildren = !children.empty
                 addServiceComponentRendering(serviceComponent,
-                    sc.parentVisualizationContext instanceof ServiceComponentOverviewContext, hasChildren, usedContext)
+                    sc.parentVisualizationContext instanceof ServiceOverviewContext, hasChildren, usedContext)
             ]
         ]
     }

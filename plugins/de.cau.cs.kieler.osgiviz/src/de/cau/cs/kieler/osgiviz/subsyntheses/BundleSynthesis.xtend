@@ -26,6 +26,7 @@ import de.cau.cs.kieler.osgiviz.SynthesisUtils
 import de.cau.cs.kieler.osgiviz.context.BundleContext
 import de.cau.cs.kieler.osgiviz.context.BundleOverviewContext
 import de.cau.cs.kieler.osgiviz.context.IOverviewVisualizationContext
+import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
 import de.scheidtbachmann.osgimodel.Bundle
 import de.scheidtbachmann.osgimodel.OsgiProject
 import java.util.EnumSet
@@ -47,8 +48,7 @@ class BundleSynthesis extends AbstractSubSynthesis<BundleContext, KNode> {
     @Inject extension KNodeExtensions
     @Inject extension KPortExtensions
     @Inject extension OsgiStyles
-    @Inject ServiceComponentOverviewSynthesis serviceComponentOverviewSynthesis
-    @Inject EclipseInjectionOverviewSynthesis eclipseInjectionOverviewSynthesis
+    @Inject ServiceOverviewSynthesis serviceOverviewSynthesis
     extension KGraphFactory = KGraphFactory.eINSTANCE
         
     override transform(BundleContext bc) {
@@ -109,29 +109,21 @@ class BundleSynthesis extends AbstractSubSynthesis<BundleContext, KNode> {
                 
                 // Show a service component overview of all service components provided by this bundle.
                 // Only show this, if the option for it says so and if the context is available.
-                if (usedContext.getOptionValue(OsgiOptions.BUNDLE_SHOW_SERVICE_COMPONENTS) === true
-                    && bc.serviceComponentOverviewContext !== null) {
+                if (usedContext.getOptionValue(OsgiOptions.BUNDLE_SHOW_SERVICES) === true
+                    && bc.serviceOverviewContext !== null) {
                     setLayoutOption(CoreOptions::NODE_SIZE_CONSTRAINTS, EnumSet.of(SizeConstraint.MINIMUM_SIZE))
                     // Commented out due to null pointer in ELK caused by a possible hierarchic edge going over this box layout
 //                    SynthesisUtils.configureBoxLayout(it)
 //                    setLayoutOption(BoxLayouterOptions.BOX_PACKING_MODE, PackingMode.GROUP_MIXED)
-                    val componentOverviewNodes = serviceComponentOverviewSynthesis.transform(
-                        bc.serviceComponentOverviewContext)
+                    val componentOverviewNodes = serviceOverviewSynthesis.transform(bc.serviceOverviewContext)
                     children += componentOverviewNodes
-                }
-                
-                // Show an overview of all Eclipse Injections of this bundle.
-                if (bc.eclipseInjectionOverviewContext !== null) {
-                    setLayoutOption(CoreOptions::NODE_SIZE_CONSTRAINTS, EnumSet.of(SizeConstraint.MINIMUM_SIZE))
-                    val injectionOverviewNodes = eclipseInjectionOverviewSynthesis.transform(
-                        bc.eclipseInjectionOverviewContext)
-                    children += injectionOverviewNodes
                 }
                 
                 // Add the rendering.
                 val hasChildren = !children.empty
-                addBundleRendering(bundle, bc.parentVisualizationContext instanceof BundleOverviewContext, hasChildren,
-                    usedContext)
+                val boolean inOverview = bc.parentVisualizationContext instanceof BundleOverviewContext
+                                      || bc.parentVisualizationContext instanceof ServiceOverviewContext
+                addBundleRendering(bundle, inOverview, hasChildren, usedContext)
             ]
         ]
     }

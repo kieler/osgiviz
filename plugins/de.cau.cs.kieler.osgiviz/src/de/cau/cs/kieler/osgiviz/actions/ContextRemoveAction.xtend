@@ -14,17 +14,11 @@
  */
 package de.cau.cs.kieler.osgiviz.actions
 
-import de.cau.cs.kieler.osgiviz.context.BundleContext
 import de.cau.cs.kieler.osgiviz.context.BundleOverviewContext
 import de.cau.cs.kieler.osgiviz.context.ContextUtils
-import de.cau.cs.kieler.osgiviz.context.IInterfaceComponentConnectionHolder
 import de.cau.cs.kieler.osgiviz.context.IOverviewVisualizationContext
 import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
 import de.cau.cs.kieler.osgiviz.context.PackageObjectContext
-import de.cau.cs.kieler.osgiviz.context.ServiceComponentContext
-import de.cau.cs.kieler.osgiviz.context.ServiceComponentOverviewContext
-import de.cau.cs.kieler.osgiviz.context.ServiceInterfaceContext
-import de.cau.cs.kieler.osgiviz.context.ServiceInterfaceOverviewContext
 import org.eclipse.emf.ecore.EObject
 
 /**
@@ -46,20 +40,9 @@ class ContextRemoveAction extends AbstractVisualizationContextChangingAction {
             throw new IllegalStateException("This action is performed on an element that is not inside an overview " +
                 "visualization!")
         }
-        val ovc = overviewVisContext as IOverviewVisualizationContext<M>
+        val ovc = overviewVisContext as IOverviewVisualizationContext<? extends EObject>
         
         switch modelVisualizationContext {
-            ServiceComponentContext case ovc instanceof ServiceInterfaceOverviewContext: {
-                (ovc as ServiceInterfaceOverviewContext).implementingOrReferencingServiceComponentContexts
-                    .remove(modelVisualizationContext)
-            }
-            BundleContext case ovc instanceof IInterfaceComponentConnectionHolder: {
-                (ovc as IInterfaceComponentConnectionHolder).referencedBundleContexts.remove(modelVisualizationContext)
-            }
-            ServiceInterfaceContext case ovc instanceof ServiceComponentOverviewContext: {
-                (ovc as ServiceComponentOverviewContext).implementedOrReferencedServiceInterfaceContexts
-                    .remove(modelVisualizationContext)
-            }
             PackageObjectContext case ovc instanceof BundleOverviewContext: {
                 (ovc as BundleOverviewContext).usedPackageContexts.remove(modelVisualizationContext)
             }

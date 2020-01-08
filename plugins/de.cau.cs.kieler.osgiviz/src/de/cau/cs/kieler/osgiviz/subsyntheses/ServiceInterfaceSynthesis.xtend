@@ -20,13 +20,13 @@ import de.cau.cs.kieler.klighd.kgraph.KNode
 import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KPortExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
-import de.scheidtbachmann.osgimodel.OsgiProject
-import de.scheidtbachmann.osgimodel.ServiceComponent
-import de.scheidtbachmann.osgimodel.ServiceInterface
 import de.cau.cs.kieler.osgiviz.OsgiStyles
 import de.cau.cs.kieler.osgiviz.OsgiSynthesisProperties
 import de.cau.cs.kieler.osgiviz.context.ServiceInterfaceContext
-import de.cau.cs.kieler.osgiviz.context.ServiceInterfaceOverviewContext
+import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
+import de.scheidtbachmann.osgimodel.OsgiProject
+import de.scheidtbachmann.osgimodel.ServiceComponent
+import de.scheidtbachmann.osgimodel.ServiceInterface
 import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.PortConstraints
 import org.eclipse.elk.core.options.PortSide
@@ -62,7 +62,7 @@ class ServiceInterfaceSynthesis extends AbstractSubSynthesis<ServiceInterfaceCon
                         addLayoutParam(CoreOptions::PORT_SIDE, PortSide::WEST)
                         
                         val boolean allImplementingComponentsShown = switch (usedContext.getProperty(
-                            OsgiSynthesisProperties.CURRENT_SERVICE_COMPONENT_VISUALIZATION_MODE)) {
+                            OsgiSynthesisProperties.CURRENT_SERVICE_CONNECTION_VISUALIZATION_MODE)) {
                             case PLAIN: {
                                 sic.allImplementingComponentsShownPlain
                             }
@@ -93,7 +93,7 @@ class ServiceInterfaceSynthesis extends AbstractSubSynthesis<ServiceInterfaceCon
                         addLayoutParam(CoreOptions::PORT_SIDE, PortSide::EAST)
                         
                         val boolean allReferencingComponentsShown = switch (usedContext.getProperty(
-                            OsgiSynthesisProperties.CURRENT_SERVICE_COMPONENT_VISUALIZATION_MODE)) {
+                            OsgiSynthesisProperties.CURRENT_SERVICE_CONNECTION_VISUALIZATION_MODE)) {
                             case PLAIN: {
                                 sic.allReferencingComponentsShownPlain
                             }
@@ -112,7 +112,7 @@ class ServiceInterfaceSynthesis extends AbstractSubSynthesis<ServiceInterfaceCon
                 // Add the rendering.
                 val hasChildren = !children.empty
                 addServiceInterfaceRendering(serviceInterface,
-                    sic.parentVisualizationContext instanceof ServiceInterfaceOverviewContext, hasChildren, usedContext)
+                    sic.parentVisualizationContext instanceof ServiceOverviewContext, hasChildren, usedContext)
             ]
         ]
     }

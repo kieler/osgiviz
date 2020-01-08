@@ -14,20 +14,15 @@
  */
 package de.cau.cs.kieler.osgiviz.actions
 
-import de.scheidtbachmann.osgimodel.ServiceComponent
 import de.cau.cs.kieler.osgiviz.context.BundleContext
 import de.cau.cs.kieler.osgiviz.context.BundleOverviewContext
-import de.cau.cs.kieler.osgiviz.context.IOverviewVisualizationContext
 import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
-import de.cau.cs.kieler.osgiviz.context.ProductContext
-import de.cau.cs.kieler.osgiviz.context.ServiceComponentContext
-import de.cau.cs.kieler.osgiviz.context.ServiceComponentOverviewContext
-import de.cau.cs.kieler.osgiviz.context.ServiceInterfaceOverviewContext
+import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
 import org.eclipse.emf.ecore.EObject
 
 /**
- * Abstract action to reveal service interfaces connected to a service component caused by an action on a service
- * component. Handles the different parent visualization context stacks the component and interface could be in in
+ * Abstract action to reveal service interfaces connected to a service elements caused by an action on a service
+ * element. Handles the different parent visualization context stacks the interface and other element could be in in
  * own methods.
  * 
  * @author nre
@@ -36,94 +31,62 @@ abstract class AbstractRevealServiceInterfacesAction extends AbstractVisualizati
     
     override <M extends EObject> IVisualizationContext<?>
     changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
-        // The ServiceComponentContext element for the element that was clicked on.
-        val serviceComponentContext = modelVisualizationContext as ServiceComponentContext
         
-        // The ServiceComponent itself from the context.
-        val serviceComponent = serviceComponentContext.modelElement
+        // The element itself from the context.
+        val element = modelVisualizationContext.modelElement
         
-        // The overview context this service component is shown in.
-        val overviewContext = serviceComponentContext.parentVisualizationContext
-            as IOverviewVisualizationContext<?>
+        // The overview context this element is shown in.
+        val overviewContext = modelVisualizationContext.parentVisualizationContext as ServiceOverviewContext
         
         // Handle this action differently, depending on in which overview context stack this is contained in.
         val parent1 = overviewContext.parentVisualizationContext
         val parent2 = parent1?.parentVisualizationContext
         val parent3 = parent2?.parentVisualizationContext
-        switch overviewContext {
-            ServiceInterfaceOverviewContext: {
-                // Revealed component in an interface context in PLAIN view. Also update the corresponding IN_BUNDLES
-                // view.
-                revealInInterfaceOverview(serviceComponent, overviewContext)
-            }
-            ServiceComponentOverviewContext: {
-                switch parent1 {
-                    BundleContext: {
-                        switch parent2 {
-                            ServiceInterfaceOverviewContext: {
-                                // Revealed component in an interface context in IN_BUNDLES view. Also update the
-                                // corresponding PLAIN view.
-                                revealInInterfaceOverview(serviceComponent, parent2)
-                            }
-                            BundleOverviewContext: {
-                                // Component in an independent bundle context. Only available as a plain view.
-                                revealInIndependentBundle(serviceComponentContext, overviewContext)
-                            }
-                            ServiceComponentOverviewContext case parent3 instanceof ProductContext: {
-                                // Component defined inside a product in IN_BUNDLES view. Also update the corresponding
-                                // PLAIN view.
-                                revealInProduct(serviceComponent, parent2)
-                            }
-                            default: throwUnknown
-                        }
+        switch parent1 {
+            BundleContext: {
+                switch parent2 {
+                    BundleOverviewContext: {
+                        // Element in an independent bundle context. Only available as a plain view.
+                        revealInIndependentBundle(modelVisualizationContext, overviewContext)
                     }
-                    ProductContext: {
-                        // Component defined inside a product in PLAIN view. Also update the corresponding IN_BUNDLES
-                        // view.
-                        revealInProduct(serviceComponent, overviewContext)
+                    ServiceOverviewContext case !(parent3 instanceof BundleContext): {
+                        // Element defined inside some overview in IN_BUNDLES view. Also update the corresponding
+                        // PLAIN view.
+                        revealInServiceOverview(element, parent2)
                     }
                     default: throwUnknown
                 }
             }
-            default: throwUnknown
+            default: {
+                // Element defined inside some overview in PLAIN view. Also update the corresponding IN_BUNDLES view.
+                revealInServiceOverview(element, overviewContext)
+            }
         }
         
         return null
     }
     
     /**
-     * Reveal the connected service interfaces in the case it is contained in a service interface overview context in
+     * Reveal the connected service interfaces in the case it is contained in a service overview context in
      * IN_BUNDLES or PLAIN view. Updates both views accordingly.
      * 
-     * @param serviceComponent The service component that the connection is for.
-     * @param serviceInterfaceOverviewContext The SI overview context this action is issued in.
+     * @param element The element that the connection is for.
+     * @param serviceOverviewContext The service overview context this action is issued in.
      */
-    protected abstract def void revealInInterfaceOverview(ServiceComponent serviceComponent, 
-        ServiceInterfaceOverviewContext serviceInterfaceOverviewContext)
+    protected abstract def void revealInServiceOverview(EObject element, ServiceOverviewContext serviceOverviewContext)
     
     /**
-     * Reveal the connected service interfaces in the case it is contained in a service component overview context.
-     * This is only possible and available as a PLAIN view.
+     * Reveal the connected service interfaces in the case it is contained in a service overview of a single bundle.
+     * This is only available in PLAIN view.
      * 
-     * @param serviceComponentContext The context representing the service component that the connection is for.
-     * @param serviceComponentOverviewContext The SC overview context this action is issued in.
+     * @param elementContext The context representing the element that the connection is for.
+     * @param serviceOverviewContext The service overview context this action is issued in.
      */
-    protected abstract def void revealInIndependentBundle(ServiceComponentContext serviceComponentContext,
-        ServiceComponentOverviewContext serviceComponentOverviewContext)
-    
-    /**
-     * Reveal the connected service interfaces in the case it is contained in a product in IN_BUNDLES or PLAIN view.
-     * Updates both views accordingly.
-     * 
-     * @param serviceComponent The serviceComponent that the connection is for.
-     * @param serviceComponentOverviewContext The SC overview context in the product context that this action is issued
-     * in.
-     */
-    protected abstract def void revealInProduct(ServiceComponent serviceComponent, 
-        ServiceComponentOverviewContext serviceComponentOverviewContext)
+    protected abstract def <M extends EObject> void revealInIndependentBundle(IVisualizationContext<M> elementContext,
+        ServiceOverviewContext serviceOverviewContext)
     
     private static def throwUnknown() {
-        throw new IllegalStateException("Hierarchy of this service component is unknown and is not able to reveal its "
+        throw new IllegalStateException("Hierarchy of this service element is unknown and is not able to reveal its "
             + "connected service interfaces.")
     }
     

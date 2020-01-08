@@ -15,16 +15,16 @@
 package de.cau.cs.kieler.osgiviz.actions
 
 import com.google.common.collect.Iterables
-import de.scheidtbachmann.osgimodel.Bundle
-import de.scheidtbachmann.osgimodel.OsgiProject
-import de.scheidtbachmann.osgimodel.PackageObject
-import de.scheidtbachmann.osgimodel.Product
 import de.cau.cs.kieler.osgiviz.context.BundleContext
 import de.cau.cs.kieler.osgiviz.context.BundleOverviewContext
 import de.cau.cs.kieler.osgiviz.context.ContextUtils
 import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
 import de.cau.cs.kieler.osgiviz.context.PackageObjectContext
 import de.cau.cs.kieler.osgiviz.context.ProductContext
+import de.scheidtbachmann.osgimodel.Bundle
+import de.scheidtbachmann.osgimodel.OsgiProject
+import de.scheidtbachmann.osgimodel.PackageObject
+import de.scheidtbachmann.osgimodel.Product
 import java.util.ArrayList
 import java.util.HashMap
 import java.util.List
@@ -143,7 +143,7 @@ class RevealUsedPackagesAction extends AbstractVisualizationContextChangingActio
         val internalBundlesToReveal = providedPackagesForBundleForProduct.values.flatMap [ keySet ].toSet
         Iterables.concat(externalBundlesToReveal, internalBundlesToReveal).forEach [ bundleToMakeDetailedContext |
             if (bundleOverviewContext.collapsedElements.contains(bundleToMakeDetailedContext)) {
-                ContextUtils.makeDetailed(bundleOverviewContext, bundleToMakeDetailedContext)
+                bundleOverviewContext.makeDetailed(bundleToMakeDetailedContext)
             }
         ]
         

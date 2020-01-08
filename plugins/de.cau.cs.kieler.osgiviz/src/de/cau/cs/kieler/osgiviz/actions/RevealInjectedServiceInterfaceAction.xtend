@@ -14,16 +14,13 @@
  */
 package de.cau.cs.kieler.osgiviz.actions
 
+import de.cau.cs.kieler.osgiviz.SynthesisUtils
 import de.cau.cs.kieler.osgiviz.context.ContextUtils
-import de.cau.cs.kieler.osgiviz.context.IOverviewVisualizationContext
 import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
 import de.cau.cs.kieler.osgiviz.context.ServiceComponentContext
-import de.cau.cs.kieler.osgiviz.context.ServiceComponentOverviewContext
-import de.cau.cs.kieler.osgiviz.context.ServiceInterfaceContext
+import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
+import de.scheidtbachmann.osgimodel.EclipseInjection
 import org.eclipse.emf.ecore.EObject
-import de.cau.cs.kieler.osgiviz.context.EclipseInjectionContext
-import de.cau.cs.kieler.osgiviz.context.EclipseInjectionOverviewContext
-import de.cau.cs.kieler.osgiviz.SynthesisUtils
 
 /**
  * Puts the service interface injected by this eclipse injection next to this injection and connects it
@@ -31,52 +28,89 @@ import de.cau.cs.kieler.osgiviz.SynthesisUtils
  * 
  * @author nre
  */
-class RevealInjectedServiceInterfaceAction extends AbstractVisualizationContextChangingAction {
+class RevealInjectedServiceInterfaceAction extends AbstractRevealServiceInterfacesAction {
     
     /**
      * This action's ID.
      */
     public static val String ID = RevealInjectedServiceInterfaceAction.name
     
-    override <M extends EObject> IVisualizationContext<?>
-    changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
-        // The EclipseInjectionContext element for the element that was clicked on.
-        val eclipseInjectionContext = modelVisualizationContext as EclipseInjectionContext
+    override protected void revealInServiceOverview(EObject element, ServiceOverviewContext serviceOverviewContext) {
+        val eclipseInjection = element as EclipseInjection
+        // The service interface that is yet collapsed needs to be expanded first.
+        val serviceInterface = SynthesisUtils.injectedInterface(eclipseInjection)
+        val collapsedServiceInterfaceContext = serviceOverviewContext.collapsedServiceInterfaceContexts.findFirst [
+            return modelElement === serviceInterface
+        ]
+        if (collapsedServiceInterfaceContext !== null) {
+            serviceOverviewContext.makeDetailed(collapsedServiceInterfaceContext)
+        }
         
-        // The overview context this eclipse injection is shown in.
-        val overviewContext = eclipseInjectionContext.parentVisualizationContext
-            as EclipseInjectionOverviewContext
+        // The injection needs to be expanded as well if not already.
+        val collapsedInjectionContextPlain =  serviceOverviewContext.collapsedEclipseInjectionContexts.findFirst [
+            return modelElement === eclipseInjection
+        ]
+        if (collapsedInjectionContextPlain !== null) {
+            serviceOverviewContext.makeDetailed(collapsedInjectionContextPlain)
+        }
         
-        // Component in an independent bundle context. Only available as a plain view.
-        reveal(eclipseInjectionContext, overviewContext)
+        // ----- Find the injection in the context for the PLAIN view -----
+        val injectionContextPlain = serviceOverviewContext.detailedEclipseInjectionContexts.findFirst [
+            return modelElement === eclipseInjection
+        ]
         
-        return null
+        // ----- Find the injection and the bundle in the context for the IN_BUNDLES view -----
+        
+        // Find the bundle context that should be containing the dual view on this service component.
+        val containedBundle = SynthesisUtils.containedBundle(eclipseInjection)
+        var referencedBundleContext = serviceOverviewContext.detailedReferencedBundleContexts.findFirst [
+            return modelElement === containedBundle
+        ]
+        if (referencedBundleContext === null) {
+           referencedBundleContext = serviceOverviewContext.collapsedReferencedBundleContexts.findFirst [
+               return modelElement === containedBundle
+           ]
+           serviceOverviewContext.makeDetailed(referencedBundleContext)
+        }
+        val bundleServiceOverviewContext = referencedBundleContext.serviceOverviewContext
+        bundleServiceOverviewContext.expanded = true
+        
+        val collapsedInjectionContextInBundle = bundleServiceOverviewContext.collapsedEclipseInjectionContexts.findFirst [
+            return modelElement === eclipseInjection
+        ]
+        bundleServiceOverviewContext.makeDetailed(collapsedInjectionContextInBundle)
+        
+        val injectionContextInBundle = bundleServiceOverviewContext.detailedEclipseInjectionContexts.findFirst [
+            return modelElement === eclipseInjection
+        ]
+        
+        // Add the connections for both views.
+        val implementedServiceInterfaceContext = serviceOverviewContext.detailedServiceInterfaceContexts.findFirst [
+            return modelElement === serviceInterface
+        ]
+        ContextUtils.addInjectedServiceInterfaceEdgePlain(injectionContextPlain, implementedServiceInterfaceContext)
+        ContextUtils.addInjectedServiceInterfaceEdgeInBundle(injectionContextInBundle, implementedServiceInterfaceContext)
     }
     
-    /**
-     * Reveal the connected service interfaces in a eclipse injection overview context.
-     * 
-     * @param eclipseInjectionContext The context representing the eclipse injection that the connection is for.
-     * @param eclipseInjectionOverviewContext The EI overview context this action is issued in.
-     */
-    def protected void reveal(EclipseInjectionContext eclipseInjectionContext,
-        EclipseInjectionOverviewContext eclipseInjectionOverviewContext) {
-        val eclipseInjection = eclipseInjectionContext.modelElement
+    override protected <M extends EObject> void revealInIndependentBundle(IVisualizationContext<M> elementContext,
+        ServiceOverviewContext serviceOverviewContext) {
+        val serviceComponentContext = elementContext as ServiceComponentContext
+        val serviceComponent = serviceComponentContext.modelElement
         
-        // Find/put the contexts of the referenced interfaces in the overview.
-        val serviceInterface = SynthesisUtils.injectedInterface(eclipseInjection)
-        var serviceInterfaceContext = eclipseInjectionOverviewContext
-            .injectedInterfaces.findFirst [
-            modelElement === serviceInterface
+        // Find the contexts of the implemented interfaces in the overview
+        serviceComponent.serviceInterfaces.forEach [ serviceInterface |
+            val collapsedServiceInterfaceContext = serviceOverviewContext.collapsedServiceInterfaceContexts.findFirst [
+                modelElement === serviceInterface
+            ]
+            if (collapsedServiceInterfaceContext !== null) {
+                serviceOverviewContext.makeDetailed(collapsedServiceInterfaceContext)
+            }
+            val serviceInterfaceContext = serviceOverviewContext.detailedServiceInterfaceContexts.findFirst [
+                modelElement === serviceInterface
+            ]
+            // Add the edges for all implemented interfaces.
+            ContextUtils.addImplementingServiceComponentEdgePlain(serviceInterfaceContext, serviceComponentContext)
         ]
-        // Create a new context if it is not yet in the view.
-        if (serviceInterfaceContext === null) {
-            serviceInterfaceContext = new ServiceInterfaceContext(serviceInterface, eclipseInjectionOverviewContext)
-            eclipseInjectionOverviewContext.injectedInterfaces.add(serviceInterfaceContext)
-        }
-        // Add the edges for the injected interface.
-        ContextUtils.addInjectedServiceInterfaceEdge(eclipseInjectionContext, serviceInterfaceContext)
-        
     }
     
 }

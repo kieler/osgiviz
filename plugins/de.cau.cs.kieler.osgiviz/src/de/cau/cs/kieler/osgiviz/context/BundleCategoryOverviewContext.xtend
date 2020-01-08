@@ -25,7 +25,7 @@ import java.util.Map
  * 
  * @author nre
  */
-class BundleCategoryOverviewContext implements IOverviewVisualizationContext<BundleCategory> {
+class BundleCategoryOverviewContext extends IOverviewVisualizationContext<BundleCategory> {
     
     /**
      * The bundle category contexts for all bundle categories in their collapsed form.

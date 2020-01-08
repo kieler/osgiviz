@@ -25,7 +25,7 @@ import java.util.Map
  * 
  * @author nre
  */
-class FeatureOverviewContext implements IOverviewVisualizationContext<Feature> {
+class FeatureOverviewContext extends IOverviewVisualizationContext<Feature> {
     
     /**
      * The feature contexts for all features in their collapsed form.

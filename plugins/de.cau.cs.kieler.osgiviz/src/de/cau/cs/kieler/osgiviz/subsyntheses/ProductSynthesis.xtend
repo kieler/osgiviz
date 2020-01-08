@@ -43,7 +43,7 @@ class ProductSynthesis extends AbstractSubSynthesis<ProductContext, KNode> {
     @Inject extension OsgiStyles
     @Inject FeatureOverviewSynthesis featureOverviewSynthesis
     @Inject BundleOverviewSynthesis bundleOverviewSynthesis
-    @Inject ServiceComponentOverviewSynthesis serviceComponentOverviewSynthesis
+    @Inject ServiceOverviewSynthesis serviceOverviewSynthesis
     extension KGraphFactory = KGraphFactory.eINSTANCE
     
     override transform(ProductContext pc) {
@@ -68,9 +68,9 @@ class ProductSynthesis extends AbstractSubSynthesis<ProductContext, KNode> {
                 val overviewBundleNodes = bundleOverviewSynthesis.transform(pc.bundleOverviewContext)
                 children += overviewBundleNodes
                 
-                // Show a service component overview of all service components defined by bundles of this product.
-                val overviewServiceComponentNodes = serviceComponentOverviewSynthesis.transform(
-                    pc.serviceComponentOverviewContext)
+                // Show a service overview of all service elements defined by bundles of this product.
+                val overviewServiceComponentNodes = serviceOverviewSynthesis.transform(
+                    pc.serviceOverviewContext)
                 children += overviewServiceComponentNodes
                 
                 setLayoutOption(CoreOptions::PRIORITY, priority)

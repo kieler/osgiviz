@@ -29,8 +29,10 @@ import de.scheidtbachmann.osgimodel.Feature
 import de.scheidtbachmann.osgimodel.OsgiProject
 import de.scheidtbachmann.osgimodel.PackageObject
 import de.scheidtbachmann.osgimodel.Product
+import de.scheidtbachmann.osgimodel.Reference
 import de.scheidtbachmann.osgimodel.ServiceComponent
 import de.scheidtbachmann.osgimodel.ServiceInterface
+import java.util.HashSet
 import java.util.List
 import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.Direction
@@ -286,6 +288,49 @@ final class SynthesisUtils {
         ]
         
         return interface
+    }
+    
+    /**
+     * Returns the bundle this injection is contained in.
+     * 
+     * @param ei The EclipseInjection.
+     * @return The bundle container.
+     */
+    def static Bundle containedBundle(EclipseInjection ei) {
+        return ei.eContainer as Bundle
+    }
+    
+    /**
+     * Returns the service component this reference is used by.
+     * 
+     * @param reference The Reference.
+     * @return The component using the reference.
+     */
+    def static ServiceComponent serviceComponentOf(Reference reference) {
+        return reference.eContainer as ServiceComponent
+    }
+    
+    /**
+     * Returns all service interfaces referenced by the given service components and eclipse injections.
+     * 
+     * @param components The service components that implement and require interfaces.
+     * @param injections The eclipse injections that inject an interface
+     */
+    def static HashSet<ServiceInterface> referencedInterfaces(Iterable<ServiceComponent> components,
+        Iterable<EclipseInjection> injections) {
+        val serviceInterfaces = new HashSet<ServiceInterface>
+        components.forEach [
+            it.serviceInterfaces.forEach [
+                serviceInterfaces.add(it)
+            ]
+            it.reference.forEach [
+                serviceInterfaces.add(it.serviceInterface)
+            ]
+        ]
+        injections.forEach [
+            serviceInterfaces.add(injectedInterface(it))
+        ]
+        return serviceInterfaces
     }
     
 }

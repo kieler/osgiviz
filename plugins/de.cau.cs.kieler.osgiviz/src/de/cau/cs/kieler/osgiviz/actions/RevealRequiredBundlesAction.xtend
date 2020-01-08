@@ -50,7 +50,7 @@ class RevealRequiredBundlesAction extends AbstractVisualizationContextChangingAc
             bundle.requiredBundles.contains(it.modelElement)
         ].toList
         collapsedRequiredBundleContexts.forEach [
-            ContextUtils.makeDetailed(bundleOverviewContext, it)
+            bundleOverviewContext.makeDetailed(it)
         ]
         
         // The bundle contexts in the overview that the requiredBundle connection can connect to.

@@ -26,7 +26,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
  * 
  * @author nre
  */
-class BundleOverviewContext implements IOverviewVisualizationContext<Bundle> {
+class BundleOverviewContext extends IOverviewVisualizationContext<Bundle> {
     
     /**
      * All connections for the required bundles hierarchy that should be drawn.

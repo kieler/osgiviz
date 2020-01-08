@@ -23,7 +23,7 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractDiagramSynthesis
 import de.cau.cs.kieler.osgiviz.actions.RedoAction
 import de.cau.cs.kieler.osgiviz.actions.ResetViewAction
-import de.cau.cs.kieler.osgiviz.actions.ToggleServiceComponentVisualization
+import de.cau.cs.kieler.osgiviz.actions.ToggleServiceConnectionVisualization
 import de.cau.cs.kieler.osgiviz.actions.UndoAction
 import de.cau.cs.kieler.osgiviz.context.BundleCategoryOverviewContext
 import de.cau.cs.kieler.osgiviz.context.BundleOverviewContext
@@ -33,15 +33,13 @@ import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
 import de.cau.cs.kieler.osgiviz.context.OsgiProjectContext
 import de.cau.cs.kieler.osgiviz.context.PackageObjectOverviewContext
 import de.cau.cs.kieler.osgiviz.context.ProductOverviewContext
-import de.cau.cs.kieler.osgiviz.context.ServiceComponentOverviewContext
-import de.cau.cs.kieler.osgiviz.context.ServiceInterfaceOverviewContext
+import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
 import de.cau.cs.kieler.osgiviz.subsyntheses.BundleCategoryOverviewSynthesis
 import de.cau.cs.kieler.osgiviz.subsyntheses.BundleOverviewSynthesis
 import de.cau.cs.kieler.osgiviz.subsyntheses.FeatureOverviewSynthesis
 import de.cau.cs.kieler.osgiviz.subsyntheses.PackageObjectOverviewSynthesis
 import de.cau.cs.kieler.osgiviz.subsyntheses.ProductOverviewSynthesis
-import de.cau.cs.kieler.osgiviz.subsyntheses.ServiceComponentOverviewSynthesis
-import de.cau.cs.kieler.osgiviz.subsyntheses.ServiceInterfaceOverviewSynthesis
+import de.cau.cs.kieler.osgiviz.subsyntheses.ServiceOverviewSynthesis
 import de.scheidtbachmann.osgimodel.OsgiProject
 import java.util.LinkedHashSet
 import org.eclipse.elk.alg.layered.options.CrossingMinimizationStrategy
@@ -67,8 +65,7 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
     @Inject FeatureOverviewSynthesis featureOverviewSynthesis
     @Inject PackageObjectOverviewSynthesis packageObjectOverviewSynthesis
     @Inject ProductOverviewSynthesis productOverviewSynthesis
-    @Inject ServiceInterfaceOverviewSynthesis serviceInterfaceOverviewSynthesis
-    @Inject ServiceComponentOverviewSynthesis serviceComponentOverviewSynthesis
+    @Inject ServiceOverviewSynthesis serviceOverviewSynthesis
     
     extension KGraphFactory = KGraphFactory.eINSTANCE
     
@@ -85,11 +82,11 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
             DisplayedActionData.create(ResetViewAction.ID, "Reset View",
                 "Resets the view to its default overview state."),
             // TODO: This should not be an action but rather an option.
-            DisplayedActionData.create(ToggleServiceComponentVisualization.ID, "Toggle service component visualization",
-                "Toggles between visualizing service components on their own and visualizing them in their bundle "
+            DisplayedActionData.create(ToggleServiceConnectionVisualization.ID,
+                "Toggle service connection visualization",
+                "Toggles between visualizing service connections on their own and visualizing them in their bundle "
                 + "context.\n\n"
-                + "To be able to view the service components in the bundles, the Bundle->Show Service Components "
-                + "option has to be turned on.")
+                + "To be able to view the services in the bundles, the View filter->Show Services option has to be turned on.")
         ]
     }
     
@@ -116,7 +113,7 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
             FILTER_ECLIPSE_INJECTIONS)
         
         // Add all view filter options.
-        options.addAll(SHOW_EXTERNAL, BUNDLE_SHOW_SERVICE_COMPONENTS, FILTER_CARDINALITY_LABEL, FILTER_DESCRIPTIONS,
+        options.addAll(SHOW_EXTERNAL, BUNDLE_SHOW_SERVICES, FILTER_CARDINALITY_LABEL, FILTER_DESCRIPTIONS,
             DESCRIPTION_LENGTH, SHORTEN_BY)
         
         return options.toList
@@ -166,9 +163,8 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
                 val overviewBundleNodes = bundleOverviewSynthesis.transform(visContext.bundleOverviewContext)
                 children += overviewBundleNodes
                 
-                val overviewServiceInterfaceNodes = serviceInterfaceOverviewSynthesis.transform(
-                    visContext.serviceInterfaceOverviewContext)
-                children += overviewServiceInterfaceNodes
+                val overviewServiceNodes = serviceOverviewSynthesis.transform(visContext.serviceOverviewContext)
+                children += overviewServiceNodes
                 
 //                val overviewImportedPackagesNodes = packageObjectOverviewSynthesis.transform(
 //                    visContext.importedPackageOverviewContext)
@@ -208,11 +204,8 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
             ProductOverviewContext: {
                 return productOverviewSynthesis.transform(context as ProductOverviewContext)
             }
-            ServiceInterfaceOverviewContext: {
-                return serviceInterfaceOverviewSynthesis.transform(context as ServiceInterfaceOverviewContext)
-            }
-            ServiceComponentOverviewContext: {
-                return serviceComponentOverviewSynthesis.transform(context as ServiceComponentOverviewContext)
+            ServiceOverviewContext: {
+                return serviceOverviewSynthesis.transform(context as ServiceOverviewContext)
             }
             default: {
                 throw new IllegalArgumentException("The context class has no known subsynthesis: " + context.class)

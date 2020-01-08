@@ -14,14 +14,12 @@
  */
 package de.cau.cs.kieler.osgiviz.actions
 
-import de.scheidtbachmann.osgimodel.ServiceComponent
-import de.cau.cs.kieler.osgiviz.context.BundleContext
 import de.cau.cs.kieler.osgiviz.context.ContextUtils
 import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
 import de.cau.cs.kieler.osgiviz.context.ServiceComponentContext
-import de.cau.cs.kieler.osgiviz.context.ServiceComponentOverviewContext
-import de.cau.cs.kieler.osgiviz.context.ServiceInterfaceContext
-import de.cau.cs.kieler.osgiviz.context.ServiceInterfaceOverviewContext
+import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
+import de.scheidtbachmann.osgimodel.ServiceComponent
+import org.eclipse.emf.ecore.EObject
 
 /**
  * Puts the service interfaces referenced by this service component next to this service component and connects them 
@@ -36,138 +34,89 @@ class RevealReferencedServiceInterfacesAction extends AbstractRevealServiceInter
      */
     public static val String ID = RevealReferencedServiceInterfacesAction.name
     
-    override protected void revealInInterfaceOverview(ServiceComponent serviceComponent, 
-        ServiceInterfaceOverviewContext serviceInterfaceOverviewContext) {
+    override protected void revealInServiceOverview(EObject element, ServiceOverviewContext serviceOverviewContext) {
+        val serviceComponent = element as ServiceComponent
         // The service interfaces that are yet collapsed need to be expanded first.
         serviceComponent.reference.forEach [ reference |
             val serviceInterface = reference.serviceInterface
-            var referencedServiceInterfaceContext = serviceInterfaceOverviewContext.collapsedElements.findFirst [
+            val collapsedServiceInterfaceContext = serviceOverviewContext.collapsedServiceInterfaceContexts.findFirst [
                 return modelElement === serviceInterface
             ]
-            if (referencedServiceInterfaceContext !== null) {
-                ContextUtils.makeDetailed(serviceInterfaceOverviewContext, referencedServiceInterfaceContext)
+            if (collapsedServiceInterfaceContext !== null) {
+                serviceOverviewContext.makeDetailed(collapsedServiceInterfaceContext)
             }
         ]
         
-        // ----- Find/put the service component in the context for the PLAIN view ----
-        var serviceComponentContextPlain = serviceInterfaceOverviewContext
-            .implementingOrReferencingServiceComponentContexts.findFirst [
+        // The service component needs to be expanded as well if not already.
+        val collapsedServiceComponentContextPlain = serviceOverviewContext.collapsedServiceComponentContexts.findFirst [
             return it.modelElement === serviceComponent
         ]
-        if (serviceComponentContextPlain === null) {
-            serviceComponentContextPlain = new ServiceComponentContext(serviceComponent,
-                serviceInterfaceOverviewContext)
-            serviceInterfaceOverviewContext.implementingOrReferencingServiceComponentContexts
-                .add(serviceComponentContextPlain)
+        if (collapsedServiceComponentContextPlain !== null) {
+            serviceOverviewContext.makeDetailed(collapsedServiceComponentContextPlain)
         }
-        // Make this variable final.
-        val serviceComponentContextPlain_ = serviceComponentContextPlain
         
-        // ----- Find/put the service component and the bundle in the context for the IN_BUNDLES view -----
+        // ----- Find the service component in the context for the PLAIN view ----
+        val serviceComponentContextPlain = serviceOverviewContext.detailedServiceComponentContexts.findFirst [
+            return modelElement === serviceComponent
+        ]
+        
+        // ----- Find the service component and the bundle in the context for the IN_BUNDLES view -----
         
         // Find the bundle context that should be containing the dual view on this service component.
-        var referencedBundleContext = serviceInterfaceOverviewContext.referencedBundleContexts.findFirst [
+        var referencedBundleContext = serviceOverviewContext.detailedReferencedBundleContexts.findFirst [
             return it.modelElement === serviceComponent.bundle
         ]
-        // Create a new bundle context for that bundle if it is not yet in the view.
         if (referencedBundleContext === null) {
-            referencedBundleContext = new BundleContext(serviceComponent.bundle, serviceInterfaceOverviewContext)
-            serviceInterfaceOverviewContext.referencedBundleContexts.add(referencedBundleContext)
+           referencedBundleContext = serviceOverviewContext.collapsedReferencedBundleContexts.findFirst [
+               return it.modelElement === serviceComponent.bundle
+           ]
+           serviceOverviewContext.makeDetailed(referencedBundleContext)
         }
-        val serviceComponentOverviewContext = referencedBundleContext.serviceComponentOverviewContext
-        serviceComponentOverviewContext.expanded = true
+        val bundleServiceOverviewContext = referencedBundleContext.serviceOverviewContext
+        bundleServiceOverviewContext.expanded = true
         
-        val serviceComponentContextInBundle = serviceComponentOverviewContext.childContexts.findFirst [
+        val collapsedServiceComponentContextInBundle = bundleServiceOverviewContext.collapsedServiceComponentContexts.findFirst [
             return it.modelElement === serviceComponent
-        ] as ServiceComponentContext
-        ContextUtils.makeDetailed(serviceComponentOverviewContext, serviceComponentContextInBundle)
+        ]
+        bundleServiceOverviewContext.makeDetailed(collapsedServiceComponentContextInBundle)
+        
+        val serviceComponentContextInBundle = bundleServiceOverviewContext.detailedServiceComponentContexts.findFirst [
+            return modelElement === serviceComponent
+        ]
         
         // Add all connections for both views.
         serviceComponent.reference.forEach [ reference |
             val serviceInterface = reference.serviceInterface
-            val referencedServiceInterfaceContext = serviceInterfaceOverviewContext.detailedElements.findFirst [
+            val referencedServiceInterfaceContext = serviceOverviewContext.detailedServiceInterfaceContexts.findFirst [
                 return modelElement === serviceInterface
-            ] as ServiceInterfaceContext
-            ContextUtils.addReferencedServiceInterfaceEdgePlain(serviceComponentContextPlain_,
+            ]
+            ContextUtils.addReferencedServiceInterfaceEdgePlain(serviceComponentContextPlain,
                 referencedServiceInterfaceContext, reference)
             ContextUtils.addReferencedServiceInterfaceEdgeInBundle(serviceComponentContextInBundle,
                 referencedServiceInterfaceContext, reference)
         ]
     }
     
-    override protected void revealInIndependentBundle(ServiceComponentContext serviceComponentContext,
-        ServiceComponentOverviewContext serviceComponentOverviewContext) {
+    override protected <M extends EObject> void revealInIndependentBundle(IVisualizationContext<M> elementContext,
+        ServiceOverviewContext serviceOverviewContext) {
+        val serviceComponentContext = elementContext as ServiceComponentContext
         val serviceComponent = serviceComponentContext.modelElement
         
-        // Find/put the contexts of the referenced interfaces in the overview.
+        // Find the contexts of the referenced interfaces in the overview.
         serviceComponent.reference.forEach [ reference |
             val serviceInterface = reference.serviceInterface
-            var serviceInterfaceContext = serviceComponentOverviewContext
-                .implementedOrReferencedServiceInterfaceContexts.findFirst [
+            val collapsedServiceInterfaceContext = serviceOverviewContext.collapsedServiceInterfaceContexts.findFirst [
                 modelElement === serviceInterface
             ]
-            // Create a new context if it is not yet in the view.
-            if (serviceInterfaceContext === null) {
-                serviceInterfaceContext = new ServiceInterfaceContext(serviceInterface, serviceComponentOverviewContext)
-                serviceComponentOverviewContext.implementedOrReferencedServiceInterfaceContexts
-                    .add(serviceInterfaceContext)
+            if (collapsedServiceInterfaceContext !== null) {
+                serviceOverviewContext.makeDetailed(collapsedServiceInterfaceContext)
             }
+            val serviceInterfaceContext = serviceOverviewContext.detailedServiceInterfaceContexts.findFirst [
+                modelElement === serviceInterface
+            ]
             // Add the edges for all referenced interfaces.
             ContextUtils.addReferencedServiceInterfaceEdgePlain(serviceComponentContext, serviceInterfaceContext,
                 reference)
-        ]
-    }
-    
-    override protected void revealInProduct(ServiceComponent serviceComponent, 
-        ServiceComponentOverviewContext serviceComponentOverviewContext) {
-        // The service interfaces that are not in the view need to be added first.
-        serviceComponent.reference.forEach [ reference |
-            val serviceInterface = reference.serviceInterface
-            var referencedServiceInterfaceContext = serviceComponentOverviewContext
-                .implementedOrReferencedServiceInterfaceContexts.findFirst [
-                return modelElement === serviceInterface
-            ]
-            if (referencedServiceInterfaceContext === null) {
-                serviceComponentOverviewContext.implementedOrReferencedServiceInterfaceContexts.add(
-                    new ServiceInterfaceContext(serviceInterface, serviceComponentOverviewContext))
-            }
-        ]
-        
-        // ----- Find the service component in the context for the PLAIN view and expand it if necessary. -----
-        val serviceComponentContextPlain = serviceComponentOverviewContext.childContexts
-            .findFirst [ return modelElement === serviceComponent ] as IVisualizationContext<ServiceComponent>
-        ContextUtils.makeDetailed(serviceComponentOverviewContext, serviceComponentContextPlain)
-        
-        // ----- Find/put the service component and the bundle in the context for the IN_BUNDLES view. -----
-        
-        // Find the bundle context that should be containing the dual view on this service component.
-        var referencedBundleContext = serviceComponentOverviewContext.referencedBundleContexts.findFirst [
-            return it.modelElement === serviceComponent.bundle
-        ]
-        // Create a new bundle context for that bundle if it is not yet in the view.
-        if (referencedBundleContext === null) {
-            referencedBundleContext = new BundleContext(serviceComponent.bundle, serviceComponentOverviewContext)
-            serviceComponentOverviewContext.referencedBundleContexts.add(referencedBundleContext)
-        }
-        val innerServiceComponentOverviewContext = referencedBundleContext.serviceComponentOverviewContext
-        innerServiceComponentOverviewContext.expanded = true
-        
-        val serviceComponentContextInBundle = innerServiceComponentOverviewContext.childContexts.findFirst [
-            return it.modelElement === serviceComponent
-        ] as ServiceComponentContext
-        ContextUtils.makeDetailed(innerServiceComponentOverviewContext, serviceComponentContextInBundle)
-        
-        // Add all connections for both views.
-        serviceComponent.reference.forEach [ reference |
-            val serviceInterface = reference.serviceInterface
-            val referencedServiceInterfaceContext = serviceComponentOverviewContext
-                .implementedOrReferencedServiceInterfaceContexts.findFirst [
-                return modelElement === serviceInterface
-            ] as ServiceInterfaceContext
-            ContextUtils.addReferencedServiceInterfaceEdgePlain(serviceComponentContextPlain as ServiceComponentContext,
-                referencedServiceInterfaceContext, reference)
-            ContextUtils.addReferencedServiceInterfaceEdgeInBundle(serviceComponentContextInBundle,
-                referencedServiceInterfaceContext, reference)
         ]
     }
     

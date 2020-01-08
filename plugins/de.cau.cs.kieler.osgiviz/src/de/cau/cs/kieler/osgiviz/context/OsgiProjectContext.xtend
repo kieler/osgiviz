@@ -40,10 +40,10 @@ class OsgiProjectContext implements IVisualizationContext<OsgiProject> {
     ProductOverviewContext productOverviewContext
     
     /**
-     * The context for the service interface overview.
+     * The context for the service overview.
      */
     @Accessors
-    ServiceInterfaceOverviewContext serviceInterfaceOverviewContext
+    ServiceOverviewContext serviceOverviewContext
     
     /**
      * The context for the feature overview.
@@ -82,7 +82,7 @@ class OsgiProjectContext implements IVisualizationContext<OsgiProject> {
     }
     
     override getChildContexts() {
-        return #[bundleOverviewContext, productOverviewContext, serviceInterfaceOverviewContext, featureOverviewContext,
+        return #[bundleOverviewContext, productOverviewContext, serviceOverviewContext, featureOverviewContext,
             importedPackageOverviewContext, bundleCategoryOverviewContext]
             as List<? extends IVisualizationContext<? extends EObject>>
     }
@@ -103,7 +103,10 @@ class OsgiProjectContext implements IVisualizationContext<OsgiProject> {
         productOverviewContext = new ProductOverviewContext(project.products, this)
         productOverviewContext.expanded = true
         bundleOverviewContext = new BundleOverviewContext(project.bundles, this)
-        serviceInterfaceOverviewContext = new ServiceInterfaceOverviewContext(project.serviceInterfaces, this)
+        val allInjections = project.bundles.flatMap [ eclipseInjections ].toList
+        val allComponents = project.bundles.flatMap [ serviceComponents ].toSet.toList
+        serviceOverviewContext = new ServiceOverviewContext(allComponents, project.serviceInterfaces, allInjections,
+            this, true)
         featureOverviewContext = new FeatureOverviewContext(project.features, this)
         importedPackageOverviewContext = new PackageObjectOverviewContext(project.importedPackages, this)
         bundleCategoryOverviewContext = new BundleCategoryOverviewContext(project.bundleCategories, this)
@@ -120,9 +123,8 @@ class OsgiProjectContext implements IVisualizationContext<OsgiProject> {
         copy.bundleOverviewContext.parentVisualizationContext = copy
         copy.productOverviewContext = productOverviewContext.deepCopy(seenContexts) as ProductOverviewContext
         copy.productOverviewContext.parentVisualizationContext = copy
-        copy.serviceInterfaceOverviewContext = serviceInterfaceOverviewContext.deepCopy(seenContexts)
-            as ServiceInterfaceOverviewContext
-        copy.serviceInterfaceOverviewContext.parentVisualizationContext = copy
+        copy.serviceOverviewContext = serviceOverviewContext.deepCopy(seenContexts) as ServiceOverviewContext
+        copy.serviceOverviewContext.parentVisualizationContext = copy
         copy.featureOverviewContext = featureOverviewContext.deepCopy(seenContexts) as FeatureOverviewContext
         copy.featureOverviewContext.parentVisualizationContext = copy
         copy.importedPackageOverviewContext = importedPackageOverviewContext.deepCopy(seenContexts)

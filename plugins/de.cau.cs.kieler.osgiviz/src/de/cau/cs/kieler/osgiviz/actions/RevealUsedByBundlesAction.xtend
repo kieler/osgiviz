@@ -50,7 +50,7 @@ class RevealUsedByBundlesAction extends AbstractVisualizationContextChangingActi
             bundle.usedByBundle.contains(it.modelElement)
         ].toList
         collapsedUsedByBundleContexts.forEach [
-            ContextUtils.makeDetailed(bundleOverviewContext, it)
+            bundleOverviewContext.makeDetailed(it)
         ]
         
         // The bundle contexts in the overview that the usedByBundle connection can connect to.

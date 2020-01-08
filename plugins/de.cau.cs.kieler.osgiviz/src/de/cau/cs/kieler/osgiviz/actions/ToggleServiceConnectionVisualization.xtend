@@ -16,31 +16,32 @@ package de.cau.cs.kieler.osgiviz.actions
 
 import de.cau.cs.kieler.klighd.IAction
 import de.cau.cs.kieler.osgiviz.OsgiSynthesisProperties
-import de.cau.cs.kieler.osgiviz.OsgiSynthesisProperties.ServiceComponentVisualizationMode
+import de.cau.cs.kieler.osgiviz.OsgiSynthesisProperties.ServiceConnectionVisualizationMode
 
 /**
- * An action that toggles the visualization of service components to be on their own or in their bundle context.
+ * An action that toggles the visualization of service components and injections to be on their own or in their bundle
+ * context.
  * 
  * @author nre
  */
-class ToggleServiceComponentVisualization implements IAction {
+class ToggleServiceConnectionVisualization implements IAction {
     /**
      * This action's ID.
      */
-    public static val String ID = ToggleServiceComponentVisualization.name
+    public static val String ID = ToggleServiceConnectionVisualization.name
     
     override execute(ActionContext context) {
         var visualizationMode = context.viewContext.getProperty(
-            OsgiSynthesisProperties.CURRENT_SERVICE_COMPONENT_VISUALIZATION_MODE)
+            OsgiSynthesisProperties.CURRENT_SERVICE_CONNECTION_VISUALIZATION_MODE)
         switch (visualizationMode) {
             case PLAIN: {
-                visualizationMode = ServiceComponentVisualizationMode.IN_BUNDLES
+                visualizationMode = ServiceConnectionVisualizationMode.IN_BUNDLES
             }
             case IN_BUNDLES: {
-                visualizationMode = ServiceComponentVisualizationMode.PLAIN
+                visualizationMode = ServiceConnectionVisualizationMode.PLAIN
             }
         }
-        context.viewContext.setProperty(OsgiSynthesisProperties.CURRENT_SERVICE_COMPONENT_VISUALIZATION_MODE,
+        context.viewContext.setProperty(OsgiSynthesisProperties.CURRENT_SERVICE_CONNECTION_VISUALIZATION_MODE,
             visualizationMode)
         
         return ActionResult.createResult(true).doSynthesis

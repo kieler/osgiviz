@@ -54,61 +54,6 @@ class ContextUtils {
     }
     
     /**
-     * Makes the {@code collapsedContext} that is a collapsed visualization context within {@code overviewContext}
-     * so it is detailed and handles the initialization of the child visualization contexts of that now detailed
-     * context.
-     * 
-     * @param overviewContext The parent overview context that contains the collapsed context in its collapsedElements
-     * field.
-     * @param collapsedContext The context that is now a collapsed element in the parent overview and should be put in
-     * the detailed elements as well as be initialized for its child contexts.
-     */
-    def static <M extends EObject> void makeDetailed(IOverviewVisualizationContext<M> overviewContext,
-        IVisualizationContext<M> collapsedContext) {
-        // Only execute this if the element is not already detailed.
-        if (overviewContext.detailedElements.contains(collapsedContext)) {
-            return
-        }
-        
-        // This element was previously collapsed, so put it in the detailed list now and initialize its child
-        // visualization contexts.
-        overviewContext.collapsedElements.remove(collapsedContext)
-        // Only this cast will allow to add the context. We know this adding is type-safe, as the collapsed- and
-        // the detailed elements list are always of the same type. If they are not, the collapsed/detailed state
-        // here would not make any sense.
-        (overviewContext.detailedElements as List<IVisualizationContext<M>>).add(collapsedContext)
-        collapsedContext.initializeChildVisualizationContexts
-    }
-    
-    /**
-     * Collapses the {@code expandedContext} that is an expanded visualization context within {@code overviewContext}
-     * so it is collapsed after this method.
-     * Also removes any edges connected to the now collapsed element.
-     * 
-     * @param overviewContext The parent overview context that contains the expanded context in its detailedElements
-     * field.
-     * @param detailedContext The context that is now a detailed element in the parent overview and should be put in
-     * the collapsed elements.
-     */
-    def static <M extends EObject> void collapse(IOverviewVisualizationContext<M> overviewContext,
-        IVisualizationContext<M> detailedContext) {
-        // Only execute this if the element is not already collapsed
-        if (overviewContext.collapsedElements.contains(detailedContext)) {
-            return
-        }
-        
-        // This element was previously detailed, so put it in the collapsed list now.
-        overviewContext.detailedElements.remove(detailedContext)
-        // Only this cast will allow to add the context. We know this adding is type-safe, as the collapsed- and
-        // the detailed elements list are always of the same type. If they are not, the collapsed/detailed state
-        // here would not make any sense.
-        (overviewContext.collapsedElements as List<IVisualizationContext<M>>).add(detailedContext)
-        
-        // Remove all edges incident to the now collapsed context.
-        removeEdges(overviewContext, detailedContext)
-    }
-    
-    /**
      * Removes all edges incident to the context.
      * 
      * @param overviewContext The overview context containing the edge.
@@ -165,87 +110,47 @@ class ContextUtils {
         // There are no edges in package object overview contexts. So do nothing.
     }
     
-    def dispatch static void removeEdges(EclipseInjectionOverviewContext overviewContext, EclipseInjectionContext context) {
-        val injectedInterfaceView = overviewContext.injectedInterfaceEdges.clone
-        injectedInterfaceView.forEach [
-            if (key === context) {
-                overviewContext.injectedInterfaceEdges.remove(it)
-            }
-        ]
-    }
-    
-    def dispatch static void removeEdges(ServiceInterfaceOverviewContext overviewContext,
-        ServiceInterfaceContext context) {
-        // PLAIN variant:
-        val implementedInterfaceEdgesPlain = overviewContext.implementedInterfaceEdgesPlain.clone
-        implementedInterfaceEdgesPlain.forEach [
-            if (value === context) {
-                overviewContext.implementedInterfaceEdgesPlain.remove(it)
-                key.allImplementedInterfacesShownPlain = false
-                value.allImplementingComponentsShownPlain = false
-            }
-        ]
-        val referencedInterfaceEdgesPlain = overviewContext.referencedInterfaceEdgesPlain.clone
-        referencedInterfaceEdgesPlain.forEach [
-            if (it.serviceInterfaceContext === context) {
-                overviewContext.referencedInterfaceEdgesPlain.remove(it)
-                it.serviceComponentContext.allReferencedInterfacesShownPlain = false
-                it.serviceInterfaceContext.allReferencingComponentsShownPlain = false
-            }
-        ]
-        
+    def dispatch static void removeEdges(ServiceOverviewContext overviewContext, EclipseInjectionContext context) {
         // IN_BUNDLES variant:
-        val implementedInterfaceEdgesInBundles = overviewContext.implementedInterfaceEdgesInBundles.clone
-        implementedInterfaceEdgesInBundles.forEach [
-            if (value === context) {
-                overviewContext.implementedInterfaceEdgesInBundles.remove(it)
-                key.allImplementedInterfacesShownInBundles = false
-                value.allImplementingComponentsShownInBundles = false
-            }
-        ]
-        val referencedInterfaceEdgesInBundles = overviewContext.referencedInterfaceEdgesInBundles.clone
-        referencedInterfaceEdgesInBundles.forEach [
-            if (it.serviceInterfaceContext === context) {
-                overviewContext.referencedInterfaceEdgesInBundles.remove(it)
-                it.serviceComponentContext.allReferencedInterfacesShownInBundles = false
-                it.serviceInterfaceContext.allReferencingComponentsShownInBundles = false
-            }
-        ]
-    }
-    
-    def dispatch static void removeEdges(ServiceInterfaceOverviewContext overviewContext,
-        ServiceComponentContext context) {
-        // This is only called in the PLAIN variant, as SCs are not shown in the IN_BUNDLES variant.
-        val implementedInterfaceEdges = overviewContext.implementedInterfaceEdgesPlain.clone
-        implementedInterfaceEdges.forEach [
-            if (key === context) {
-                overviewContext.implementedInterfaceEdgesPlain.remove(it)
-                key.allImplementedInterfacesShownPlain = false
-                value.allImplementingComponentsShownPlain = false
-            }
-        ]
-        val referencedInterfaceEdges = overviewContext.referencedInterfaceEdgesPlain.clone
-        referencedInterfaceEdges.forEach [
-            if (it.serviceComponentContext === context) {
-                overviewContext.referencedInterfaceEdgesPlain.remove(it)
-                it.serviceComponentContext.allReferencedInterfacesShownPlain = false
-                it.serviceInterfaceContext.allReferencingComponentsShownPlain = false
-            }
-        ]
-    }
-    
-    def dispatch static void removeEdges(ServiceComponentOverviewContext overviewContext,
-        ServiceComponentContext context) {
-        // There could be edges from this SC context to the parent's parent's parent service interface overview context,
+        // There could be edges from this EI context to the parent's parent's parent service overview context,
         // if it is in the correct hierarchy for that.
         val potentialBundleContext = overviewContext.parentVisualizationContext
         if (potentialBundleContext instanceof BundleContext) {
-            val potentialInterfaceComponentConnectionHolder = potentialBundleContext.parentVisualizationContext
-            if (potentialInterfaceComponentConnectionHolder instanceof IInterfaceComponentConnectionHolder) {
+            val potentialServiceConnectionHolder = potentialBundleContext.parentVisualizationContext
+            if (potentialServiceConnectionHolder instanceof ServiceOverviewContext) {
+                // We are in the correct hierarchy, this overviewContext may contain edges to this EI context.
+                val connectionHolder = potentialServiceConnectionHolder as ServiceOverviewContext
+                val injectedInterfaceEdges = connectionHolder.injectedInterfaceEdgesInBundles.clone
+                injectedInterfaceEdges.forEach [
+                    if (it.key === context) {
+                        connectionHolder.injectedInterfaceEdgesInBundles.remove(it)
+                        // TODO: set all shown to false.
+                    }
+                ]
+            }
+        }
+        
+        // PLAIN variant:
+        // There could also be edges within this overviewContext in a PLAIN fashion.
+        val injectedInterfaceEdges = overviewContext.injectedInterfaceEdgesPlain.clone
+        injectedInterfaceEdges.forEach [
+            if (key === context) {
+                overviewContext.injectedInterfaceEdgesPlain.remove(it)
+                // TODO: set all shown to false.
+            }
+        ]
+    }
+    
+    def dispatch static void removeEdges(ServiceOverviewContext overviewContext, ServiceComponentContext context) {
+        // IN_BUNDLES variant:
+        // There could be edges from this SC context to the parent's parent's parent service overview context,
+        // if it is in the correct hierarchy for that.
+        val potentialBundleContext = overviewContext.parentVisualizationContext
+        if (potentialBundleContext instanceof BundleContext) {
+            val potentialServiceConnectionHolder = potentialBundleContext.parentVisualizationContext
+            if (potentialServiceConnectionHolder instanceof ServiceOverviewContext) {
                 // We are in the correct hierarchy, this overviewContext may contain edges to this SC context.
-                val connectionHolder = potentialInterfaceComponentConnectionHolder as IInterfaceComponentConnectionHolder
-                // This is only called in the IN_BUNDLES variant, as these edges in relation to SC overview contexts
-                // are not shown in the PLAIN variant.
+                val connectionHolder = potentialServiceConnectionHolder as ServiceOverviewContext
                 val implementedInderfaceEdges = connectionHolder.implementedInterfaceEdgesInBundles.clone
                 implementedInderfaceEdges.forEach [
                     if (key === context) {
@@ -265,6 +170,7 @@ class ContextUtils {
             }
         }
         
+        // PLAIN variant:
         // There could also be edges within this overviewContext in a PLAIN fashion.
         val implementedInterfaceEdges = overviewContext.implementedInterfaceEdgesPlain.clone
         implementedInterfaceEdges.forEach [
@@ -284,12 +190,12 @@ class ContextUtils {
         ]
     }
     
-    def dispatch static void removeEdges(IInterfaceComponentConnectionHolder overviewContext, BundleContext context) {
-        // This is only called in the IN_BUNDLES variant, as these edges in relation to SC overview contexts are not
-        // shown in the PLAIN variant.
+    def dispatch static void removeEdges(ServiceOverviewContext overviewContext, BundleContext context) {
+        // This is only called in the IN_BUNDLES variant, as these edges in relation to service overview contexts are
+        // not shown in the PLAIN variant.
         val implementedInterfaceEdges = overviewContext.implementedInterfaceEdgesInBundles.clone
         implementedInterfaceEdges.forEach [
-            if (context.serviceComponentOverviewContext.detailedElements.contains(key)) {
+            if (context.serviceOverviewContext.detailedServiceComponentContexts.contains(key)) {
                 overviewContext.implementedInterfaceEdgesInBundles.remove(it)
                 key.allImplementedInterfacesShownInBundles = false
                 value.allImplementingComponentsShownInBundles = false
@@ -297,16 +203,22 @@ class ContextUtils {
         ]
         val referencedInterfaceEdges = overviewContext.referencedInterfaceEdgesInBundles.clone
         referencedInterfaceEdges.forEach [
-            if (context.serviceComponentOverviewContext.detailedElements.contains(it.serviceComponentContext)) {
+            if (context.serviceOverviewContext.detailedServiceComponentContexts.contains(it.serviceComponentContext)) {
                 overviewContext.referencedInterfaceEdgesInBundles.remove(it)
                 it.serviceComponentContext.allReferencedInterfacesShownInBundles = false
-                it.serviceInterfaceContext.allImplementingComponentsShownInBundles = false
+                it.serviceInterfaceContext.allReferencingComponentsShownInBundles = false
+            }
+        ]
+        val injectedInterfaceEdges = overviewContext.injectedInterfaceEdgesInBundles.clone
+        injectedInterfaceEdges.forEach [
+            if (context.serviceOverviewContext.detailedEclipseInjectionContexts.contains(key)) {
+                overviewContext.injectedInterfaceEdgesInBundles.remove(it)
+                // TODO: set all shown to false.
             }
         ]
     }
     
-    def dispatch static void removeEdges(ServiceComponentOverviewContext overviewContext,
-        ServiceInterfaceContext context) {
+    def dispatch static void removeEdges(ServiceOverviewContext overviewContext, ServiceInterfaceContext context) {
         // PLAIN variant.
         val implementedInterfaceEdgesPlain = overviewContext.implementedInterfaceEdgesPlain.clone
         implementedInterfaceEdgesPlain.forEach [
@@ -322,6 +234,13 @@ class ContextUtils {
                 overviewContext.referencedInterfaceEdgesPlain.remove(it)
                 it.serviceComponentContext.allReferencedInterfacesShownPlain = false
                 it.serviceInterfaceContext.allReferencingComponentsShownPlain = false
+            }
+        ]
+        val injectedInterfaceEdgesPlain = overviewContext.injectedInterfaceEdgesPlain.clone
+        injectedInterfaceEdgesPlain.forEach [
+            if (it.value === context) {
+                overviewContext.injectedInterfaceEdgesPlain.remove(it)
+                // TODO: set all shown to false.
             }
         ]
         
@@ -340,6 +259,13 @@ class ContextUtils {
                 overviewContext.referencedInterfaceEdgesInBundles.remove(it)
                 it.serviceComponentContext.allReferencedInterfacesShownInBundles = false
                 it.serviceInterfaceContext.allReferencingComponentsShownInBundles = false
+            }
+        ]
+        val injectedInterfaceEdgesInBundles = overviewContext.injectedInterfaceEdgesInBundles?.clone
+        injectedInterfaceEdgesInBundles?.forEach [
+            if (it.value === context) {
+                overviewContext.injectedInterfaceEdgesInBundles.remove(it)
+                // TODO: set all shown to false.
             }
         ]
     }
@@ -478,8 +404,7 @@ class ContextUtils {
     final static String DIFFERENT_PARENT_ERROR_MSG = "The element contexts both have to have the same parent context!"
     
     /**
-     * Adds a implementing service component edge to the parent service component or interface context of the two given
-     * contexts.
+     * Adds a implementing service component edge to the parent service context of the two given contexts.
      * The direction of the edge indicates that the service interface of the {@code serviceInterfaceContext} is
      * implemented by the service component of the {@code serviceComponentContext}.
      * [component] ---implements---|> [interface]
@@ -489,18 +414,11 @@ class ContextUtils {
      */
     def static void addImplementingServiceComponentEdgePlain(ServiceInterfaceContext serviceInterfaceContext,
         ServiceComponentContext serviceComponentContext) {
-        val parentContext = serviceInterfaceContext.parentVisualizationContext as IOverviewVisualizationContext<?>
+        val parentContext = serviceInterfaceContext.parentVisualizationContext as ServiceOverviewContext
         if (serviceComponentContext.parentVisualizationContext !== parentContext) {
             throw new IllegalArgumentException(DIFFERENT_PARENT_ERROR_MSG)
         }
-        val implementedInterfaceEdgesPlain = switch parentContext {
-            ServiceComponentOverviewContext: {
-                parentContext.implementedInterfaceEdgesPlain
-            }
-            ServiceInterfaceOverviewContext: {
-                parentContext.implementedInterfaceEdgesPlain
-            }
-        }
+        val implementedInterfaceEdgesPlain = parentContext.implementedInterfaceEdgesPlain
         
         // Only if this edge does not exist yet, add it to the list of implementing service component edges.
         if (!implementedInterfaceEdgesPlain.exists [
@@ -527,8 +445,7 @@ class ContextUtils {
     }
     
     /**
-     * Adds a implementing service component edge to the parent IInterfaceComponentConnectionHolder of the two given
-     * contexts.
+     * Adds a implementing service component edge to the parent ServiceOverviewContext of the two given contexts.
      * The direction of the edge indicates that the service interface of the {@code serviceInterfaceContext} is
      * implemented by the service component of the {@code serviceComponentContext}.
      * [component] ---implements---|> [interface]
@@ -539,9 +456,9 @@ class ContextUtils {
      */
     def static void addImplementingServiceComponentEdgeInBundle(ServiceInterfaceContext serviceInterfaceContext,
         ServiceComponentContext serviceComponentContext) {
-        val parentContext = serviceInterfaceContext.parentVisualizationContext as IInterfaceComponentConnectionHolder
+        val parentContext = serviceInterfaceContext.parentVisualizationContext as ServiceOverviewContext
         // The serviceComponent should be in the hierarchy as in:
-        // IInterfaceComponentConnectionHolder->BundleCtx->SCOCtx->SCCtx
+        // SOCtx->BundleCtx->SOCtx->SCCtx
         if (serviceComponentContext.parentVisualizationContext.parentVisualizationContext.parentVisualizationContext
             !== parentContext) {
             throw new IllegalArgumentException("The interface and the component contexts are not in the correct "
@@ -572,8 +489,7 @@ class ContextUtils {
     }
     
     /**
-     * Adds a referenced service interface edge to the parent service component or interface context of the two given
-     * contexts.
+     * Adds a referenced service interface edge to the parent service context of the two given contexts.
      * The direction of the edge indicates that the service interface of the {@code serviceInterfaceContext} is
      * referenced by the service component of the {@code serviceComponentContext}.
      * 
@@ -583,7 +499,7 @@ class ContextUtils {
      */
     def static void addReferencedServiceInterfaceEdgePlain(ServiceComponentContext serviceComponentContext,
         ServiceInterfaceContext serviceInterfaceContext, Reference reference) {
-        val parentContext = serviceInterfaceContext.parentVisualizationContext as IInterfaceComponentConnectionHolder
+        val parentContext = serviceInterfaceContext.parentVisualizationContext as ServiceOverviewContext
         if (serviceComponentContext.parentVisualizationContext !== parentContext) {
             throw new IllegalArgumentException(DIFFERENT_PARENT_ERROR_MSG)
         }
@@ -621,8 +537,7 @@ class ContextUtils {
     }
     
     /**
-     * Adds a referenced service interface edge to the parent IInterfaceComponentConnectionHolder of the two given
-     * contexts.
+     * Adds a referenced service interface edge to the parent ServiceOverviewContext of the two given contexts.
      * The direction of the edge indicates that the service interface of the {@code serviceInterfaceContext} is
      * referenced by the service component of the {@code serviceComponentContext}.
      * 
@@ -633,9 +548,9 @@ class ContextUtils {
      */
     def static void addReferencedServiceInterfaceEdgeInBundle(ServiceComponentContext serviceComponentContext,
         ServiceInterfaceContext serviceInterfaceContext, Reference reference) {
-        val parentContext = serviceInterfaceContext.parentVisualizationContext as IInterfaceComponentConnectionHolder
+        val parentContext = serviceInterfaceContext.parentVisualizationContext as ServiceOverviewContext
         // The serviceComponent should be in the hierarchy as in:
-        // IInterfaceComponentConnectionHolder->BundleCtx->SCOCtx->SCCtx
+        // SOCtx->BundleCtx->SOCtx->SCCtx
         if (serviceComponentContext.parentVisualizationContext.parentVisualizationContext.parentVisualizationContext
             !== parentContext) {
             throw new IllegalArgumentException("The interface and the component contexts are not in the correct "
@@ -673,20 +588,20 @@ class ContextUtils {
     }
     
     /**
-     * Adds an injected service interface edge to the parent eclipse injection overview context.
+     * Adds an injected service interface edge to the parent service overview context.
      * The direction of the edge indicates that the service interface of the {@code serviceInterfaceContext} is
      * injected by the class represented by the {@code eclipseInjectionContext}.
      * 
-     * @param serviceComponentContext The service component context that is injected.
      * @param eclipseInjectionContext The eclipse injection context for the injection.
+     * @param serviceInterfaceContext The service interface context that is injected.
      */
-    def static void addInjectedServiceInterfaceEdge(EclipseInjectionContext eclipseInjectionContext,
+    def static void addInjectedServiceInterfaceEdgePlain(EclipseInjectionContext eclipseInjectionContext,
         ServiceInterfaceContext serviceInterfaceContext) {
-        val parentContext = eclipseInjectionContext.parentVisualizationContext as EclipseInjectionOverviewContext
+        val parentContext = eclipseInjectionContext.parentVisualizationContext as ServiceOverviewContext
         if (serviceInterfaceContext.parentVisualizationContext !== parentContext) {
             throw new IllegalArgumentException(DIFFERENT_PARENT_ERROR_MSG)
         }
-        val injectedInterfaceEdges = parentContext.injectedInterfaceEdges
+        val injectedInterfaceEdges = parentContext.injectedInterfaceEdgesPlain
         
         // Only if this edge does not exist yet, add it to the list of referenced service component edges.
         if (!injectedInterfaceEdges.exists [
@@ -694,6 +609,35 @@ class ContextUtils {
             value === serviceInterfaceContext
         ]) {
             injectedInterfaceEdges += eclipseInjectionContext -> serviceInterfaceContext
+            // TODO: Check if all injections are connected and mark that in the context.
+        }
+    }
+    
+    /**
+     * Adds an injected service interface edge to the parent ServiceOverviewContext of the two given contexts.
+     * The direction of the edge indicates that the service interface of the {@code serviceInterfaceContext} is
+     * injected by the class represented by the {@code eclipseInjectionContext}.
+     * 
+     * @param eclipseInjectionContext The eclipse injection context for the injection. Is not directly contained in
+     * a common parent service context, but in a hierarchy of a service and bundle context first.
+     * @param serviceInterfaceContext The service interface context that is injected.
+     */
+    def static void addInjectedServiceInterfaceEdgeInBundle(EclipseInjectionContext eclipseInjectionContext,
+        ServiceInterfaceContext serviceInterfaceContext) {
+        val parentContext = serviceInterfaceContext.parentVisualizationContext as ServiceOverviewContext
+        // The eclipseInjection should be in the hierarchy as in:
+        // SOCtx->BundleCtx->SOCtx->EICtx
+        if (eclipseInjectionContext.parentVisualizationContext.parentVisualizationContext.parentVisualizationContext
+            !== parentContext) {
+            throw new IllegalArgumentException("The injection and the interface contexts are not in the correct "
+                + "context hierarchy!")
+        }
+        // Only if this edge does not exist yet, add it to the list of injectied service interface edges.
+        if (!parentContext.injectedInterfaceEdgesInBundles.exists [
+            key === eclipseInjectionContext && value === serviceInterfaceContext
+        ]) {
+            parentContext.injectedInterfaceEdgesInBundles += eclipseInjectionContext -> serviceInterfaceContext
+            // TODO: Check if all injections are connected and mark that in the context.
         }
     }
     

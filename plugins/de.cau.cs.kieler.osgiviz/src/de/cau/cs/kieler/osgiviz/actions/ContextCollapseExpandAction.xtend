@@ -41,9 +41,11 @@ class ContextCollapseExpandAction extends AbstractVisualizationContextChangingAc
         val ovc = (overviewVisContext as IOverviewVisualizationContext<M>)
         
         if (ovc.collapsedElements.contains(modelVisualizationContext)) {
-            ContextUtils.makeDetailed(ovc, modelVisualizationContext)
+            ovc.makeDetailed(modelVisualizationContext)
         } else if (ovc.detailedElements.contains(modelVisualizationContext)) {
-            ContextUtils.collapse(ovc, modelVisualizationContext)
+            ovc.collapse(modelVisualizationContext)
+            // Remove all edges incident to the now collapsed context.
+            ContextUtils.removeEdges(ovc, modelVisualizationContext)
         } else { // This error should not be reachable.
             throw new IllegalStateException("Bug in code detected. This context has to be either contained within " +
                 "the collapsed or the contained elements")

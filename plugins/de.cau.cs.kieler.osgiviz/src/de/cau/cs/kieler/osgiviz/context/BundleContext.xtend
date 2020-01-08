@@ -14,6 +14,7 @@
  */
 package de.cau.cs.kieler.osgiviz.context
 
+import de.cau.cs.kieler.osgiviz.SynthesisUtils
 import de.scheidtbachmann.osgimodel.Bundle
 import java.util.Map
 import org.eclipse.xtend.lib.annotations.Accessors
@@ -54,16 +55,10 @@ class BundleContext implements IVisualizationContext<Bundle> {
     IOverviewVisualizationContext<?> parent
     
     /**
-     * The context for the service component overview shown in detailed bundles.
+     * The context for the service overview shown in detailed bundles.
      */
     @Accessors
-    ServiceComponentOverviewContext serviceComponentOverviewContext
-    
-    /**
-     * The context for the eclipse injection overview shown in detailed bundles.
-     */
-    @Accessors
-    EclipseInjectionOverviewContext eclipseInjectionOverviewContext
+    ServiceOverviewContext serviceOverviewContext
     
     private new() {}
     
@@ -74,7 +69,7 @@ class BundleContext implements IVisualizationContext<Bundle> {
     }
     
     override getChildContexts() {
-        return #[serviceComponentOverviewContext, eclipseInjectionOverviewContext]
+        return #[serviceOverviewContext]
     }
     
     override getModelElement() {
@@ -90,17 +85,22 @@ class BundleContext implements IVisualizationContext<Bundle> {
     }
     
     override initializeChildVisualizationContexts() {
-        // The service components in bundles should only be shown if there are any.
-        if (!bundle.serviceComponents.empty) {
-            serviceComponentOverviewContext = new ServiceComponentOverviewContext(bundle.serviceComponents, this, false)
-            // Service components in bundles in a service component overview should be expanded initially.
-            if (parentVisualizationContext instanceof ServiceComponentOverviewContext) {
-                serviceComponentOverviewContext.expanded = true
+        // The services in bundles should only be shown if there are any.
+        if (!bundle.serviceComponents.empty || !bundle.eclipseInjections.empty) {
+            // Determine if this bundle context should contain all service elements in the overview if it should exclude
+            // the interfaces (if the bundle itself is shown in a service overview)
+            val allServiceInterfaces = if (parent instanceof ServiceOverviewContext) {
+                #[]
+            }  else {
+                SynthesisUtils.referencedInterfaces(bundle.serviceComponents, bundle.eclipseInjections).toList
             }
-        }
-        // Same for the eclipse injections
-        if (!bundle.eclipseInjections.empty) {
-            eclipseInjectionOverviewContext = new EclipseInjectionOverviewContext(bundle.eclipseInjections, this)
+            
+            serviceOverviewContext = new ServiceOverviewContext(bundle.serviceComponents, allServiceInterfaces,
+                bundle.eclipseInjections, this, false)
+            // Services in bundles in a service overview should be expanded initially.
+            if (parentVisualizationContext instanceof ServiceOverviewContext) {
+                serviceOverviewContext.expanded = true
+            }
         }
     }
     
@@ -111,16 +111,11 @@ class BundleContext implements IVisualizationContext<Bundle> {
         }
         
         val clone = new BundleContext
-        if (serviceComponentOverviewContext !== null) {
-            clone.serviceComponentOverviewContext = serviceComponentOverviewContext.deepCopy(seenContexts)
-                as ServiceComponentOverviewContext
-            clone.serviceComponentOverviewContext.parentVisualizationContext = clone
+        if (serviceOverviewContext !== null) {
+            clone.serviceOverviewContext = serviceOverviewContext.deepCopy(seenContexts)
+                as ServiceOverviewContext
+            clone.serviceOverviewContext.parentVisualizationContext = clone
         }
-        if (eclipseInjectionOverviewContext !== null) {
-            clone.eclipseInjectionOverviewContext = eclipseInjectionOverviewContext.deepCopy(seenContexts)
-                as EclipseInjectionOverviewContext
-            clone.eclipseInjectionOverviewContext.parentVisualizationContext = clone
-        } 
         
         clone.allRequiredBundlesShown = allRequiredBundlesShown
         clone.allRequiringBundlesShown = allRequiringBundlesShown
