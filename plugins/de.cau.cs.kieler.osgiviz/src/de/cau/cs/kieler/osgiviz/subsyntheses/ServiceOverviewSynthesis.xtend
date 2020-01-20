@@ -23,8 +23,6 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KRenderingExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiStyles
-import de.cau.cs.kieler.osgiviz.OsgiSynthesisProperties
-import de.cau.cs.kieler.osgiviz.OsgiSynthesisProperties.ServiceConnectionVisualizationMode
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
 import de.cau.cs.kieler.osgiviz.context.BundleContext
 import de.cau.cs.kieler.osgiviz.context.EclipseInjectionContext
@@ -39,6 +37,8 @@ import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.Direction
 import org.eclipse.elk.core.options.HierarchyHandling
 import org.eclipse.elk.core.options.SizeConstraint
+
+import static de.cau.cs.kieler.osgiviz.OsgiOptions.*
 
 import static extension de.cau.cs.kieler.klighd.syntheses.DiagramSyntheses.*
 import static extension de.cau.cs.kieler.osgiviz.SynthesisUtils.*
@@ -120,10 +120,9 @@ class ServiceOverviewSynthesis extends AbstractSubSynthesis<ServiceOverviewConte
             addInvisibleContainerRendering
             tooltip = serviceOverviewContext.overviewText
             
-            val currentVisualizationMode = usedContext.getProperty(OsgiSynthesisProperties
-                .CURRENT_SERVICE_CONNECTION_VISUALIZATION_MODE)
-            if (!serviceOverviewContext.allowInBundleConnections || currentVisualizationMode.equals(
-                ServiceConnectionVisualizationMode.PLAIN)) {
+            val boolean currentVisualizationModeInBundles = usedContext
+                .getOptionValue(SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES) as Boolean
+            if (!serviceOverviewContext.allowInBundleConnections || !currentVisualizationModeInBundles) {
                 // All service components.
                 filteredCollapsedServiceComponentContexts.sortBy [
                     // The string to sort by. Either the shortened ID or the name.
@@ -151,8 +150,7 @@ class ServiceOverviewSynthesis extends AbstractSubSynthesis<ServiceOverviewConte
                     serviceInterfaceContext as ServiceInterfaceContext, -index - interfaceIndexOffset)
             ]
             
-            if (serviceOverviewContext.allowInBundleConnections && currentVisualizationMode.equals(
-                ServiceConnectionVisualizationMode.IN_BUNDLES)) {
+            if (serviceOverviewContext.allowInBundleConnections && currentVisualizationModeInBundles) {
                 // All bundles.
                 val bundleIndexOffset = children.size
                 val filteredBundleContexts = serviceOverviewContext.collapsedReferencedBundleContexts
@@ -177,11 +175,10 @@ class ServiceOverviewSynthesis extends AbstractSubSynthesis<ServiceOverviewConte
             addInvisibleContainerRendering
             tooltip = serviceOverviewContext.overviewText
             
-            val currentVisualizationMode = usedContext.getProperty(OsgiSynthesisProperties
-                .CURRENT_SERVICE_CONNECTION_VISUALIZATION_MODE)
+            val boolean currentVisualizationModeInBundles = usedContext
+                .getOptionValue(SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES) as Boolean
             // All service components.
-            if (!serviceOverviewContext.allowInBundleConnections || currentVisualizationMode.equals(
-                ServiceConnectionVisualizationMode.PLAIN)) {
+            if (!serviceOverviewContext.allowInBundleConnections || !currentVisualizationModeInBundles) {
                 val filteredDetailedServiceComponentContexts = SynthesisUtils.filteredElementContexts(
                     serviceOverviewContext.detailedServiceComponentContexts, usedContext)
                 children += filteredDetailedServiceComponentContexts.flatMap [
@@ -206,8 +203,7 @@ class ServiceOverviewSynthesis extends AbstractSubSynthesis<ServiceOverviewConte
             var List<Pair<ServiceComponentContext, ServiceInterfaceContext>> implementedInterfaceEdges
             var List<ReferencedInterfaceEdgeConnection> referencedInterfaceEdges
             var List<Pair<EclipseInjectionContext, ServiceInterfaceContext>> injectedInterfaceEdges
-            if (serviceOverviewContext.allowInBundleConnections && currentVisualizationMode.equals(
-                ServiceConnectionVisualizationMode.IN_BUNDLES)) {
+            if (serviceOverviewContext.allowInBundleConnections && currentVisualizationModeInBundles) {
                 setLayoutOption(CoreOptions::HIERARCHY_HANDLING, HierarchyHandling.INCLUDE_CHILDREN)
                 // All bundles containing the service components and injections.
                 val filteredBundleContexts = serviceOverviewContext.detailedReferencedBundleContexts

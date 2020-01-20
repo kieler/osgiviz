@@ -46,27 +46,4 @@ class OsgiSynthesisProperties {
     public static final IProperty<Integer> CURRENT_VISUALIZATION_CONTEXT_INDEX
         = new Property<Integer>("osgimodel.currentVisualizationContextIndex", null)
     
-    /**
-     * Property indicating whether connections to service interfaces should be synthesized shown in the bundles they are
-     * defined by (IN_BUNDLES) or if they should be synthesized plain (PLAIN).
-     */
-    public static final IProperty<ServiceConnectionVisualizationMode> CURRENT_SERVICE_CONNECTION_VISUALIZATION_MODE
-        = new Property<ServiceConnectionVisualizationMode>("osgimodel.currentShowSCInBundlesMode",
-            ServiceConnectionVisualizationMode.PLAIN)
-    
-    /**
-     * The different modes how connections to service interfaces are visualized.
-     */
-    enum ServiceConnectionVisualizationMode {
-        /**
-         * Service components should be visualized on their own.
-         */
-        PLAIN,
-        /**
-         * Service components should be visualized with the bundle they are defined in surrounding it.
-         */
-        IN_BUNDLES
-        
-    }
-    
 }

@@ -21,7 +21,6 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KPortExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiStyles
-import de.cau.cs.kieler.osgiviz.OsgiSynthesisProperties
 import de.cau.cs.kieler.osgiviz.context.ServiceComponentContext
 import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
 import de.scheidtbachmann.osgimodel.OsgiProject
@@ -29,6 +28,8 @@ import de.scheidtbachmann.osgimodel.ServiceComponent
 import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.PortConstraints
 import org.eclipse.elk.core.options.PortSide
+
+import static de.cau.cs.kieler.osgiviz.OsgiOptions.*
 
 /**
  * Sub-synthesis of {@link OsgiProject}s that handles expanded {@link ServiceComponent} views.
@@ -62,14 +63,11 @@ class ServiceComponentSynthesis extends AbstractSubSynthesis<ServiceComponentCon
                         // direction.
                         addLayoutParam(CoreOptions::PORT_SIDE, PortSide::EAST)
                         
-                        val boolean allImplementingInterfacesShown = switch (usedContext.getProperty(
-                            OsgiSynthesisProperties.CURRENT_SERVICE_CONNECTION_VISUALIZATION_MODE)) {
-                            case PLAIN: {
-                                sc.allImplementedInterfacesShownPlain
-                            }
-                            case IN_BUNDLES: {
-                                sc.allImplementedInterfacesShownInBundles
-                            }
+                        val boolean allImplementingInterfacesShown = if (usedContext.getOptionValue(
+                            SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES) as Boolean) {
+                            sc.allImplementedInterfacesShownInBundles
+                        } else {
+                            sc.allImplementedInterfacesShownPlain
                         }
                             
                         addImplementedServiceInterfacesPortRendering(interfaces.size, allImplementingInterfacesShown)
@@ -91,14 +89,11 @@ class ServiceComponentSynthesis extends AbstractSubSynthesis<ServiceComponentCon
                         // direction.
                         addLayoutParam(CoreOptions::PORT_SIDE, PortSide::WEST)
                         
-                        val boolean allReferencedInterfacesShown = switch (usedContext.getProperty(
-                            OsgiSynthesisProperties.CURRENT_SERVICE_CONNECTION_VISUALIZATION_MODE)) {
-                            case PLAIN: {
-                                sc.allReferencedInterfacesShownPlain
-                            }
-                            case IN_BUNDLES: {
-                                sc.allReferencedInterfacesShownInBundles
-                            }
+                        val boolean allReferencedInterfacesShown = if (usedContext.getOptionValue(
+                            SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES) as Boolean) {
+                            sc.allReferencedInterfacesShownInBundles
+                        } else {
+                            sc.allReferencedInterfacesShownPlain
                         }
                         
                         addReferencedServiceInterfacesPortRendering(references.size, allReferencedInterfacesShown)

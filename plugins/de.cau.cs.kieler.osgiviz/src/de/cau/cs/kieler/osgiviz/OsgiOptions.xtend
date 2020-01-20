@@ -32,6 +32,10 @@ class OsgiOptions {
     public static final SynthesisOption SIMPLE_TEXT = SynthesisOption.createChoiceOption("Descriptive text",
         #[SimpleTextType.Id, SimpleTextType.Name], SimpleTextType.Id)
     
+    /** Option for toggling service components and injections to be shown on their own or in their bundle context. */
+    public static final SynthesisOption SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES = SynthesisOption.createCheckOption(
+        "Service connection visualization in bundles", false)
+    
     /** Category option containing options for filtering. */
     public static final SynthesisOption FILTER_CATEGORY = SynthesisOption.createCategory("Filter", true)
     

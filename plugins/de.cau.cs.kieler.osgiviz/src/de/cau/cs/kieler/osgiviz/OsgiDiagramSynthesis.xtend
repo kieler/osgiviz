@@ -23,7 +23,6 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractDiagramSynthesis
 import de.cau.cs.kieler.osgiviz.actions.RedoAction
 import de.cau.cs.kieler.osgiviz.actions.ResetViewAction
-import de.cau.cs.kieler.osgiviz.actions.ToggleServiceConnectionVisualization
 import de.cau.cs.kieler.osgiviz.actions.UndoAction
 import de.cau.cs.kieler.osgiviz.context.BundleCategoryOverviewContext
 import de.cau.cs.kieler.osgiviz.context.BundleOverviewContext
@@ -80,13 +79,7 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
             DisplayedActionData.create(RedoAction.ID, "Redo",
                 "Redoes the last action that was undone on the view model."),
             DisplayedActionData.create(ResetViewAction.ID, "Reset View",
-                "Resets the view to its default overview state."),
-            // TODO: This should not be an action but rather an option.
-            DisplayedActionData.create(ToggleServiceConnectionVisualization.ID,
-                "Toggle service connection visualization",
-                "Toggles between visualizing service connections on their own and visualizing them in their bundle "
-                + "context.\n\n"
-                + "To be able to view the services in the bundles, the View filter->Show Services option has to be turned on.")
+                "Resets the view to its default overview state.")
         ]
     }
     
@@ -101,11 +94,11 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
     override getDisplayedSynthesisOptions() {
         val options = new LinkedHashSet()
         
+        // Add general options.
+        options.addAll(SIMPLE_TEXT, SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES)
+        
         // Add category options.
         options.addAll(FILTER_CATEGORY, TEXT_FILTER_CATEGORY, VIEW_FILTER_CATEGORY, PERFORMANCE)
-        
-        // Add general options.
-        options.addAll(SIMPLE_TEXT)
         
         // Add all text filter options.
         options.addAll(FILTER_BY, FILTER_BUNDLE_CATEGORIES, FILTER_BUNDLES, FILTER_FEATURES,

@@ -82,10 +82,6 @@
             class="de.cau.cs.kieler.osgiviz.actions.RevealInjectedServiceInterfaceAction"
             id="de.cau.cs.kieler.osgiviz.actions.RevealInjectedServiceInterfaceAction">
       </action>
-      <action
-            class="de.cau.cs.kieler.osgiviz.actions.ToggleServiceConnectionVisualization"
-            id="de.cau.cs.kieler.osgiviz.actions.ToggleServiceConnectionVisualization">
-      </action>
    </extension>
 
 </plugin>

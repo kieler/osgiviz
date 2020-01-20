@@ -21,7 +21,6 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KPortExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiStyles
-import de.cau.cs.kieler.osgiviz.OsgiSynthesisProperties
 import de.cau.cs.kieler.osgiviz.context.ServiceInterfaceContext
 import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
 import de.scheidtbachmann.osgimodel.OsgiProject
@@ -30,6 +29,8 @@ import de.scheidtbachmann.osgimodel.ServiceInterface
 import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.PortConstraints
 import org.eclipse.elk.core.options.PortSide
+
+import static de.cau.cs.kieler.osgiviz.OsgiOptions.*
 
 /**
  * Sub-synthesis of {@link OsgiProject}s that handles expanded {@link ServiceInterface} views.
@@ -61,14 +62,11 @@ class ServiceInterfaceSynthesis extends AbstractSubSynthesis<ServiceInterfaceCon
                         // Implementing components are always shown and expanded to the west against the drawing direction.
                         addLayoutParam(CoreOptions::PORT_SIDE, PortSide::WEST)
                         
-                        val boolean allImplementingComponentsShown = switch (usedContext.getProperty(
-                            OsgiSynthesisProperties.CURRENT_SERVICE_CONNECTION_VISUALIZATION_MODE)) {
-                            case PLAIN: {
-                                sic.allImplementingComponentsShownPlain
-                            }
-                            case IN_BUNDLES: {
-                                sic.allImplementingComponentsShownInBundles
-                            }
+                        val boolean allImplementingComponentsShown = if (usedContext.getOptionValue(
+                            SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES) as Boolean) {
+                            sic.allImplementingComponentsShownInBundles
+                        } else {
+                            sic.allImplementingComponentsShownPlain
                         }
                         
                         addImplementingServiceComponentsPortRendering(components.size, allImplementingComponentsShown)
@@ -92,14 +90,11 @@ class ServiceInterfaceSynthesis extends AbstractSubSynthesis<ServiceInterfaceCon
                         // Referencing components are always shown and expanded to the east with the drawing direction.
                         addLayoutParam(CoreOptions::PORT_SIDE, PortSide::EAST)
                         
-                        val boolean allReferencingComponentsShown = switch (usedContext.getProperty(
-                            OsgiSynthesisProperties.CURRENT_SERVICE_CONNECTION_VISUALIZATION_MODE)) {
-                            case PLAIN: {
-                                sic.allReferencingComponentsShownPlain
-                            }
-                            case IN_BUNDLES: {
-                                sic.allReferencingComponentsShownInBundles
-                            }
+                        val boolean allReferencingComponentsShown = if (usedContext.getOptionValue(
+                            SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES) as Boolean) {
+                            sic.allReferencingComponentsShownInBundles
+                        } else {
+                            sic.allReferencingComponentsShownPlain
                         }
                         
                         addReferencingComponentsShownPortRendering(referencingComponents.size,

@@ -16,7 +16,6 @@ package de.cau.cs.kieler.osgiviz.context
 
 import com.google.common.collect.ImmutableList
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
-import de.cau.cs.kieler.osgiviz.actions.ToggleServiceConnectionVisualization
 import de.scheidtbachmann.osgimodel.Bundle
 import de.scheidtbachmann.osgimodel.EclipseInjection
 import de.scheidtbachmann.osgimodel.ServiceComponent

@@ -21,7 +21,6 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KPortExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiStyles
-import de.cau.cs.kieler.osgiviz.OsgiSynthesisProperties
 import de.cau.cs.kieler.osgiviz.context.EclipseInjectionContext
 import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
 import de.scheidtbachmann.osgimodel.EclipseInjection
@@ -30,6 +29,7 @@ import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.PortConstraints
 import org.eclipse.elk.core.options.PortSide
 
+import static de.cau.cs.kieler.osgiviz.OsgiOptions.*
 import static de.cau.cs.kieler.osgiviz.SynthesisUtils.*
 
 /**
@@ -63,14 +63,11 @@ class EclipseInjectionSynthesis extends AbstractSubSynthesis<EclipseInjectionCon
                         // direction.
                         addLayoutParam(CoreOptions::PORT_SIDE, PortSide::WEST)
                         
-                        val boolean injectedInterfaceShown = switch (usedContext.getProperty(
-                            OsgiSynthesisProperties.CURRENT_SERVICE_CONNECTION_VISUALIZATION_MODE)) {
-                            case PLAIN: {
-                                eic.injectedInterfaceShownPlain
-                            }
-                            case IN_BUNDLES: {
-                                eic.injectedInterfaceShownInBundles
-                            }
+                        val boolean injectedInterfaceShown = if (usedContext.getOptionValue(
+                            SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES) as Boolean) {
+                            eic.injectedInterfaceShownInBundles
+                        } else {
+                            eic.injectedInterfaceShownPlain
                         }
                         
                         addInjectedServiceInterfacePortRendering(injectedInterfaceShown)
