@@ -52,6 +52,7 @@ import de.cau.cs.kieler.osgiviz.actions.RevealUsedByBundlesAction
 import de.cau.cs.kieler.osgiviz.actions.RevealUsedPackagesAction
 import de.cau.cs.kieler.osgiviz.actions.SelectRelatedAction
 import de.scheidtbachmann.osgimodel.Bundle
+import de.scheidtbachmann.osgimodel.BundleCategory
 import de.scheidtbachmann.osgimodel.EclipseInjection
 import de.scheidtbachmann.osgimodel.Feature
 import de.scheidtbachmann.osgimodel.PackageObject
@@ -83,6 +84,8 @@ class OsgiStyles {
     // The colors used for the background of all visualized elements.
     public static final String BUNDLE_COLOR_1            = "#E0F7FF" // HSV 195 12 100
     public static final String BUNDLE_COLOR_2            = "#C2F0FF" // HSV 195 24 100
+    public static final String BUNDLE_CATEGORY_COLOR_1   = "#E0EBFF" // HSV 220 12 100
+    public static final String BUNDLE_CATEGORY_COLOR_2   = "#C2D6FF" // HSV 220 24 100
     public static final String EXTERNAL_BUNDLE_COLOR_1   = "#F7FDFF" // HSV 195 3 100
     public static final String EXTERNAL_BUNDLE_COLOR_2   = "#F0FBFF" // HSV 195 6 100
     public static final String ECLIPSE_INJECTION_COLOR_1 = "#F5FFE0" // HSV 79 12 100
@@ -518,7 +521,7 @@ class OsgiStyles {
     
     /**
      * Adds a simple rendering for a {@link Feature} to the given node that can be expanded to call the
-     * {link ReferencedSynthesisExpandAction} to dynamically call the bundle synthesis for the given feature.
+     * {link ReferencedSynthesisExpandAction} to dynamically call the feature synthesis for the given feature.
      * 
      * @param node The KNode to add this rendering to.
      * @param f The feature this rendering should represent.
@@ -1224,7 +1227,7 @@ class OsgiStyles {
      * @param hasChildren If this rendering should leave space for a child area.
      * @param context The view context used in the synthesis.
      * 
-     * @return The entire rendering for a eclipse injection.
+     * @return The entire rendering for an eclipse injection.
      */
     def KRoundedRectangle addEclipseInjectionRendering(KNode node, EclipseInjection ei, boolean inOverview,
         boolean hasChildren, ViewContext context) {
@@ -1266,6 +1269,78 @@ class OsgiStyles {
             val tooltipText = "Show injected interface."
             tooltip = tooltipText
             addSingleClickAction(RevealInjectedServiceInterfaceAction::ID)
+        ]
+    }
+    
+    // ------------------------------------- BundleCategory renderings -------------------------------------
+    
+    /**
+     * Adds a simple rendering for a {@link BundleCategory} to the given node that can be expanded to call the
+     * {link ReferencedSynthesisExpandAction} to dynamically call the bundle category synthesis for the given bundle
+     * category.
+     * 
+     * @param node The KNode to add this rendering to.
+     * @param bc The bundle category this rendering should represent.
+     * @param label The representing name of this bundle category that should be shown.
+     * @param context The used ViewContext.
+     */
+    def addBundleCategoryInOverviewRendering(KNode node, BundleCategory bc, String label, ViewContext context) {
+        node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
+            setGridPlacement(3)
+            addRectangle => [
+                invisible = true
+                addSimpleLabel(label)
+            ]
+            addVerticalLine
+            addCollapseExpandButton(true, context)
+            setBackgroundGradient(BUNDLE_CATEGORY_COLOR_1.color, BUNDLE_CATEGORY_COLOR_2.color, 90)
+            addDoubleClickAction(ContextCollapseExpandAction::ID)
+            addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
+                ModifierState.NOT_PRESSED)
+            setShadow(SHADOW_COLOR.color, 4, 4)
+            tooltip = bc.categoryName
+            setSelectionStyle
+        ]
+    }
+    
+    /**
+     * Adds a rendering for a {@link BundleCategory} to the given node.
+     * 
+     * @param node The KNode this rendering should be attached to.
+     * @param bc The bundle category this rendering represents.
+     * @param inOverview If this bundle category is shown in a service overview.
+     * @param context The view context used in the synthesis.
+     * 
+     * @return The entire rendering for a bundle category.
+     */
+    def KRoundedRectangle addBundleCategoryRendering(KNode node, BundleCategory bc, boolean inOverview,
+        ViewContext context) {
+        node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
+            setBackgroundGradient(BUNDLE_CATEGORY_COLOR_1.color, BUNDLE_CATEGORY_COLOR_2.color, 90)
+            setGridPlacement(1)
+            addRectangle => [
+                setGridPlacement(3)
+                invisible = true
+                addRectangle => [
+                    invisible = true
+                    addSimpleLabel(bc.categoryName) => [
+                        addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
+                            ModifierState.NOT_PRESSED)
+                    ]
+                ]
+                addVerticalLine
+                if (inOverview) {
+                    addCollapseExpandButton(false, context)
+                } else {
+                    addRemoveButton
+                }
+            ]
+            addHorizontalSeperatorLine(1, 0)
+            addChildArea
+            setShadow(SHADOW_COLOR.color, 4, 4)
+            addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
+                ModifierState.NOT_PRESSED)
+            setSelectionStyle
         ]
     }
     

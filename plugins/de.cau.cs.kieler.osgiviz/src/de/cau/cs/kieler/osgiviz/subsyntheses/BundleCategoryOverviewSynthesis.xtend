@@ -45,6 +45,7 @@ class BundleCategoryOverviewSynthesis extends AbstractSubSynthesis<BundleCategor
     @Inject extension KRenderingExtensions
     @Inject extension OsgiStyles
     @Inject SimpleBundleCategorySynthesis simpleBundleCategorySynthesis
+    @Inject BundleCategorySynthesis bundleCategorySynthesis
     
     extension KGraphFactory = KGraphFactory.eINSTANCE
     
@@ -128,7 +129,7 @@ class BundleCategoryOverviewSynthesis extends AbstractSubSynthesis<BundleCategor
             tooltip = bundleCategoryOverviewContext.overviewText
             
             children += filteredDetailedBundleCategoryContexts.flatMap [
-                return simpleBundleCategorySynthesis.transform(it as BundleCategoryContext) // TODO: make a specific synthesis for expanded bundle categories!
+                return bundleCategorySynthesis.transform(it as BundleCategoryContext)
             ]
         ]
     }

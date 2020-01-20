@@ -16,6 +16,7 @@ package de.cau.cs.kieler.osgiviz.context
 
 import de.scheidtbachmann.osgimodel.BundleCategory
 import java.util.Map
+import org.eclipse.xtend.lib.annotations.Accessors
 
 /**
  * Context for the OSGi synthesis that contains information about {@link BundleCategory}s.
@@ -34,6 +35,12 @@ class BundleCategoryContext implements IVisualizationContext<BundleCategory> {
      */
     IOverviewVisualizationContext<BundleCategory> parent
     
+    /**
+     * The context for the bundle overview shown in detailed bundle categories.
+     */
+    @Accessors
+    BundleOverviewContext bundleOverviewContext
+    
     private new() {}
     
     new(BundleCategory bundleCategory, IOverviewVisualizationContext<BundleCategory> parent) {
@@ -42,7 +49,7 @@ class BundleCategoryContext implements IVisualizationContext<BundleCategory> {
     }
     
     override getChildContexts() {
-        return #[]
+        return #[bundleOverviewContext]
     }
     
     override getModelElement() {
@@ -58,7 +65,7 @@ class BundleCategoryContext implements IVisualizationContext<BundleCategory> {
     }
     
     override initializeChildVisualizationContexts() {
-        // Nothing to do yet.
+        bundleOverviewContext = new BundleOverviewContext(bundleCategory.bundle, this)
     }
     
     override deepCopy(Map<IVisualizationContext<?>, IVisualizationContext<?>> seenContexts) {
@@ -68,6 +75,10 @@ class BundleCategoryContext implements IVisualizationContext<BundleCategory> {
         }
         
         val clone = new BundleCategoryContext
+        if (bundleOverviewContext !== null) {
+            clone.bundleOverviewContext = bundleOverviewContext.deepCopy(seenContexts) as BundleOverviewContext
+            clone.bundleOverviewContext.parentVisualizationContext = clone
+        }
         clone.bundleCategory = bundleCategory
         clone.parent = null
         
