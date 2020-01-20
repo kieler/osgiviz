@@ -59,7 +59,7 @@ class SimpleProductSynthesis extends AbstractSubSynthesis<ProductContext, KNode>
                     }
                 } ?: ""
                 setLayoutOption(CoreOptions::PRIORITY, priority)
-                addProductInOverviewRendering(product, label)
+                addProductInOverviewRendering(product, label, usedContext)
             ]
         ]
     }

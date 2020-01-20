@@ -59,7 +59,7 @@ class SimpleFeatureSynthesis extends AbstractSubSynthesis<FeatureContext, KNode>
                     }
                 } ?: ""
                 setLayoutOption(CoreOptions::PRIORITY, priority)
-                addFeatureInOverviewRendering(feature, label)
+                addFeatureInOverviewRendering(feature, label, usedContext)
             ]
         ]
     }

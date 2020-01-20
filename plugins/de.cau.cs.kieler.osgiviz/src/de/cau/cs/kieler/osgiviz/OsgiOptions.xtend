@@ -103,4 +103,12 @@ class OsgiOptions {
     /** Option for shortening all IDs by the prefix in the option. */
     public static final SynthesisOption SHORTEN_BY = SynthesisOption.createTextOption(
         "Shorten IDs by").setCategory(VIEW_FILTER_CATEGORY)
+    
+    
+    /** Category option containing options for graphical performance. */
+    public static final SynthesisOption PERFORMANCE = SynthesisOption.createCategory("Performance", false)
+    
+    /** Option for using Icons or simpler texts. */
+    public static final SynthesisOption SHOW_ICONS = SynthesisOption.createCheckOption("Icons", true)
+        .setCategory(PERFORMANCE)
 }

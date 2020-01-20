@@ -139,8 +139,13 @@ class OsgiStyles {
     
     /**
      * Adds a rendering allowing a container rendering for any context with the given text as its headline.
+     * 
+     * @param node The KNode to add the rendering to.
+     * @param headlineText The headline presenting this overview.
+     * @param tooltipText What should be shown in a tooltip when hovering this overview.
+     * @param context The used ViewContext.
      */
-    def void addOverviewRendering(KNode node, String headlineText, String tooltipText) {
+    def void addOverviewRendering(KNode node, String headlineText, String tooltipText, ViewContext context) {
         // Expanded
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
             setAsExpandedView
@@ -154,10 +159,10 @@ class OsgiStyles {
                     addSimpleLabel(headlineText)
                 ]
                 addVerticalLine
-                addFocusButton
-                addExpandAllButton
-                addConnectAllButton
-                addOverviewContextCollapseExpandButton(false)
+                addFocusButton(context)
+                addExpandAllButton(context)
+                addConnectAllButton(context)
+                addOverviewContextCollapseExpandButton(false, context)
             ]
             addHorizontalSeperatorLine(1, 0)
             addChildArea
@@ -180,7 +185,7 @@ class OsgiStyles {
                     addSimpleLabel(headlineText)
                 ]
                 addVerticalLine
-                addOverviewContextCollapseExpandButton(true)
+                addOverviewContextCollapseExpandButton(true, context)
             ]
             setShadow(SHADOW_COLOR.color, 4, 4)
             background = DEFAULT_BACKGROUND_COLOR.color
@@ -204,7 +209,7 @@ class OsgiStyles {
     }
     
     /**
-     * Adds a button in the top right corner of any container rendering that will cause an action to be called.
+     * Adds a button as a part of a grid placement rendering that will cause an action to be called.
      * 
      * @param container The parent rendering this button should be added to.
      * @param text The text that should be displayed on the button.
@@ -212,7 +217,10 @@ class OsgiStyles {
      */
     def KRectangle addButton(KContainerRendering container, String text, String actionId) {
         return container.addRectangle => [
-            setPointPlacementData(RIGHT, 0, 0,  TOP, 0, 0, H_RIGHT, V_TOP, 0, 0, 15, 15)
+            setGridPlacementData => [
+                flexibleWidth = false
+            ]
+            lineWidth = 0
             addSingleOrMultiClickAction(actionId)
             addText(text) => [
                 suppressSelectability
@@ -232,21 +240,28 @@ class OsgiStyles {
      * @param container The parent rendering this button should be added to.
      * @param expand Whether this button should expand or collapse. {@code true} for expanding, {@code false} for
      * collapsing.
+     * @param context The used ViewContext.
      */
-    def KRectangle addCollapseExpandButton(KContainerRendering container, boolean expand) {
-        val imagePath = if (expand) "icons/restore128.png" else "icons/minimize128.png"
+    def KRectangle addCollapseExpandButton(KContainerRendering container, boolean expand, ViewContext context) {
         val doWhat = if (expand) "Expand" else "Collapse"
+        val action = ContextCollapseExpandAction::ID
         return container.addRectangle => [
             setGridPlacementData => [
                 flexibleWidth = false
             ]
-            addSingleOrMultiClickAction(ContextCollapseExpandAction::ID)
+            addSingleOrMultiClickAction(action)
             lineWidth = 0
             tooltip = doWhat + " this element."
-            addImage("de.cau.cs.kieler.osgiviz", imagePath) => [
-                setPointPlacementData(RIGHT, 0, 0.5f, TOP, 0, 0.5f, H_CENTRAL, V_CENTRAL, 4f, 4f, 12, 12)
-                addSingleOrMultiClickAction(ContextCollapseExpandAction::ID)
-            ]
+            if (context.getOptionValue(SHOW_ICONS) as Boolean) {
+                val imagePath = if (expand) "icons/restore128.png" else "icons/minimize128.png"
+                addImage("de.cau.cs.kieler.osgiviz", imagePath) => [
+                    setPointPlacementData(RIGHT, 0, 0.5f, TOP, 0, 0.5f, H_CENTRAL, V_CENTRAL, 4f, 4f, 12, 12)
+                    addSingleOrMultiClickAction(action)
+                ]
+            } else {
+                val label = if (expand) "+" else "-"
+                addButton(label, action)
+            }
         ]
     }
     
@@ -254,19 +269,26 @@ class OsgiStyles {
      * Adds a button in a grid placement rendering that causes the {@link ContextExpandAllAction} to be called.
      * 
      * @param container The parent rendering this button should be added to.
+     * @param context The used ViewContext.
      */
-    def KRectangle addExpandAllButton(KContainerRendering container) {
+    def KRectangle addExpandAllButton(KContainerRendering container, ViewContext context) {
+        val action = ContextExpandAllAction::ID
         return container.addRectangle => [
             setGridPlacementData => [
                 flexibleWidth = false
             ]
-            addSingleOrMultiClickAction(ContextExpandAllAction::ID)
+            addSingleOrMultiClickAction(action)
             lineWidth = 0
             tooltip = "Expand all elements in this overview."
-            addImage("de.cau.cs.kieler.osgiviz", "icons/expand128.png") => [
-                setPointPlacementData(RIGHT, 0, 0.5f, TOP, 0, 0.5f, H_CENTRAL, V_CENTRAL, 4f, 4f, 12, 12)
-                addSingleOrMultiClickAction(ContextExpandAllAction::ID)
-            ]
+            if (context.getOptionValue(SHOW_ICONS) as Boolean) {
+                addImage("de.cau.cs.kieler.osgiviz", "icons/expand128.png") => [
+                    setPointPlacementData(RIGHT, 0, 0.5f, TOP, 0, 0.5f, H_CENTRAL, V_CENTRAL, 4f, 4f, 12, 12)
+                    addSingleOrMultiClickAction(action)
+                ]
+            } else {
+                val label = "Expand all"
+                addButton(label, action)
+            }
         ]
     }
     
@@ -274,19 +296,26 @@ class OsgiStyles {
      * Adds a button in a grid placement rendering that causes the {@link ConnectAllAction} to be called.
      * 
      * @param container The parent rendering this button should be added to.
+     * @param context The used ViewContext.
      */
-    def KRectangle addConnectAllButton(KContainerRendering container) {
+    def KRectangle addConnectAllButton(KContainerRendering container, ViewContext context) {
+        val action = ConnectAllAction::ID
         return container.addRectangle => [
             setGridPlacementData => [
                 flexibleWidth = false
             ]
-            addSingleOrMultiClickAction(ConnectAllAction::ID)
+            addSingleOrMultiClickAction(action)
             lineWidth = 0
             tooltip = "Connects all elements in this overview."
-            addImage("de.cau.cs.kieler.osgiviz", "icons/connect128.png") => [
-                setPointPlacementData(RIGHT, 0, 0.5f, TOP, 0, 0.5f, H_CENTRAL, V_CENTRAL, 4f, 4f, 12, 12)
-                addSingleOrMultiClickAction(ConnectAllAction::ID)
-            ]
+            if (context.getOptionValue(SHOW_ICONS) as Boolean) {
+                addImage("de.cau.cs.kieler.osgiviz", "icons/connect128.png") => [
+                    setPointPlacementData(RIGHT, 0, 0.5f, TOP, 0, 0.5f, H_CENTRAL, V_CENTRAL, 4f, 4f, 12, 12)
+                    addSingleOrMultiClickAction(action)
+                ]
+            } else {
+                val label = "Connect all"
+                addButton(label, action)
+            }
         ]
     }
     
@@ -297,10 +326,6 @@ class OsgiStyles {
      */
     def KRectangle addRemoveButton(KContainerRendering container) {
         return container.addButton("x", ContextRemoveAction::ID) => [
-            setGridPlacementData => [
-                flexibleWidth = false
-            ]
-            lineWidth = 0
             tooltip = "Remove this element from the view."
         ]
     }
@@ -311,21 +336,29 @@ class OsgiStyles {
      * @param container The parent rendering this button should be added to.
      * @param expand Whether this button should expand or collapse. {@code true} for expanding, {@code false} for
      * collapsing.
+     * @param context The used ViewContext.
      */
-    def KRectangle addOverviewContextCollapseExpandButton(KContainerRendering container, boolean expand) {
-        val imagePath = if (expand) "icons/restore128.png" else "icons/minimize128.png"
+    def KRectangle addOverviewContextCollapseExpandButton(KContainerRendering container, boolean expand,
+        ViewContext context) {
+        val action = OverviewContextCollapseExpandAction::ID
         val doWhat = if (expand) "Expand" else "Collapse"
         return container.addRectangle => [
             setGridPlacementData => [
                 flexibleWidth = false
             ]
-            addSingleOrMultiClickAction(OverviewContextCollapseExpandAction::ID)
+            addSingleOrMultiClickAction(action)
             lineWidth = 0
             tooltip = doWhat + " this overview."
-            addImage("de.cau.cs.kieler.osgiviz", imagePath) => [
-                setPointPlacementData(RIGHT, 0, 0.5f, TOP, 0, 0.5f, H_CENTRAL, V_CENTRAL, 4f, 4f, 12, 12)
-                addSingleOrMultiClickAction(OverviewContextCollapseExpandAction::ID)
-            ]
+            if (context.getOptionValue(SHOW_ICONS) as Boolean) {
+                val imagePath = if (expand) "icons/restore128.png" else "icons/minimize128.png"
+                addImage("de.cau.cs.kieler.osgiviz", imagePath) => [
+                    setPointPlacementData(RIGHT, 0, 0.5f, TOP, 0, 0.5f, H_CENTRAL, V_CENTRAL, 4f, 4f, 12, 12)
+                    addSingleOrMultiClickAction(action)
+                ]
+            } else {
+                val label = if (expand) "+" else "-"
+                addButton(label, action)
+            }
         ]
     }
     
@@ -333,19 +366,26 @@ class OsgiStyles {
      * Adds a button in grid placement that causes the {@link FocusAction} to be called.
      * 
      * @param container The parent rendering this button should be added to.
+     * @param context The used ViewContext.
      */
-    def KRectangle addFocusButton(KContainerRendering container) {
+    def KRectangle addFocusButton(KContainerRendering container, ViewContext context) {
+        val action = FocusAction::ID
         return container.addRectangle => [
             setGridPlacementData => [
                 flexibleWidth = false
             ]
-            addSingleOrMultiClickAction(FocusAction::ID)
+            addSingleOrMultiClickAction(action)
             lineWidth = 0
             tooltip = "Focus the view to this overview alone."
-            addImage("de.cau.cs.kieler.osgiviz", "icons/loupe128.png") => [
-                setPointPlacementData(RIGHT, 0, 0.5f, TOP, 0, 0.5f, H_CENTRAL, V_CENTRAL, 4f, 4f, 12, 12)
-                addSingleOrMultiClickAction(FocusAction::ID)
-            ]
+            if (context.getOptionValue(SHOW_ICONS) as Boolean) {
+                addImage("de.cau.cs.kieler.osgiviz", "icons/loupe128.png") => [
+                    setPointPlacementData(RIGHT, 0, 0.5f, TOP, 0, 0.5f, H_CENTRAL, V_CENTRAL, 4f, 4f, 12, 12)
+                    addSingleOrMultiClickAction(action)
+                ]
+            } else {
+                val label = "Focus"
+                addButton(label, action)
+            }
         ]
     }
     
@@ -388,8 +428,13 @@ class OsgiStyles {
     /**
      * Adds a simple rendering for a {@link Product} to the given node that can be expanded to call the
      * {link ReferencedSynthesisExpandAction} to dynamically call the product synthesis for the given product.
+     * 
+     * @param node The KNode to add this rendering to.
+     * @param p The product this rendering represents.
+     * @param name The representing name of this product that should be shown.
+     * @param context The used ViewContext.
      */
-    def KRoundedRectangle addProductInOverviewRendering(KNode node, Product p, String name) {
+    def KRoundedRectangle addProductInOverviewRendering(KNode node, Product p, String name, ViewContext context) {
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
             setGridPlacement(3)
             addRectangle => [
@@ -397,7 +442,7 @@ class OsgiStyles {
                 addSimpleLabel(name)
             ]
             addVerticalLine
-            addCollapseExpandButton(true)
+            addCollapseExpandButton(true, context)
             setBackgroundGradient(PRODUCT_COLOR_1.color, PRODUCT_COLOR_2.color, 90)
             addDoubleClickAction(ContextCollapseExpandAction::ID)
             addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
@@ -414,6 +459,8 @@ class OsgiStyles {
      * 
      * @param node The KNode this rendering should be attached to.
      * @param p The product this rendering represents.
+     * @param inOverview If this product is shown in a product overview.
+     * @param hasChildren If this rendering should leave space for a child area.
      * @param context The view context used in the synthesis.
      * 
      * @return The entire rendering for a product.
@@ -432,7 +479,7 @@ class OsgiStyles {
                 ]
                 addVerticalLine
                 if (inOverview) {
-                    addCollapseExpandButton(false)
+                    addCollapseExpandButton(false, context)
                 } else {
                     addRemoveButton
                 }
@@ -472,8 +519,13 @@ class OsgiStyles {
     /**
      * Adds a simple rendering for a {@link Feature} to the given node that can be expanded to call the
      * {link ReferencedSynthesisExpandAction} to dynamically call the bundle synthesis for the given feature.
+     * 
+     * @param node The KNode to add this rendering to.
+     * @param f The feature this rendering should represent.
+     * @param label The representing name of this feature that should be shown.
+     * @param context The used ViewContext.
      */
-    def addFeatureInOverviewRendering(KNode node, Feature f, String label) {
+    def addFeatureInOverviewRendering(KNode node, Feature f, String label, ViewContext context) {
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
             setGridPlacement(3)
             addRectangle => [
@@ -481,7 +533,7 @@ class OsgiStyles {
                 addSimpleLabel(label)
             ]
             addVerticalLine
-            addCollapseExpandButton(true)
+            addCollapseExpandButton(true, context)
             if (f.isIsExternal) {
                 setBackgroundGradient(EXTERNAL_FEATURE_COLOR_1.color, EXTERNAL_FEATURE_COLOR_2.color, 90)
             } else {
@@ -502,6 +554,8 @@ class OsgiStyles {
      * 
      * @param node The KNode this rendering should be attached to.
      * @param f The feature this rendering represents.
+     * @param inOverview If this feature is shown in a feature overview.
+     * @param hasChildren If this rendering should leave space for a child area.
      * @param context The view context used in the synthesis.
      * 
      * @return The entire rendering for a feature.
@@ -531,7 +585,7 @@ class OsgiStyles {
                 ]
                 addVerticalLine
                 if (inOverview) {
-                    addCollapseExpandButton(false)
+                    addCollapseExpandButton(false, context)
                 } else {
                     addRemoveButton
                 }
@@ -571,8 +625,13 @@ class OsgiStyles {
     /**
      * Adds a simple rendering for a {@link Bundle} to the given node that can be expanded to call the
      * {link ReferencedSynthesisExpandAction} to dynamically call the bundle synthesis for the given bundle.
+     * 
+     * @param node The KNode to add this rendering to.
+     * @param b The bundle this rendering should represent.
+     * @param label The representing name of this bundle that should be shown.
+     * @param context The used ViewContext.
      */
-    def addBundleInOverviewRendering(KNode node, Bundle b, String label) {
+    def addBundleInOverviewRendering(KNode node, Bundle b, String label, ViewContext context) {
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
             setGridPlacement(3)
             addRectangle => [
@@ -580,7 +639,7 @@ class OsgiStyles {
                 addSimpleLabel(label)
             ]
             addVerticalLine
-            addCollapseExpandButton(true)
+            addCollapseExpandButton(true, context)
             if (b.isIsExternal) {
                 setBackgroundGradient(EXTERNAL_BUNDLE_COLOR_1.color, EXTERNAL_BUNDLE_COLOR_2.color, 90)
             } else {
@@ -601,6 +660,8 @@ class OsgiStyles {
      * 
      * @param node The KNode this rendering should be attached to.
      * @param b The bundle this rendering represents.
+     * @param inOverview If this bundle is shown in a bundle overview.
+     * @param hasChildren If this rendering should leave space for a child area.
      * @param context The view context used in the synthesis.
      * 
      * @return The entire rendering for a bundle.
@@ -630,7 +691,7 @@ class OsgiStyles {
                 ]
                 addVerticalLine
                 if (inOverview) {
-                    addCollapseExpandButton(false)
+                    addCollapseExpandButton(false, context)
                 } else {
                     addRemoveButton
                 }
@@ -735,6 +796,7 @@ class OsgiStyles {
      * 
      * @param node The KNode this rendering should be attached to.
      * @param po The package object this rendering represents.
+     * @param inOverview If this package object is shown in a package object overview.
      * @param context The view context used in the synthesis.
      * 
      * @return The entire rendering for a package object.
@@ -757,7 +819,7 @@ class OsgiStyles {
                 ]
                 addVerticalLine
                 if (inOverview) {
-                    addCollapseExpandButton(false)
+                    addCollapseExpandButton(false, context)
                 } else {
                     addRemoveButton
                 }
@@ -848,8 +910,13 @@ class OsgiStyles {
      * Adds a simple rendering for a {@link ServiceInterface} to the given node that can be expanded to call the
      * {link ReferencedSynthesisExpandAction} to dynamically call the service interface synthesis for the given
      * interface.
+     * 
+     * @param node The KNode to add this rendering to.
+     * @param s The service interface this rendering should represent.
+     * @param name The representing name of this service interface that should be shown.
+     * @param context The used ViewContext.
      */
-    def addServiceInterfaceInOverviewRendering(KNode node, ServiceInterface s, String name) {
+    def addServiceInterfaceInOverviewRendering(KNode node, ServiceInterface s, String name, ViewContext context) {
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
             setGridPlacement(3)
             addRectangle => [
@@ -857,7 +924,7 @@ class OsgiStyles {
                 addSimpleLabel(name)
             ]
             addVerticalLine
-            addCollapseExpandButton(true)
+            addCollapseExpandButton(true, context)
             setBackgroundGradient(SERVICE_INTERFACE_COLOR_1.color, SERVICE_INTERFACE_COLOR_2.color, 90)
             addDoubleClickAction(ContextCollapseExpandAction::ID)
             addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
@@ -873,6 +940,8 @@ class OsgiStyles {
      * 
      * @param node The KNode this rendering should be attached to.
      * @param si The service interface this rendering represents.
+     * @param inOverview If this service interface is shown in a service overview.
+     * @param hasChildren If this rendering should leave space for a child area.
      * @param context The view context used in the synthesis.
      * 
      * @return The entire rendering for a service interface.
@@ -895,7 +964,7 @@ class OsgiStyles {
                 ]
                 addVerticalLine
                 if (inOverview) {
-                    addCollapseExpandButton(false)
+                    addCollapseExpandButton(false, context)
                 } else {
                     addRemoveButton
                 }
@@ -970,8 +1039,13 @@ class OsgiStyles {
      * Adds a simple rendering for a {@link ServiceComponent} to the given node that can be expanded to call the
      * {link ReferencedSynthesisExpandAction} to dynamically call the service component synthesis for the given
      * component.
+     * 
+     * @param node The KNode to add this rendering to.
+     * @param s The service component this rendering should represent.
+     * @param name The representing name of this service component that should be shown.
+     * @param context The used ViewContext.
      */
-    def addServiceComponentInOverviewRendering(KNode node, ServiceComponent s, String name) {
+    def addServiceComponentInOverviewRendering(KNode node, ServiceComponent s, String name, ViewContext context) {
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
             setGridPlacement(3)
             addRectangle => [
@@ -979,7 +1053,7 @@ class OsgiStyles {
                 addSimpleLabel(name)
             ]
             addVerticalLine
-            addCollapseExpandButton(true)
+            addCollapseExpandButton(true, context)
             setBackgroundGradient(SERVICE_COMPONENT_COLOR_1.color, SERVICE_COMPONENT_COLOR_2.color, 90)
             addDoubleClickAction(ContextCollapseExpandAction::ID)
             addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
@@ -995,6 +1069,8 @@ class OsgiStyles {
      * 
      * @param node The KNode this rendering should be attached to.
      * @param sc The service component this rendering represents.
+     * @param inOverview If this service component is shown in a service overview.
+     * @param hasChildren If this rendering should leave space for a child area.
      * @param context The view context used in the synthesis.
      * 
      * @return The entire rendering for a service component.
@@ -1017,7 +1093,7 @@ class OsgiStyles {
                 ]
                 addVerticalLine
                 if (inOverview) {
-                    addCollapseExpandButton(false)
+                    addCollapseExpandButton(false, context)
                 } else {
                     addRemoveButton
                 }
@@ -1114,8 +1190,13 @@ class OsgiStyles {
      * Adds a simple rendering for an {@link EclipseInjection} to the given node that can be expanded to call the
      * {link ReferencedSynthesisExpandAction} to dynamically call the eclipse injection synthesis for the given
      * injection.
+     * 
+     * @param node The KNode to add this rendering to.
+     * @param ei The eclipse injection this rendering should represent.
+     * @param name The representing name of this eclipse injection that should be shown.
+     * @param context The used ViewContext.
      */
-    def addEclipseInjectionInOverviewRendering(KNode node, EclipseInjection ei, String name) {
+    def addEclipseInjectionInOverviewRendering(KNode node, EclipseInjection ei, String name, ViewContext context) {
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
             setGridPlacement(3)
             addRectangle => [
@@ -1123,7 +1204,7 @@ class OsgiStyles {
                 addSimpleLabel(name)
             ]
             addVerticalLine
-            addCollapseExpandButton(true)
+            addCollapseExpandButton(true, context)
             setBackgroundGradient(ECLIPSE_INJECTION_COLOR_1.color, ECLIPSE_INJECTION_COLOR_2.color, 90)
             addDoubleClickAction(ContextCollapseExpandAction::ID)
             addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
@@ -1139,6 +1220,8 @@ class OsgiStyles {
      * 
      * @param node The KNode this rendering should be attached to.
      * @param ei The eclipse injection this rendering represents.
+     * @param inOverview If this eclipse injection is shown in a service overview.
+     * @param hasChildren If this rendering should leave space for a child area.
      * @param context The view context used in the synthesis.
      * 
      * @return The entire rendering for a eclipse injection.
@@ -1161,7 +1244,7 @@ class OsgiStyles {
                 ]
                 addVerticalLine
                 if (inOverview) {
-                    addCollapseExpandButton(false)
+                    addCollapseExpandButton(false, context)
                 } else {
                     addRemoveButton
                 }

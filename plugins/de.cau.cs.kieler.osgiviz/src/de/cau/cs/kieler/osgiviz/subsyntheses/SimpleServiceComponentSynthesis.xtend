@@ -50,7 +50,7 @@ class SimpleServiceComponentSynthesis extends AbstractSubSynthesis<ServiceCompon
                 // The 'name' attribute of service components really are their ID.
                 val label = SynthesisUtils.getId(serviceComponent.name, usedContext)
                 setLayoutOption(CoreOptions::PRIORITY, priority)
-                addServiceComponentInOverviewRendering(serviceComponent, label)
+                addServiceComponentInOverviewRendering(serviceComponent, label, usedContext)
             ]
         ]
     }

@@ -65,7 +65,7 @@ class FeatureOverviewSynthesis extends AbstractSubSynthesis<FeatureOverviewConte
                 setLayoutOption(it, CoreOptions::ALGORITHM, "org.eclipse.elk.layered")
                 setLayoutOption(it, CoreOptions::DIRECTION, Direction.DOWN)
                 setLayoutOption(CoreOptions::NODE_SIZE_CONSTRAINTS, EnumSet.of(SizeConstraint.MINIMUM_SIZE))
-                addOverviewRendering("Features", featureOverviewContext.overviewText)
+                addOverviewRendering("Features", featureOverviewContext.overviewText, usedContext)
                 
                 // remove the padding of the invisible container.
                 addLayoutParam(CoreOptions.PADDING, new ElkPadding(0, 0, 0, 0))

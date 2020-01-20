@@ -50,7 +50,7 @@ class SimpleServiceInterfaceSynthesis extends AbstractSubSynthesis<ServiceInterf
                 // The 'name' attribute of service interfaces really are their ID.
                 val label = SynthesisUtils.getId(serviceInterface.name, usedContext)
                 setLayoutOption(CoreOptions::PRIORITY, priority)
-                addServiceInterfaceInOverviewRendering(serviceInterface, label)
+                addServiceInterfaceInOverviewRendering(serviceInterface, label, usedContext)
             ]
         ]
     }

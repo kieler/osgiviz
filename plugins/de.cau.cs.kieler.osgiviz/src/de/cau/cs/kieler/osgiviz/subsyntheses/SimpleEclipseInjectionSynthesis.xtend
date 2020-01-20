@@ -49,7 +49,7 @@ class SimpleEclipseInjectionSynthesis extends AbstractSubSynthesis<EclipseInject
                 data += createKIdentifier => [ it.id = eic.hashCode.toString ]
                 val label = SynthesisUtils.displayedString(eclipseInjection)
                 setLayoutOption(CoreOptions::PRIORITY, priority)
-                addEclipseInjectionInOverviewRendering(eclipseInjection, label)
+                addEclipseInjectionInOverviewRendering(eclipseInjection, label, usedContext)
             ]
         ]
     }

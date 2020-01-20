@@ -102,7 +102,7 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
         val options = new LinkedHashSet()
         
         // Add category options.
-        options.addAll(FILTER_CATEGORY, TEXT_FILTER_CATEGORY, VIEW_FILTER_CATEGORY)
+        options.addAll(FILTER_CATEGORY, TEXT_FILTER_CATEGORY, VIEW_FILTER_CATEGORY, PERFORMANCE)
         
         // Add general options.
         options.addAll(SIMPLE_TEXT)
@@ -115,6 +115,9 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
         // Add all view filter options.
         options.addAll(SHOW_EXTERNAL, BUNDLE_SHOW_SERVICES, FILTER_CARDINALITY_LABEL, FILTER_DESCRIPTIONS,
             DESCRIPTION_LENGTH, SHORTEN_BY)
+        
+        // Add all performance options.
+        options.addAll(SHOW_ICONS)
         
         return options.toList
     }

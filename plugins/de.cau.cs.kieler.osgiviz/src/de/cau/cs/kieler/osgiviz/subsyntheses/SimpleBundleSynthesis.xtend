@@ -59,7 +59,7 @@ class SimpleBundleSynthesis extends AbstractSubSynthesis<BundleContext, KNode> {
                     }
                 } ?: ""
                 setLayoutOption(CoreOptions::PRIORITY, priority)
-                addBundleInOverviewRendering(bundle, label)
+                addBundleInOverviewRendering(bundle, label, usedContext)
             ]
         ]
     }

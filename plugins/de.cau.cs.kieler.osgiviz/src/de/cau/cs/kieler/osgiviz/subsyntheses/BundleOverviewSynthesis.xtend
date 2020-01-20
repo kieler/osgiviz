@@ -68,7 +68,7 @@ class BundleOverviewSynthesis extends AbstractSubSynthesis<BundleOverviewContext
                 setLayoutOption(CoreOptions::ALGORITHM, "org.eclipse.elk.layered")
                 setLayoutOption(CoreOptions::DIRECTION, Direction.DOWN)
                 setLayoutOption(CoreOptions::NODE_SIZE_CONSTRAINTS, EnumSet.of(SizeConstraint.MINIMUM_SIZE))
-                addOverviewRendering("Bundles", bundleOverviewContext.overviewText)
+                addOverviewRendering("Bundles", bundleOverviewContext.overviewText, usedContext)
                 
                 // remove the padding of the invisible container.
                 addLayoutParam(CoreOptions.PADDING, new ElkPadding(0, 0, 0, 0))
