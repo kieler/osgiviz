@@ -29,7 +29,7 @@ class OsgiOptions {
     }
     
     /** Option for setting the main text to be shown in unexpanded objects. */
-    public static final SynthesisOption SIMPLE_TEXT = SynthesisOption.createChoiceOption("Shown text",
+    public static final SynthesisOption SIMPLE_TEXT = SynthesisOption.createChoiceOption("Descriptive text",
         #[SimpleTextType.Id, SimpleTextType.Name], SimpleTextType.Id)
     
     /** Category option containing options for filtering. */
@@ -82,19 +82,19 @@ class OsgiOptions {
     
     /** Option indicating whether external elements should be shown. */
     public static final SynthesisOption SHOW_EXTERNAL = SynthesisOption.createCheckOption(
-        "Show external elements", true).setCategory(VIEW_FILTER_CATEGORY)
+        "External elements", true).setCategory(VIEW_FILTER_CATEGORY)
     
     /** Option indicating whether service elements should be shown in bundles. */
     public static final SynthesisOption BUNDLE_SHOW_SERVICES= SynthesisOption.createCheckOption(
-        "Show Services", true).setCategory(VIEW_FILTER_CATEGORY)
+        "Services", true).setCategory(VIEW_FILTER_CATEGORY)
     
     /** Option that indicates if the cardinality label on referenced service interfaces are shown. */
     public static final SynthesisOption FILTER_CARDINALITY_LABEL = SynthesisOption.createCheckOption(
-        "Show cardinality label", true).setCategory(VIEW_FILTER_CATEGORY)
+        "Cardinality label", true).setCategory(VIEW_FILTER_CATEGORY)
     
     /** Option that indicates if the description texts are shown at all. */
     public static final SynthesisOption FILTER_DESCRIPTIONS = SynthesisOption.createCheckOption(
-        "Show description texts", true).setCategory(VIEW_FILTER_CATEGORY)
+        "Description texts", true).setCategory(VIEW_FILTER_CATEGORY)
     
     /** Option for limiting the length of descriptive texts. */
     public static final SynthesisOption DESCRIPTION_LENGTH = SynthesisOption.createRangeOption(
