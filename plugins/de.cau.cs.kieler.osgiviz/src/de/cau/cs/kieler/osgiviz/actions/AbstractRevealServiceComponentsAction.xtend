@@ -17,7 +17,6 @@ package de.cau.cs.kieler.osgiviz.actions
 import de.cau.cs.kieler.osgiviz.context.BundleContext
 import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
 import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
-import org.eclipse.emf.ecore.EObject
 
 /**
  * Abstract action to reveal service components connected to a service element caused by an action on a service
@@ -28,7 +27,7 @@ import org.eclipse.emf.ecore.EObject
  */
 abstract class AbstractRevealServiceComponentsAction extends AbstractVisualizationContextChangingAction {
     
-    override <M extends EObject> IVisualizationContext<?>
+    override <M> IVisualizationContext<?>
     changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
         // The overview context this element is shown in.
         val overviewContext = modelVisualizationContext.parentVisualizationContext as ServiceOverviewContext
@@ -57,7 +56,7 @@ abstract class AbstractRevealServiceComponentsAction extends AbstractVisualizati
      * @param elementContext The context representing the service element that the connection is for.
      * @param serviceOverviewContext The service overview context this action is issued in.
      */
-    protected abstract def <M extends EObject> void revealInServiceOverview(IVisualizationContext<M> elementContext,
+    protected abstract def <M> void revealInServiceOverview(IVisualizationContext<M> elementContext,
         ServiceOverviewContext serviceOverviewContext)
     
     /**
@@ -67,7 +66,7 @@ abstract class AbstractRevealServiceComponentsAction extends AbstractVisualizati
      * @param elementContext The context representing the service element that the connection is for.
      * @param serviceOverviewContext The service overview context this action is issued in.
      */
-    protected abstract def <M extends EObject> void revealInIndependentBundle(IVisualizationContext<M> elementContext,
+    protected abstract def <M> void revealInIndependentBundle(IVisualizationContext<M> elementContext,
         ServiceOverviewContext serviceOverviewContext)
     
 }

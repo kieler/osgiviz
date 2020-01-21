@@ -14,6 +14,7 @@
  */
 package de.cau.cs.kieler.osgiviz.context
 
+import de.cau.cs.kieler.osgiviz.OsgiOptions
 import de.scheidtbachmann.osgimodel.ServiceComponent
 import java.util.Map
 import org.eclipse.xtend.lib.annotations.Accessors
@@ -37,28 +38,28 @@ class ServiceComponentContext implements IVisualizationContext<ServiceComponent>
     
     /**
      * Indicates whether all service interfaces implemented by this service component are shown and connected to this.
-     * This is for the {@link OsgiSynthesisProperties$ServiceComponentVisualizationMode#PLAIN} variant.
+     * This is for the plain variant for the {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option.
      */
     @Accessors
     boolean allImplementedInterfacesShownPlain
     
     /**
      * Indicates whether all service interfaces implemented by this service component are shown and connected to this.
-     * This is for the {@link OsgiSynthesisProperties$ServiceComponentVisualizationMode#IN_BUNDLES} variant.
+     * This is for the inBundles variant for the {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option.
      */
     @Accessors
     boolean allImplementedInterfacesShownInBundles
     
     /**
      * Indicates whether all service interfaces referenced by this service component are shown and connected to this.
-     * This is for the {@link OsgiSynthesisProperties$ServiceComponentVisualizationMode#PLAIN} variant.
+     * This is for the plain variant for the {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option.
      */
     @Accessors
     boolean allReferencedInterfacesShownPlain
     
     /**
      * Indicates whether all service interfaces referenced by this service component are shown and connected to this.
-     * This is for the {@link OsgiSynthesisProperties$ServiceComponentVisualizationMode#IN_BUNDLES} variant.
+     * This is for the inBundles variant for the {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option.
      */
     @Accessors
     boolean allReferencedInterfacesShownInBundles

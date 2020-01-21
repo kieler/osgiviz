@@ -22,14 +22,14 @@ import de.cau.cs.kieler.klighd.kgraph.KNode
 import de.cau.cs.kieler.klighd.syntheses.DiagramSyntheses
 import de.cau.cs.kieler.osgiviz.context.IOverviewVisualizationContext
 import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
+import de.cau.cs.kieler.osgiviz.modelExtension.Class
+import de.cau.cs.kieler.osgiviz.modelExtension.ModelUtils
 import de.scheidtbachmann.osgimodel.Bundle
 import de.scheidtbachmann.osgimodel.BundleCategory
 import de.scheidtbachmann.osgimodel.EclipseInjection
 import de.scheidtbachmann.osgimodel.Feature
-import de.scheidtbachmann.osgimodel.OsgiProject
 import de.scheidtbachmann.osgimodel.PackageObject
 import de.scheidtbachmann.osgimodel.Product
-import de.scheidtbachmann.osgimodel.Reference
 import de.scheidtbachmann.osgimodel.ServiceComponent
 import de.scheidtbachmann.osgimodel.ServiceInterface
 import java.util.HashSet
@@ -37,7 +37,6 @@ import java.util.List
 import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.Direction
 import org.eclipse.elk.core.options.EdgeRouting
-import org.eclipse.emf.ecore.EObject
 
 import static de.cau.cs.kieler.osgiviz.OsgiOptions.*
 
@@ -107,7 +106,7 @@ final class SynthesisUtils {
      * @param usedContext The ViewContext used to display the diagram these elements are shown in.
      * @return An Iterable of the elements filtered by the diagram options.
      */
-    def static <M extends EObject> Iterable<M> filteredElements(List<M> elements, IOverviewVisualizationContext<M> oc,
+    def static <M> Iterable<M> filteredElements(List<M> elements, IOverviewVisualizationContext<M> oc,
         ViewContext usedContext) {
         val elementsInContext = elements.filter [
             oc.modelElement.contains(it)
@@ -137,8 +136,8 @@ final class SynthesisUtils {
                 ServiceInterface case usedContext.getOptionValue(FILTER_SERVICE_INTERFACES) === true: {
                     [ (it as ServiceInterface).name           .matches(regex) ]
                 }
-                EclipseInjection case usedContext.getOptionValue(FILTER_ECLIPSE_INJECTIONS) === true: {
-                    [ (it as EclipseInjection).displayedString.matches(regex) ]
+                Class            case usedContext.getOptionValue(FILTER_CLASSES)            === true: {
+                    [ (it as Class).displayedString           .matches(regex) ]
                 }
                 default: {
                     // In case the option for the filter is turned off, just return the given list.
@@ -162,7 +161,7 @@ final class SynthesisUtils {
      * @param usedContext The ViewContext used to display the diagram these visualizations are shown in.
      * @return An Iterable of the visualization contexts filtered by the diagram options.
      */
-    def static <M extends EObject> Iterable<? extends IVisualizationContext<M>> filteredElementContexts(
+    def static <M> Iterable<? extends IVisualizationContext<M>> filteredElementContexts(
         List<? extends IVisualizationContext<M>> visualizationContexts, ViewContext usedContext) {
         val regex = ".*" + usedContext.getOptionValue(FILTER_BY) as String + ".*"
         if (!regex.empty && !visualizationContexts.empty) {
@@ -200,8 +199,8 @@ final class SynthesisUtils {
                 ServiceInterface case usedContext.getOptionValue(FILTER_SERVICE_INTERFACES) === true: {
                     [ (modelElement as ServiceInterface).name           .matches(regex) ]
                 }
-                EclipseInjection case usedContext.getOptionValue(FILTER_ECLIPSE_INJECTIONS) === true: {
-                    [ (modelElement as EclipseInjection).displayedString.matches(regex) ]
+                Class case usedContext.getOptionValue(FILTER_CLASSES)                       === true: {
+                    [ (modelElement as Class).displayedString           .matches(regex) ]
                 }
                 default: {
                     null
@@ -259,55 +258,13 @@ final class SynthesisUtils {
     }
     
     /**
-     * Returns the displayed string for {@link EclipseInjection}s by taking the file name.
+     * Returns the displayed string for {@link Class}es by taking the file name.
      * 
-     * @param ei The EclipseInjection.
-     * @return The displayed string for {@link EclipseInjection}s.  
+     * @param c The Class.
+     * @return The displayed string for {@link Class}es.  
      */
-    def static String displayedString(EclipseInjection ei) {
-        return ei.usedInClass.replace("\\", "/").split("/").last
-    }
-    
-    /**
-     * Returns the injected interface of the given injection.
-     * 
-     * @param ei The EclipseInjection.
-     * @return The injected interface.
-     */
-    def static ServiceInterface injectedInterface(EclipseInjection ei) {
-        // Look for the osgiProject container.
-        var EObject current = ei
-        while (!(current instanceof OsgiProject)) {
-            current = current.eContainer
-        }
-        val OsgiProject osgiProject = current as OsgiProject
-        
-        // Look in the project's interfaces and match the searched for interface.
-        val interface = osgiProject.serviceInterfaces.findFirst [
-            it.name.endsWith(ei.injectedInterface)
-        ]
-        
-        return interface
-    }
-    
-    /**
-     * Returns the bundle this injection is contained in.
-     * 
-     * @param ei The EclipseInjection.
-     * @return The bundle container.
-     */
-    def static Bundle containedBundle(EclipseInjection ei) {
-        return ei.eContainer as Bundle
-    }
-    
-    /**
-     * Returns the service component this reference is used by.
-     * 
-     * @param reference The Reference.
-     * @return The component using the reference.
-     */
-    def static ServiceComponent serviceComponentOf(Reference reference) {
-        return reference.eContainer as ServiceComponent
+    def static String displayedString(Class ei) {
+        return ei.classPath.replace("\\", "/").split("/").last
     }
     
     /**
@@ -328,7 +285,7 @@ final class SynthesisUtils {
             ]
         ]
         injections.forEach [
-            serviceInterfaces.add(injectedInterface(it))
+            serviceInterfaces.add(ModelUtils.injectedInterface(it))
         ]
         return serviceInterfaces
     }

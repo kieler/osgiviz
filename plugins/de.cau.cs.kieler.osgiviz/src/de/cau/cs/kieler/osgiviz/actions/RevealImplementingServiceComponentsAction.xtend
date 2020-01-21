@@ -18,7 +18,6 @@ import de.cau.cs.kieler.osgiviz.context.ContextUtils
 import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
 import de.cau.cs.kieler.osgiviz.context.ServiceInterfaceContext
 import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
-import org.eclipse.emf.ecore.EObject
 
 /**
  * Puts the service components implementing this service interface next to this service interface and connects them with
@@ -34,7 +33,7 @@ class RevealImplementingServiceComponentsAction extends AbstractRevealServiceCom
      */
     public static val String ID = RevealImplementingServiceComponentsAction.name
     
-    override <M extends EObject> revealInServiceOverview(IVisualizationContext<M> elementContext,
+    override <M> revealInServiceOverview(IVisualizationContext<M> elementContext,
         ServiceOverviewContext serviceOverviewContext) {
         val serviceInterfaceContext = elementContext as ServiceInterfaceContext
         val serviceInterface = serviceInterfaceContext.modelElement
@@ -91,7 +90,7 @@ class RevealImplementingServiceComponentsAction extends AbstractRevealServiceCom
         ]
     }
     
-    override <M extends EObject> revealInIndependentBundle(IVisualizationContext<M> elementContext,
+    override <M> revealInIndependentBundle(IVisualizationContext<M> elementContext,
         ServiceOverviewContext serviceOverviewContext) {
         val serviceInterfaceContext = elementContext as ServiceInterfaceContext
         val serviceInterface = serviceInterfaceContext.modelElement

@@ -15,7 +15,6 @@
 package de.cau.cs.kieler.osgiviz.context
 
 import java.util.List
-import org.eclipse.emf.ecore.EObject
 
 /**
  * Interface for a visualization context for overviews that simply shows a list of elements in collapsed or detailed
@@ -25,7 +24,7 @@ import org.eclipse.emf.ecore.EObject
  * 
  * @author nre
  */
-abstract class IOverviewVisualizationContext<M extends EObject> implements IVisualizationContext<List<M>> {
+abstract class IOverviewVisualizationContext<M> implements IVisualizationContext<List<M>> {
     
     /**
      * The visualization contexts of the detailed elements.

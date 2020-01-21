@@ -20,7 +20,6 @@ import de.scheidtbachmann.osgimodel.PackageObject
 import de.scheidtbachmann.osgimodel.Product
 import de.scheidtbachmann.osgimodel.Reference
 import java.util.List
-import org.eclipse.emf.ecore.EObject
 
 /**
  * Util class that contains some static methods commonly used in the OSGi synthesis for modifying the visualization
@@ -110,15 +109,15 @@ class ContextUtils {
         // There are no edges in package object overview contexts. So do nothing.
     }
     
-    def dispatch static void removeEdges(ServiceOverviewContext overviewContext, EclipseInjectionContext context) {
+    def dispatch static void removeEdges(ServiceOverviewContext overviewContext, ClassContext context) {
         // IN_BUNDLES variant:
-        // There could be edges from this EI context to the parent's parent's parent service overview context,
+        // There could be edges from this class context to the parent's parent's parent service overview context,
         // if it is in the correct hierarchy for that.
         val potentialBundleContext = overviewContext.parentVisualizationContext
         if (potentialBundleContext instanceof BundleContext) {
             val potentialServiceConnectionHolder = potentialBundleContext.parentVisualizationContext
             if (potentialServiceConnectionHolder instanceof ServiceOverviewContext) {
-                // We are in the correct hierarchy, this overviewContext may contain edges to this EI context.
+                // We are in the correct hierarchy, this overviewContext may contain edges to this class context.
                 val connectionHolder = potentialServiceConnectionHolder as ServiceOverviewContext
                 val injectedInterfaceEdges = connectionHolder.injectedInterfaceEdgesInBundles.clone
                 injectedInterfaceEdges.forEach [
@@ -211,7 +210,7 @@ class ContextUtils {
         ]
         val injectedInterfaceEdges = overviewContext.injectedInterfaceEdgesInBundles.clone
         injectedInterfaceEdges.forEach [
-            if (context.serviceOverviewContext.detailedEclipseInjectionContexts.contains(key)) {
+            if (context.serviceOverviewContext.detailedClassContexts.contains(key)) {
                 overviewContext.injectedInterfaceEdgesInBundles.remove(it)
                 // TODO: set all shown to false.
             }
@@ -590,14 +589,14 @@ class ContextUtils {
     /**
      * Adds an injected service interface edge to the parent service overview context.
      * The direction of the edge indicates that the service interface of the {@code serviceInterfaceContext} is
-     * injected by the class represented by the {@code eclipseInjectionContext}.
+     * injected by the class represented by the {@code classContext}.
      * 
-     * @param eclipseInjectionContext The eclipse injection context for the injection.
+     * @param classContext The class context for the injection.
      * @param serviceInterfaceContext The service interface context that is injected.
      */
-    def static void addInjectedServiceInterfaceEdgePlain(EclipseInjectionContext eclipseInjectionContext,
+    def static void addInjectedServiceInterfaceEdgePlain(ClassContext classContext,
         ServiceInterfaceContext serviceInterfaceContext) {
-        val parentContext = eclipseInjectionContext.parentVisualizationContext as ServiceOverviewContext
+        val parentContext = classContext.parentVisualizationContext as ServiceOverviewContext
         if (serviceInterfaceContext.parentVisualizationContext !== parentContext) {
             throw new IllegalArgumentException(DIFFERENT_PARENT_ERROR_MSG)
         }
@@ -605,39 +604,39 @@ class ContextUtils {
         
         // Only if this edge does not exist yet, add it to the list of referenced service component edges.
         if (!injectedInterfaceEdges.exists [
-            key === eclipseInjectionContext &&
+            key === classContext &&
             value === serviceInterfaceContext
         ]) {
-            injectedInterfaceEdges += eclipseInjectionContext -> serviceInterfaceContext
-            // TODO: Check if all injections are connected and mark that in the context.
+            injectedInterfaceEdges += classContext -> serviceInterfaceContext
+            // TODO: Check if all classes are connected and mark that in the context.
         }
     }
     
     /**
      * Adds an injected service interface edge to the parent ServiceOverviewContext of the two given contexts.
      * The direction of the edge indicates that the service interface of the {@code serviceInterfaceContext} is
-     * injected by the class represented by the {@code eclipseInjectionContext}.
+     * injected by the class represented by the {@code classContext}.
      * 
-     * @param eclipseInjectionContext The eclipse injection context for the injection. Is not directly contained in
+     * @param classContext The class context for the injection. Is not directly contained in
      * a common parent service context, but in a hierarchy of a service and bundle context first.
      * @param serviceInterfaceContext The service interface context that is injected.
      */
-    def static void addInjectedServiceInterfaceEdgeInBundle(EclipseInjectionContext eclipseInjectionContext,
+    def static void addInjectedServiceInterfaceEdgeInBundle(ClassContext classContext,
         ServiceInterfaceContext serviceInterfaceContext) {
         val parentContext = serviceInterfaceContext.parentVisualizationContext as ServiceOverviewContext
-        // The eclipseInjection should be in the hierarchy as in:
-        // SOCtx->BundleCtx->SOCtx->EICtx
-        if (eclipseInjectionContext.parentVisualizationContext.parentVisualizationContext.parentVisualizationContext
+        // The class should be in the hierarchy as in:
+        // SOCtx->BundleCtx->SOCtx->CCtx
+        if (classContext.parentVisualizationContext.parentVisualizationContext.parentVisualizationContext
             !== parentContext) {
-            throw new IllegalArgumentException("The injection and the interface contexts are not in the correct "
+            throw new IllegalArgumentException("The class and the interface contexts are not in the correct "
                 + "context hierarchy!")
         }
-        // Only if this edge does not exist yet, add it to the list of injectied service interface edges.
+        // Only if this edge does not exist yet, add it to the list of injected service interface edges.
         if (!parentContext.injectedInterfaceEdgesInBundles.exists [
-            key === eclipseInjectionContext && value === serviceInterfaceContext
+            key === classContext && value === serviceInterfaceContext
         ]) {
-            parentContext.injectedInterfaceEdgesInBundles += eclipseInjectionContext -> serviceInterfaceContext
-            // TODO: Check if all injections are connected and mark that in the context.
+            parentContext.injectedInterfaceEdgesInBundles += classContext -> serviceInterfaceContext
+            // TODO: Check if all classes are connected and mark that in the context.
         }
     }
     

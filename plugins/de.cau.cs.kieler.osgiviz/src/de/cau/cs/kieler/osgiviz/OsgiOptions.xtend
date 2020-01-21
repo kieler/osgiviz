@@ -32,7 +32,7 @@ class OsgiOptions {
     public static final SynthesisOption SIMPLE_TEXT = SynthesisOption.createChoiceOption("Descriptive text",
         #[SimpleTextType.Id, SimpleTextType.Name], SimpleTextType.Id)
     
-    /** Option for toggling service components and injections to be shown on their own or in their bundle context. */
+    /** Option for toggling service components and classes to be shown on their own or in their bundle context. */
     public static final SynthesisOption SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES = SynthesisOption.createCheckOption(
         "Service connection visualization in bundles", false)
     
@@ -75,9 +75,9 @@ class OsgiOptions {
     public static final SynthesisOption FILTER_SERVICE_INTERFACES = SynthesisOption.createCheckOption(
         "Apply to service interfaces", true).setCategory(TEXT_FILTER_CATEGORY)
     
-    /** Option that indicates if the {@link #FILTER_BY} option should be applied to shown eclipse injections. */
-    public static final SynthesisOption FILTER_ECLIPSE_INJECTIONS = SynthesisOption.createCheckOption(
-        "Apply to eclipse injections", true).setCategory(TEXT_FILTER_CATEGORY)
+    /** Option that indicates if the {@link #FILTER_BY} option should be applied to shown classes. */
+    public static final SynthesisOption FILTER_CLASSES= SynthesisOption.createCheckOption(
+        "Apply to classes", true).setCategory(TEXT_FILTER_CATEGORY)
     
     
     /** Category option containing options for view filtering. */

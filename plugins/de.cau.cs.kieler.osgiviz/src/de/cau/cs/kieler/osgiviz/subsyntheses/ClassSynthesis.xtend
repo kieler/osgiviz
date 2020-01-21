@@ -21,56 +21,54 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KPortExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiStyles
-import de.cau.cs.kieler.osgiviz.context.EclipseInjectionContext
+import de.cau.cs.kieler.osgiviz.context.ClassContext
 import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
-import de.scheidtbachmann.osgimodel.EclipseInjection
 import de.scheidtbachmann.osgimodel.OsgiProject
 import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.PortConstraints
 import org.eclipse.elk.core.options.PortSide
 
 import static de.cau.cs.kieler.osgiviz.OsgiOptions.*
-import static de.cau.cs.kieler.osgiviz.SynthesisUtils.*
 
 /**
- * Sub-synthesis of {@link OsgiProject}s that handles expanded {@link EclipseInjection} views.
+ * Sub-synthesis of {@link OsgiProject}s that handles expanded {@link Class} views.
  * 
  * @author nre
  */
-class EclipseInjectionSynthesis extends AbstractSubSynthesis<EclipseInjectionContext, KNode> {
+class ClassSynthesis extends AbstractSubSynthesis<ClassContext, KNode> {
     @Inject extension KNodeExtensions
     @Inject extension KPortExtensions
     @Inject extension OsgiStyles
     extension KGraphFactory = KGraphFactory.eINSTANCE
     
-    override transform(EclipseInjectionContext eic) {
-        val eclipseInjection= eic.modelElement
+    override transform(ClassContext cc) {
+        val theClass = cc.modelElement
         return #[
-            eic.createNode() => [
+            cc.createNode() => [
                 addLayoutParam(CoreOptions::PORT_CONSTRAINTS, PortConstraints::FIXED_SIDE)
-                associateWith(eic)
-                data += createKIdentifier => [ it.id = eic.hashCode.toString ]
-                // The port that shows the connection to the service interfaces this injection implements with
+                associateWith(cc)
+                data += createKIdentifier => [ it.id = cc.hashCode.toString ]
+                // The port that shows the connection to the service interfaces this class injects with
                 // actions to add them to the view.
-                val interface = injectedInterface(eclipseInjection)
-                if (interface !== null) {
+                val interfaces = theClass.injectedInterfaces
+                if (!interfaces.empty) {
                     // Port for connecting to injected service interface.
-                    ports += createPort(eic, "injectedServiceInterface") => [
-                        associateWith(eic)
+                    ports += createPort(cc, "injectedServiceInterfaces") => [
+                        associateWith(cc)
                         // Identifier for connecting to this port.
-                        data += createKIdentifier => [ it.id = "injectedServiceInterface" ]
+                        data += createKIdentifier => [ it.id = "injectedServiceInterfaces" ]
                         // Injected interfaces are always shown and expanded to the west against the drawing
                         // direction.
                         addLayoutParam(CoreOptions::PORT_SIDE, PortSide::WEST)
                         
-                        val boolean injectedInterfaceShown = if (usedContext.getOptionValue(
+                        val boolean injectedInterfacesShown = if (usedContext.getOptionValue(
                             SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES) as Boolean) {
-                            eic.injectedInterfaceShownInBundles
+                            cc.injectedInterfaceShownInBundles
                         } else {
-                            eic.injectedInterfaceShownPlain
+                            cc.injectedInterfaceShownPlain
                         }
                         
-                        addInjectedServiceInterfacePortRendering(injectedInterfaceShown)
+                        addInjectedServiceInterfacePortRendering(injectedInterfacesShown)
                         width = 12
                         height = 12
                     ]
@@ -78,8 +76,8 @@ class EclipseInjectionSynthesis extends AbstractSubSynthesis<EclipseInjectionCon
                 
                 // Add the rendering.
                 val hasChildren = !children.empty
-                addEclipseInjectionRendering(eclipseInjection,
-                    eic.parentVisualizationContext instanceof ServiceOverviewContext, hasChildren, usedContext)
+                addClassRendering(theClass, cc.parentVisualizationContext instanceof ServiceOverviewContext,
+                    hasChildren, usedContext)
             ]
         ]
     }

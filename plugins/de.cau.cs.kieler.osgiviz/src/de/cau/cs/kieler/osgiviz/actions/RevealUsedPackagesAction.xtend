@@ -29,7 +29,6 @@ import java.util.ArrayList
 import java.util.HashMap
 import java.util.List
 import java.util.Map
-import org.eclipse.emf.ecore.EObject
 
 /**
  * Expands the bundles providing packages used by any bundle with and edge from the new bundle to this bundle's
@@ -44,7 +43,7 @@ class RevealUsedPackagesAction extends AbstractVisualizationContextChangingActio
      */
     public static val String ID = RevealUsedPackagesAction.name
     
-    override <M extends EObject> IVisualizationContext<?>
+    override <M> IVisualizationContext<?>
     changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
         // The BundleContext element for the element that was clicked on.
         val bundleContext = modelVisualizationContext as BundleContext

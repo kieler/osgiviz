@@ -17,7 +17,6 @@ package de.cau.cs.kieler.osgiviz.actions
 import de.cau.cs.kieler.osgiviz.context.ContextUtils
 import de.cau.cs.kieler.osgiviz.context.IOverviewVisualizationContext
 import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
-import org.eclipse.emf.ecore.EObject
 
 /**
  * An action that collapses or expands an element by making it detailed in an {@link IOverviewVisualizationContext}.
@@ -30,7 +29,7 @@ class ContextCollapseExpandAction extends AbstractVisualizationContextChangingAc
      */
     public static val String ID = ContextCollapseExpandAction.name
     
-    override <M extends EObject> IVisualizationContext<?>
+    override <M> IVisualizationContext<?>
     changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
         // This action will always be performed on a child visualization context of a IOverviewVisualizationContext.
         val overviewVisContext = modelVisualizationContext.parentVisualizationContext

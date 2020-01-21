@@ -18,7 +18,7 @@ import de.cau.cs.kieler.klighd.KlighdDataManager
 import de.cau.cs.kieler.osgiviz.context.BundleCategoryContext
 import de.cau.cs.kieler.osgiviz.context.BundleContext
 import de.cau.cs.kieler.osgiviz.context.BundleOverviewContext
-import de.cau.cs.kieler.osgiviz.context.EclipseInjectionContext
+import de.cau.cs.kieler.osgiviz.context.ClassContext
 import de.cau.cs.kieler.osgiviz.context.FeatureContext
 import de.cau.cs.kieler.osgiviz.context.IOverviewVisualizationContext
 import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
@@ -26,7 +26,6 @@ import de.cau.cs.kieler.osgiviz.context.PackageObjectContext
 import de.cau.cs.kieler.osgiviz.context.ProductContext
 import de.cau.cs.kieler.osgiviz.context.ServiceComponentContext
 import de.cau.cs.kieler.osgiviz.context.ServiceInterfaceContext
-import org.eclipse.emf.ecore.EObject
 
 /**
  * Calls the corresponding reveal*Actions for all elements visualized in this overview.
@@ -40,7 +39,7 @@ class ConnectAllAction extends AbstractVisualizationContextChangingAction {
      */
     public static val String ID = ConnectAllAction.name
     
-    override <M extends EObject> changeVisualization(IVisualizationContext<M> modelVisualizationContext,
+    override <M> changeVisualization(IVisualizationContext<M> modelVisualizationContext,
         ActionContext actionContext) {
         val kdm = KlighdDataManager.instance
         val revealImplementedServiceInterfacesAction = kdm.getActionById(RevealImplementedServiceInterfacesAction.ID)
@@ -55,19 +54,19 @@ class ConnectAllAction extends AbstractVisualizationContextChangingAction {
             as RevealRequiredBundlesAction
         val revealUsedByBundlesAction = kdm.getActionById(RevealUsedByBundlesAction.ID) as RevealUsedByBundlesAction
         val revealUsedPackagesAction = kdm.getActionById(RevealUsedPackagesAction.ID) as RevealUsedPackagesAction
-        val revealInjectedInterfacesAction = kdm.getActionById(RevealInjectedServiceInterfaceAction.ID)
-            as RevealInjectedServiceInterfaceAction
+        val revealInjectedInterfacesAction = kdm.getActionById(RevealInjectedServiceInterfacesAction.ID)
+            as RevealInjectedServiceInterfacesAction
         
         if (!(modelVisualizationContext instanceof IOverviewVisualizationContext)) {
             throw new IllegalStateException("The ConnectAllAction is only callable on IOverviewVisualizationContexts,"
                 + " but was called on a " + modelVisualizationContext.class)
         }
-        val ovc = modelVisualizationContext as IOverviewVisualizationContext<? extends EObject>
+        val ovc = modelVisualizationContext as IOverviewVisualizationContext<?>
         
         // Expand all context not that are not yet in their detailed form.
         val collapsedContexts = ovc.collapsedElements.clone
         collapsedContexts.forEach [ collapsed |
-            (ovc as IOverviewVisualizationContext<EObject>).makeDetailed(collapsed as IVisualizationContext<EObject>)
+            (ovc as IOverviewVisualizationContext<Object>).makeDetailed(collapsed as IVisualizationContext<Object>)
         ]
         
         // For each child context, call actions on all their connections.
@@ -104,7 +103,7 @@ class ConnectAllAction extends AbstractVisualizationContextChangingAction {
                     revealImplementingServiceComponentsAction.changeVisualization(childContext, actionContext)
                     revealReferencingServiceComponentsAction .changeVisualization(childContext, actionContext)
                 }
-                EclipseInjectionContext: {
+                ClassContext: {
                     // Connect all injected interfaces.
                     revealInjectedInterfacesAction.changeVisualization(childContext, actionContext)
                 }

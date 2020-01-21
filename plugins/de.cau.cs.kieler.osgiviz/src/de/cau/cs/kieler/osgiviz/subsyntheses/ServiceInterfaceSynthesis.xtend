@@ -23,8 +23,8 @@ import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiStyles
 import de.cau.cs.kieler.osgiviz.context.ServiceInterfaceContext
 import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
+import de.cau.cs.kieler.osgiviz.modelExtension.ModelUtils
 import de.scheidtbachmann.osgimodel.OsgiProject
-import de.scheidtbachmann.osgimodel.ServiceComponent
 import de.scheidtbachmann.osgimodel.ServiceInterface
 import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.PortConstraints
@@ -77,10 +77,8 @@ class ServiceInterfaceSynthesis extends AbstractSubSynthesis<ServiceInterfaceCon
                 
                 // The port that shows the connection to the service components referencing this service interface with
                 // actions to add them to the view.
-                val referencingComponents = serviceInterface.referencedBy.map [ 
-                    // Referenced are contained within the component using that reference. So the eContainer is the
-                    // component.
-                    it.eContainer as ServiceComponent
+                val referencingComponents = serviceInterface.referencedBy.map [
+                    ModelUtils.serviceComponentOf(it)
                 ]
                 if (!referencingComponents.empty) {
                     ports += createPort(sic, "referencingServiceComponents") => [

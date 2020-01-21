@@ -14,12 +14,11 @@
  */
 package de.cau.cs.kieler.osgiviz.actions
 
-import de.cau.cs.kieler.osgiviz.SynthesisUtils
 import de.cau.cs.kieler.osgiviz.context.ContextUtils
 import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
 import de.cau.cs.kieler.osgiviz.context.ServiceInterfaceContext
 import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
-import org.eclipse.emf.ecore.EObject
+import de.cau.cs.kieler.osgiviz.modelExtension.ModelUtils
 
 /**
  * Puts the service components referenced by this service interface next to this service interface and connects them 
@@ -34,7 +33,7 @@ class RevealReferencingServiceComponentsAction extends AbstractRevealServiceComp
      */
     public static val String ID = RevealReferencingServiceComponentsAction.name
     
-    override <M extends EObject> revealInServiceOverview(IVisualizationContext<M> elementContext,
+    override <M> revealInServiceOverview(IVisualizationContext<M> elementContext,
         ServiceOverviewContext serviceOverviewContext) {
         val serviceInterfaceContext = elementContext as ServiceInterfaceContext
         val serviceInterface = serviceInterfaceContext.modelElement
@@ -43,10 +42,10 @@ class RevealReferencingServiceComponentsAction extends AbstractRevealServiceComp
         // The service components that are yet collapsed need to need to be expanded first.
         val filteredReferences = serviceInterface.referencedBy.filter [
             // Only the references whose containing component are in the overview.
-            serviceOverviewContext.modelElement.contains(SynthesisUtils.serviceComponentOf(it))
+            serviceOverviewContext.modelElement.contains(ModelUtils.serviceComponentOf(it))
         ]
         filteredReferences.forEach [ reference |
-            val serviceComponent = SynthesisUtils.serviceComponentOf(reference)
+            val serviceComponent = ModelUtils.serviceComponentOf(reference)
             val collapsedServiceComponentContext = serviceOverviewContext.collapsedServiceComponentContexts.findFirst [
                 return it.modelElement === serviceComponent
             ]
@@ -63,7 +62,7 @@ class RevealReferencingServiceComponentsAction extends AbstractRevealServiceComp
         // ----- Put the service components and the bundles in the context for the IN_BUNDLES view. -----
         
         filteredReferences.forEach [ reference |
-            val serviceComponent = SynthesisUtils.serviceComponentOf(reference)
+            val serviceComponent = ModelUtils.serviceComponentOf(reference)
             
             // Find the bundle context that should be containing the dual view on this service component.
             var referencedBundleContext = serviceOverviewContext.detailedReferencedBundleContexts.findFirst [
@@ -94,14 +93,14 @@ class RevealReferencingServiceComponentsAction extends AbstractRevealServiceComp
         ]
     }
     
-    override <M extends EObject> revealInIndependentBundle(IVisualizationContext<M> elementContext,
+    override <M> revealInIndependentBundle(IVisualizationContext<M> elementContext,
         ServiceOverviewContext serviceOverviewContext) {
         val serviceInterfaceContext = elementContext as ServiceInterfaceContext
         val serviceInterface = serviceInterfaceContext.modelElement
         
         // Expand the contexts of the referencing components in the overview.
         serviceInterface.referencedBy.forEach [ reference |
-            val serviceComponent = SynthesisUtils.serviceComponentOf(reference)
+            val serviceComponent = ModelUtils.serviceComponentOf(reference)
             // Make it detailed if it is not already.
             val collapsedServiceComponentContext = serviceOverviewContext.collapsedServiceComponentContexts.findFirst [
                 modelElement === serviceComponent

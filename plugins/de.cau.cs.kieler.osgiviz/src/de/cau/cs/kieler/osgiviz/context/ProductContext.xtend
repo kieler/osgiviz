@@ -15,6 +15,7 @@
 package de.cau.cs.kieler.osgiviz.context
 
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
+import de.cau.cs.kieler.osgiviz.modelExtension.ModelUtils
 import de.scheidtbachmann.osgimodel.Product
 import java.util.Map
 import org.eclipse.xtend.lib.annotations.Accessors
@@ -86,10 +87,11 @@ class ProductContext implements IVisualizationContext<Product> {
         
         val allServiceComponents = allBundles.flatMap [ serviceComponents ].toList
         val allInjections = allBundles.flatMap [ eclipseInjections ].toList
+        val allClasses = ModelUtils.injectionClasses(allInjections)
         val allServiceInterfaces = SynthesisUtils.referencedInterfaces(allServiceComponents, allInjections).toList
         
         serviceOverviewContext = new ServiceOverviewContext(allServiceComponents, allServiceInterfaces,
-            allInjections, this, true)
+            allClasses, this, true)
     }
     
     override deepCopy(Map<IVisualizationContext<?>, IVisualizationContext<?>> seenContexts) {

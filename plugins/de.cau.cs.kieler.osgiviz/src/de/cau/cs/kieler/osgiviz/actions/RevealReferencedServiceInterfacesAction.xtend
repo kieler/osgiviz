@@ -19,7 +19,6 @@ import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
 import de.cau.cs.kieler.osgiviz.context.ServiceComponentContext
 import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
 import de.scheidtbachmann.osgimodel.ServiceComponent
-import org.eclipse.emf.ecore.EObject
 
 /**
  * Puts the service interfaces referenced by this service component next to this service component and connects them 
@@ -34,7 +33,7 @@ class RevealReferencedServiceInterfacesAction extends AbstractRevealServiceInter
      */
     public static val String ID = RevealReferencedServiceInterfacesAction.name
     
-    override protected void revealInServiceOverview(EObject element, ServiceOverviewContext serviceOverviewContext) {
+    override protected void revealInServiceOverview(Object element, ServiceOverviewContext serviceOverviewContext) {
         val serviceComponent = element as ServiceComponent
         // The service interfaces that are yet collapsed need to be expanded first.
         serviceComponent.reference.forEach [ reference |
@@ -97,7 +96,7 @@ class RevealReferencedServiceInterfacesAction extends AbstractRevealServiceInter
         ]
     }
     
-    override protected <M extends EObject> void revealInIndependentBundle(IVisualizationContext<M> elementContext,
+    override protected <M> void revealInIndependentBundle(IVisualizationContext<M> elementContext,
         ServiceOverviewContext serviceOverviewContext) {
         val serviceComponentContext = elementContext as ServiceComponentContext
         val serviceComponent = serviceComponentContext.modelElement

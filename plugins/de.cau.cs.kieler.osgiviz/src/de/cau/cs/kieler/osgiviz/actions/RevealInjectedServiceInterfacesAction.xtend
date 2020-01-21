@@ -14,30 +14,30 @@
  */
 package de.cau.cs.kieler.osgiviz.actions
 
+import de.cau.cs.kieler.osgiviz.context.ClassContext
 import de.cau.cs.kieler.osgiviz.context.ContextUtils
 import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
-import de.cau.cs.kieler.osgiviz.context.ServiceComponentContext
 import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
-import de.scheidtbachmann.osgimodel.ServiceComponent
+import de.cau.cs.kieler.osgiviz.modelExtension.Class
 
 /**
- * Puts the service interfaces implemented by this service component next to this service component and connects them 
- * with an edge from this service component's 'implementedServiceInterfaces' port to the new service interface's
- * 'implementingServiceComponents' port.
+ * Puts the service interfaces injected by this class next to this class and connects it
+ * with an edge from this class' 'injectedServiceInterface' port to the new service interfaces.
  * 
  * @author nre
  */
-class RevealImplementedServiceInterfacesAction extends AbstractRevealServiceInterfacesAction {
+class RevealInjectedServiceInterfacesAction extends AbstractRevealServiceInterfacesAction {
     
     /**
      * This action's ID.
      */
-    public static val String ID = RevealImplementedServiceInterfacesAction.name
+    public static val String ID = RevealInjectedServiceInterfacesAction.name
     
     override protected void revealInServiceOverview(Object element, ServiceOverviewContext serviceOverviewContext) {
-        val serviceComponent = element as ServiceComponent
+        val theClass = element as Class
         // The service interfaces that are yet collapsed need to be expanded first.
-        serviceComponent.serviceInterfaces.forEach [ serviceInterface |
+        val serviceInterfaces = theClass.injectedInterfaces
+        serviceInterfaces.forEach [ serviceInterface |
             val collapsedServiceInterfaceContext = serviceOverviewContext.collapsedServiceInterfaceContexts.findFirst [
                 return modelElement === serviceInterface
             ]
@@ -46,62 +46,63 @@ class RevealImplementedServiceInterfacesAction extends AbstractRevealServiceInte
             }
         ]
         
-        // The service component needs to be expanded as well if not already.
-        val collapsedServiceComponentContextPlain =  serviceOverviewContext.collapsedServiceComponentContexts.findFirst [
-            return modelElement === serviceComponent
+        
+        // The class needs to be expanded as well if not already.
+        val collapsedClassContextPlain =  serviceOverviewContext.collapsedClassContexts.findFirst [
+            return modelElement.equals(theClass)
         ]
-        if (collapsedServiceComponentContextPlain !== null) {
-            serviceOverviewContext.makeDetailed(collapsedServiceComponentContextPlain)
+        if (collapsedClassContextPlain !== null) {
+            serviceOverviewContext.makeDetailed(collapsedClassContextPlain)
         }
         
-        // ----- Find the service component in the context for the PLAIN view -----
-        val serviceComponentContextPlain = serviceOverviewContext.detailedServiceComponentContexts.findFirst [
-            return modelElement === serviceComponent
+        // ----- Find the class in the context for the PLAIN view -----
+        val classContextPlain = serviceOverviewContext.detailedClassContexts.findFirst [
+            return modelElement.equals(theClass)
         ]
         
-        // ----- Find the service component and the bundle in the context for the IN_BUNDLES view -----
+        // ----- Find the class and the bundle in the context for the IN_BUNDLES view -----
         
         // Find the bundle context that should be containing the dual view on this service component.
+        val containedBundle = theClass.bundle
         var referencedBundleContext = serviceOverviewContext.detailedReferencedBundleContexts.findFirst [
-            return modelElement === serviceComponent.bundle
+            return modelElement === containedBundle
         ]
         if (referencedBundleContext === null) {
            referencedBundleContext = serviceOverviewContext.collapsedReferencedBundleContexts.findFirst [
-               return modelElement === serviceComponent.bundle
+               return modelElement === containedBundle
            ]
            serviceOverviewContext.makeDetailed(referencedBundleContext)
         }
         val bundleServiceOverviewContext = referencedBundleContext.serviceOverviewContext
         bundleServiceOverviewContext.expanded = true
         
-        val collapsedServiceComponentContextInBundle = bundleServiceOverviewContext.collapsedServiceComponentContexts.findFirst [
-            return modelElement === serviceComponent
+        val collapsedClassContextInBundle = bundleServiceOverviewContext.collapsedClassContexts.findFirst [
+            return modelElement.equals(theClass)
         ]
-        bundleServiceOverviewContext.makeDetailed(collapsedServiceComponentContextInBundle)
+        bundleServiceOverviewContext.makeDetailed(collapsedClassContextInBundle)
         
-        val serviceComponentContextInBundle = bundleServiceOverviewContext.detailedServiceComponentContexts.findFirst [
-            return modelElement === serviceComponent
+        val classContextInBundle = bundleServiceOverviewContext.detailedClassContexts.findFirst [
+            return modelElement.equals(theClass)
         ]
         
-        // Add all connections for both views.
-        serviceComponent.serviceInterfaces.forEach [ serviceInterface |
+        // Add the connections for both views.
+        serviceInterfaces.forEach [ serviceInterface |
             val implementedServiceInterfaceContext = serviceOverviewContext.detailedServiceInterfaceContexts.findFirst [
                 return modelElement === serviceInterface
             ]
-            ContextUtils.addImplementingServiceComponentEdgePlain(implementedServiceInterfaceContext,
-                serviceComponentContextPlain)
-            ContextUtils.addImplementingServiceComponentEdgeInBundle(implementedServiceInterfaceContext,
-                serviceComponentContextInBundle)
+            ContextUtils.addInjectedServiceInterfaceEdgePlain(classContextPlain, implementedServiceInterfaceContext)
+            ContextUtils.addInjectedServiceInterfaceEdgeInBundle(classContextInBundle,
+                implementedServiceInterfaceContext)
         ]
     }
     
     override protected <M> void revealInIndependentBundle(IVisualizationContext<M> elementContext,
         ServiceOverviewContext serviceOverviewContext) {
-        val serviceComponentContext = elementContext as ServiceComponentContext
-        val serviceComponent = serviceComponentContext.modelElement
+        val classContext = elementContext as ClassContext
+        val theClass = classContext.modelElement
         
-        // Find the contexts of the implemented interfaces in the overview
-        serviceComponent.serviceInterfaces.forEach [ serviceInterface |
+        // Find the contexts of the injected interfaces in the overview
+        theClass.injectedInterfaces.forEach [ serviceInterface |
             val collapsedServiceInterfaceContext = serviceOverviewContext.collapsedServiceInterfaceContexts.findFirst [
                 modelElement === serviceInterface
             ]
@@ -111,8 +112,8 @@ class RevealImplementedServiceInterfacesAction extends AbstractRevealServiceInte
             val serviceInterfaceContext = serviceOverviewContext.detailedServiceInterfaceContexts.findFirst [
                 modelElement === serviceInterface
             ]
-            // Add the edges for all implemented interfaces.
-            ContextUtils.addImplementingServiceComponentEdgePlain(serviceInterfaceContext, serviceComponentContext)
+            // Add the edges for all injected interfaces.
+            ContextUtils.addInjectedServiceInterfaceEdgePlain(classContext, serviceInterfaceContext)
         ]
     }
     

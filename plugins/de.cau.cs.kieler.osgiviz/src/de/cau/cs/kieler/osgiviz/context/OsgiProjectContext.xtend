@@ -14,10 +14,10 @@
  */
 package de.cau.cs.kieler.osgiviz.context
 
+import de.cau.cs.kieler.osgiviz.modelExtension.ModelUtils
 import de.scheidtbachmann.osgimodel.OsgiProject
 import java.util.List
 import java.util.Map
-import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtend.lib.annotations.Accessors
 
 /**
@@ -84,7 +84,7 @@ class OsgiProjectContext implements IVisualizationContext<OsgiProject> {
     override getChildContexts() {
         return #[bundleOverviewContext, productOverviewContext, serviceOverviewContext, featureOverviewContext,
             importedPackageOverviewContext, bundleCategoryOverviewContext]
-            as List<? extends IVisualizationContext<? extends EObject>>
+            as List<? extends IVisualizationContext<?>>
     }
     
     override getModelElement() {
@@ -104,8 +104,9 @@ class OsgiProjectContext implements IVisualizationContext<OsgiProject> {
         productOverviewContext.expanded = true
         bundleOverviewContext = new BundleOverviewContext(project.bundles, this)
         val allInjections = project.bundles.flatMap [ eclipseInjections ].toList
+        val allClasses = ModelUtils.injectionClasses(allInjections).toList
         val allComponents = project.bundles.flatMap [ serviceComponents ].toSet.toList
-        serviceOverviewContext = new ServiceOverviewContext(allComponents, project.serviceInterfaces, allInjections,
+        serviceOverviewContext = new ServiceOverviewContext(allComponents, project.serviceInterfaces, allClasses,
             this, true)
         featureOverviewContext = new FeatureOverviewContext(project.features, this)
         importedPackageOverviewContext = new PackageObjectOverviewContext(project.importedPackages, this)

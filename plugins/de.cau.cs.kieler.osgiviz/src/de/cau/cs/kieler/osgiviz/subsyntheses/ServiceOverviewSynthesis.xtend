@@ -25,7 +25,7 @@ import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiStyles
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
 import de.cau.cs.kieler.osgiviz.context.BundleContext
-import de.cau.cs.kieler.osgiviz.context.EclipseInjectionContext
+import de.cau.cs.kieler.osgiviz.context.ClassContext
 import de.cau.cs.kieler.osgiviz.context.ReferencedInterfaceEdgeConnection
 import de.cau.cs.kieler.osgiviz.context.ServiceComponentContext
 import de.cau.cs.kieler.osgiviz.context.ServiceInterfaceContext
@@ -54,11 +54,11 @@ class ServiceOverviewSynthesis extends AbstractSubSynthesis<ServiceOverviewConte
     @Inject extension KRenderingExtensions kRenderingExtensions
     @Inject extension OsgiStyles osgiStyles
     @Inject BundleSynthesis bundleSynthesis
-    @Inject EclipseInjectionSynthesis eclipseInjectionSynthesis
+    @Inject ClassSynthesis classSynthesis
     @Inject ServiceComponentSynthesis serviceComponentSynthesis
     @Inject ServiceInterfaceSynthesis serviceInterfaceSynthesis
     @Inject SimpleBundleSynthesis simpleBundleSynthesis
-    @Inject SimpleEclipseInjectionSynthesis simpleEclipseInjectionSynthesis
+    @Inject SimpleClassSynthesis simpleClassSynthesis
     @Inject SimpleServiceComponentSynthesis simpleServiceComponentSynthesis
     @Inject SimpleServiceInterfaceSynthesis simpleServiceInterfaceSynthesis
     
@@ -112,8 +112,8 @@ class ServiceOverviewSynthesis extends AbstractSubSynthesis<ServiceOverviewConte
             serviceOverviewContext.collapsedServiceComponentContexts, usedContext)
         val filteredCollapsedServiceInterfaceContexts = SynthesisUtils.filteredElementContexts(
             serviceOverviewContext.collapsedServiceInterfaceContexts, usedContext)
-        val filteredCollapsedEclipseInjectionContexts = SynthesisUtils.filteredElementContexts(
-            serviceOverviewContext.collapsedEclipseInjectionContexts, usedContext)
+        val filteredCollapsedClassContexts = SynthesisUtils.filteredElementContexts(
+            serviceOverviewContext.collapsedClassContexts, usedContext)
         createNode => [
             associateWith(serviceOverviewContext)
             configureBoxLayout
@@ -131,13 +131,13 @@ class ServiceOverviewSynthesis extends AbstractSubSynthesis<ServiceOverviewConte
                     children += simpleServiceComponentSynthesis.transform(
                         collapsedServiceComponentContext as ServiceComponentContext , -index)
                 ]
-                // All eclipse injections.
-                val injectionIndexOffset = children.size
-                filteredCollapsedEclipseInjectionContexts.sortBy [
+                // All classes.
+                val classIndexOffset = children.size
+                filteredCollapsedClassContexts.sortBy [
                     modelElement.displayedString
-                ].forEach [ collapsedEclipseInjectionContext, index |
-                    children += simpleEclipseInjectionSynthesis.transform(
-                        collapsedEclipseInjectionContext as EclipseInjectionContext, -index - injectionIndexOffset)
+                ].forEach [ collapsedClassContext, index |
+                    children += simpleClassSynthesis.transform(
+                        collapsedClassContext as ClassContext, -index - classIndexOffset)
                 ]
             }
             
@@ -184,6 +184,12 @@ class ServiceOverviewSynthesis extends AbstractSubSynthesis<ServiceOverviewConte
                 children += filteredDetailedServiceComponentContexts.flatMap [
                     return serviceComponentSynthesis.transform(it as ServiceComponentContext)
                 ]
+                // All classes.
+                val filteredClassContexts = SynthesisUtils.filteredElementContexts(
+                    serviceOverviewContext.detailedClassContexts, usedContext)
+                children += filteredClassContexts.flatMap [
+                    return classSynthesis.transform(it as ClassContext)
+                ]
             }
             
             // All service interfaces.
@@ -193,16 +199,10 @@ class ServiceOverviewSynthesis extends AbstractSubSynthesis<ServiceOverviewConte
                 return serviceInterfaceSynthesis.transform(it as ServiceInterfaceContext)
             ]
             
-            // All eclipse injections.
-            val filteredEclipseInjectionContexts = SynthesisUtils.filteredElementContexts(
-                serviceOverviewContext.detailedEclipseInjectionContexts, usedContext)
-            children += filteredEclipseInjectionContexts.flatMap [
-                return eclipseInjectionSynthesis.transform(it as EclipseInjectionContext)
-            ]
             
             var List<Pair<ServiceComponentContext, ServiceInterfaceContext>> implementedInterfaceEdges
             var List<ReferencedInterfaceEdgeConnection> referencedInterfaceEdges
-            var List<Pair<EclipseInjectionContext, ServiceInterfaceContext>> injectedInterfaceEdges
+            var List<Pair<ClassContext, ServiceInterfaceContext>> injectedInterfaceEdges
             if (serviceOverviewContext.allowInBundleConnections && currentVisualizationModeInBundles) {
                 setLayoutOption(CoreOptions::HIERARCHY_HANDLING, HierarchyHandling.INCLUDE_CHILDREN)
                 // All bundles containing the service components and injections.
@@ -306,35 +306,35 @@ class ServiceOverviewSynthesis extends AbstractSubSynthesis<ServiceOverviewConte
     }
     
     /**
-     * Adds edges between injections and their injected interfaces. Assumes that the nodes for the elements have already
+     * Adds edges between classes and their injected interfaces. Assumes that the nodes for the elements have already
      * been generated previously.
      * 
-     * @param injectedInterfaceEdges A list of all injection->interface pairs for whose nodes edges should be added.
+     * @param injectedInterfaceEdges A list of all class->interface pairs for whose nodes edges should be added.
      */
     private def addInjectedInterfaceEdges(
-        List<Pair<EclipseInjectionContext, ServiceInterfaceContext>> injectedInterfaceEdges) {
+        List<Pair<ClassContext, ServiceInterfaceContext>> injectedInterfaceEdges) {
         injectedInterfaceEdges.forEach [
-            // Connects the injection element with the interface via an arrow in UML style
-            // so [interface] )--injectedBy--[element]
-            val injection = key
+            // Connects the class with the interface via an arrow in UML style
+            // so [interface] )--injectedBy--[class]
+            val theClass = key
             val interface = value
-            if (!nodeExists(injection) || !nodeExists(interface)) {
+            if (!nodeExists(theClass) || !nodeExists(interface)) {
                 // Only add edges if the nodes are actually shown
                 return
             }
-            val injectionNode = injection.node
+            val classNode = theClass.node
             val interfaceNode = interface.node
-            val injectionPort = injectionNode.ports.findFirst [
-                data.filter(KIdentifier).head?.id === "injectedServiceInterface"
+            val injectionPort = classNode.ports.findFirst [
+                data.filter(KIdentifier).head?.id === "injectedServiceInterfaces"
             ]
             val interfacePort = interfaceNode.ports.findFirst [
                 data.filter(KIdentifier).head?.id === "referencingServiceComponents" // TODO: rename port / create own
             ]
             
-            val edge = createEdge(injection, interface) => [
+            val edge = createEdge(theClass, interface) => [
                 addImplementingComponentEdgeRendering // TODO: own rendering
                 source = interfaceNode
-                target = injectionNode
+                target = classNode
                 sourcePort = interfacePort
                 targetPort = injectionPort
             ]

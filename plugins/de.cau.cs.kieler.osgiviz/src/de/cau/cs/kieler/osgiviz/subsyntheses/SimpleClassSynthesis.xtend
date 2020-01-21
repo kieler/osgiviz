@@ -21,35 +21,35 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiStyles
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
-import de.cau.cs.kieler.osgiviz.context.EclipseInjectionContext
+import de.cau.cs.kieler.osgiviz.context.ClassContext
 import org.eclipse.elk.core.options.CoreOptions
 
 import static extension de.cau.cs.kieler.klighd.syntheses.DiagramSyntheses.*
 
 /**
- * Transformation of a simple view of an eclipse injection that provides functionality to be expanded, when the
- * specific synthesis for eclipse injections is called.
+ * Transformation of a simple view of a class that provides functionality to be expanded, when the
+ * specific synthesis for classes is called.
  * 
  * @author nre
  */
-class SimpleEclipseInjectionSynthesis extends AbstractSubSynthesis<EclipseInjectionContext, KNode> {
+class SimpleClassSynthesis extends AbstractSubSynthesis<ClassContext, KNode> {
     @Inject extension KNodeExtensions
     @Inject extension OsgiStyles
     extension KGraphFactory = KGraphFactory.eINSTANCE
     
-    override transform(EclipseInjectionContext eic) {
-        transform(eic, 0)
+    override transform(ClassContext cc) {
+        transform(cc, 0)
     }
     
-    def transform(EclipseInjectionContext eic, int priority) {
-        val eclipseInjection= eic.modelElement
+    def transform(ClassContext cc, int priority) {
+        val theClass = cc.modelElement
         return #[
-            eic.createNode() => [
-                associateWith(eic)
-                data += createKIdentifier => [ it.id = eic.hashCode.toString ]
-                val label = SynthesisUtils.displayedString(eclipseInjection)
+            cc.createNode() => [
+                associateWith(cc)
+                data += createKIdentifier => [ it.id = cc.hashCode.toString ]
+                val label = SynthesisUtils.displayedString(theClass)
                 setLayoutOption(CoreOptions::PRIORITY, priority)
-                addEclipseInjectionInOverviewRendering(eclipseInjection, label, usedContext)
+                addClassInOverviewRendering(theClass, label, usedContext)
             ]
         ]
     }

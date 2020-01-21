@@ -15,7 +15,8 @@
 package de.cau.cs.kieler.osgiviz.context
 
 import com.google.common.collect.ImmutableList
-import de.cau.cs.kieler.osgiviz.SynthesisUtils
+import de.cau.cs.kieler.osgiviz.OsgiOptions
+import de.cau.cs.kieler.osgiviz.modelExtension.Class
 import de.scheidtbachmann.osgimodel.Bundle
 import de.scheidtbachmann.osgimodel.EclipseInjection
 import de.scheidtbachmann.osgimodel.ServiceComponent
@@ -23,16 +24,16 @@ import de.scheidtbachmann.osgimodel.ServiceInterface
 import java.util.LinkedList
 import java.util.List
 import java.util.Map
-import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtend.lib.annotations.Accessors
 
 /**
  * Context for the OSGi synthesis that contains information about service overviews.
- * Can contain all {@link ServiceInterface}s, {@link ServiceComponent}s and {@link EclipseInjection}s.
+ * Can contain all {@link ServiceInterface}s, {@link ServiceComponent}s and {@link Class}es with
+ * {@link EclipseInjection}s.
  * 
  * @author nre
  */
-class ServiceOverviewContext extends IOverviewVisualizationContext<EObject> {
+class ServiceOverviewContext extends IOverviewVisualizationContext<Object> {
     
     /**
      * The service component contexts for all service components in their collapsed form.
@@ -59,16 +60,16 @@ class ServiceOverviewContext extends IOverviewVisualizationContext<EObject> {
     List<ServiceInterfaceContext> detailedServiceInterfaceContexts
     
     /**
-     * The eclipse injection contexts for all eclipse injections in their collapsed form.
+     * The class contexts for all classes with eclipse injections in their collapsed form.
      */
     @Accessors
-    List<EclipseInjectionContext> collapsedEclipseInjectionContexts
+    List<ClassContext> collapsedClassContexts
     
     /**
-     * The eclipse injection contexts for all eclipse injections in their detailed form.
+     * The class contexts for all classes with eclipse injections in their detailed form.
      */
     @Accessors
-    List<EclipseInjectionContext> detailedEclipseInjectionContexts
+    List<ClassContext> detailedClassContexts
     
     /**
      * All bundles defining the components and injections of this overview, if in bundle connections are allowed, in 
@@ -85,8 +86,8 @@ class ServiceOverviewContext extends IOverviewVisualizationContext<EObject> {
     List<BundleContext> detailedReferencedBundleContexts
     
     /**
-     * All connections for the implemented service interfaces that should be drawn in the
-     * {@link OsgiSynthesisProperties$ServiceConnectionVisualizationMode#PLAIN} variant or also in any other variant, 
+     * All connections for the implemented service interfaces that should be drawn in the plain variant of the
+     * {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option or also in any other variant, 
      * if in bundle connections are not allowed.
      * The pairs should be viewed that the first component implements the second interface.
      */
@@ -94,8 +95,8 @@ class ServiceOverviewContext extends IOverviewVisualizationContext<EObject> {
     List<Pair<ServiceComponentContext, ServiceInterfaceContext>> implementedInterfaceEdgesPlain
     
     /**
-     * All connections for the implemented service interfaces that should be drawn in the
-     * {@link OsgiSynthesisProperties$ServiceConnectionVisualizationMode#IN_BUNDLES} variant if in bundle connections are
+     * All connections for the implemented service interfaces that should be drawn in the inBundles variant of the
+     * {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option if in bundle connections are
      * allowed.
      * The pairs should be viewed that the first component implements the second interface.
      */
@@ -103,38 +104,38 @@ class ServiceOverviewContext extends IOverviewVisualizationContext<EObject> {
     List<Pair<ServiceComponentContext, ServiceInterfaceContext>> implementedInterfaceEdgesInBundles
     
     /**
-     * All connections for the referenced service interfaces that should be drawn in the
-     * {@link OsgiSynthesisProperties$ServiceConnectionVisualizationMode#PLAIN} variant or also in any other variant, 
+     * All connections for the referenced service interfaces that should be drawn in the plain variant of the
+     * {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option or also in any other variant, 
      * if in bundle connections are not allowed.
      */
     @Accessors
     List<ReferencedInterfaceEdgeConnection> referencedInterfaceEdgesPlain
     
     /**
-     * All connections for the referenced service interface that should be drawn in the
-     * {@link OsgiSynthesisProperties$ServiceConnectionVisualizationMode#IN_BUNDLES} variant if in bundle connections
+     * All connections for the referenced service interface that should be drawn in the inBundles variant of the
+     * {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option if in bundle connections
      * are allowed.
      */
     @Accessors
     List<ReferencedInterfaceEdgeConnection> referencedInterfaceEdgesInBundles
     
     /**
-     * All connections for the injected service interfaces that should be drawn in the
-     * {@link OsgiSynthesisProperties$ServiceConnectionVisualizationMode#PLAIN} variant if in bundle connections are
+     * All connections for the injected service interfaces that should be drawn in the plain variant of the
+     * {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option if in bundle connections are
      * not allowed.
      * The pairs should be viewed that the first injection context is used to inject the second interface.
      */
     @Accessors
-    List<Pair<EclipseInjectionContext, ServiceInterfaceContext>> injectedInterfaceEdgesPlain
+    List<Pair<ClassContext, ServiceInterfaceContext>> injectedInterfaceEdgesPlain
     
     /**
-     * All connections for the injected service interfaces that should be drawn in the
-     * {@link OsgiSynthesisProperties$ServiceConnectionVisualizationMode#IN_BUNDLES} variant if in bundle connections
+     * All connections for the injected service interfaces that should be drawn in the inBundles variant of the
+     * {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option if in bundle connections
      * are allowed.
-     * The pairs should be viewed that the first injection context is used to inject the second interface.
+     * The pairs should be viewed that the first class context is used to inject the second interface.
      */
     @Accessors
-    List<Pair<EclipseInjectionContext, ServiceInterfaceContext>> injectedInterfaceEdgesInBundles
+    List<Pair<ClassContext, ServiceInterfaceContext>> injectedInterfaceEdgesInBundles
     
     /**
      * The service components displayed in this context.
@@ -149,10 +150,10 @@ class ServiceOverviewContext extends IOverviewVisualizationContext<EObject> {
     List<ServiceInterface> serviceInterfaces
     
     /**
-     * The eclipse injections displayed in this context.
+     * The classes using eclipse injections displayed in this context.
      */
     @Accessors
-    List<EclipseInjection> eclipseInjections
+    List<Class> classesWithInjections
     
     /**
      * The parent visualization context.
@@ -179,25 +180,25 @@ class ServiceOverviewContext extends IOverviewVisualizationContext<EObject> {
      * 
      * @param serviceComponents The service components shown in this overview.
      * @param serviceInterfaces The service interfaces shown in this overview.
-     * @param eclipseInjections The injections shown in this overview.
+     * @param classesWithInjections The classes using injections shown in this overview.
      * @param parent The parent context containing this context.
      * @param allowInBundleConnections Flag to indicate whether this service component overview should allow its
      * components to be shown in the bundles which define the components. If true, this overview can be toggled to show
      * the components directly flat or in their bundles with the {@link ToggleServiceComponentVisualization}.
      */
     new(List<ServiceComponent> serviceComponents, List<ServiceInterface> serviceInterfaces,
-        List<EclipseInjection> eclipseInjections, IVisualizationContext<?> parent, boolean allowInBundleConnections) {
+        List<Class> classesWithInjections, IVisualizationContext<?> parent, boolean allowInBundleConnections) {
         this.parent = parent
         this.serviceComponents = serviceComponents
         this.serviceInterfaces = serviceInterfaces
-        this.eclipseInjections = eclipseInjections
+        this.classesWithInjections = classesWithInjections
         this.allowInBundleConnections = allowInBundleConnections
         collapsedServiceComponentContexts = new LinkedList
         detailedServiceComponentContexts = new LinkedList
         collapsedServiceInterfaceContexts = new LinkedList
         detailedServiceInterfaceContexts = new LinkedList
-        collapsedEclipseInjectionContexts = new LinkedList
-        detailedEclipseInjectionContexts = new LinkedList
+        collapsedClassContexts = new LinkedList
+        detailedClassContexts = new LinkedList
         implementedInterfaceEdgesPlain = new LinkedList
         referencedInterfaceEdgesPlain = new LinkedList
         injectedInterfaceEdgesPlain = new LinkedList
@@ -213,7 +214,7 @@ class ServiceOverviewContext extends IOverviewVisualizationContext<EObject> {
     override getChildContexts() {
         var children = detailedServiceComponentContexts + collapsedServiceComponentContexts
             + collapsedServiceInterfaceContexts + detailedServiceInterfaceContexts
-            + collapsedEclipseInjectionContexts + detailedEclipseInjectionContexts
+            + collapsedClassContexts + detailedClassContexts
         if (collapsedReferencedBundleContexts !== null) {
             children = children + collapsedReferencedBundleContexts
         }
@@ -225,49 +226,49 @@ class ServiceOverviewContext extends IOverviewVisualizationContext<EObject> {
     }
     
     override getModelElement() {
-        return (serviceComponents + serviceInterfaces + eclipseInjections).toList
+        return (serviceComponents + serviceInterfaces + classesWithInjections).toList
     }
     
     override getDetailedElements() {
-        var Iterable<IVisualizationContext<? extends EObject>> detailedElements = detailedEclipseInjectionContexts 
+        var Iterable<IVisualizationContext<?>> detailedElements = detailedClassContexts 
             + detailedServiceComponentContexts + detailedServiceInterfaceContexts
         if (detailedReferencedBundleContexts !== null) {
            detailedElements = detailedElements + detailedReferencedBundleContexts 
         }
-        return detailedElements.toList as List<? extends IVisualizationContext<EObject>>
+        return detailedElements.toList as List<? extends IVisualizationContext<Object>>
     }
     
     override getCollapsedElements() {
-        var Iterable<IVisualizationContext<? extends EObject>> collapsedElements = collapsedEclipseInjectionContexts
+        var Iterable<IVisualizationContext<? extends Object>> collapsedElements = collapsedClassContexts
             + collapsedServiceComponentContexts + collapsedServiceInterfaceContexts
         if (collapsedReferencedBundleContexts !== null) {
             collapsedElements = collapsedElements + collapsedReferencedBundleContexts
         }
-        return collapsedElements.toList as List<? extends IVisualizationContext<EObject>>
+        return collapsedElements.toList as List<? extends IVisualizationContext<Object>>
     }
     
-    override makeDetailed(IVisualizationContext<? extends EObject> collapsedContext) {
+    override makeDetailed(IVisualizationContext<?> collapsedContext) {
         if (collapsedContext === null) {
             return
         }
-        var List<? extends IVisualizationContext<EObject>> detailed
-        var List<? extends IVisualizationContext<EObject>> collapsed
+        var List<? extends IVisualizationContext<Object>> detailed
+        var List<? extends IVisualizationContext<Object>> collapsed
         switch (collapsedContext) {
             ServiceComponentContext: {
-                detailed = detailedServiceComponentContexts as List<? extends IVisualizationContext<EObject>>
-                collapsed = collapsedServiceComponentContexts as List<? extends IVisualizationContext<EObject>>
+                detailed = detailedServiceComponentContexts as List<? extends IVisualizationContext<Object>>
+                collapsed = collapsedServiceComponentContexts as List<? extends IVisualizationContext<Object>>
             }
             ServiceInterfaceContext: {
-                detailed = detailedServiceInterfaceContexts as List<? extends IVisualizationContext<EObject>>
-                collapsed = collapsedServiceInterfaceContexts as List<? extends IVisualizationContext<EObject>>
+                detailed = detailedServiceInterfaceContexts as List<? extends IVisualizationContext<Object>>
+                collapsed = collapsedServiceInterfaceContexts as List<? extends IVisualizationContext<Object>>
             }
-            EclipseInjectionContext: {
-                detailed = detailedEclipseInjectionContexts as List<? extends IVisualizationContext<EObject>>
-                collapsed = collapsedEclipseInjectionContexts as List<? extends IVisualizationContext<EObject>>
+            ClassContext: {
+                detailed = detailedClassContexts as List<? extends IVisualizationContext<Object>>
+                collapsed = collapsedClassContexts as List<? extends IVisualizationContext<Object>>
             }
             BundleContext: {
-                detailed = detailedReferencedBundleContexts as List<? extends IVisualizationContext<EObject>>
-                collapsed = collapsedReferencedBundleContexts as List<? extends IVisualizationContext<EObject>>
+                detailed = detailedReferencedBundleContexts as List<? extends IVisualizationContext<Object>>
+                collapsed = collapsedReferencedBundleContexts as List<? extends IVisualizationContext<Object>>
             }
         }
         
@@ -282,32 +283,32 @@ class ServiceOverviewContext extends IOverviewVisualizationContext<EObject> {
         // Only this cast will allow to add the context. We know this adding is type-safe, as the collapsed- and
         // the detailed elements list are always of the same type. If they are not, the collapsed/detailed state
         // here would not make any sense.
-        (detailed as List<IVisualizationContext<EObject>>).add(collapsedContext as IVisualizationContext<EObject>)
+        (detailed as List<IVisualizationContext<?>>).add(collapsedContext)
         collapsedContext.initializeChildVisualizationContexts
     }
     
-    override collapse(IVisualizationContext<? extends EObject> detailedContext) {
+    override collapse(IVisualizationContext<?> detailedContext) {
         if (detailedContext === null) {
             return
         }
-        var List<? extends IVisualizationContext<EObject>> detailed
-        var List<? extends IVisualizationContext<EObject>> collapsed
+        var List<? extends IVisualizationContext<Object>> detailed
+        var List<? extends IVisualizationContext<Object>> collapsed
         switch (detailedContext) {
             ServiceComponentContext: {
-                detailed = detailedServiceComponentContexts as List<? extends IVisualizationContext<EObject>>
-                collapsed = collapsedServiceComponentContexts as List<? extends IVisualizationContext<EObject>>
+                detailed = detailedServiceComponentContexts as List<? extends IVisualizationContext<Object>>
+                collapsed = collapsedServiceComponentContexts as List<? extends IVisualizationContext<Object>>
             }
             ServiceInterfaceContext: {
-                detailed = detailedServiceInterfaceContexts as List<? extends IVisualizationContext<EObject>>
-                collapsed = collapsedServiceInterfaceContexts as List<? extends IVisualizationContext<EObject>>
+                detailed = detailedServiceInterfaceContexts as List<? extends IVisualizationContext<Object>>
+                collapsed = collapsedServiceInterfaceContexts as List<? extends IVisualizationContext<Object>>
             }
-            EclipseInjectionContext: {
-                detailed = detailedEclipseInjectionContexts as List<? extends IVisualizationContext<EObject>>
-                collapsed = collapsedEclipseInjectionContexts as List<? extends IVisualizationContext<EObject>>
+            ClassContext: {
+                detailed = detailedClassContexts as List<? extends IVisualizationContext<Object>>
+                collapsed = collapsedClassContexts as List<? extends IVisualizationContext<Object>>
             }
             BundleContext: {
-                detailed = detailedReferencedBundleContexts as List<? extends IVisualizationContext<EObject>>
-                collapsed = collapsedReferencedBundleContexts as List<? extends IVisualizationContext<EObject>>
+                detailed = detailedReferencedBundleContexts as List<? extends IVisualizationContext<Object>>
+                collapsed = collapsedReferencedBundleContexts as List<? extends IVisualizationContext<Object>>
             }
         }
         
@@ -321,7 +322,7 @@ class ServiceOverviewContext extends IOverviewVisualizationContext<EObject> {
         // Only this cast will allow to add the context. We know this adding is type-safe, as the collapsed- and
         // the detailed elements list are always of the same type. If they are not, the collapsed/detailed state
         // here would not make any sense.
-        (collapsed as List<IVisualizationContext<EObject>>).add(detailedContext as IVisualizationContext<EObject>)
+        (collapsed as List<IVisualizationContext<?>>).add(detailedContext)
     }
     
     override getParentVisualizationContext() {
@@ -341,8 +342,8 @@ class ServiceOverviewContext extends IOverviewVisualizationContext<EObject> {
             collapsedServiceInterfaceContexts += new ServiceInterfaceContext(it, this)
         ]
         
-        eclipseInjections.forEach [
-            collapsedEclipseInjectionContexts += new EclipseInjectionContext(it, this)
+        classesWithInjections.forEach [
+            collapsedClassContexts += new ClassContext(it, this)
         ]
         
         if (allowInBundleConnections) {
@@ -350,15 +351,15 @@ class ServiceOverviewContext extends IOverviewVisualizationContext<EObject> {
             detailedReferencedBundleContexts = new LinkedList
             val completedBundles = new LinkedList<Bundle>
             
-            // Add a new context for each individual bundle these components or injections are contained in.
+            // Add a new context for each individual bundle these components or classes are contained in.
             serviceComponents.forEach [
                 if (!completedBundles.contains(bundle)) {
                     detailedReferencedBundleContexts.add(new BundleContext(bundle, this))
                     completedBundles.add(bundle)
                 }
             ]
-            eclipseInjections.forEach [
-                val bundle = SynthesisUtils.containedBundle(it)
+            classesWithInjections.forEach [
+                val bundle = it.bundle
                 if (!completedBundles.contains(bundle)) {
                     detailedReferencedBundleContexts.add(new BundleContext(bundle, this))
                     completedBundles.add(bundle)
@@ -408,17 +409,17 @@ class ServiceOverviewContext extends IOverviewVisualizationContext<EObject> {
             copy.detailedServiceInterfaceContexts.add(newServiceInterfaceContext)
         ]
         
-        copy.collapsedEclipseInjectionContexts = new LinkedList
-        collapsedEclipseInjectionContexts.forEach [
-            val newEclipseInjectionContext = deepCopy(seenContexts) as EclipseInjectionContext
-            newEclipseInjectionContext.parentVisualizationContext = copy
-            copy.collapsedEclipseInjectionContexts.add(newEclipseInjectionContext)
+        copy.collapsedClassContexts = new LinkedList
+        collapsedClassContexts.forEach [
+            val newClassContext = deepCopy(seenContexts) as ClassContext
+            newClassContext.parentVisualizationContext = copy
+            copy.collapsedClassContexts.add(newClassContext)
         ]
-        copy.detailedEclipseInjectionContexts = new LinkedList
-        detailedEclipseInjectionContexts.forEach [
-            val newEclipseInjectionContext = deepCopy(seenContexts) as EclipseInjectionContext
-            newEclipseInjectionContext.parentVisualizationContext = copy
-            copy.detailedEclipseInjectionContexts.add(newEclipseInjectionContext)
+        copy.detailedClassContexts = new LinkedList
+        detailedClassContexts.forEach [
+            val newClassContext = deepCopy(seenContexts) as ClassContext
+            newClassContext.parentVisualizationContext = copy
+            copy.detailedClassContexts.add(newClassContext)
         ]
         
         if (collapsedReferencedBundleContexts !== null) {
@@ -451,7 +452,7 @@ class ServiceOverviewContext extends IOverviewVisualizationContext<EObject> {
         ]
         copy.injectedInterfaceEdgesPlain = new LinkedList
         injectedInterfaceEdgesPlain.forEach [
-            copy.injectedInterfaceEdgesPlain.add(key.deepCopy(seenContexts) as EclipseInjectionContext
+            copy.injectedInterfaceEdgesPlain.add(key.deepCopy(seenContexts) as ClassContext
                 -> value.deepCopy(seenContexts) as ServiceInterfaceContext)
         ]
         
@@ -473,14 +474,14 @@ class ServiceOverviewContext extends IOverviewVisualizationContext<EObject> {
         if (injectedInterfaceEdgesInBundles !== null) {
             copy.injectedInterfaceEdgesInBundles = new LinkedList
             injectedInterfaceEdgesInBundles.forEach [
-                copy.injectedInterfaceEdgesInBundles.add(key.deepCopy(seenContexts) as EclipseInjectionContext
+                copy.injectedInterfaceEdgesInBundles.add(key.deepCopy(seenContexts) as ClassContext
                     -> value.deepCopy(seenContexts) as ServiceInterfaceContext)
             ]
         }
         
         copy.serviceComponents = serviceComponents.clone
         copy.serviceInterfaces = serviceInterfaces.clone
-        copy.eclipseInjections = eclipseInjections.clone
+        copy.classesWithInjections = classesWithInjections.clone
         
         copy.expanded = isExpanded
         

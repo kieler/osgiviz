@@ -18,7 +18,6 @@ import de.cau.cs.kieler.osgiviz.context.BundleContext
 import de.cau.cs.kieler.osgiviz.context.BundleOverviewContext
 import de.cau.cs.kieler.osgiviz.context.ContextUtils
 import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
-import org.eclipse.emf.ecore.EObject
 
 /**
  * Expands the bundles used by any bundle and connects the bundles with an edge from the new bundle's
@@ -34,7 +33,7 @@ class RevealUsedByBundlesAction extends AbstractVisualizationContextChangingActi
      */
     public static val String ID = RevealUsedByBundlesAction.name
     
-    override <M extends EObject> IVisualizationContext<?>
+    override <M> IVisualizationContext<?>
     changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
         // The BundleContext element for the element that was clicked on.
         val bundleContext = modelVisualizationContext as BundleContext

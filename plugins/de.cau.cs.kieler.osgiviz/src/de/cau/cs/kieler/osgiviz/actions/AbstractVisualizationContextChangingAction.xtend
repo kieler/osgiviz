@@ -22,7 +22,6 @@ import de.cau.cs.kieler.osgiviz.context.ContextUtils
 import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
 import java.util.HashMap
 import org.eclipse.core.runtime.Status
-import org.eclipse.emf.ecore.EObject
 import org.eclipse.ui.statushandlers.StatusManager
 
 /**
@@ -62,7 +61,7 @@ abstract class AbstractVisualizationContextChangingAction implements IAction {
         visualizationContexts.add(index, copiedVisualizationContext)
         
         // The visualization context of the element that this action is performed on.
-        val modelVisualizationContext = SynthesisUtils.getDomainElement(context) as IVisualizationContext<? extends EObject>
+        val modelVisualizationContext = SynthesisUtils.getDomainElement(context) as IVisualizationContext<?>
         if (!ContextUtils.isChildContextOrEqual(currentVisualizationContext, modelVisualizationContext)) {
             throw new IllegalStateException("This action is performed on an element that is not currently in the " +
                 "currently displayed visualization context:" + this.class
@@ -108,7 +107,7 @@ abstract class AbstractVisualizationContextChangingAction implements IAction {
      * @return The new main visualization context that will be used for the next synthesis or {@code null} if the
      * visualization focus does not change.
      */
-    public abstract def <M extends EObject> IVisualizationContext<?> changeVisualization(
+    abstract def <M> IVisualizationContext<?> changeVisualization(
         IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext)
     
     /**

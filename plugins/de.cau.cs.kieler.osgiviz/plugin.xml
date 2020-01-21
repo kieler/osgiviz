@@ -79,8 +79,8 @@
             id="de.cau.cs.kieler.osgiviz.actions.RevealReferencedServiceInterfacesAction">
       </action>
       <action
-            class="de.cau.cs.kieler.osgiviz.actions.RevealInjectedServiceInterfaceAction"
-            id="de.cau.cs.kieler.osgiviz.actions.RevealInjectedServiceInterfaceAction">
+            class="de.cau.cs.kieler.osgiviz.actions.RevealInjectedServiceInterfacesAction"
+            id="de.cau.cs.kieler.osgiviz.actions.RevealInjectedServiceInterfacesAction">
       </action>
    </extension>
 

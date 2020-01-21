@@ -15,7 +15,10 @@
 package de.cau.cs.kieler.osgiviz.context
 
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
+import de.cau.cs.kieler.osgiviz.modelExtension.Class
+import de.cau.cs.kieler.osgiviz.modelExtension.ModelUtils
 import de.scheidtbachmann.osgimodel.Bundle
+import java.util.List
 import java.util.Map
 import org.eclipse.xtend.lib.annotations.Accessors
 
@@ -95,8 +98,9 @@ class BundleContext implements IVisualizationContext<Bundle> {
                 SynthesisUtils.referencedInterfaces(bundle.serviceComponents, bundle.eclipseInjections).toList
             }
             
+            val List<Class> classesWithInjections = ModelUtils.injectionClasses(bundle)
             serviceOverviewContext = new ServiceOverviewContext(bundle.serviceComponents, allServiceInterfaces,
-                bundle.eclipseInjections, this, false)
+                classesWithInjections, this, false)
             // Services in bundles in a service overview should be expanded initially.
             if (parentVisualizationContext instanceof ServiceOverviewContext) {
                 serviceOverviewContext.expanded = true

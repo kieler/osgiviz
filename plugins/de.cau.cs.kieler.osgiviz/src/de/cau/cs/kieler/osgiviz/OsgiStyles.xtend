@@ -44,16 +44,16 @@ import de.cau.cs.kieler.osgiviz.actions.FocusAction
 import de.cau.cs.kieler.osgiviz.actions.OverviewContextCollapseExpandAction
 import de.cau.cs.kieler.osgiviz.actions.RevealImplementedServiceInterfacesAction
 import de.cau.cs.kieler.osgiviz.actions.RevealImplementingServiceComponentsAction
-import de.cau.cs.kieler.osgiviz.actions.RevealInjectedServiceInterfaceAction
+import de.cau.cs.kieler.osgiviz.actions.RevealInjectedServiceInterfacesAction
 import de.cau.cs.kieler.osgiviz.actions.RevealReferencedServiceInterfacesAction
 import de.cau.cs.kieler.osgiviz.actions.RevealReferencingServiceComponentsAction
 import de.cau.cs.kieler.osgiviz.actions.RevealRequiredBundlesAction
 import de.cau.cs.kieler.osgiviz.actions.RevealUsedByBundlesAction
 import de.cau.cs.kieler.osgiviz.actions.RevealUsedPackagesAction
 import de.cau.cs.kieler.osgiviz.actions.SelectRelatedAction
+import de.cau.cs.kieler.osgiviz.modelExtension.Class
 import de.scheidtbachmann.osgimodel.Bundle
 import de.scheidtbachmann.osgimodel.BundleCategory
-import de.scheidtbachmann.osgimodel.EclipseInjection
 import de.scheidtbachmann.osgimodel.Feature
 import de.scheidtbachmann.osgimodel.PackageObject
 import de.scheidtbachmann.osgimodel.Product
@@ -88,8 +88,8 @@ class OsgiStyles {
     public static final String BUNDLE_CATEGORY_COLOR_2   = "#C2D6FF" // HSV 220 24 100
     public static final String EXTERNAL_BUNDLE_COLOR_1   = "#F7FDFF" // HSV 195 3 100
     public static final String EXTERNAL_BUNDLE_COLOR_2   = "#F0FBFF" // HSV 195 6 100
-    public static final String ECLIPSE_INJECTION_COLOR_1 = "#F5FFE0" // HSV 79 12 100
-    public static final String ECLIPSE_INJECTION_COLOR_2 = "#ECFFC2" // HSV 79 24 100
+    public static final String CLASS_COLOR_1             = "#F5FFE0" // HSV 79 12 100
+    public static final String CLASS_COLOR_2             = "#ECFFC2" // HSV 79 24 100
     public static final String FEATURE_COLOR_1           = "#E0FFE9" // HSV 137 12 100
     public static final String FEATURE_COLOR_2           = "#C2FFD3" // HSV 137 24 100
     public static final String EXTERNAL_FEATURE_COLOR_1  = "#F7FFFA" // HSV 137 3 100
@@ -1278,19 +1278,19 @@ class OsgiStyles {
         ]
     }
     
-    // ------------------------------------- EclipseInjection renderings -------------------------------------
+    // ------------------------------------- Class renderings -------------------------------------
     
     /**
-     * Adds a simple rendering for an {@link EclipseInjection} to the given node that can be expanded to call the
-     * {link ReferencedSynthesisExpandAction} to dynamically call the eclipse injection synthesis for the given
-     * injection.
+     * Adds a simple rendering for a {@link Class} to the given node that can be expanded to call the
+     * {link ReferencedSynthesisExpandAction} to dynamically call the class synthesis for the given
+     * class.
      * 
      * @param node The KNode to add this rendering to.
-     * @param ei The eclipse injection this rendering should represent.
-     * @param name The representing name of this eclipse injection that should be shown.
+     * @param c The class this rendering should represent.
+     * @param name The representing name of this class that should be shown.
      * @param context The used ViewContext.
      */
-    def addEclipseInjectionInOverviewRendering(KNode node, EclipseInjection ei, String name, ViewContext context) {
+    def addClassInOverviewRendering(KNode node, Class c, String name, ViewContext context) {
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
             val interactiveButtons = context.getOptionValue(INTERACTIVE_BUTTONS) as Boolean
             var columns = 1
@@ -1306,31 +1306,31 @@ class OsgiStyles {
                 addVerticalLine
                 addCollapseExpandButton(true, context)
             }
-            setBackgroundGradient(ECLIPSE_INJECTION_COLOR_1.color, ECLIPSE_INJECTION_COLOR_2.color, 90)
+            setBackgroundGradient(CLASS_COLOR_1.color, CLASS_COLOR_2.color, 90)
             addDoubleClickAction(ContextCollapseExpandAction::ID)
             addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
                 ModifierState.NOT_PRESSED)
             setShadow(SHADOW_COLOR.color, 4, 4)
-            tooltip = ei.usedInClass
+            tooltip = c.classPath
             setSelectionStyle
         ]
     }
     
     /**
-     * Adds a rendering for a {@link EclipseInjection} to the given node.
+     * Adds a rendering for a {@link Class} to the given node.
      * 
      * @param node The KNode this rendering should be attached to.
-     * @param ei The eclipse injection this rendering represents.
-     * @param inOverview If this eclipse injection is shown in a service overview.
+     * @param c The class this rendering represents.
+     * @param inOverview If this class is shown in a service overview.
      * @param hasChildren If this rendering should leave space for a child area.
      * @param context The view context used in the synthesis.
      * 
-     * @return The entire rendering for an eclipse injection.
+     * @return The entire rendering for a class.
      */
-    def KRoundedRectangle addEclipseInjectionRendering(KNode node, EclipseInjection ei, boolean inOverview,
-        boolean hasChildren, ViewContext context) {
+    def KRoundedRectangle addClassRendering(KNode node, Class c, boolean inOverview, boolean hasChildren,
+        ViewContext context) {
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
-            setBackgroundGradient(ECLIPSE_INJECTION_COLOR_1.color, ECLIPSE_INJECTION_COLOR_2.color, 90)
+            setBackgroundGradient(CLASS_COLOR_1.color, CLASS_COLOR_2.color, 90)
             setGridPlacement(1)
             addRectangle => [
                 val interactiveButtons = context.getOptionValue(INTERACTIVE_BUTTONS) as Boolean
@@ -1342,8 +1342,8 @@ class OsgiStyles {
                 invisible = true
                 addRectangle => [
                     invisible = true
-                    addSimpleLabel(SynthesisUtils.displayedString(ei)) => [
-                        tooltip = ei.usedInClass
+                    addSimpleLabel(SynthesisUtils.displayedString(c)) => [
+                        tooltip = c.classPath
                         addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
                             ModifierState.NOT_PRESSED)
                     ]
@@ -1365,7 +1365,7 @@ class OsgiStyles {
     }
     
     /**
-     * The rendering of a port that connects a eclipse injection with the service interfaces it injects. Issues the
+     * The rendering of a port that connects a class with the service interfaces it injects. Issues the
      * {@link RevealInjectedServiceInterfaceAction} if clicked.
      */
     def KRectangle addInjectedServiceInterfacePortRendering(KPort port, boolean allShown) {
@@ -1373,7 +1373,7 @@ class OsgiStyles {
             background = if (allShown) ALL_SHOWN_COLOR.color else NOT_ALL_SHOWN_COLOR.color
             val tooltipText = "Show injected interface."
             tooltip = tooltipText
-            addSingleClickAction(RevealInjectedServiceInterfaceAction::ID)
+            addSingleClickAction(RevealInjectedServiceInterfacesAction::ID)
         ]
     }
     

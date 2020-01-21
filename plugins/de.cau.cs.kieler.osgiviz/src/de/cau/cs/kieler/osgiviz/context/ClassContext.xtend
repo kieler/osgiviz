@@ -14,21 +14,22 @@
  */
 package de.cau.cs.kieler.osgiviz.context
 
-import de.scheidtbachmann.osgimodel.EclipseInjection
+import de.cau.cs.kieler.osgiviz.OsgiOptions
+import de.cau.cs.kieler.osgiviz.modelExtension.Class
 import java.util.Map
 import org.eclipse.xtend.lib.annotations.Accessors
 
 /**
- * Context for the OSGi synthesis that contains information about {@link EclipseInjection}s.
+ * Context for the OSGi synthesis that contains information about {@link Class}es.
  * 
  * @author nre
  */
-class EclipseInjectionContext implements IVisualizationContext<EclipseInjection> {
+class ClassContext implements IVisualizationContext<Class> {
     
     /**
-     * The eclipse injection to get the data from when visualizing this context.
+     * The class to get the data from when visualizing this context.
      */
-    EclipseInjection eclipseInjection
+    Class theClass
     
     /**
      * The parent visualization context.
@@ -37,23 +38,23 @@ class EclipseInjectionContext implements IVisualizationContext<EclipseInjection>
     
     /**
      * Indicates whether the injected interface is shown and connected to this.
-     * This is for the {@link OsgiSynthesisProperties$ServiceComponentVisualizationMode#PLAIN} variant.
+     * This is for the plain variant for the {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option.
      */
     @Accessors
     boolean injectedInterfaceShownPlain
     
     /**
      * Indicates whether the injected interface is shown and connected to this.
-     * This is for the {@link OsgiSynthesisProperties$ServiceComponentVisualizationMode#IN_BUNDLES} variant.
+     * This is for the inBundles variant for the{@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option.
      */
     @Accessors
     boolean injectedInterfaceShownInBundles
     
     private new() {}
     
-    new(EclipseInjection eclipseInjection, IOverviewVisualizationContext<?> parent) {
+    new(Class theClass, IOverviewVisualizationContext<?> parent) {
         this.parent = parent
-        this.eclipseInjection = eclipseInjection
+        this.theClass = theClass
     }
     
     override getChildContexts() {
@@ -61,7 +62,7 @@ class EclipseInjectionContext implements IVisualizationContext<EclipseInjection>
     }
     
     override getModelElement() {
-       return eclipseInjection
+       return theClass
     }
     
     override IOverviewVisualizationContext<?> getParentVisualizationContext() {
@@ -69,7 +70,7 @@ class EclipseInjectionContext implements IVisualizationContext<EclipseInjection>
     }
     
     override setParentVisualizationContext(IVisualizationContext<?> parent) {
-        this.parent = parent as IOverviewVisualizationContext<EclipseInjection>
+        this.parent = parent as IOverviewVisualizationContext<Class>
     }
     
     override initializeChildVisualizationContexts() {
@@ -79,11 +80,11 @@ class EclipseInjectionContext implements IVisualizationContext<EclipseInjection>
     override deepCopy(Map<IVisualizationContext<?>, IVisualizationContext<?>> seenContexts) {
         val alreadyCloned = seenContexts.get(this)
         if (alreadyCloned !== null) {
-            return alreadyCloned as EclipseInjectionContext
+            return alreadyCloned as ClassContext
         }
         
-        val clone = new EclipseInjectionContext
-        clone.eclipseInjection = eclipseInjection
+        val clone = new ClassContext
+        clone.theClass = theClass
         clone.parent = null
         
         seenContexts.put(this, clone)

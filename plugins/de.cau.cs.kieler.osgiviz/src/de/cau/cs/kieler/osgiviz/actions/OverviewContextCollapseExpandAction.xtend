@@ -16,7 +16,6 @@ package de.cau.cs.kieler.osgiviz.actions
 
 import de.cau.cs.kieler.osgiviz.context.IOverviewVisualizationContext
 import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
-import org.eclipse.emf.ecore.EObject
 
 /**
  * An action that collapses or expands an overview by setting its {@link IOverviewVisualizationContext} that way.
@@ -29,7 +28,7 @@ class OverviewContextCollapseExpandAction extends AbstractVisualizationContextCh
      */
     public static val String ID = OverviewContextCollapseExpandAction.name 
     
-    override <M extends EObject> IVisualizationContext<?>
+    override <M> IVisualizationContext<?>
     changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
         if (!(modelVisualizationContext instanceof IOverviewVisualizationContext)) {
             throw new IllegalArgumentException("This action can only be called on a IOverviewVisualizationContext. "

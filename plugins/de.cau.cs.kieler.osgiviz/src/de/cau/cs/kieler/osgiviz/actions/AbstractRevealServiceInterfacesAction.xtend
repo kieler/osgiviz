@@ -18,7 +18,6 @@ import de.cau.cs.kieler.osgiviz.context.BundleContext
 import de.cau.cs.kieler.osgiviz.context.BundleOverviewContext
 import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
 import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
-import org.eclipse.emf.ecore.EObject
 
 /**
  * Abstract action to reveal service interfaces connected to a service elements caused by an action on a service
@@ -29,7 +28,7 @@ import org.eclipse.emf.ecore.EObject
  */
 abstract class AbstractRevealServiceInterfacesAction extends AbstractVisualizationContextChangingAction {
     
-    override <M extends EObject> IVisualizationContext<?>
+    override <M> IVisualizationContext<?>
     changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
         
         // The element itself from the context.
@@ -73,7 +72,7 @@ abstract class AbstractRevealServiceInterfacesAction extends AbstractVisualizati
      * @param element The element that the connection is for.
      * @param serviceOverviewContext The service overview context this action is issued in.
      */
-    protected abstract def void revealInServiceOverview(EObject element, ServiceOverviewContext serviceOverviewContext)
+    protected abstract def void revealInServiceOverview(Object element, ServiceOverviewContext serviceOverviewContext)
     
     /**
      * Reveal the connected service interfaces in the case it is contained in a service overview of a single bundle.
@@ -82,7 +81,7 @@ abstract class AbstractRevealServiceInterfacesAction extends AbstractVisualizati
      * @param elementContext The context representing the element that the connection is for.
      * @param serviceOverviewContext The service overview context this action is issued in.
      */
-    protected abstract def <M extends EObject> void revealInIndependentBundle(IVisualizationContext<M> elementContext,
+    protected abstract def <M> void revealInIndependentBundle(IVisualizationContext<M> elementContext,
         ServiceOverviewContext serviceOverviewContext)
     
     private static def throwUnknown() {

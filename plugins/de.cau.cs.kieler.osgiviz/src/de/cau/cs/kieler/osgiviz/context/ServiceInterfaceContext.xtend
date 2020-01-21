@@ -14,8 +14,8 @@
  */
 package de.cau.cs.kieler.osgiviz.context
 
+import de.cau.cs.kieler.osgiviz.OsgiOptions
 import de.scheidtbachmann.osgimodel.ServiceInterface
-import de.cau.cs.kieler.osgiviz.OsgiSynthesisProperties
 import java.util.Map
 import org.eclipse.xtend.lib.annotations.Accessors
 
@@ -38,28 +38,28 @@ class ServiceInterfaceContext implements IVisualizationContext<ServiceInterface>
     
     /**
      * Indicates whether all service components implementing this service interface are shown and connected to this.
-     * This is for the {@link OsgiSynthesisProperties$ServiceComponentVisualizationMode#PLAIN} variant.
+     * This is for the plain variant for the {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option.
      */
     @Accessors
     boolean allImplementingComponentsShownPlain
     
     /**
      * Indicates whether all service components implementing this service interface are shown and connected to this.
-     * This is for the {@link OsgiSynthesisProperties$ServiceComponentVisualizationMode#IN_BUNDLES} variant.
+     * This is for the inBundles variant for the {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option.
      */
     @Accessors
     boolean allImplementingComponentsShownInBundles
     
     /**
      * Indicates whether all service components referencing this service interface are shown and connected to this.
-     * This is for the {@link OsgiSynthesisProperties$ServiceComponentVisualizationMode#PLAIN} variant.
+     * This is for the plain variant for the {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option.
      */
     @Accessors
     boolean allReferencingComponentsShownPlain
     
     /**
      * Indicates whether all service components referencing this service interface are shown and connected to this.
-     * This is for the {@link OsgiSynthesisProperties$ServiceComponentVisualizationMode#IN_BUNDLES} variant.
+     * This is for the inBundles variant for the {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option.
      */
     @Accessors
     boolean allReferencingComponentsShownInBundles

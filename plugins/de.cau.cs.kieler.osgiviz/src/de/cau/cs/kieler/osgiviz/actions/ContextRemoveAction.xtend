@@ -19,7 +19,6 @@ import de.cau.cs.kieler.osgiviz.context.ContextUtils
 import de.cau.cs.kieler.osgiviz.context.IOverviewVisualizationContext
 import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
 import de.cau.cs.kieler.osgiviz.context.PackageObjectContext
-import org.eclipse.emf.ecore.EObject
 
 /**
  * An action that removes an element's context from an {@link IOverviewVisualizationContext}.
@@ -32,7 +31,7 @@ class ContextRemoveAction extends AbstractVisualizationContextChangingAction {
      */
     public static val String ID = ContextRemoveAction.name
     
-    override <M extends EObject> IVisualizationContext<?>
+    override <M> IVisualizationContext<?>
     changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
         // This action will always be performed on a child visualization context of a IOverviewVisualizationContext.
         val overviewVisContext = modelVisualizationContext.parentVisualizationContext
@@ -40,7 +39,7 @@ class ContextRemoveAction extends AbstractVisualizationContextChangingAction {
             throw new IllegalStateException("This action is performed on an element that is not inside an overview " +
                 "visualization!")
         }
-        val ovc = overviewVisContext as IOverviewVisualizationContext<? extends EObject>
+        val ovc = overviewVisContext as IOverviewVisualizationContext<?>
         
         switch modelVisualizationContext {
             PackageObjectContext case ovc instanceof BundleOverviewContext: {
