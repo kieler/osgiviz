@@ -108,6 +108,10 @@ class OsgiOptions {
     public static final SynthesisOption SHORTEN_BY = SynthesisOption.createTextOption(
         "Shorten IDs by").setCategory(VIEW_FILTER_CATEGORY)
     
+    /** Option for showing interactive buttons. */
+    public static final SynthesisOption INTERACTIVE_BUTTONS = SynthesisOption.createCheckOption(
+        "Interactive Buttons", true).setCategory(VIEW_FILTER_CATEGORY)
+    
     
     /** Category option containing options for graphical performance. */
     public static final SynthesisOption PERFORMANCE = SynthesisOption.createCategory("Performance", false)

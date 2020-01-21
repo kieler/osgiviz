@@ -155,17 +155,24 @@ class OsgiStyles {
             setGridPlacement(1)
             addDoubleClickAction(OverviewContextCollapseExpandAction.ID)
             addRectangle => [
-                setGridPlacement(6)
+                var columns = 1
+                val interactiveButtons = context.getOptionValue(INTERACTIVE_BUTTONS) as Boolean
+                if (interactiveButtons) {
+                    columns += 5
+                } 
+                setGridPlacement(columns)
                 invisible = true
                 addRectangle => [
                     invisible = true
                     addSimpleLabel(headlineText)
                 ]
-                addVerticalLine
-                addFocusButton(context)
-                addExpandAllButton(context)
-                addConnectAllButton(context)
-                addOverviewContextCollapseExpandButton(false, context)
+                if (interactiveButtons) {
+                    addVerticalLine
+                    addFocusButton(context)
+                    addExpandAllButton(context)
+                    addConnectAllButton(context)
+                    addOverviewContextCollapseExpandButton(false, context)
+                }
             ]
             addHorizontalSeperatorLine(1, 0)
             addChildArea
@@ -181,14 +188,21 @@ class OsgiStyles {
             setGridPlacement(1)
             addDoubleClickAction(OverviewContextCollapseExpandAction.ID)
             addRectangle => [
-                setGridPlacement(3)
+                val interactiveButtons = context.getOptionValue(INTERACTIVE_BUTTONS) as Boolean
+                var columns = 1
+                if (interactiveButtons) {
+                    columns += 2
+                }
+                setGridPlacement(columns)
                 invisible = true
                 addRectangle => [
                     invisible = true
                     addSimpleLabel(headlineText)
                 ]
-                addVerticalLine
-                addOverviewContextCollapseExpandButton(true, context)
+                if (interactiveButtons) {
+                    addVerticalLine
+                    addOverviewContextCollapseExpandButton(true, context)
+                }
             ]
             setShadow(SHADOW_COLOR.color, 4, 4)
             background = DEFAULT_BACKGROUND_COLOR.color
@@ -439,13 +453,20 @@ class OsgiStyles {
      */
     def KRoundedRectangle addProductInOverviewRendering(KNode node, Product p, String name, ViewContext context) {
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
-            setGridPlacement(3)
+            val interactiveButtons = context.getOptionValue(INTERACTIVE_BUTTONS) as Boolean
+            var columns = 1
+            if (interactiveButtons) {
+                columns += 2
+            }
+            setGridPlacement(columns)
             addRectangle => [
                 invisible = true
                 addSimpleLabel(name)
             ]
-            addVerticalLine
-            addCollapseExpandButton(true, context)
+            if (interactiveButtons) {
+                addVerticalLine
+                addCollapseExpandButton(true, context)
+            }
             setBackgroundGradient(PRODUCT_COLOR_1.color, PRODUCT_COLOR_2.color, 90)
             addDoubleClickAction(ContextCollapseExpandAction::ID)
             addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
@@ -474,17 +495,24 @@ class OsgiStyles {
             setBackgroundGradient(PRODUCT_COLOR_1.color, PRODUCT_COLOR_2.color, 90)
             setGridPlacement(1)
             addRectangle => [
-                setGridPlacement(3)
+                val interactiveButtons = context.getOptionValue(INTERACTIVE_BUTTONS) as Boolean
+                var columns = 1
+                if (interactiveButtons) {
+                    columns += 2
+                }
+                setGridPlacement(columns)
                 invisible = true
                 addRectangle => [
                     invisible = true
                     addSimpleLabel(p.descriptiveName)
                 ]
-                addVerticalLine
-                if (inOverview) {
-                    addCollapseExpandButton(false, context)
-                } else {
-                    addRemoveButton
+                if (interactiveButtons) {
+                    addVerticalLine
+                    if (inOverview) {
+                        addCollapseExpandButton(false, context)
+                    } else {
+                        addRemoveButton
+                    }
                 }
             ]
             addHorizontalSeperatorLine(1, 0)
@@ -530,13 +558,20 @@ class OsgiStyles {
      */
     def addFeatureInOverviewRendering(KNode node, Feature f, String label, ViewContext context) {
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
-            setGridPlacement(3)
+            val interactiveButtons = context.getOptionValue(INTERACTIVE_BUTTONS) as Boolean
+            var columns = 1
+            if (interactiveButtons) {
+                columns += 2
+            }
+            setGridPlacement(columns)
             addRectangle => [
                 invisible = true
                 addSimpleLabel(label)
             ]
-            addVerticalLine
-            addCollapseExpandButton(true, context)
+            if (interactiveButtons) {
+                addVerticalLine
+                addCollapseExpandButton(true, context)
+            }
             if (f.isIsExternal) {
                 setBackgroundGradient(EXTERNAL_FEATURE_COLOR_1.color, EXTERNAL_FEATURE_COLOR_2.color, 90)
             } else {
@@ -573,7 +608,12 @@ class OsgiStyles {
             }
             setGridPlacement(1)
             addRectangle => [
-                setGridPlacement(3)
+                val interactiveButtons = context.getOptionValue(INTERACTIVE_BUTTONS) as Boolean
+                var columns = 1
+                if (interactiveButtons) {
+                    columns += 2
+                }
+                setGridPlacement(columns)
                 invisible = true
                 addRectangle => [
                     invisible = true
@@ -586,11 +626,13 @@ class OsgiStyles {
                     }
                     addSimpleLabel(name)
                 ]
-                addVerticalLine
-                if (inOverview) {
-                    addCollapseExpandButton(false, context)
-                } else {
-                    addRemoveButton
+                if (interactiveButtons) {
+                    addVerticalLine
+                    if (inOverview) {
+                        addCollapseExpandButton(false, context)
+                    } else {
+                        addRemoveButton
+                    }
                 }
             ]
             addHorizontalSeperatorLine(1, 0)
@@ -636,13 +678,20 @@ class OsgiStyles {
      */
     def addBundleInOverviewRendering(KNode node, Bundle b, String label, ViewContext context) {
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
-            setGridPlacement(3)
+            val interactiveButtons = context.getOptionValue(INTERACTIVE_BUTTONS) as Boolean
+            var columns = 1
+            if (interactiveButtons) {
+                columns += 2
+            }
+            setGridPlacement(columns)
             addRectangle => [
                 invisible = true
                 addSimpleLabel(label)
             ]
-            addVerticalLine
-            addCollapseExpandButton(true, context)
+            if (interactiveButtons) {
+                addVerticalLine
+                addCollapseExpandButton(true, context)
+            }
             if (b.isIsExternal) {
                 setBackgroundGradient(EXTERNAL_BUNDLE_COLOR_1.color, EXTERNAL_BUNDLE_COLOR_2.color, 90)
             } else {
@@ -679,7 +728,12 @@ class OsgiStyles {
             }
             setGridPlacement(1)
             addRectangle => [
-                setGridPlacement(3)
+                val interactiveButtons = context.getOptionValue(INTERACTIVE_BUTTONS) as Boolean
+                var columns = 1
+                if (interactiveButtons) {
+                    columns += 2
+                }
+                setGridPlacement(columns)
                 invisible = true
                 addRectangle => [
                     invisible = true
@@ -692,11 +746,13 @@ class OsgiStyles {
                     }
                     addSimpleLabel(name)
                 ]
-                addVerticalLine
-                if (inOverview) {
-                    addCollapseExpandButton(false, context)
-                } else {
-                    addRemoveButton
+                if (interactiveButtons) {
+                    addVerticalLine
+                    if (inOverview) {
+                        addCollapseExpandButton(false, context)
+                    } else {
+                        addRemoveButton
+                    }
                 }
             ]
             addHorizontalSeperatorLine(1, 0)
@@ -810,7 +866,12 @@ class OsgiStyles {
             setBackgroundGradient(PACKAGE_OBJECT_COLOR_1.color, PACKAGE_OBJECT_COLOR_2.color, 90)
             setGridPlacement(1)
             addRectangle => [
-                setGridPlacement(3)
+                val interactiveButtons = context.getOptionValue(INTERACTIVE_BUTTONS) as Boolean
+                var columns = 1
+                if (interactiveButtons) {
+                    columns += 2
+                }
+                setGridPlacement(columns)
                 invisible = true
                 addRectangle => [
                     invisible = true
@@ -820,11 +881,13 @@ class OsgiStyles {
                             ModifierState.NOT_PRESSED)
                     ]
                 ]
-                addVerticalLine
-                if (inOverview) {
-                    addCollapseExpandButton(false, context)
-                } else {
-                    addRemoveButton
+                if (interactiveButtons) {
+                    addVerticalLine
+                    if (inOverview) {
+                        addCollapseExpandButton(false, context)
+                    } else {
+                        addRemoveButton
+                    }
                 }
             ]
             setShadow(SHADOW_COLOR.color, 4, 4)
@@ -921,13 +984,20 @@ class OsgiStyles {
      */
     def addServiceInterfaceInOverviewRendering(KNode node, ServiceInterface s, String name, ViewContext context) {
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
-            setGridPlacement(3)
+            val interactiveButtons = context.getOptionValue(INTERACTIVE_BUTTONS) as Boolean
+            var columns = 1
+            if (interactiveButtons) {
+                columns += 2
+            }
+            setGridPlacement(columns)
             addRectangle => [
                 invisible = true
                 addSimpleLabel(name)
             ]
-            addVerticalLine
-            addCollapseExpandButton(true, context)
+            if (interactiveButtons) {
+                addVerticalLine
+                addCollapseExpandButton(true, context)
+            }
             setBackgroundGradient(SERVICE_INTERFACE_COLOR_1.color, SERVICE_INTERFACE_COLOR_2.color, 90)
             addDoubleClickAction(ContextCollapseExpandAction::ID)
             addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
@@ -955,7 +1025,12 @@ class OsgiStyles {
             setBackgroundGradient(SERVICE_INTERFACE_COLOR_1.color, SERVICE_INTERFACE_COLOR_2.color, 90)
             setGridPlacement(1)
             addRectangle => [
-                setGridPlacement(3)
+                val interactiveButtons = context.getOptionValue(INTERACTIVE_BUTTONS) as Boolean
+                var columns = 1
+                if (interactiveButtons) {
+                    columns += 2
+                }
+                setGridPlacement(columns)
                 invisible = true
                 addRectangle => [
                     invisible = true
@@ -965,11 +1040,13 @@ class OsgiStyles {
                             ModifierState.NOT_PRESSED)
                     ]
                 ]
-                addVerticalLine
-                if (inOverview) {
-                    addCollapseExpandButton(false, context)
-                } else {
-                    addRemoveButton
+                if (interactiveButtons) {
+                    addVerticalLine
+                    if (inOverview) {
+                        addCollapseExpandButton(false, context)
+                    } else {
+                        addRemoveButton
+                    }
                 }
             ]
             if (context.getOptionValue(FILTER_DESCRIPTIONS) as Boolean) {
@@ -1050,13 +1127,20 @@ class OsgiStyles {
      */
     def addServiceComponentInOverviewRendering(KNode node, ServiceComponent s, String name, ViewContext context) {
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
-            setGridPlacement(3)
+            val interactiveButtons = context.getOptionValue(INTERACTIVE_BUTTONS) as Boolean
+            var columns = 1
+            if (interactiveButtons) {
+                columns += 2
+            }
+            setGridPlacement(columns)
             addRectangle => [
                 invisible = true
                 addSimpleLabel(name)
             ]
-            addVerticalLine
-            addCollapseExpandButton(true, context)
+            if (interactiveButtons) {
+                addVerticalLine
+                addCollapseExpandButton(true, context)
+            }
             setBackgroundGradient(SERVICE_COMPONENT_COLOR_1.color, SERVICE_COMPONENT_COLOR_2.color, 90)
             addDoubleClickAction(ContextCollapseExpandAction::ID)
             addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
@@ -1084,7 +1168,12 @@ class OsgiStyles {
             setBackgroundGradient(SERVICE_COMPONENT_COLOR_1.color, SERVICE_COMPONENT_COLOR_2.color, 90)
             setGridPlacement(1)
             addRectangle => [
-                setGridPlacement(3)
+                val interactiveButtons = context.getOptionValue(INTERACTIVE_BUTTONS) as Boolean
+                var columns = 1
+                if (interactiveButtons) {
+                    columns += 2
+                }
+                setGridPlacement(columns)
                 invisible = true
                 addRectangle => [
                     invisible = true
@@ -1094,11 +1183,13 @@ class OsgiStyles {
                             ModifierState.NOT_PRESSED)
                     ]
                 ]
-                addVerticalLine
-                if (inOverview) {
-                    addCollapseExpandButton(false, context)
-                } else {
-                    addRemoveButton
+                if (interactiveButtons) {
+                    addVerticalLine
+                    if (inOverview) {
+                        addCollapseExpandButton(false, context)
+                    } else {
+                        addRemoveButton
+                    }
                 }
             ]
             if (context.getOptionValue(FILTER_DESCRIPTIONS) as Boolean) {
@@ -1201,13 +1292,20 @@ class OsgiStyles {
      */
     def addEclipseInjectionInOverviewRendering(KNode node, EclipseInjection ei, String name, ViewContext context) {
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
-            setGridPlacement(3)
+            val interactiveButtons = context.getOptionValue(INTERACTIVE_BUTTONS) as Boolean
+            var columns = 1
+            if (interactiveButtons) {
+                columns += 2
+            }
+            setGridPlacement(columns)
             addRectangle => [
                 invisible = true
                 addSimpleLabel(name)
             ]
-            addVerticalLine
-            addCollapseExpandButton(true, context)
+            if (interactiveButtons) {
+                addVerticalLine
+                addCollapseExpandButton(true, context)
+            }
             setBackgroundGradient(ECLIPSE_INJECTION_COLOR_1.color, ECLIPSE_INJECTION_COLOR_2.color, 90)
             addDoubleClickAction(ContextCollapseExpandAction::ID)
             addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
@@ -1235,7 +1333,12 @@ class OsgiStyles {
             setBackgroundGradient(ECLIPSE_INJECTION_COLOR_1.color, ECLIPSE_INJECTION_COLOR_2.color, 90)
             setGridPlacement(1)
             addRectangle => [
-                setGridPlacement(3)
+                val interactiveButtons = context.getOptionValue(INTERACTIVE_BUTTONS) as Boolean
+                var columns = 1
+                if (interactiveButtons) {
+                    columns += 2
+                }
+                setGridPlacement(columns)
                 invisible = true
                 addRectangle => [
                     invisible = true
@@ -1245,11 +1348,13 @@ class OsgiStyles {
                             ModifierState.NOT_PRESSED)
                     ]
                 ]
-                addVerticalLine
-                if (inOverview) {
-                    addCollapseExpandButton(false, context)
-                } else {
-                    addRemoveButton
+                if (interactiveButtons) {
+                    addVerticalLine
+                    if (inOverview) {
+                        addCollapseExpandButton(false, context)
+                    } else {
+                        addRemoveButton
+                    }
                 }
             ]
             setShadow(SHADOW_COLOR.color, 4, 4)
@@ -1286,13 +1391,20 @@ class OsgiStyles {
      */
     def addBundleCategoryInOverviewRendering(KNode node, BundleCategory bc, String label, ViewContext context) {
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
-            setGridPlacement(3)
+            val interactiveButtons = context.getOptionValue(INTERACTIVE_BUTTONS) as Boolean
+            var columns = 1
+            if (interactiveButtons) {
+                columns += 2
+            }
+            setGridPlacement(columns)
             addRectangle => [
                 invisible = true
                 addSimpleLabel(label)
             ]
-            addVerticalLine
-            addCollapseExpandButton(true, context)
+            if (interactiveButtons) {
+                addVerticalLine
+                addCollapseExpandButton(true, context)
+            }
             setBackgroundGradient(BUNDLE_CATEGORY_COLOR_1.color, BUNDLE_CATEGORY_COLOR_2.color, 90)
             addDoubleClickAction(ContextCollapseExpandAction::ID)
             addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
@@ -1319,7 +1431,12 @@ class OsgiStyles {
             setBackgroundGradient(BUNDLE_CATEGORY_COLOR_1.color, BUNDLE_CATEGORY_COLOR_2.color, 90)
             setGridPlacement(1)
             addRectangle => [
-                setGridPlacement(3)
+                val interactiveButtons = context.getOptionValue(INTERACTIVE_BUTTONS) as Boolean
+                var columns = 1
+                if (interactiveButtons) {
+                    columns += 2
+                }
+                setGridPlacement(columns)
                 invisible = true
                 addRectangle => [
                     invisible = true
@@ -1328,11 +1445,13 @@ class OsgiStyles {
                             ModifierState.NOT_PRESSED)
                     ]
                 ]
-                addVerticalLine
-                if (inOverview) {
-                    addCollapseExpandButton(false, context)
-                } else {
-                    addRemoveButton
+                if (interactiveButtons) {
+                    addVerticalLine
+                    if (inOverview) {
+                        addCollapseExpandButton(false, context)
+                    } else {
+                        addRemoveButton
+                    }
                 }
             ]
             addHorizontalSeperatorLine(1, 0)

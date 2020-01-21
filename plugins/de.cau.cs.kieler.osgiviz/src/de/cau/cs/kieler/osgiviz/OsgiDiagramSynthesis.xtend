@@ -107,7 +107,7 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
         
         // Add all view filter options.
         options.addAll(SHOW_EXTERNAL, BUNDLE_SHOW_SERVICES, FILTER_CARDINALITY_LABEL, FILTER_DESCRIPTIONS,
-            DESCRIPTION_LENGTH, SHORTEN_BY)
+            DESCRIPTION_LENGTH, SHORTEN_BY, INTERACTIVE_BUTTONS)
         
         // Add all performance options.
         options.addAll(SHOW_ICONS)
