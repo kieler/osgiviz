@@ -39,6 +39,7 @@
       <modules>
         <module>de.cau.cs.kieler.openkieler.targetplatform</module>
         <module>../plugins/de.cau.cs.kieler.osgiviz</module>
+        <module>../plugins/de.cau.cs.kieler.osgiviz.model</module>
         <module>../plugins/de.scheidtbachmann.osgimodel.model</module>
         <module>../plugins/de.scheidtbachmann.osgimodel.model.edit</module>
         <module>../plugins/de.scheidtbachmann.osgimodel.model.editor</module>

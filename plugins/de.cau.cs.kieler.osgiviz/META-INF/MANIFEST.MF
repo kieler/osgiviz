@@ -1,19 +1,20 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: OSGi Model Visualization
+Bundle-Name: KIELER OSGi Model Visualization
 Bundle-SymbolicName: de.cau.cs.kieler.osgiviz;singleton:=true
 Bundle-Version: 0.1.0.qualifier
 Export-Package: de.cau.cs.kieler.osgiviz,
  de.cau.cs.kieler.osgiviz.actions
-Require-Bundle: de.cau.cs.kieler.klighd;bundle-version="0.45.0",
- de.scheidtbachmann.osgimodel.model;bundle-version="0.1.0",
- de.cau.cs.kieler.klighd.krendering.extensions;bundle-version="0.45.0",
+Require-Bundle: de.cau.cs.kieler.klighd,
+ de.scheidtbachmann.osgimodel.model,
+ de.cau.cs.kieler.osgiviz.model,
+ de.cau.cs.kieler.klighd.krendering.extensions,
  org.eclipse.elk.core;bundle-version="0.5.0",
  org.eclipse.xtext.xbase.lib;bundle-version="2.16.0",
  com.google.inject;bundle-version="3.0.0",
  org.eclipse.elk.alg.layered;bundle-version="0.6.0",
  org.eclipse.xtend.lib;bundle-version="2.16.0",
- de.cau.cs.kieler.osgiviz.model;bundle-version="0.0.1",
  org.eclipse.emf.ecore.xmi;bundle-version="2.14.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
+Bundle-Vendor: OpenKieler
