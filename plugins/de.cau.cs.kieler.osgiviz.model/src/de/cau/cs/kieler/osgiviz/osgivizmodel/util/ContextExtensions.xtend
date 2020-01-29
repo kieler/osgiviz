@@ -709,11 +709,10 @@ class ContextExtensions {
             val potentialServiceConnectionHolder = potentialBundleContext.parent
             if (potentialServiceConnectionHolder instanceof ServiceOverviewContext) {
                 // We are in the correct hierarchy, this overviewContext may contain edges to this class context.
-                val connectionHolder = potentialServiceConnectionHolder as ServiceOverviewContext
-                val injectedInterfaceEdges = connectionHolder.injectedInterfaceEdgesInBundles.clone
+                val injectedInterfaceEdges = potentialServiceConnectionHolder.injectedInterfaceEdgesInBundles.clone
                 injectedInterfaceEdges.forEach [
                     if (it.key === context) {
-                        connectionHolder.injectedInterfaceEdgesInBundles.remove(it)
+                        potentialServiceConnectionHolder.injectedInterfaceEdgesInBundles.remove(it)
                         // TODO: set all shown to false.
                     }
                 ]
@@ -740,19 +739,18 @@ class ContextExtensions {
             val potentialServiceConnectionHolder = potentialBundleContext.parent
             if (potentialServiceConnectionHolder instanceof ServiceOverviewContext) {
                 // We are in the correct hierarchy, this overviewContext may contain edges to this SC context.
-                val connectionHolder = potentialServiceConnectionHolder as ServiceOverviewContext
-                val implementedInderfaceEdges = connectionHolder.implementedInterfaceEdgesInBundles.clone
+                val implementedInderfaceEdges = potentialServiceConnectionHolder.implementedInterfaceEdgesInBundles.clone
                 implementedInderfaceEdges.forEach [
                     if (key === context) {
-                        connectionHolder.implementedInterfaceEdgesInBundles.remove(it)
+                        potentialServiceConnectionHolder.implementedInterfaceEdgesInBundles.remove(it)
                         key.allImplementedInterfacesShownInBundles = false
                         value.allImplementingComponentsShownInBundles = false
                     }
                 ]
-                val referencedInterfaceEdges = connectionHolder.referencedInterfaceEdgesInBundles.clone
+                val referencedInterfaceEdges = potentialServiceConnectionHolder.referencedInterfaceEdgesInBundles.clone
                 referencedInterfaceEdges.forEach [
                     if (it.serviceComponentContext === context) {
-                        connectionHolder.referencedInterfaceEdgesInBundles.remove(it)
+                        potentialServiceConnectionHolder.referencedInterfaceEdgesInBundles.remove(it)
                         it.serviceComponentContext.allReferencedInterfacesShownInBundles = false
                         it.serviceInterfaceContext.allReferencingComponentsShownInBundles = false
                     }
@@ -1280,7 +1278,7 @@ class ContextExtensions {
         // Only this cast will allow to add the context. We know this adding is type-safe, as the collapsed- and
         // the detailed elements list are always of the same type. If they are not, the collapsed/detailed state
         // here would not make any sense.
-        (overview.detailedElements as List<IVisualizationContext<?>>).add(collapsedContext as IVisualizationContext<?>)
+        (overview.detailedElements as List<IVisualizationContext<?>>).add(collapsedContext)
         // TODO: check if this really should be called every time or if we should remember if the child contexts have
         // been initialized earlier already.
         collapsedContext.initializeChildVisualizationContexts
@@ -1346,7 +1344,7 @@ class ContextExtensions {
         // Only this cast will allow to add the context. We know this adding is type-safe, as the collapsed- and
         // the detailed elements list are always of the same type. If they are not, the collapsed/detailed state
         // here would not make any sense.
-        (overview.collapsedElements as List<IVisualizationContext<?>>).add(detailedContext as IVisualizationContext<?>)
+        (overview.collapsedElements as List<IVisualizationContext<?>>).add(detailedContext)
     }
     def static dispatch collapse(ServiceOverviewContext overview, IVisualizationContext<?> detailedContext) {
         if (detailedContext === null) {

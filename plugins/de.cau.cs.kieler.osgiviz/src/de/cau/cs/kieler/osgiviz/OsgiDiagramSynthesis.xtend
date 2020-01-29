@@ -188,22 +188,22 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
     private def transformSubModel(IVisualizationContext<?> context) {
         switch (context) {
             BundleCategoryOverviewContext: {
-                return bundleCategoryOverviewSynthesis.transform(context as BundleCategoryOverviewContext)
+                return bundleCategoryOverviewSynthesis.transform(context)
             }
             BundleOverviewContext: {
-                return bundleOverviewSynthesis.transform(context as BundleOverviewContext)
+                return bundleOverviewSynthesis.transform(context)
             }
             FeatureOverviewContext: {
-                return featureOverviewSynthesis.transform(context as FeatureOverviewContext)
+                return featureOverviewSynthesis.transform(context)
             }
             PackageObjectOverviewContext: {
-                return packageObjectOverviewSynthesis.transform(context as PackageObjectOverviewContext)
+                return packageObjectOverviewSynthesis.transform(context)
             }
             ProductOverviewContext: {
-                return productOverviewSynthesis.transform(context as ProductOverviewContext)
+                return productOverviewSynthesis.transform(context)
             }
             ServiceOverviewContext: {
-                return serviceOverviewSynthesis.transform(context as ServiceOverviewContext)
+                return serviceOverviewSynthesis.transform(context)
             }
             default: {
                 throw new IllegalArgumentException("The context class has no known subsynthesis: " + context.class)

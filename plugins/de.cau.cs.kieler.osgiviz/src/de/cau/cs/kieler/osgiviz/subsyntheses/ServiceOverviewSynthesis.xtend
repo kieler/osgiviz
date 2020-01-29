@@ -24,7 +24,6 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KRenderingExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiStyles
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
-import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleContext
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ClassContext
 import de.cau.cs.kieler.osgiviz.osgivizmodel.Pair
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ReferencedInterfaceEdgeConnection
@@ -157,7 +156,7 @@ class ServiceOverviewSynthesis extends AbstractSubSynthesis<ServiceOverviewConte
                 val bundleIndexOffset = children.size
                 val filteredBundleContexts = serviceOverviewContext.collapsedReferencedBundleContexts
                 filteredBundleContexts.forEach [ bundleContext, index |
-                    children += simpleBundleSynthesis.transform(bundleContext as BundleContext, -index - bundleIndexOffset)
+                    children += simpleBundleSynthesis.transform(bundleContext, -index - bundleIndexOffset)
                 ]   
             }
         ]
@@ -210,7 +209,7 @@ class ServiceOverviewSynthesis extends AbstractSubSynthesis<ServiceOverviewConte
                 // All bundles containing the service components and injections.
                 val filteredBundleContexts = serviceOverviewContext.detailedReferencedBundleContexts
                 children += filteredBundleContexts.flatMap [
-                    return bundleSynthesis.transform(it as BundleContext)
+                    return bundleSynthesis.transform(it)
                 ]
                 implementedInterfaceEdges = serviceOverviewContext.implementedInterfaceEdgesInBundles
                 referencedInterfaceEdges = serviceOverviewContext.referencedInterfaceEdgesInBundles

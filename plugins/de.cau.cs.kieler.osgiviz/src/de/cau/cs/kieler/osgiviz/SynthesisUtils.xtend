@@ -69,7 +69,7 @@ final class SynthesisUtils {
         // Default case, how it should work all the time.
         var Object element
         if (kElement instanceof KNode) {
-            element = context.getDomainElement(kElement as KNode)
+            element = context.getDomainElement(kElement)
         }
         
         // Fallback by using the KLighD internal property set during the synthesis.
