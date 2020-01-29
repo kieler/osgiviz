@@ -14,10 +14,11 @@
  */
 package de.cau.cs.kieler.osgiviz.actions
 
-import de.cau.cs.kieler.osgiviz.context.ContextUtils
-import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
-import de.cau.cs.kieler.osgiviz.context.ServiceInterfaceContext
-import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceInterfaceContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext
+
+import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
 
 /**
  * Puts the service components implementing this service interface next to this service interface and connects them with
@@ -41,7 +42,7 @@ class RevealImplementingServiceComponentsAction extends AbstractRevealServiceCom
         
         // The service components that are yet collapsed need to be expanded first.
         val filteredServiceComponents = serviceInterface.serviceComponent.filter [
-            serviceOverviewContext.modelElement.contains(it)
+            serviceOverviewContext.modelElements.contains(it)
         ]
         filteredServiceComponents.forEach [ serviceComponent |
             val collapsedServiceComponentContext = serviceOverviewContext.collapsedServiceComponentContexts.findFirst [
@@ -53,8 +54,7 @@ class RevealImplementingServiceComponentsAction extends AbstractRevealServiceCom
             val serviceComponentContextPlain = serviceOverviewContext.detailedServiceComponentContexts.findFirst [
                 return it.modelElement === serviceComponent
             ]
-            ContextUtils.addImplementingServiceComponentEdgePlain(serviceInterfaceContext,
-                serviceComponentContextPlain)
+            serviceInterfaceContext.addImplementingServiceComponentEdgePlain(serviceComponentContextPlain)
         ]
         
         // ----- Put the service components and the bundles in the context for the IN_BUNDLES view -----
@@ -85,8 +85,7 @@ class RevealImplementingServiceComponentsAction extends AbstractRevealServiceCom
             ]
             
             // Add the connection.
-            ContextUtils.addImplementingServiceComponentEdgeInBundle(serviceInterfaceContext,
-                serviceComponentContextInBundle)
+            serviceInterfaceContext.addImplementingServiceComponentEdgeInBundle(serviceComponentContextInBundle)
         ]
     }
     
@@ -110,7 +109,7 @@ class RevealImplementingServiceComponentsAction extends AbstractRevealServiceCom
             ]
             // If the context is null, the component is not defined by this bundle and should therefore not be shown.
             if (serviceComponentContext !== null) {
-                ContextUtils.addImplementingServiceComponentEdgePlain(serviceInterfaceContext, serviceComponentContext)
+                serviceInterfaceContext.addImplementingServiceComponentEdgePlain(serviceComponentContext)
             }
         ]
     }
@@ -119,7 +118,7 @@ class RevealImplementingServiceComponentsAction extends AbstractRevealServiceCom
 //        ServiceOverviewContext serviceComponentOverviewContext, ActionContext actionContext) {
 //        val serviceInterface = serviceInterfaceContext.modelElement
 //        val filteredServiceComponents = serviceInterface.serviceComponent.filter [
-//            serviceComponentOverviewContext.modelElement.contains(it)
+//            serviceComponentOverviewContext.modelElements.contains(it)
 //        ]
 //        
 //        filteredServiceComponents.forEach [ serviceComponent |

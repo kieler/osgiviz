@@ -15,17 +15,19 @@
 package de.cau.cs.kieler.osgiviz.actions
 
 import de.cau.cs.kieler.klighd.KlighdDataManager
-import de.cau.cs.kieler.osgiviz.context.BundleCategoryContext
-import de.cau.cs.kieler.osgiviz.context.BundleContext
-import de.cau.cs.kieler.osgiviz.context.BundleOverviewContext
-import de.cau.cs.kieler.osgiviz.context.ClassContext
-import de.cau.cs.kieler.osgiviz.context.FeatureContext
-import de.cau.cs.kieler.osgiviz.context.IOverviewVisualizationContext
-import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
-import de.cau.cs.kieler.osgiviz.context.PackageObjectContext
-import de.cau.cs.kieler.osgiviz.context.ProductContext
-import de.cau.cs.kieler.osgiviz.context.ServiceComponentContext
-import de.cau.cs.kieler.osgiviz.context.ServiceInterfaceContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ClassContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.FeatureContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IOverviewVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.PackageObjectContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ProductContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceComponentContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceInterfaceContext
+
+import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
 
 /**
  * Calls the corresponding reveal*Actions for all elements visualized in this overview.

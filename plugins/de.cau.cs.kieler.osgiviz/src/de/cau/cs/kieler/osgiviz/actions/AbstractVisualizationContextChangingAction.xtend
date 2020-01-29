@@ -18,11 +18,12 @@ import de.cau.cs.kieler.klighd.IAction
 import de.cau.cs.kieler.klighd.kgraph.util.KGraphUtil
 import de.cau.cs.kieler.osgiviz.OsgiSynthesisProperties
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
-import de.cau.cs.kieler.osgiviz.context.ContextUtils
-import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
-import java.util.HashMap
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
 import org.eclipse.core.runtime.Status
+import org.eclipse.emf.ecore.util.EcoreUtil.Copier
 import org.eclipse.ui.statushandlers.StatusManager
+
+import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
 
 /**
  * An abstract action that allows to change the {@link IVisualizationContext} for a model so that the old one is still
@@ -42,17 +43,21 @@ abstract class AbstractVisualizationContextChangingAction implements IAction {
         
         val currentVisualizationContext = visualizationContexts.get(index)
         
-        // Make a deep-copy of the current context and store it as the action that can be undone next.
-        // To copy the current context, copy from the parent root context ...
+        // Make a deep-copy of the current context and store it for the action to be the next canditate for the undo
+        // function.
+        // To copy the current context, copy from the parent root context.
         var rootVisualizationContext = currentVisualizationContext
-        while (rootVisualizationContext.parentVisualizationContext !== null) {
-            rootVisualizationContext = rootVisualizationContext.parentVisualizationContext
+        while (rootVisualizationContext.parent !== null) {
+            rootVisualizationContext = rootVisualizationContext.parent
         }
-        val copiedContexts = new HashMap
-        rootVisualizationContext.deepCopy(copiedContexts)
         
-        // ... and take the copied reference from that.
-        val copiedVisualizationContext = copiedContexts.get(currentVisualizationContext)
+        // Copy the root context and the currently shown one from the same Copier to guarantee a completely copied
+        // context with only the needed view on that.
+        val Copier copier = new Copier
+        copier.copy(rootVisualizationContext) as IVisualizationContext<?>
+        val copiedVisualizationContext = copier.copy(currentVisualizationContext) as IVisualizationContext<?>
+        copier.copyReferences
+        
         // Remove this visualization context and all after that, a redo after an action is not possible anymore.
         while (visualizationContexts.size > index) {
             visualizationContexts.remove(index)
@@ -62,7 +67,7 @@ abstract class AbstractVisualizationContextChangingAction implements IAction {
         
         // The visualization context of the element that this action is performed on.
         val modelVisualizationContext = SynthesisUtils.getDomainElement(context) as IVisualizationContext<?>
-        if (!ContextUtils.isChildContextOrEqual(currentVisualizationContext, modelVisualizationContext)) {
+        if (!currentVisualizationContext.isChildContextOrEqual(modelVisualizationContext)) {
             throw new IllegalStateException("This action is performed on an element that is not currently in the " +
                 "currently displayed visualization context:" + this.class
                 + "\nSomething during the clone process by the undo action probably went wrong.")

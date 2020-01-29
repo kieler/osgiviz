@@ -21,11 +21,11 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KPortExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiStyles
-import de.cau.cs.kieler.osgiviz.context.ServiceInterfaceContext
-import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
-import de.cau.cs.kieler.osgiviz.modelExtension.ModelUtils
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceInterfaceContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext
 import de.scheidtbachmann.osgimodel.OsgiProject
 import de.scheidtbachmann.osgimodel.ServiceInterface
+import de.scheidtbachmann.osgimodel.util.ModelUtils
 import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.PortConstraints
 import org.eclipse.elk.core.options.PortSide
@@ -105,7 +105,7 @@ class ServiceInterfaceSynthesis extends AbstractSubSynthesis<ServiceInterfaceCon
                 // Add the rendering.
                 val hasChildren = !children.empty
                 addServiceInterfaceRendering(serviceInterface,
-                    sic.parentVisualizationContext instanceof ServiceOverviewContext, hasChildren, usedContext)
+                    sic.parent instanceof ServiceOverviewContext, hasChildren, usedContext)
             ]
         ]
     }

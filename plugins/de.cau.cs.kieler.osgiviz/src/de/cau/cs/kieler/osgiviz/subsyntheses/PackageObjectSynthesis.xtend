@@ -19,11 +19,11 @@ import de.cau.cs.kieler.klighd.kgraph.KGraphFactory
 import de.cau.cs.kieler.klighd.kgraph.KNode
 import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
+import de.cau.cs.kieler.osgiviz.OsgiStyles
+import de.cau.cs.kieler.osgiviz.osgivizmodel.PackageObjectContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.PackageObjectOverviewContext
 import de.scheidtbachmann.osgimodel.OsgiProject
 import de.scheidtbachmann.osgimodel.PackageObject
-import de.cau.cs.kieler.osgiviz.OsgiStyles
-import de.cau.cs.kieler.osgiviz.context.PackageObjectContext
-import de.cau.cs.kieler.osgiviz.context.PackageObjectOverviewContext
 
 /**
  * Sub-synthesis of {@link OsgiProject}s that handles expanded {@link PackageObject} views.
@@ -42,7 +42,7 @@ class PackageObjectSynthesis extends AbstractSubSynthesis<PackageObjectContext, 
                 associateWith(poc)
                 data += createKIdentifier => [ it.id = poc.hashCode.toString ]
                 addPackageObjectRendering(package,
-                    poc.parentVisualizationContext instanceof PackageObjectOverviewContext, usedContext)
+                    poc.parent instanceof PackageObjectOverviewContext, usedContext)
             ]
         ]
     }

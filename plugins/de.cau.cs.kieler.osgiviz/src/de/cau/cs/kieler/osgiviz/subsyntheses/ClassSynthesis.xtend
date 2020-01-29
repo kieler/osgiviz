@@ -21,8 +21,9 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KPortExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiStyles
-import de.cau.cs.kieler.osgiviz.context.ClassContext
-import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.Class
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ClassContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext
 import de.scheidtbachmann.osgimodel.OsgiProject
 import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.PortConstraints
@@ -63,9 +64,9 @@ class ClassSynthesis extends AbstractSubSynthesis<ClassContext, KNode> {
                         
                         val boolean injectedInterfacesShown = if (usedContext.getOptionValue(
                             SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES) as Boolean) {
-                            cc.injectedInterfaceShownInBundles
+                            cc.allInjectedInterfacesShownInBundles
                         } else {
-                            cc.injectedInterfaceShownPlain
+                            cc.allInjectedInterfacesShownPlain
                         }
                         
                         addInjectedServiceInterfacePortRendering(injectedInterfacesShown)
@@ -76,7 +77,7 @@ class ClassSynthesis extends AbstractSubSynthesis<ClassContext, KNode> {
                 
                 // Add the rendering.
                 val hasChildren = !children.empty
-                addClassRendering(theClass, cc.parentVisualizationContext instanceof ServiceOverviewContext,
+                addClassRendering(theClass, cc.parent instanceof ServiceOverviewContext,
                     hasChildren, usedContext)
             ]
         ]

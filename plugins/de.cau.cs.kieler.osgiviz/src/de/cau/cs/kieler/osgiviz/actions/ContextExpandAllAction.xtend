@@ -14,8 +14,10 @@
  */
 package de.cau.cs.kieler.osgiviz.actions
 
-import de.cau.cs.kieler.osgiviz.context.IOverviewVisualizationContext
-import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IOverviewVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
+
+import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
 
 /**
  * An action that expands all element by making them detailed in an {@link IOverviewVisualizationContext}.

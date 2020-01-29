@@ -20,19 +20,16 @@ import de.cau.cs.kieler.klighd.internal.util.KlighdInternalProperties
 import de.cau.cs.kieler.klighd.kgraph.KGraphElement
 import de.cau.cs.kieler.klighd.kgraph.KNode
 import de.cau.cs.kieler.klighd.syntheses.DiagramSyntheses
-import de.cau.cs.kieler.osgiviz.context.IOverviewVisualizationContext
-import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
-import de.cau.cs.kieler.osgiviz.modelExtension.Class
-import de.cau.cs.kieler.osgiviz.modelExtension.ModelUtils
+import de.cau.cs.kieler.osgiviz.osgivizmodel.Class
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IOverviewVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
 import de.scheidtbachmann.osgimodel.Bundle
 import de.scheidtbachmann.osgimodel.BundleCategory
-import de.scheidtbachmann.osgimodel.EclipseInjection
 import de.scheidtbachmann.osgimodel.Feature
 import de.scheidtbachmann.osgimodel.PackageObject
 import de.scheidtbachmann.osgimodel.Product
 import de.scheidtbachmann.osgimodel.ServiceComponent
 import de.scheidtbachmann.osgimodel.ServiceInterface
-import java.util.HashSet
 import java.util.List
 import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.Direction
@@ -41,6 +38,7 @@ import org.eclipse.elk.core.options.EdgeRouting
 import static de.cau.cs.kieler.osgiviz.OsgiOptions.*
 
 import static extension de.cau.cs.kieler.klighd.syntheses.DiagramSyntheses.*
+import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
 
 /**
  * Util class that contains some static methods commonly used for the Osgi synthesis.
@@ -109,7 +107,7 @@ final class SynthesisUtils {
     def static <M> Iterable<M> filteredElements(List<M> elements, IOverviewVisualizationContext<M> oc,
         ViewContext usedContext) {
         val elementsInContext = elements.filter [
-            oc.modelElement.contains(it)
+            oc.modelElements.contains(it)
         ]
         
         val regex = ".*" + usedContext.getOptionValue(FILTER_BY) as String + ".*"
@@ -265,29 +263,6 @@ final class SynthesisUtils {
      */
     def static String displayedString(Class ei) {
         return ei.classPath.replace("\\", "/").split("/").last
-    }
-    
-    /**
-     * Returns all service interfaces referenced by the given service components and eclipse injections.
-     * 
-     * @param components The service components that implement and require interfaces.
-     * @param injections The eclipse injections that inject an interface
-     */
-    def static HashSet<ServiceInterface> referencedInterfaces(Iterable<ServiceComponent> components,
-        Iterable<EclipseInjection> injections) {
-        val serviceInterfaces = new HashSet<ServiceInterface>
-        components.forEach [
-            it.serviceInterfaces.forEach [
-                serviceInterfaces.add(it)
-            ]
-            it.reference.forEach [
-                serviceInterfaces.add(it.serviceInterface)
-            ]
-        ]
-        injections.forEach [
-            serviceInterfaces.add(ModelUtils.injectedInterface(it))
-        ]
-        return serviceInterfaces
     }
     
 }

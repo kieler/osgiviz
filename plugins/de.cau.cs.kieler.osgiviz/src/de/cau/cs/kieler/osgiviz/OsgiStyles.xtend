@@ -51,7 +51,7 @@ import de.cau.cs.kieler.osgiviz.actions.RevealRequiredBundlesAction
 import de.cau.cs.kieler.osgiviz.actions.RevealUsedByBundlesAction
 import de.cau.cs.kieler.osgiviz.actions.RevealUsedPackagesAction
 import de.cau.cs.kieler.osgiviz.actions.SelectRelatedAction
-import de.cau.cs.kieler.osgiviz.modelExtension.Class
+import de.cau.cs.kieler.osgiviz.osgivizmodel.Class
 import de.scheidtbachmann.osgimodel.Bundle
 import de.scheidtbachmann.osgimodel.BundleCategory
 import de.scheidtbachmann.osgimodel.Feature

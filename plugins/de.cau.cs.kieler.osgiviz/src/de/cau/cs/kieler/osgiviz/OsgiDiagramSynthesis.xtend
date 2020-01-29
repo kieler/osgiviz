@@ -24,15 +24,15 @@ import de.cau.cs.kieler.klighd.syntheses.AbstractDiagramSynthesis
 import de.cau.cs.kieler.osgiviz.actions.RedoAction
 import de.cau.cs.kieler.osgiviz.actions.ResetViewAction
 import de.cau.cs.kieler.osgiviz.actions.UndoAction
-import de.cau.cs.kieler.osgiviz.context.BundleCategoryOverviewContext
-import de.cau.cs.kieler.osgiviz.context.BundleOverviewContext
-import de.cau.cs.kieler.osgiviz.context.ContextUtils
-import de.cau.cs.kieler.osgiviz.context.FeatureOverviewContext
-import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
-import de.cau.cs.kieler.osgiviz.context.OsgiProjectContext
-import de.cau.cs.kieler.osgiviz.context.PackageObjectOverviewContext
-import de.cau.cs.kieler.osgiviz.context.ProductOverviewContext
-import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.FeatureOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz
+import de.cau.cs.kieler.osgiviz.osgivizmodel.PackageObjectOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ProductOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.util.OsgivizmodelUtil
 import de.cau.cs.kieler.osgiviz.subsyntheses.BundleCategoryOverviewSynthesis
 import de.cau.cs.kieler.osgiviz.subsyntheses.BundleOverviewSynthesis
 import de.cau.cs.kieler.osgiviz.subsyntheses.FeatureOverviewSynthesis
@@ -48,6 +48,8 @@ import org.eclipse.elk.core.options.BoxLayouterOptions
 import org.eclipse.elk.core.util.BoxLayoutProvider.PackingMode
 
 import static de.cau.cs.kieler.osgiviz.OsgiOptions.*
+
+import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
 
 /**
  * Main diagram synthesis for {@link OsgiProject} models.
@@ -129,17 +131,17 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
         }
         // If the visualization context is for another model than the model this method was called for or does not exist
         // yet, reset the contexts.
-        if (visualizationContext === null || !ContextUtils.isRootModel(visualizationContext, model)) {
+        if (visualizationContext === null || !visualizationContext.isRootModel(model)) {
             visualizationContexts.removeIf [ true ]
             index = 0
             usedContext.setProperty(OsgiSynthesisProperties.CURRENT_VISUALIZATION_CONTEXT_INDEX, index)
-            visualizationContext = new OsgiProjectContext(model, null)
+            visualizationContext = OsgivizmodelUtil.createOsgiViz(model)
             visualizationContexts.add(visualizationContext)
         }
 
         // Make this variable final here for later usage in the lambda.
         val visContext = visualizationContext
-        if (visContext instanceof OsgiProjectContext) {
+        if (visContext instanceof OsgiViz) {
             // This synthesis can be used.
             
             // The overview of the entire OSGi Project.

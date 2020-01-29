@@ -22,11 +22,12 @@ import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiOptions.SimpleTextType
 import de.cau.cs.kieler.osgiviz.OsgiStyles
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
-import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
-import de.cau.cs.kieler.osgiviz.context.ProductContext
-import de.cau.cs.kieler.osgiviz.context.ProductOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ProductContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ProductOverviewContext
 import de.scheidtbachmann.osgimodel.Product
 import java.util.EnumSet
+import java.util.List
 import org.eclipse.elk.core.options.BoxLayouterOptions
 import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.SizeConstraint
@@ -36,6 +37,7 @@ import static de.cau.cs.kieler.osgiviz.OsgiOptions.*
 
 import static extension de.cau.cs.kieler.klighd.syntheses.DiagramSyntheses.*
 import static extension de.cau.cs.kieler.osgiviz.SynthesisUtils.*
+import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
 
 /**
  * Transformation as an overview of all products in the given list of products.
@@ -65,14 +67,14 @@ class ProductOverviewSynthesis extends AbstractSubSynthesis<ProductOverviewConte
                 addOverviewRendering("Products", productOverviewContext.overviewText, usedContext)
                 
                 val filteredCollapsedProducts = SynthesisUtils.filteredElementContexts(
-                    productOverviewContext.collapsedElements, usedContext)
+                    productOverviewContext.collapsedElements as List<ProductContext>, usedContext)
                 val indexOffset = filteredCollapsedProducts.size
                 filteredCollapsedProducts.sortBy [ sortBy ].forEach [ collapsedProductContext, index |
                     children += simpleProductSynthesis.transform(collapsedProductContext as ProductContext, -index)
                 ]
                 
                 val filteredDetailedProducts = SynthesisUtils.filteredElementContexts(
-                    productOverviewContext.detailedElements, usedContext)
+                    productOverviewContext.detailedElements as List<ProductContext>, usedContext)
                 filteredDetailedProducts.sortBy [ sortBy ].forEach [ detailedProductContext, index |
                     children += productSynthesis.transform(detailedProductContext as ProductContext, -index
                         - indexOffset)

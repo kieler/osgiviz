@@ -24,9 +24,10 @@ import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiOptions.SimpleTextType
 import de.cau.cs.kieler.osgiviz.OsgiStyles
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
-import de.cau.cs.kieler.osgiviz.context.FeatureContext
-import de.cau.cs.kieler.osgiviz.context.FeatureOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.FeatureContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.FeatureOverviewContext
 import java.util.EnumSet
+import java.util.List
 import org.eclipse.elk.core.math.ElkPadding
 import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.Direction
@@ -36,6 +37,7 @@ import static de.cau.cs.kieler.osgiviz.OsgiOptions.*
 
 import static extension de.cau.cs.kieler.klighd.syntheses.DiagramSyntheses.*
 import static extension de.cau.cs.kieler.osgiviz.SynthesisUtils.*
+import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
 
 /**
  * Transformation as an overview of all features in the given list of features.
@@ -97,7 +99,7 @@ class FeatureOverviewSynthesis extends AbstractSubSynthesis<FeatureOverviewConte
      */
     private def KNode transformCollapsedFeaturesOverview(FeatureOverviewContext featureOverviewContext) {
         val filteredCollapsedFeatureContexts = SynthesisUtils.filteredElementContexts(
-            featureOverviewContext.collapsedElements, usedContext)
+            featureOverviewContext.collapsedElements as List<FeatureContext>, usedContext)
         createNode => [
             associateWith(featureOverviewContext)
             configureBoxLayout

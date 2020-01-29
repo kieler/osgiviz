@@ -14,9 +14,10 @@
  */
 package de.cau.cs.kieler.osgiviz.actions
 
-import de.cau.cs.kieler.osgiviz.context.ContextUtils
-import de.cau.cs.kieler.osgiviz.context.IOverviewVisualizationContext
-import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IOverviewVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
+
+import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
 
 /**
  * An action that collapses or expands an element by making it detailed in an {@link IOverviewVisualizationContext}.
@@ -32,7 +33,7 @@ class ContextCollapseExpandAction extends AbstractVisualizationContextChangingAc
     override <M> IVisualizationContext<?>
     changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
         // This action will always be performed on a child visualization context of a IOverviewVisualizationContext.
-        val overviewVisContext = modelVisualizationContext.parentVisualizationContext
+        val overviewVisContext = modelVisualizationContext.parent
         if (!(overviewVisContext instanceof IOverviewVisualizationContext)) {
             throw new IllegalStateException("This action is performed on an element that is not inside an overview " +
                 "visualization!")
@@ -44,7 +45,7 @@ class ContextCollapseExpandAction extends AbstractVisualizationContextChangingAc
         } else if (ovc.detailedElements.contains(modelVisualizationContext)) {
             ovc.collapse(modelVisualizationContext)
             // Remove all edges incident to the now collapsed context.
-            ContextUtils.removeEdges(ovc, modelVisualizationContext)
+            ovc.removeEdges(modelVisualizationContext)
         } else { // This error should not be reachable.
             throw new IllegalStateException("Bug in code detected. This context has to be either contained within " +
                 "the collapsed or the contained elements")

@@ -14,11 +14,13 @@
  */
 package de.cau.cs.kieler.osgiviz.actions
 
-import de.cau.cs.kieler.osgiviz.context.ClassContext
-import de.cau.cs.kieler.osgiviz.context.ContextUtils
-import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
-import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
-import de.cau.cs.kieler.osgiviz.modelExtension.Class
+import de.cau.cs.kieler.osgiviz.osgivizmodel.Class
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ClassContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext
+import org.eclipse.emf.ecore.util.EcoreUtil
+
+import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
 
 /**
  * Puts the service interfaces injected by this class next to this class and connects it
@@ -49,7 +51,7 @@ class RevealInjectedServiceInterfacesAction extends AbstractRevealServiceInterfa
         
         // The class needs to be expanded as well if not already.
         val collapsedClassContextPlain =  serviceOverviewContext.collapsedClassContexts.findFirst [
-            return modelElement.equals(theClass)
+            return EcoreUtil.equals(modelElement, theClass)
         ]
         if (collapsedClassContextPlain !== null) {
             serviceOverviewContext.makeDetailed(collapsedClassContextPlain)
@@ -57,7 +59,7 @@ class RevealInjectedServiceInterfacesAction extends AbstractRevealServiceInterfa
         
         // ----- Find the class in the context for the PLAIN view -----
         val classContextPlain = serviceOverviewContext.detailedClassContexts.findFirst [
-            return modelElement.equals(theClass)
+            return EcoreUtil.equals(modelElement, theClass)
         ]
         
         // ----- Find the class and the bundle in the context for the IN_BUNDLES view -----
@@ -77,12 +79,12 @@ class RevealInjectedServiceInterfacesAction extends AbstractRevealServiceInterfa
         bundleServiceOverviewContext.expanded = true
         
         val collapsedClassContextInBundle = bundleServiceOverviewContext.collapsedClassContexts.findFirst [
-            return modelElement.equals(theClass)
+            return EcoreUtil.equals(modelElement, theClass)
         ]
         bundleServiceOverviewContext.makeDetailed(collapsedClassContextInBundle)
         
         val classContextInBundle = bundleServiceOverviewContext.detailedClassContexts.findFirst [
-            return modelElement.equals(theClass)
+            return EcoreUtil.equals(modelElement, theClass)
         ]
         
         // Add the connections for both views.
@@ -90,9 +92,8 @@ class RevealInjectedServiceInterfacesAction extends AbstractRevealServiceInterfa
             val implementedServiceInterfaceContext = serviceOverviewContext.detailedServiceInterfaceContexts.findFirst [
                 return modelElement === serviceInterface
             ]
-            ContextUtils.addInjectedServiceInterfaceEdgePlain(classContextPlain, implementedServiceInterfaceContext)
-            ContextUtils.addInjectedServiceInterfaceEdgeInBundle(classContextInBundle,
-                implementedServiceInterfaceContext)
+            classContextPlain.addInjectedServiceInterfaceEdgePlain(implementedServiceInterfaceContext)
+            classContextInBundle.addInjectedServiceInterfaceEdgeInBundle(implementedServiceInterfaceContext)
         ]
     }
     
@@ -113,7 +114,7 @@ class RevealInjectedServiceInterfacesAction extends AbstractRevealServiceInterfa
                 modelElement === serviceInterface
             ]
             // Add the edges for all injected interfaces.
-            ContextUtils.addInjectedServiceInterfaceEdgePlain(classContext, serviceInterfaceContext)
+            classContext.addInjectedServiceInterfaceEdgePlain(serviceInterfaceContext)
         ]
     }
     

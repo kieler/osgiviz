@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated OsgiViz -->
+      <package
+            uri="de.cau.cs.kieler.osgiviz.osgivizmodel"
+            class="de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage"
+            genModel="model/OsgiViz.xcore"/>
+   </extension>
+
+
+</plugin>

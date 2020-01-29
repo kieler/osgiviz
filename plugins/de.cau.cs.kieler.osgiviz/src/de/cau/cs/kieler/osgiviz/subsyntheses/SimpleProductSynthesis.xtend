@@ -22,7 +22,7 @@ import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiOptions.SimpleTextType
 import de.cau.cs.kieler.osgiviz.OsgiStyles
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
-import de.cau.cs.kieler.osgiviz.context.ProductContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ProductContext
 import org.eclipse.elk.core.options.CoreOptions
 
 import static de.cau.cs.kieler.osgiviz.OsgiOptions.*

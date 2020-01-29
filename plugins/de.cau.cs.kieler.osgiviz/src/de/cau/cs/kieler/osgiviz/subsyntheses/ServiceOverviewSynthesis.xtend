@@ -24,12 +24,13 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KRenderingExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiStyles
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
-import de.cau.cs.kieler.osgiviz.context.BundleContext
-import de.cau.cs.kieler.osgiviz.context.ClassContext
-import de.cau.cs.kieler.osgiviz.context.ReferencedInterfaceEdgeConnection
-import de.cau.cs.kieler.osgiviz.context.ServiceComponentContext
-import de.cau.cs.kieler.osgiviz.context.ServiceInterfaceContext
-import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ClassContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.Pair
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ReferencedInterfaceEdgeConnection
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceComponentContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceInterfaceContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext
 import java.util.EnumSet
 import java.util.List
 import org.eclipse.elk.core.math.ElkPadding
@@ -42,6 +43,7 @@ import static de.cau.cs.kieler.osgiviz.OsgiOptions.*
 
 import static extension de.cau.cs.kieler.klighd.syntheses.DiagramSyntheses.*
 import static extension de.cau.cs.kieler.osgiviz.SynthesisUtils.*
+import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
 
 /**
  * Transformation as an overview of all services in the given lists of service elements.

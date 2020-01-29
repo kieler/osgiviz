@@ -14,10 +14,10 @@
  */
 package de.cau.cs.kieler.osgiviz.actions
 
-import de.cau.cs.kieler.osgiviz.context.BundleContext
-import de.cau.cs.kieler.osgiviz.context.BundleOverviewContext
-import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
-import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext
 
 /**
  * Abstract action to reveal service interfaces connected to a service elements caused by an action on a service
@@ -35,12 +35,12 @@ abstract class AbstractRevealServiceInterfacesAction extends AbstractVisualizati
         val element = modelVisualizationContext.modelElement
         
         // The overview context this element is shown in.
-        val overviewContext = modelVisualizationContext.parentVisualizationContext as ServiceOverviewContext
+        val overviewContext = modelVisualizationContext.parent as ServiceOverviewContext
         
         // Handle this action differently, depending on in which overview context stack this is contained in.
-        val parent1 = overviewContext.parentVisualizationContext
-        val parent2 = parent1?.parentVisualizationContext
-        val parent3 = parent2?.parentVisualizationContext
+        val parent1 = overviewContext.parent
+        val parent2 = parent1?.parent
+        val parent3 = parent2?.parent
         switch parent1 {
             BundleContext: {
                 switch parent2 {

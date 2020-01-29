@@ -20,7 +20,7 @@ import de.cau.cs.kieler.klighd.kgraph.KNode
 import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiStyles
-import de.cau.cs.kieler.osgiviz.context.BundleCategoryContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryContext
 import org.eclipse.elk.core.options.CoreOptions
 
 import static extension de.cau.cs.kieler.klighd.syntheses.DiagramSyntheses.*

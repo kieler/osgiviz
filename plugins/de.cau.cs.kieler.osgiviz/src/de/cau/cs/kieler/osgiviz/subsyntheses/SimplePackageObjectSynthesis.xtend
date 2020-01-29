@@ -21,7 +21,7 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiStyles
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
-import de.cau.cs.kieler.osgiviz.context.PackageObjectContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.PackageObjectContext
 import org.eclipse.elk.core.options.CoreOptions
 
 import static extension de.cau.cs.kieler.klighd.syntheses.DiagramSyntheses.*

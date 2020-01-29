@@ -14,9 +14,9 @@
  */
 package de.cau.cs.kieler.osgiviz.actions
 
-import de.cau.cs.kieler.osgiviz.context.BundleContext
-import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
-import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext
 
 /**
  * Abstract action to reveal service components connected to a service element caused by an action on a service
@@ -30,10 +30,10 @@ abstract class AbstractRevealServiceComponentsAction extends AbstractVisualizati
     override <M> IVisualizationContext<?>
     changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
         // The overview context this element is shown in.
-        val overviewContext = modelVisualizationContext.parentVisualizationContext as ServiceOverviewContext
+        val overviewContext = modelVisualizationContext.parent as ServiceOverviewContext
         
         // Handle this action differently, depending on in which overview context stack this is contained in.
-        val parent1 = overviewContext.parentVisualizationContext
+        val parent1 = overviewContext.parent
         
         switch parent1 {
             BundleContext: {

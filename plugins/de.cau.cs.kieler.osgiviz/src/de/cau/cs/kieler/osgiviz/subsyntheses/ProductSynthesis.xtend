@@ -21,8 +21,8 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiStyles
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
-import de.cau.cs.kieler.osgiviz.context.ProductContext
-import de.cau.cs.kieler.osgiviz.context.ProductOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ProductContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ProductOverviewContext
 import de.scheidtbachmann.osgimodel.OsgiProject
 import de.scheidtbachmann.osgimodel.Product
 import java.util.EnumSet
@@ -77,7 +77,7 @@ class ProductSynthesis extends AbstractSubSynthesis<ProductContext, KNode> {
                 // Add the rendering.
                 val hasChildren = !children.empty
                 addProductRendering(product,
-                    pc.parentVisualizationContext instanceof ProductOverviewContext, hasChildren, usedContext)
+                    pc.parent instanceof ProductOverviewContext, hasChildren, usedContext)
             ]
         ]
     }

@@ -14,11 +14,12 @@
  */
 package de.cau.cs.kieler.osgiviz.actions
 
-import de.cau.cs.kieler.osgiviz.context.ContextUtils
-import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
-import de.cau.cs.kieler.osgiviz.context.ServiceInterfaceContext
-import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
-import de.cau.cs.kieler.osgiviz.modelExtension.ModelUtils
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceInterfaceContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext
+import de.scheidtbachmann.osgimodel.util.ModelUtils
+
+import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
 
 /**
  * Puts the service components referenced by this service interface next to this service interface and connects them 
@@ -42,7 +43,7 @@ class RevealReferencingServiceComponentsAction extends AbstractRevealServiceComp
         // The service components that are yet collapsed need to need to be expanded first.
         val filteredReferences = serviceInterface.referencedBy.filter [
             // Only the references whose containing component are in the overview.
-            serviceOverviewContext.modelElement.contains(ModelUtils.serviceComponentOf(it))
+            serviceOverviewContext.modelElements.contains(ModelUtils.serviceComponentOf(it))
         ]
         filteredReferences.forEach [ reference |
             val serviceComponent = ModelUtils.serviceComponentOf(reference)
@@ -55,8 +56,7 @@ class RevealReferencingServiceComponentsAction extends AbstractRevealServiceComp
             val referencingServiceComponentContext = serviceOverviewContext.detailedServiceComponentContexts.findFirst [
                 return it.modelElement === serviceComponent
             ]
-            ContextUtils.addReferencedServiceInterfaceEdgePlain(referencingServiceComponentContext,
-                serviceInterfaceContext, reference)
+            referencingServiceComponentContext.addReferencedServiceInterfaceEdgePlain(serviceInterfaceContext, reference)
         ]
         
         // ----- Put the service components and the bundles in the context for the IN_BUNDLES view. -----
@@ -88,8 +88,7 @@ class RevealReferencingServiceComponentsAction extends AbstractRevealServiceComp
             ]
             
             // Add the connection.
-            ContextUtils.addReferencedServiceInterfaceEdgeInBundle(serviceComponentContextInBundle,
-                serviceInterfaceContext, reference)
+            serviceComponentContextInBundle.addReferencedServiceInterfaceEdgeInBundle(serviceInterfaceContext, reference)
         ]
     }
     
@@ -114,8 +113,7 @@ class RevealReferencingServiceComponentsAction extends AbstractRevealServiceComp
             ]
             // If the context is null, the component is not defined by this bundle and should therefore not be shown.
             if (serviceComponentContext !== null) {
-                ContextUtils.addReferencedServiceInterfaceEdgePlain(serviceComponentContext, serviceInterfaceContext,
-                    reference)
+                serviceComponentContext.addReferencedServiceInterfaceEdgePlain(serviceInterfaceContext, reference)
             }
         ]
     }
@@ -125,7 +123,7 @@ class RevealReferencingServiceComponentsAction extends AbstractRevealServiceComp
 //        val serviceInterface = serviceInterfaceContext.modelElement
 //        val filteredReferences = serviceInterface.referencedBy.filter [
 //            // Only the references whose containing component are in the overview.
-//            serviceComponentOverviewContext.modelElement.contains(eContainer)
+//            serviceComponentOverviewContext.modelElements.contains(eContainer)
 //        ]
 //        
 //        filteredReferences.forEach [ reference |

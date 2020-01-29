@@ -23,10 +23,10 @@ import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiOptions
 import de.cau.cs.kieler.osgiviz.OsgiStyles
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
-import de.cau.cs.kieler.osgiviz.context.BundleContext
-import de.cau.cs.kieler.osgiviz.context.BundleOverviewContext
-import de.cau.cs.kieler.osgiviz.context.IOverviewVisualizationContext
-import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IOverviewVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext
 import de.scheidtbachmann.osgimodel.Bundle
 import de.scheidtbachmann.osgimodel.OsgiProject
 import java.util.EnumSet
@@ -60,11 +60,11 @@ class BundleSynthesis extends AbstractSubSynthesis<BundleContext, KNode> {
                 data += createKIdentifier => [ it.id = bc.hashCode.toString ]
                 
                 // Only show any connection ports if this bundle is shown in a bundle overview.
-                if (bc.parentVisualizationContext instanceof BundleOverviewContext) {
+                if (bc.parent instanceof BundleOverviewContext) {
                     // The ports that show the connection to the usedBy / required bundles with actions to add them to
                     // the view.
                     val filteredUsedByBundles = SynthesisUtils.filteredElements(bundle.usedByBundle,
-                        bc.parentVisualizationContext as IOverviewVisualizationContext<Bundle>, usedContext)
+                        bc.parent as IOverviewVisualizationContext<Bundle>, usedContext)
                     if (!filteredUsedByBundles.empty) {
                         ports += createPort(bc, "usedByBundles") => [
                             associateWith(bc)
@@ -78,7 +78,7 @@ class BundleSynthesis extends AbstractSubSynthesis<BundleContext, KNode> {
                         ]
                     }
                     val filteredRequiredBundles = SynthesisUtils.filteredElements(bundle.requiredBundles,
-                        bc.parentVisualizationContext as IOverviewVisualizationContext<Bundle>, usedContext)
+                        bc.parent as IOverviewVisualizationContext<Bundle>, usedContext)
                     if (!filteredRequiredBundles.empty) {
                         ports += createPort(bc, "requiredBundles") => [
                             associateWith(bc)
@@ -121,8 +121,8 @@ class BundleSynthesis extends AbstractSubSynthesis<BundleContext, KNode> {
                 
                 // Add the rendering.
                 val hasChildren = !children.empty
-                val boolean inOverview = bc.parentVisualizationContext instanceof BundleOverviewContext
-                                      || bc.parentVisualizationContext instanceof ServiceOverviewContext
+                val boolean inOverview = bc.parent instanceof BundleOverviewContext
+                                      || bc.parent instanceof ServiceOverviewContext
                 addBundleRendering(bundle, inOverview, hasChildren, usedContext)
             ]
         ]

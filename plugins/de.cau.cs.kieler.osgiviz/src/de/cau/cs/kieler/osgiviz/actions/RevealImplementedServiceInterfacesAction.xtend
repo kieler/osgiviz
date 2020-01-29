@@ -14,11 +14,12 @@
  */
 package de.cau.cs.kieler.osgiviz.actions
 
-import de.cau.cs.kieler.osgiviz.context.ContextUtils
-import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
-import de.cau.cs.kieler.osgiviz.context.ServiceComponentContext
-import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceComponentContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext
 import de.scheidtbachmann.osgimodel.ServiceComponent
+
+import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
 
 /**
  * Puts the service interfaces implemented by this service component next to this service component and connects them 
@@ -88,10 +89,8 @@ class RevealImplementedServiceInterfacesAction extends AbstractRevealServiceInte
             val implementedServiceInterfaceContext = serviceOverviewContext.detailedServiceInterfaceContexts.findFirst [
                 return modelElement === serviceInterface
             ]
-            ContextUtils.addImplementingServiceComponentEdgePlain(implementedServiceInterfaceContext,
-                serviceComponentContextPlain)
-            ContextUtils.addImplementingServiceComponentEdgeInBundle(implementedServiceInterfaceContext,
-                serviceComponentContextInBundle)
+            implementedServiceInterfaceContext.addImplementingServiceComponentEdgePlain(serviceComponentContextPlain)
+            implementedServiceInterfaceContext.addImplementingServiceComponentEdgeInBundle(serviceComponentContextInBundle)
         ]
     }
     
@@ -112,7 +111,7 @@ class RevealImplementedServiceInterfacesAction extends AbstractRevealServiceInte
                 modelElement === serviceInterface
             ]
             // Add the edges for all implemented interfaces.
-            ContextUtils.addImplementingServiceComponentEdgePlain(serviceInterfaceContext, serviceComponentContext)
+            serviceInterfaceContext.addImplementingServiceComponentEdgePlain(serviceComponentContext)
         ]
     }
     

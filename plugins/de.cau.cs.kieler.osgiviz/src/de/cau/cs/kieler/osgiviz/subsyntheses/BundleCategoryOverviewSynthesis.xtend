@@ -23,9 +23,10 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KRenderingExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiStyles
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
-import de.cau.cs.kieler.osgiviz.context.BundleCategoryContext
-import de.cau.cs.kieler.osgiviz.context.BundleCategoryOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryOverviewContext
 import java.util.EnumSet
+import java.util.List
 import org.eclipse.elk.core.math.ElkPadding
 import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.Direction
@@ -33,6 +34,7 @@ import org.eclipse.elk.core.options.SizeConstraint
 
 import static extension de.cau.cs.kieler.klighd.syntheses.DiagramSyntheses.*
 import static extension de.cau.cs.kieler.osgiviz.SynthesisUtils.*
+import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
 
 /**
  * Transformation as an overview of all bundle categories in the given list of bundle categories.
@@ -96,7 +98,7 @@ class BundleCategoryOverviewSynthesis extends AbstractSubSynthesis<BundleCategor
     private def KNode transformCollapsedBundleCategoriesOverview(
         BundleCategoryOverviewContext bundleCategoryOverviewContext) {
         val filteredCollapsedBundleCategoryContexts = SynthesisUtils.filteredElementContexts(
-            bundleCategoryOverviewContext.collapsedElements, usedContext)
+            bundleCategoryOverviewContext.collapsedElements as List<BundleCategoryContext>, usedContext)
         createNode => [
             associateWith(bundleCategoryOverviewContext)
             configureBoxLayout

@@ -14,11 +14,12 @@
  */
 package de.cau.cs.kieler.osgiviz.actions
 
-import de.cau.cs.kieler.osgiviz.context.BundleOverviewContext
-import de.cau.cs.kieler.osgiviz.context.ContextUtils
-import de.cau.cs.kieler.osgiviz.context.IOverviewVisualizationContext
-import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
-import de.cau.cs.kieler.osgiviz.context.PackageObjectContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IOverviewVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.PackageObjectContext
+
+import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
 
 /**
  * An action that removes an element's context from an {@link IOverviewVisualizationContext}.
@@ -34,7 +35,7 @@ class ContextRemoveAction extends AbstractVisualizationContextChangingAction {
     override <M> IVisualizationContext<?>
     changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
         // This action will always be performed on a child visualization context of a IOverviewVisualizationContext.
-        val overviewVisContext = modelVisualizationContext.parentVisualizationContext
+        val overviewVisContext = modelVisualizationContext.parent
         if (!(overviewVisContext instanceof IOverviewVisualizationContext)) {
             throw new IllegalStateException("This action is performed on an element that is not inside an overview " +
                 "visualization!")
@@ -50,7 +51,7 @@ class ContextRemoveAction extends AbstractVisualizationContextChangingAction {
                     + modelVisualizationContext.class + " from " + ovc.class + " yet.")
             }
         }
-        ContextUtils.removeEdges(ovc, modelVisualizationContext)
+        ovc.removeEdges(modelVisualizationContext)
         
         return null
     }

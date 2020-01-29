@@ -14,11 +14,12 @@
  */
 package de.cau.cs.kieler.osgiviz.actions
 
-import de.cau.cs.kieler.osgiviz.context.ContextUtils
-import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
-import de.cau.cs.kieler.osgiviz.context.ServiceComponentContext
-import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceComponentContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext
 import de.scheidtbachmann.osgimodel.ServiceComponent
+
+import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
 
 /**
  * Puts the service interfaces referenced by this service component next to this service component and connects them 
@@ -89,10 +90,8 @@ class RevealReferencedServiceInterfacesAction extends AbstractRevealServiceInter
             val referencedServiceInterfaceContext = serviceOverviewContext.detailedServiceInterfaceContexts.findFirst [
                 return modelElement === serviceInterface
             ]
-            ContextUtils.addReferencedServiceInterfaceEdgePlain(serviceComponentContextPlain,
-                referencedServiceInterfaceContext, reference)
-            ContextUtils.addReferencedServiceInterfaceEdgeInBundle(serviceComponentContextInBundle,
-                referencedServiceInterfaceContext, reference)
+            serviceComponentContextPlain.addReferencedServiceInterfaceEdgePlain(referencedServiceInterfaceContext, reference)
+            serviceComponentContextInBundle.addReferencedServiceInterfaceEdgeInBundle(referencedServiceInterfaceContext, reference)
         ]
     }
     
@@ -114,7 +113,7 @@ class RevealReferencedServiceInterfacesAction extends AbstractRevealServiceInter
                 modelElement === serviceInterface
             ]
             // Add the edges for all referenced interfaces.
-            ContextUtils.addReferencedServiceInterfaceEdgePlain(serviceComponentContext, serviceInterfaceContext,
+            serviceComponentContext.addReferencedServiceInterfaceEdgePlain(serviceInterfaceContext,
                 reference)
         ]
     }

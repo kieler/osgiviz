@@ -15,7 +15,7 @@
 package de.cau.cs.kieler.osgiviz
 
 import de.cau.cs.kieler.klighd.ViewContext
-import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
 import java.util.LinkedList
 import java.util.List
 import org.eclipse.elk.graph.properties.IProperty

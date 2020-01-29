@@ -23,9 +23,10 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KRenderingExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiStyles
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
-import de.cau.cs.kieler.osgiviz.context.PackageObjectContext
-import de.cau.cs.kieler.osgiviz.context.PackageObjectOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.PackageObjectContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.PackageObjectOverviewContext
 import java.util.EnumSet
+import java.util.List
 import org.eclipse.elk.core.math.ElkPadding
 import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.Direction
@@ -33,6 +34,7 @@ import org.eclipse.elk.core.options.SizeConstraint
 
 import static extension de.cau.cs.kieler.klighd.syntheses.DiagramSyntheses.*
 import static extension de.cau.cs.kieler.osgiviz.SynthesisUtils.*
+import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
 
 /**
  * Transformation as an overview of all package objects in the given list of package objects.
@@ -96,7 +98,7 @@ class PackageObjectOverviewSynthesis extends AbstractSubSynthesis<PackageObjectO
     private def KNode transformCollapsedPackageObjectsOverview(
         PackageObjectOverviewContext packageObjectOverviewContext) {
         val filteredCollapsedPackageObjectContexts = SynthesisUtils.filteredElementContexts(
-            packageObjectOverviewContext.collapsedElements, usedContext)
+            packageObjectOverviewContext.collapsedElements as List<PackageObjectContext>, usedContext)
         createNode => [
             associateWith(packageObjectOverviewContext)
             configureBoxLayout

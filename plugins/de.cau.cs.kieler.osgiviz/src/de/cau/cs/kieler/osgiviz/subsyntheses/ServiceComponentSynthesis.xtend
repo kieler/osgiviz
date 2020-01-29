@@ -21,8 +21,8 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KPortExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiStyles
-import de.cau.cs.kieler.osgiviz.context.ServiceComponentContext
-import de.cau.cs.kieler.osgiviz.context.ServiceOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceComponentContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext
 import de.scheidtbachmann.osgimodel.OsgiProject
 import de.scheidtbachmann.osgimodel.ServiceComponent
 import org.eclipse.elk.core.options.CoreOptions
@@ -105,7 +105,7 @@ class ServiceComponentSynthesis extends AbstractSubSynthesis<ServiceComponentCon
                 // Add the rendering.
                 val hasChildren = !children.empty
                 addServiceComponentRendering(serviceComponent,
-                    sc.parentVisualizationContext instanceof ServiceOverviewContext, hasChildren, usedContext)
+                    sc.parent instanceof ServiceOverviewContext, hasChildren, usedContext)
             ]
         ]
     }

@@ -21,8 +21,8 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiStyles
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
-import de.cau.cs.kieler.osgiviz.context.FeatureContext
-import de.cau.cs.kieler.osgiviz.context.FeatureOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.FeatureContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.FeatureOverviewContext
 import de.scheidtbachmann.osgimodel.Feature
 import de.scheidtbachmann.osgimodel.OsgiProject
 import java.util.EnumSet
@@ -65,7 +65,7 @@ class FeatureSynthesis extends AbstractSubSynthesis<FeatureContext, KNode> {
                 
                 // Add the rendering.
                 val hasChildren = !children.empty
-                addFeatureRendering(feature, fc.parentVisualizationContext instanceof FeatureOverviewContext,
+                addFeatureRendering(feature, fc.parent instanceof FeatureOverviewContext,
                     hasChildren, usedContext)
             ]
         ]

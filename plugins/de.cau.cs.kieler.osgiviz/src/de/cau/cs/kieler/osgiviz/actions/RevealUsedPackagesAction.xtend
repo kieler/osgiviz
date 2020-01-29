@@ -15,12 +15,11 @@
 package de.cau.cs.kieler.osgiviz.actions
 
 import com.google.common.collect.Iterables
-import de.cau.cs.kieler.osgiviz.context.BundleContext
-import de.cau.cs.kieler.osgiviz.context.BundleOverviewContext
-import de.cau.cs.kieler.osgiviz.context.ContextUtils
-import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
-import de.cau.cs.kieler.osgiviz.context.PackageObjectContext
-import de.cau.cs.kieler.osgiviz.context.ProductContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.ProductContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.util.OsgivizmodelUtil
 import de.scheidtbachmann.osgimodel.Bundle
 import de.scheidtbachmann.osgimodel.OsgiProject
 import de.scheidtbachmann.osgimodel.PackageObject
@@ -29,6 +28,8 @@ import java.util.ArrayList
 import java.util.HashMap
 import java.util.List
 import java.util.Map
+
+import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
 
 /**
  * Expands the bundles providing packages used by any bundle with and edge from the new bundle to this bundle's
@@ -52,7 +53,7 @@ class RevealUsedPackagesAction extends AbstractVisualizationContextChangingActio
         val bundle = bundleContext.modelElement
         
         // The bundle overview context this bundle is shown in.
-        val bundleOverviewContext = bundleContext.parentVisualizationContext as BundleOverviewContext
+        val bundleOverviewContext = bundleContext.parent as BundleOverviewContext
         
         // The bundle contexts of all bundles inside this bundle overview, mapped by the bundle.
         val Map<Bundle, BundleContext> bundleContexts = new HashMap
@@ -64,12 +65,12 @@ class RevealUsedPackagesAction extends AbstractVisualizationContextChangingActio
         // Find out which bundle provides this package in which product.
         val osgiModel = actionContext.viewContext.inputModel as OsgiProject
         
-        val overviewParentContext = bundleOverviewContext.parentVisualizationContext
+        val overviewParentContext = bundleOverviewContext.parent
         
         // Only show the connections for the product in the context, if there is any.
         var productParent = overviewParentContext
         while (productParent !== null && !(productParent instanceof ProductContext)) {
-            productParent = productParent.parentVisualizationContext
+            productParent = productParent.parent
         }
         
         val List<Product> products = if (productParent instanceof ProductContext) {
@@ -149,11 +150,11 @@ class RevealUsedPackagesAction extends AbstractVisualizationContextChangingActio
         // Put the new connections in the overview context.
         providedPackagesForBundleForProduct.forEach [ product, usedPackagesByBundle |
             usedPackagesByBundle.forEach [ usedPackageBundleContext, usedPackages |
-                ContextUtils.addUsedPackagesEdge(bundleContext, usedPackages, product, usedPackageBundleContext)
+                bundleContext.addUsedPackagesEdge(usedPackages, product, usedPackageBundleContext)
             ]
         ]
         providedPackagesForBundleNoProduct.forEach [ usedPackageBundleContext, usedPackages |
-            ContextUtils.addUsedPackagesEdge(bundleContext, usedPackages, null, usedPackageBundleContext)
+            bundleContext.addUsedPackagesEdge(usedPackages, null, usedPackageBundleContext)
         ]
         bundleContext.allUsedPackagesShown = true
         
@@ -163,10 +164,10 @@ class RevealUsedPackagesAction extends AbstractVisualizationContextChangingActio
                 modelElement === package
             ]
             if (packageContext === null) {
-                packageContext = new PackageObjectContext(package, bundleOverviewContext)
+                packageContext = OsgivizmodelUtil.createPackageObjectContext(package, bundleOverviewContext)
                 bundleOverviewContext.usedPackageContexts.add(packageContext)
             }
-            ContextUtils.addUsedPackageEdge(bundleContext, packageContext)
+            bundleContext.addUsedPackageEdge(packageContext)
         ]
         
         return null

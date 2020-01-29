@@ -14,10 +14,11 @@
  */
 package de.cau.cs.kieler.osgiviz.actions
 
-import de.cau.cs.kieler.osgiviz.context.BundleContext
-import de.cau.cs.kieler.osgiviz.context.BundleOverviewContext
-import de.cau.cs.kieler.osgiviz.context.ContextUtils
-import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleOverviewContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
+
+import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
 
 /**
  * Expands the bundles used by any bundle and connects the bundles with an edge from the new bundle's
@@ -42,7 +43,7 @@ class RevealUsedByBundlesAction extends AbstractVisualizationContextChangingActi
         val bundle = bundleContext.modelElement
         
         // The bundle overview context this bundle is shown in.
-        val bundleOverviewContext = bundleContext.parentVisualizationContext as BundleOverviewContext
+        val bundleOverviewContext = bundleContext.parent as BundleOverviewContext
         
         // The used by bundles that are currently not yet in their detailed view need to be put in that state first.
         val collapsedUsedByBundleContexts = bundleOverviewContext.collapsedElements.filter [
@@ -66,7 +67,7 @@ class RevealUsedByBundlesAction extends AbstractVisualizationContextChangingActi
 //            ]
 //        } else {
             usedByBundleContexts.forEach [ usedByBundleContext |
-                ContextUtils.addRequiredBundleEdge(usedByBundleContext as BundleContext, bundleContext)
+                (usedByBundleContext as BundleContext).addRequiredBundleEdge(bundleContext)
             ]
 //        }
         return null

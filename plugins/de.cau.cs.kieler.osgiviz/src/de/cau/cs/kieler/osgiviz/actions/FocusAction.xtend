@@ -14,7 +14,7 @@
  */
 package de.cau.cs.kieler.osgiviz.actions
 
-import de.cau.cs.kieler.osgiviz.context.IVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
 
 /**
  * Focuses the element this action is issued on and replaces the view model with the focused element.

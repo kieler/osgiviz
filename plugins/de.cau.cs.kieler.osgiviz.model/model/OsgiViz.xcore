@@ -1,0 +1,663 @@
+/*
+ * OsgiViz - Kieler Visualization for Projects using the OSGi Technology
+ * 
+ * A part of OpenKieler
+ * https://github.com/OpenKieler
+ * 
+ * Copyright 2020 by
+ * + Christian-Albrechts-University of Kiel
+ *   + Department of Computer Science
+ *     + Real-Time and Embedded Systems Group
+ * 
+ * This code is provided under the terms of the Eclipse Public License (EPL).
+ * See the file epl-v10.html for the license text.
+ */
+@GenModel(modelDirectory="de.cau.cs.kieler.osgiviz.model/src")
+
+package de.cau.cs.kieler.osgiviz.osgivizmodel
+
+import de.scheidtbachmann.osgimodel.Bundle
+import de.scheidtbachmann.osgimodel.BundleCategory
+import de.scheidtbachmann.osgimodel.Feature
+import de.scheidtbachmann.osgimodel.OsgiProject
+import de.scheidtbachmann.osgimodel.PackageObject
+import de.scheidtbachmann.osgimodel.Product
+import de.scheidtbachmann.osgimodel.Reference
+import de.scheidtbachmann.osgimodel.ServiceComponent
+import de.scheidtbachmann.osgimodel.ServiceInterface
+import org.eclipse.emf.ecore.EEList
+
+
+///////////////////////////////////////////////////////////////////////////////////////
+// ------------------------------- Generic Interfaces -------------------------------//
+///////////////////////////////////////////////////////////////////////////////////////
+
+/*
+ * Interface for visualization contexts of the OSGi model synthesis. Each context may contain child contexts, where each
+ * context will give the synthesis additional information in which state parts of the model should be generated in.
+ * 
+ * @param <M> The model element class this visualization context is for.
+ * 
+ * @author nre
+ */
+interface IVisualizationContext<M> {
+    
+    /*
+     * All contexts that need to be into the view model as children.
+     */
+    contains IVisualizationContext<?>[] childContexts opposite parent
+    
+    /*
+     * The model element to get the data from for this context.
+     */
+    refers M modelElement
+    
+    /*
+     * The parent visualization context containing this context.
+     */
+    container IVisualizationContext<?> parent opposite childContexts
+    
+}
+
+/*
+ * Interface for a visualization context for overviews that simply shows a list of elements in collapsed or detailed
+ * fashion individually.
+ * 
+ * @param <M> The model element class of the child contexts of this context.
+ * 
+ * @author nre
+ */
+interface IOverviewVisualizationContext<M> extends IVisualizationContext<EEList<M>> {
+    
+    /*
+     * Indicates whether the overview should be shown plain or expanded with its contents shown.
+     */
+    boolean expanded = "false"
+    
+}
+
+///////////////////////////////////////////////////////////////////////////////////////
+// ------------------------------- Helper Data Classes ------------------------------//
+///////////////////////////////////////////////////////////////////////////////////////
+
+/*
+ * Represents java class files in an OSGi context and their relationship to injected services.
+ */
+class Class {
+    
+    /*
+     * The bundle containing this class.
+     */
+    refers Bundle bundle
+    
+    /*
+     * The file path to this class. 
+     */
+    String classPath
+    
+    /*
+     * All service interfaces injected by this class.
+     */
+    refers ServiceInterface[] injectedInterfaces
+    
+}
+
+class Pair<K,V> {
+    refers K key
+    refers V value
+}
+
+///////////////////////////////////////////////////////////////////////////////////////
+// ------------------------------- Context Classes ----------------------------------//
+///////////////////////////////////////////////////////////////////////////////////////
+
+/*
+ * Context for the OSGi synthesis that contains information about {@link Product}s.
+ * 
+ * @author nre
+ */
+class ProductContext extends IVisualizationContext<Product> {
+    
+    /*
+     * The context for the feature overview shown in detailed products.
+     */
+    refers FeatureOverviewContext featureOverviewContext
+    
+    /*
+     * The context for the bundle overview shown in detailed products.
+     */
+    refers BundleOverviewContext bundleOverviewContext
+    
+    /*
+     * The context for the service component overview shown in detailed products.
+     */
+    refers ServiceOverviewContext serviceOverviewContext
+    
+}
+
+/*
+ * Context for the OSGi synthesis that contains information about {@link Feature}s.
+ * 
+ * @author nre
+ */
+class FeatureContext extends IVisualizationContext<Feature> {
+    
+    /*
+     * The context for the bundle overview shown in detailed features.
+     */
+    refers BundleOverviewContext bundleOverviewContext
+    
+}
+
+/*
+ * Context for the OSGi synthesis that contains information about {@link Bundle}s.
+ * 
+ * @author nre
+ */
+class BundleContext extends IVisualizationContext<Bundle> {
+    
+    /**
+     * All classes with injections contained in this bundle.
+     */
+    contains Class[] classesWithInjections
+    
+    /*
+     * Indicates if all required bundles and their connections are shown in this parent's context.
+     */
+    boolean allRequiredBundlesShown
+    
+    /*
+     * Indicates if all bundles that require this bundle and their connections are shown in this parent's context.
+     */
+    boolean allRequiringBundlesShown
+    
+    /*
+     * Indicated if all used packages resp. the bundles providing the packages and their connections are shown in this
+     * parent's context.
+     */
+    boolean allUsedPackagesShown
+    
+    /*
+     * The context for the service overview shown in detailed bundles.
+     */
+    refers ServiceOverviewContext serviceOverviewContext
+    
+}
+
+/*
+ * Context for the OSGi synthesis that contains information about {@link BundleCategory}s.
+ * 
+ * @author nre
+ */
+class BundleCategoryContext extends IVisualizationContext<BundleCategory> {
+    
+    /*
+     * The context for the bundle overview shown in detailed bundle categories.
+     */
+    refers BundleOverviewContext bundleOverviewContext
+    
+}
+
+/*
+ * Context for the OSGi synthesis that contains information about {@link Class}es.
+ * 
+ * @author nre
+ */
+class ClassContext extends IVisualizationContext<Class> {
+    
+    /*
+     * Indicates whether all injected interfaces are shown and connected to this.
+     * This is for the plain variant for the {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option.
+     */
+    boolean allInjectedInterfacesShownPlain
+    
+    /*
+     * Indicates whether all injected interfaces are shown and connected to this.
+     * This is for the inBundles variant for the {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option.
+     */
+    boolean allInjectedInterfacesShownInBundles
+    
+}
+
+/*
+ * Context for the OSGi synthesis that contains information about {@link ServiceComponent}s.
+ * 
+ * @author nre
+ */
+class ServiceComponentContext extends IVisualizationContext<ServiceComponent> {
+    
+    /*
+     * Indicates whether all service interfaces implemented by this service component are shown and connected to this.
+     * This is for the plain variant for the {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option.
+     */
+    boolean allImplementedInterfacesShownPlain
+    
+    /*
+     * Indicates whether all service interfaces implemented by this service component are shown and connected to this.
+     * This is for the inBundles variant for the {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option.
+     */
+    boolean allImplementedInterfacesShownInBundles
+    
+    /*
+     * Indicates whether all service interfaces referenced by this service component are shown and connected to this.
+     * This is for the plain variant for the {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option.
+     */
+    boolean allReferencedInterfacesShownPlain
+    
+    /*
+     * Indicates whether all service interfaces referenced by this service component are shown and connected to this.
+     * This is for the inBundles variant for the {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option.
+     */
+    boolean allReferencedInterfacesShownInBundles
+    
+}
+
+/*
+ * Context for the OSGi synthesis that contains information about {@link ServiceInterface}s.
+ * 
+ * @author nre
+ */
+class ServiceInterfaceContext extends IVisualizationContext<ServiceInterface> {
+    
+    /*
+     * Indicates whether all service components implementing this service interface are shown and connected to this.
+     * This is for the plain variant for the {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option.
+     */
+    boolean allImplementingComponentsShownPlain
+    
+    /*
+     * Indicates whether all service components implementing this service interface are shown and connected to this.
+     * This is for the inBundles variant for the {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option.
+     */
+    boolean allImplementingComponentsShownInBundles
+    
+    /*
+     * Indicates whether all service components referencing this service interface are shown and connected to this.
+     * This is for the plain variant for the {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option.
+     */
+    boolean allReferencingComponentsShownPlain
+    
+    /*
+     * Indicates whether all service components referencing this service interface are shown and connected to this.
+     * This is for the inBundles variant for the {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option.
+     */
+    boolean allReferencingComponentsShownInBundles
+    
+}
+
+/*
+ * Context for the OSGi synthesis that contains information about {@link PackageObject}s.
+ * 
+ * @author nre
+ */
+class PackageObjectContext extends IVisualizationContext<PackageObject> {
+    
+}
+
+/*
+ * Helper data class that contains information about edges that should be visualized for used package associations.
+ * This class contains the source bundle, the packages IDs used displayed by the edge, the product they are used in, and
+ * the target bundle exporting the package.
+ * 
+ * @author nre
+ */
+class UsedPackagesOfBundleEdgeConnection {
+    
+    /*
+     * The bundle context of the source bundle the edge should connect to.
+     */
+    refers BundleContext sourceBundleContext
+    
+    /*
+     * The packages provided by the target bundle in this context.
+     */
+    refers PackageObject[] usedPackages
+    
+    /*
+     * The product in that this connection is used. May be null if this connection is used in no product.
+     */
+    refers Product product
+    
+    /*
+     * The target bundle context the edge should connect to. It is the bundle exporting the packages in this product context.
+     */
+    refers BundleContext targetBundleContext
+    
+}
+
+///////////////////////////////////////////////////////////////////////////////////////
+// ---------------------------- Overview Context Classes ----------------------------//
+///////////////////////////////////////////////////////////////////////////////////////
+
+/*
+ * Context for the OSGi synthesis that contains information about {@link Product} overviews.
+ * 
+ * @author nre
+ */
+class ProductOverviewContext extends IOverviewVisualizationContext<Product> {
+    
+    /*
+     * All products that should be drawn in their detailed form.
+     */
+    refers ProductContext[] detailedProductContexts
+    
+    /*
+     * All products that should be drawn in their collapsed, non-detailed form.
+     */
+    refers ProductContext[] collapsedProductContexts
+    
+    /*
+     * The products shown in this overview.
+     */
+    refers Product[] products
+    
+}
+
+/*
+ * Context for the OSGi synthesis that contains information about {@link Feature} overviews.
+ * 
+ * @author nre
+ */
+class FeatureOverviewContext extends IOverviewVisualizationContext<Feature> {
+    
+    /*
+     * The feature contexts for all features in their collapsed form.
+     */
+    refers FeatureContext[] collapsedFeatureContexts
+    
+    /*
+     * The feature contexts for all features in their detailed form.
+     */
+    refers FeatureContext[] detailedFeatureContexts
+    
+    /*
+     * The features displayed in this context.
+     */
+    refers Feature[] features
+    
+}
+
+/*
+ * Context for the OSGi synthesis that contains information about {@link Bundle} overviews.
+ * 
+ * @author nre
+ */
+class BundleOverviewContext extends IOverviewVisualizationContext<Bundle> {
+    
+    /*
+     * All connections for the required bundles hierarchy that should be drawn.
+     * The pairs should be viewed that the first bundle requires the second.
+     */
+    contains Pair<BundleContext, BundleContext>[] requiredBundleEdges
+    
+    /*
+     * All connections for the required packages with resolved bundles that should be drawn.
+     */
+    contains UsedPackagesOfBundleEdgeConnection[] usedPackagesOfBundleEdges
+    
+    /*
+     * All connections for the required packages without known source bundles that should be drawn.
+     */
+    contains Pair<BundleContext, PackageObjectContext>[] usedPackageEdges
+    
+    /*
+     * The bundle contexts for all bundles in their collapsed form.
+     */
+    refers BundleContext[] collapsedBundleContexts
+    
+    /*
+     * The bundle contexts for all bundles in their detailed form.
+     */
+    refers BundleContext[] detailedBundleContexts
+    
+    /*
+     * All used packages not contained within another internal bundle where the providing bundle is unknown.
+     */
+    refers PackageObjectContext[] usedPackageContexts
+    
+    /*
+     * The bundles displayed in this context.
+     */
+    refers Bundle[] bundles
+    
+}
+
+class BundleCategoryOverviewContext extends IOverviewVisualizationContext<BundleCategory> {
+    
+    /*
+     * The bundle category contexts for all bundle categories in their collapsed form.
+     */
+    refers BundleCategoryContext[] collapsedBundleCategoryContexts
+    
+    /*
+     * The bundle category contexts for all bundle categories in their detailed form.
+     */
+    refers BundleCategoryContext[] detailedBundleCategoryContexts
+    
+    /*
+     * The bundle categories displayed in this context.
+     */
+    refers BundleCategory[] bundleCategories
+    
+}
+
+/*
+ * Helper data class that contains information about edges that should be visualized for referenced interface
+ * associations. This class contains the source component context, the target interface context and the
+ * {@link Reference} data.
+ * 
+ * @author nre
+ */
+class ReferencedInterfaceEdgeConnection {
+    
+    /*
+     * The service component context of the target service component the edge should connect to.
+     */
+    refers ServiceComponentContext serviceComponentContext
+    
+    /*
+     * The service interface context of the source service interface the edge should connect to.
+     */
+    refers ServiceInterfaceContext serviceInterfaceContext
+    
+    /*
+     * The reference containing more data about this edge.
+     */
+    refers Reference reference
+    
+}
+
+/*
+ * Context for the OSGi synthesis that contains information about service overviews.
+ * Can contain all {@link ServiceInterface}s, {@link ServiceComponent}s and {@link Class}es with
+ * {@link EclipseInjection}s.
+ * 
+ * @author nre
+ */
+class ServiceOverviewContext extends IOverviewVisualizationContext<Object> {
+    
+    /*
+     * The service component contexts for all service components in their collapsed form.
+     */
+    refers ServiceComponentContext[] collapsedServiceComponentContexts
+    
+    /*
+     * The service component contexts for all service components in their detailed form.
+     */
+    refers ServiceComponentContext[] detailedServiceComponentContexts
+    
+    /*
+     * The service interface contexts for all service interfaces in their collapsed form.
+     */
+    refers ServiceInterfaceContext[] collapsedServiceInterfaceContexts
+    
+    /*
+     * The service interface contexts for all service interfaces in their detailed form.
+     */
+    refers ServiceInterfaceContext[] detailedServiceInterfaceContexts
+    
+    /*
+     * The class contexts for all classes with eclipse injections in their collapsed form.
+     */
+    refers ClassContext[] collapsedClassContexts
+    
+    /**
+     * The classes generated for and owned by this service overview.
+     */
+    contains Class[] classes
+    
+    /*
+     * The class contexts for all classes with eclipse injections in their detailed form.
+     */
+    refers ClassContext[] detailedClassContexts
+    
+    /*
+     * All bundles defining the components and injections of this overview, if in bundle connections are allowed, in 
+     * their collapsed form.
+     */
+    refers BundleContext[] collapsedReferencedBundleContexts
+    
+    /*
+     * All bundles defining the components and injections of this overview, if in bundle connections are allowed, in 
+     * their detailed form.
+     */
+    refers BundleContext[] detailedReferencedBundleContexts
+    
+    /*
+     * All connections for the implemented service interfaces that should be drawn in the plain variant of the
+     * {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option or also in any other variant, 
+     * if in bundle connections are not allowed.
+     * The pairs should be viewed that the first component implements the second interface.
+     */
+    refers Pair<ServiceComponentContext, ServiceInterfaceContext>[] implementedInterfaceEdgesPlain
+    
+    /*
+     * All connections for the implemented service interfaces that should be drawn in the inBundles variant of the
+     * {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option if in bundle connections are
+     * allowed.
+     * The pairs should be viewed that the first component implements the second interface.
+     */
+    refers Pair<ServiceComponentContext, ServiceInterfaceContext>[] implementedInterfaceEdgesInBundles
+    
+    /*
+     * All connections for the referenced service interfaces that should be drawn in the plain variant of the
+     * {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option or also in any other variant, 
+     * if in bundle connections are not allowed.
+     */
+    refers ReferencedInterfaceEdgeConnection[] referencedInterfaceEdgesPlain
+    
+    /*
+     * All connections for the referenced service interface that should be drawn in the inBundles variant of the
+     * {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option if in bundle connections
+     * are allowed.
+     */
+    refers ReferencedInterfaceEdgeConnection[] referencedInterfaceEdgesInBundles
+    
+    /*
+     * All connections for the injected service interfaces that should be drawn in the plain variant of the
+     * {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option if in bundle connections are
+     * not allowed.
+     * The pairs should be viewed that the first injection context is used to inject the second interface.
+     */
+    refers Pair<ClassContext, ServiceInterfaceContext>[] injectedInterfaceEdgesPlain
+    
+    /*
+     * All connections for the injected service interfaces that should be drawn in the inBundles variant of the
+     * {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option if in bundle connections
+     * are allowed.
+     * The pairs should be viewed that the first class context is used to inject the second interface.
+     */
+    refers Pair<ClassContext, ServiceInterfaceContext>[] injectedInterfaceEdgesInBundles
+    
+    /*
+     * The service components displayed in this context.
+     */
+    refers ServiceComponent[] serviceComponents
+    
+    /*
+     * The service interfaces displayed in this context.
+     */
+    refers ServiceInterface[] serviceInterfaces
+    
+    /*
+     * The classes using eclipse injections displayed in this context.
+     */
+    refers Class[] classesWithInjections
+    
+    /*
+     * Flag to indicate whether this service overview should allow its elements to be shown in the bundles which define
+     * the components and injections. If true, this overview can be toggled to show the elements directly flat or in
+     * their bundles with the {@link ToggleServiceConnectionVisualization}.
+     */
+    boolean allowInBundleConnections
+    
+}
+
+/*
+ * Context for the OSGi synthesis that contains information about {@link PackageObject} overviews.
+ * 
+ * @author nre
+ */
+class PackageObjectOverviewContext extends IOverviewVisualizationContext<PackageObject> {
+    
+    /*
+     * The package object contexts for all package objects in their collapsed form.
+     */
+    refers PackageObjectContext[] collapsedPackageObjectContexts
+    
+    /*
+     * The package object contexts for all package objects in their detailed form.
+     */
+    refers PackageObjectContext[] detailedPackageObjectContexts
+    
+    /*
+     * The package objects displayed in this context.
+     */
+    refers PackageObject[] packageObjects
+    
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////
+// ------------------------- The Main Visualization Class ---------------------------//
+///////////////////////////////////////////////////////////////////////////////////////
+
+
+/*
+ * Context for the OSGi synthesis that contains information about the root project overview.
+ * 
+ * @author nre
+ */
+class OsgiViz extends IVisualizationContext<OsgiProject> {
+    
+    /*
+     * The context for the bundle overview.
+     */
+    refers BundleOverviewContext bundleOverviewContext
+    
+    /*
+     * The context for the product overview.
+     */
+    refers ProductOverviewContext productOverviewContext
+    
+    /*
+     * The context for the service overview.
+     */
+    refers ServiceOverviewContext serviceOverviewContext
+    
+    /*
+     * The context for the feature overview.
+     */
+    refers FeatureOverviewContext featureOverviewContext
+    
+    /*
+     * The context for the imported package overview.
+     */
+    refers PackageObjectOverviewContext importedPackageOverviewContext
+    
+    /*
+     * The context for the bundle category overview.
+     */
+    refers BundleCategoryOverviewContext bundleCategoryOverviewContext
+    
+}

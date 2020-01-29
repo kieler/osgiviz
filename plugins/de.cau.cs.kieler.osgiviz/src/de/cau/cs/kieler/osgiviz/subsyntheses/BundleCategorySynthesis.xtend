@@ -21,7 +21,7 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiStyles
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
-import de.cau.cs.kieler.osgiviz.context.BundleCategoryContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryContext
 import de.scheidtbachmann.osgimodel.BundleCategory
 import de.scheidtbachmann.osgimodel.OsgiProject
 import java.util.EnumSet
