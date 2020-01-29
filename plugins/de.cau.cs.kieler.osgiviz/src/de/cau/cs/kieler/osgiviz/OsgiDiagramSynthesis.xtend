@@ -44,8 +44,6 @@ import java.util.LinkedHashSet
 import org.eclipse.elk.alg.layered.options.CrossingMinimizationStrategy
 import org.eclipse.elk.alg.layered.options.LayeredMetaDataProvider
 import org.eclipse.elk.alg.layered.options.LayeredOptions
-import org.eclipse.elk.core.options.BoxLayouterOptions
-import org.eclipse.elk.core.util.BoxLayoutProvider.PackingMode
 
 import static de.cau.cs.kieler.osgiviz.OsgiOptions.*
 
@@ -148,8 +146,7 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
             modelNode.children += createNode => [
                 associateWith(model)
                 data += createKIdentifier => [ it.id = visContext.hashCode.toString ]
-                SynthesisUtils.configureBoxLayout(it)
-                setLayoutOption(BoxLayouterOptions.BOX_PACKING_MODE, PackingMode.GROUP_MIXED)
+                SynthesisUtils.configureRectPackingLayout(it)
                 addProjectRendering
                 
                 val overviewProductNodes = productOverviewSynthesis.transform(visContext.productOverviewContext)
@@ -157,6 +154,10 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
                 
                 val overviewFeatureNodes = featureOverviewSynthesis.transform(visContext.featureOverviewContext)
                 children += overviewFeatureNodes
+                
+                val overviewBundleCategoryNodes = bundleCategoryOverviewSynthesis.transform(
+                    visContext.bundleCategoryOverviewContext)
+                children += overviewBundleCategoryNodes
                 
                 val overviewBundleNodes = bundleOverviewSynthesis.transform(visContext.bundleOverviewContext)
                 children += overviewBundleNodes
@@ -167,10 +168,6 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
 //                val overviewImportedPackagesNodes = packageObjectOverviewSynthesis.transform(
 //                    visContext.importedPackageOverviewContext)
 //                children += overviewImportedPackagesNodes
-                
-                val overviewBundleCategoryNodes = bundleCategoryOverviewSynthesis.transform(
-                    visContext.bundleCategoryOverviewContext)
-                children += overviewBundleCategoryNodes
             ]
             
             return modelNode

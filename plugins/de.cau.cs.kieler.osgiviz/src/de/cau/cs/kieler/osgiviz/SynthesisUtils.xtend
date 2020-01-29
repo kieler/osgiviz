@@ -31,6 +31,7 @@ import de.scheidtbachmann.osgimodel.Product
 import de.scheidtbachmann.osgimodel.ServiceComponent
 import de.scheidtbachmann.osgimodel.ServiceInterface
 import java.util.List
+import org.eclipse.elk.alg.packing.rectangles.options.RectPackingOptions
 import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.Direction
 import org.eclipse.elk.core.options.EdgeRouting
@@ -238,6 +239,15 @@ final class SynthesisUtils {
         node => [
             DiagramSyntheses.setLayoutOption(node, CoreOptions::ALGORITHM, "org.eclipse.elk.box")
 //            setLayoutOption(CoreOptions::EXPAND_NODES, true)
+        ]
+    }
+    
+    /**
+     * Configures the layout of any overview node. Configures the rect packing layout algorithm of elk.
+     */
+    def static void configureRectPackingLayout(KNode node) {
+        node => [
+            DiagramSyntheses.setLayoutOption(node, CoreOptions::ALGORITHM, RectPackingOptions::ALGORITHM_ID)
         ]
     }
     
