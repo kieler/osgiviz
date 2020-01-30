@@ -164,7 +164,10 @@ class OsgiStyles {
                 invisible = true
                 addRectangle => [
                     invisible = true
-                    addSimpleLabel(headlineText)
+                    addSimpleLabel(headlineText) => [
+                        fontBold = true
+                        selectionFontBold = true
+                    ]
                 ]
                 if (interactiveButtons) {
                     addVerticalLine
@@ -429,7 +432,10 @@ class OsgiStyles {
             setGridPlacement(1)
             addRectangle => [
                 invisible = true
-                addSimpleLabel("Overview")
+                addSimpleLabel("Overview") => [
+                    fontBold = true
+                    selectionFontBold = true
+                ]
             ]
             addHorizontalSeperatorLine(1, 0)
             addChildArea
@@ -504,7 +510,10 @@ class OsgiStyles {
                 invisible = true
                 addRectangle => [
                     invisible = true
-                    addSimpleLabel(p.descriptiveName)
+                    addSimpleLabel(p.descriptiveName) => [
+                        fontBold = true
+                        selectionFontBold = true
+                    ]
                 ]
                 if (interactiveButtons) {
                     addVerticalLine
@@ -525,14 +534,17 @@ class OsgiStyles {
                 ]
             ]
             if (context.getOptionValue(FILTER_DESCRIPTIONS) as Boolean) {
-                addRectangle => [
-                    invisible = true
-                    addSimpleLabel("Description: " + SynthesisUtils.descriptionLabel(p.about, context)) => [
-                        tooltip = p.about
-                        addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
-                            ModifierState.NOT_PRESSED)
+                val desc = SynthesisUtils.descriptionLabel(p.about, context)
+                if (!desc.empty) {
+                    addRectangle => [
+                        invisible = true
+                        addSimpleLabel("Description: " + desc) => [
+                            tooltip = p.about
+                            addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
+                                ModifierState.NOT_PRESSED)
+                        ]
                     ]
-                ]
+                }
             }
             if (hasChildren) {
                 addHorizontalSeperatorLine(1, 0)
@@ -624,7 +636,10 @@ class OsgiStyles {
                     if (f.descriptiveName !== null) {
                         name += f.descriptiveName
                     }
-                    addSimpleLabel(name)
+                    addSimpleLabel(name) => [
+                        fontBold = true
+                        selectionFontBold = true
+                    ]
                 ]
                 if (interactiveButtons) {
                     addVerticalLine
@@ -645,14 +660,17 @@ class OsgiStyles {
                 ]
             ]
             if (context.getOptionValue(FILTER_DESCRIPTIONS) as Boolean) {
-                addRectangle => [
-                    invisible = true
-                    addSimpleLabel("Description: " + SynthesisUtils.descriptionLabel(f.about, context)) => [
-                        tooltip = f.about
-                        addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
-                            ModifierState.NOT_PRESSED)
+                val desc = SynthesisUtils.descriptionLabel(f.about, context)
+                if (!desc.empty) {
+                    addRectangle => [
+                        invisible = true
+                        addSimpleLabel("Description: " + desc) => [
+                            tooltip = f.about
+                            addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
+                                ModifierState.NOT_PRESSED)
+                        ]
                     ]
-                ]
+                }
             }
             if (hasChildren) {
                 addHorizontalSeperatorLine(1, 0)
@@ -744,7 +762,10 @@ class OsgiStyles {
                     if (b.descriptiveName !== null) {
                         name += b.descriptiveName
                     }
-                    addSimpleLabel(name)
+                    addSimpleLabel(name) => [
+                        fontBold = true
+                        selectionFontBold = true
+                    ]
                 ]
                 if (interactiveButtons) {
                     addVerticalLine
@@ -765,14 +786,17 @@ class OsgiStyles {
                 ]
             ]
             if (context.getOptionValue(FILTER_DESCRIPTIONS) as Boolean) {
-                addRectangle => [
-                    invisible = true
-                    addSimpleLabel("Description: " + SynthesisUtils.descriptionLabel(b.about, context)) => [
-                        tooltip = b.about
-                        addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
-                            ModifierState.NOT_PRESSED)
+                val desc = SynthesisUtils.descriptionLabel(b.about, context)
+                if (!desc.empty) {
+                    addRectangle => [
+                        invisible = true
+                        addSimpleLabel("Description: " + desc) => [
+                            tooltip = b.about
+                            addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
+                                ModifierState.NOT_PRESSED)
+                        ]
                     ]
-                ]
+                }
             }
             if (hasChildren) {
                 addHorizontalSeperatorLine(1, 0)
@@ -879,6 +903,8 @@ class OsgiStyles {
                         tooltip = po.uniqueId
                         addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
                             ModifierState.NOT_PRESSED)
+                        fontBold = true
+                        selectionFontBold = true
                     ]
                 ]
                 if (interactiveButtons) {
@@ -1038,6 +1064,8 @@ class OsgiStyles {
                         tooltip = si.name
                         addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
                             ModifierState.NOT_PRESSED)
+                        fontBold = true
+                        selectionFontBold = true
                     ]
                 ]
                 if (interactiveButtons) {
@@ -1051,14 +1079,17 @@ class OsgiStyles {
             ]
             if (context.getOptionValue(FILTER_DESCRIPTIONS) as Boolean) {
                 addHorizontalSeperatorLine(1, 0)
-                addRectangle => [
-                    invisible = true
-                    addSimpleLabel("Description: " + SynthesisUtils.descriptionLabel(si.about, context)) => [
-                        tooltip = si.about
-                        addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
-                            ModifierState.NOT_PRESSED)
+                val desc = SynthesisUtils.descriptionLabel(si.about, context)
+                if (!desc.empty) {
+                    addRectangle => [
+                        invisible = true
+                        addSimpleLabel("Description: " + desc) => [
+                            tooltip = si.about
+                            addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
+                                ModifierState.NOT_PRESSED)
+                        ]
                     ]
-                ]
+                }
             }
             if (hasChildren) {
                 addHorizontalSeperatorLine(1, 0)
@@ -1181,6 +1212,8 @@ class OsgiStyles {
                         tooltip = sc.name
                         addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
                             ModifierState.NOT_PRESSED)
+                        fontBold = true
+                        selectionFontBold = true
                     ]
                 ]
                 if (interactiveButtons) {
@@ -1194,14 +1227,17 @@ class OsgiStyles {
             ]
             if (context.getOptionValue(FILTER_DESCRIPTIONS) as Boolean) {
                 addHorizontalSeperatorLine(1, 0)
-                addRectangle => [
-                    invisible = true
-                    addSimpleLabel("Description: " + SynthesisUtils.descriptionLabel(sc.about, context)) => [
-                        tooltip = sc.about
-                        addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
-                            ModifierState.NOT_PRESSED)
+                val desc = SynthesisUtils.descriptionLabel(sc.about, context)
+                if (!desc.empty) {
+                    addRectangle => [
+                        invisible = true
+                        addSimpleLabel("Description: " + desc) => [
+                            tooltip = sc.about
+                            addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
+                                ModifierState.NOT_PRESSED)
+                        ]
                     ]
-                ]
+                }
             }
             if (hasChildren) {
                 addHorizontalSeperatorLine(1, 0)
@@ -1346,6 +1382,8 @@ class OsgiStyles {
                         tooltip = c.classPath
                         addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
                             ModifierState.NOT_PRESSED)
+                        fontBold = true
+                        selectionFontBold = true
                     ]
                 ]
                 if (interactiveButtons) {
@@ -1443,6 +1481,8 @@ class OsgiStyles {
                     addSimpleLabel(bc.categoryName) => [
                         addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
                             ModifierState.NOT_PRESSED)
+                        fontBold = true
+                        selectionFontBold = true
                     ]
                 ]
                 if (interactiveButtons) {
