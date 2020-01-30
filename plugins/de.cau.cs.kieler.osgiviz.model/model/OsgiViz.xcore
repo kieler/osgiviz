@@ -439,6 +439,16 @@ class BundleCategoryOverviewContext extends IOverviewVisualizationContext<Bundle
      */
     refers BundleCategory[] bundleCategories
     
+    /*
+     * A bundle category separate from the osgi model that contains all bundles not categorized.
+     */
+    contains BundleCategory uncategorized
+    
+    /*
+     * indicates if the 'uncategorized' bundle category is detailed or not.
+     */
+    boolean detailedUncategorized = "false"
+    
 }
 
 /*

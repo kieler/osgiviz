@@ -252,12 +252,13 @@ final class OsgivizmodelUtil {
      * Creates an initialized bundle category overview context.
      * 
      * @param bundleCategories The bundle categories this visualization is for.
+     * @param bundles All bundles that are relevant in this context.
      * @param parent The visualization context this element should be added to.
      * @return The initialized visualization context.
      */
     static def BundleCategoryOverviewContext createBundleCategoryOverviewContext(List<BundleCategory> bundleCategories,
-        IVisualizationContext<?> parent) {
-        return FACTORY.createBundleCategoryOverviewContext.initialize(bundleCategories, parent)
+        List<Bundle> bundles, IVisualizationContext<?> parent) {
+        return FACTORY.createBundleCategoryOverviewContext.initialize(bundleCategories, bundles, parent)
     }
     
     /**

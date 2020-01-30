@@ -38,6 +38,7 @@ import de.scheidtbachmann.osgimodel.Bundle
 import de.scheidtbachmann.osgimodel.BundleCategory
 import de.scheidtbachmann.osgimodel.Feature
 import de.scheidtbachmann.osgimodel.OsgiProject
+import de.scheidtbachmann.osgimodel.OsgimodelFactory
 import de.scheidtbachmann.osgimodel.PackageObject
 import de.scheidtbachmann.osgimodel.Product
 import de.scheidtbachmann.osgimodel.Reference
@@ -253,13 +254,26 @@ class ContextExtensions {
      * not support individual class constructors with parameters in the generated factory.
      */
     def static BundleCategoryOverviewContext initialize(BundleCategoryOverviewContext overviewContext,
-        List<BundleCategory> bundleCategories, IVisualizationContext<?> parent) {
+        List<BundleCategory> bundleCategories, List<Bundle> bundles, IVisualizationContext<?> parent) {
         if (overviewContext.bundleCategories.empty) {
             overviewContext.bundleCategories += bundleCategories
         } else {
             throw new RuntimeException(ALREADY_INITIALIZED_ERROR_MSG)
         }
         overviewContext.parent = parent
+        
+        // Put all uncategorized bundles in a 'uncategorized' bundle category.
+        
+        val uncategorizedBC = OsgimodelFactory.eINSTANCE.createBundleCategory
+        uncategorizedBC.categoryName = "Uncategorized"
+        bundles.filter [
+            return it.bundleCategory.empty
+        ].forEach [
+            uncategorizedBC.bundle.add(it)
+        ]
+        
+        overviewContext.uncategorized = uncategorizedBC
+        
         overviewContext.initializeChildVisualizationContexts
         
         return overviewContext
@@ -439,6 +453,8 @@ class ContextExtensions {
             overviewContext.collapsedBundleCategoryContexts += OsgivizmodelUtil.createBundleCategoryContext(it,
                 overviewContext)
         ]
+        overviewContext.collapsedBundleCategoryContexts += OsgivizmodelUtil.createBundleCategoryContext(
+            overviewContext.uncategorized, overviewContext)
     }
     
     /**
@@ -511,7 +527,7 @@ class ContextExtensions {
         viz.importedPackageOverviewContext = OsgivizmodelUtil.createPackageObjectOverviewContext(
             viz.modelElement.importedPackages, viz)
         viz.bundleCategoryOverviewContext = OsgivizmodelUtil.createBundleCategoryOverviewContext(
-            viz.modelElement.bundleCategories, viz)
+            viz.modelElement.bundleCategories, viz.modelElement.bundles, viz)
     }
     
     /**
