@@ -146,9 +146,11 @@ class OsgiStyles {
      * @param node The KNode to add the rendering to.
      * @param headlineText The headline presenting this overview.
      * @param tooltipText What should be shown in a tooltip when hovering this overview.
+     * @param isConnectable if the overview rendering contains connectable elements
      * @param context The used ViewContext.
      */
-    def void addOverviewRendering(KNode node, String headlineText, String tooltipText, ViewContext context) {
+    def void addOverviewRendering(KNode node, String headlineText, String tooltipText, boolean isConnectable,
+        ViewContext context) {
         // Expanded
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
             setAsExpandedView
@@ -158,7 +160,10 @@ class OsgiStyles {
                 var columns = 1
                 val interactiveButtons = context.getOptionValue(INTERACTIVE_BUTTONS) as Boolean
                 if (interactiveButtons) {
-                    columns += 5
+                    columns += 4
+                    if (isConnectable) {
+                        columns += 1
+                    }
                 } 
                 setGridPlacement(columns)
                 invisible = true
@@ -173,7 +178,9 @@ class OsgiStyles {
                     addVerticalLine
                     addFocusButton(context)
                     addExpandAllButton(context)
-                    addConnectAllButton(context)
+                    if (isConnectable) {
+                        addConnectAllButton(context)
+                    }
                     addOverviewContextCollapseExpandButton(false, context)
                 }
             ]
