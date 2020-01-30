@@ -41,6 +41,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryOverviewContextImpl#getCollapsedBundleCategoryContexts <em>Collapsed Bundle Category Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryOverviewContextImpl#getDetailedBundleCategoryContexts <em>Detailed Bundle Category Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryOverviewContextImpl#getBundleCategories <em>Bundle Categories</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryOverviewContextImpl#getUncategorized <em>Uncategorized</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryOverviewContextImpl#isDetailedUncategorized <em>Detailed Uncategorized</em>}</li>
  * </ul>
  *
  * @generated
@@ -115,6 +117,36 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * @ordered
 	 */
 	protected EList<BundleCategory> bundleCategories;
+
+	/**
+	 * The cached value of the '{@link #getUncategorized() <em>Uncategorized</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUncategorized()
+	 * @generated
+	 * @ordered
+	 */
+	protected BundleCategory uncategorized;
+
+	/**
+	 * The default value of the '{@link #isDetailedUncategorized() <em>Detailed Uncategorized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDetailedUncategorized()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DETAILED_UNCATEGORIZED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isDetailedUncategorized() <em>Detailed Uncategorized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDetailedUncategorized()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean detailedUncategorized = DETAILED_UNCATEGORIZED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -309,6 +341,74 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public BundleCategory getUncategorized() {
+		return uncategorized;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetUncategorized(BundleCategory newUncategorized, NotificationChain msgs) {
+		BundleCategory oldUncategorized = uncategorized;
+		uncategorized = newUncategorized;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__UNCATEGORIZED, oldUncategorized, newUncategorized);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setUncategorized(BundleCategory newUncategorized) {
+		if (newUncategorized != uncategorized) {
+			NotificationChain msgs = null;
+			if (uncategorized != null)
+				msgs = ((InternalEObject)uncategorized).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__UNCATEGORIZED, null, msgs);
+			if (newUncategorized != null)
+				msgs = ((InternalEObject)newUncategorized).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__UNCATEGORIZED, null, msgs);
+			msgs = basicSetUncategorized(newUncategorized, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__UNCATEGORIZED, newUncategorized, newUncategorized));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isDetailedUncategorized() {
+		return detailedUncategorized;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDetailedUncategorized(boolean newDetailedUncategorized) {
+		boolean oldDetailedUncategorized = detailedUncategorized;
+		detailedUncategorized = newDetailedUncategorized;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__DETAILED_UNCATEGORIZED, oldDetailedUncategorized, detailedUncategorized));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -335,6 +435,8 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 				return ((InternalEList<?>)getChildContexts()).basicRemove(otherEnd, msgs);
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__PARENT:
 				return basicSetParent(null, msgs);
+			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__UNCATEGORIZED:
+				return basicSetUncategorized(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -377,6 +479,10 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 				return getDetailedBundleCategoryContexts();
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__BUNDLE_CATEGORIES:
 				return getBundleCategories();
+			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__UNCATEGORIZED:
+				return getUncategorized();
+			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__DETAILED_UNCATEGORIZED:
+				return isDetailedUncategorized();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -415,6 +521,12 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 				getBundleCategories().clear();
 				getBundleCategories().addAll((Collection<? extends BundleCategory>)newValue);
 				return;
+			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__UNCATEGORIZED:
+				setUncategorized((BundleCategory)newValue);
+				return;
+			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__DETAILED_UNCATEGORIZED:
+				setDetailedUncategorized((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -448,6 +560,12 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__BUNDLE_CATEGORIES:
 				getBundleCategories().clear();
 				return;
+			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__UNCATEGORIZED:
+				setUncategorized((BundleCategory)null);
+				return;
+			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__DETAILED_UNCATEGORIZED:
+				setDetailedUncategorized(DETAILED_UNCATEGORIZED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -474,6 +592,10 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 				return detailedBundleCategoryContexts != null && !detailedBundleCategoryContexts.isEmpty();
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__BUNDLE_CATEGORIES:
 				return bundleCategories != null && !bundleCategories.isEmpty();
+			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__UNCATEGORIZED:
+				return uncategorized != null;
+			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__DETAILED_UNCATEGORIZED:
+				return detailedUncategorized != DETAILED_UNCATEGORIZED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -490,6 +612,8 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (expanded: ");
 		result.append(expanded);
+		result.append(", detailedUncategorized: ");
+		result.append(detailedUncategorized);
 		result.append(')');
 		return result.toString();
 	}

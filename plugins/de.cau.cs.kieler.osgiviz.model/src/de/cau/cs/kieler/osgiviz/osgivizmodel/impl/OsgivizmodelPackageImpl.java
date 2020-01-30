@@ -920,6 +920,26 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * @generated
 	 */
 	@Override
+	public EReference getBundleCategoryOverviewContext_Uncategorized() {
+		return (EReference)bundleCategoryOverviewContextEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBundleCategoryOverviewContext_DetailedUncategorized() {
+		return (EAttribute)bundleCategoryOverviewContextEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getReferencedInterfaceEdgeConnection() {
 		return referencedInterfaceEdgeConnectionEClass;
 	}
@@ -1375,6 +1395,8 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 		createEReference(bundleCategoryOverviewContextEClass, BUNDLE_CATEGORY_OVERVIEW_CONTEXT__COLLAPSED_BUNDLE_CATEGORY_CONTEXTS);
 		createEReference(bundleCategoryOverviewContextEClass, BUNDLE_CATEGORY_OVERVIEW_CONTEXT__DETAILED_BUNDLE_CATEGORY_CONTEXTS);
 		createEReference(bundleCategoryOverviewContextEClass, BUNDLE_CATEGORY_OVERVIEW_CONTEXT__BUNDLE_CATEGORIES);
+		createEReference(bundleCategoryOverviewContextEClass, BUNDLE_CATEGORY_OVERVIEW_CONTEXT__UNCATEGORIZED);
+		createEAttribute(bundleCategoryOverviewContextEClass, BUNDLE_CATEGORY_OVERVIEW_CONTEXT__DETAILED_UNCATEGORIZED);
 
 		referencedInterfaceEdgeConnectionEClass = createEClass(REFERENCED_INTERFACE_EDGE_CONNECTION);
 		createEReference(referencedInterfaceEdgeConnectionEClass, REFERENCED_INTERFACE_EDGE_CONNECTION__SERVICE_COMPONENT_CONTEXT);
@@ -1621,6 +1643,8 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 		initEReference(getBundleCategoryOverviewContext_CollapsedBundleCategoryContexts(), this.getBundleCategoryContext(), null, "collapsedBundleCategoryContexts", null, 0, -1, BundleCategoryOverviewContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBundleCategoryOverviewContext_DetailedBundleCategoryContexts(), this.getBundleCategoryContext(), null, "detailedBundleCategoryContexts", null, 0, -1, BundleCategoryOverviewContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBundleCategoryOverviewContext_BundleCategories(), theOsgimodelPackage.getBundleCategory(), null, "bundleCategories", null, 0, -1, BundleCategoryOverviewContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBundleCategoryOverviewContext_Uncategorized(), theOsgimodelPackage.getBundleCategory(), null, "uncategorized", null, 0, 1, BundleCategoryOverviewContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBundleCategoryOverviewContext_DetailedUncategorized(), theEcorePackage.getEBoolean(), "detailedUncategorized", "false", 0, 1, BundleCategoryOverviewContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(referencedInterfaceEdgeConnectionEClass, ReferencedInterfaceEdgeConnection.class, "ReferencedInterfaceEdgeConnection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getReferencedInterfaceEdgeConnection_ServiceComponentContext(), this.getServiceComponentContext(), null, "serviceComponentContext", null, 0, 1, ReferencedInterfaceEdgeConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

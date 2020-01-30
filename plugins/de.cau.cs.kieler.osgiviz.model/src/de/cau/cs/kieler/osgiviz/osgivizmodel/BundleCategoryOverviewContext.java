@@ -18,6 +18,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryOverviewContext#getCollapsedBundleCategoryContexts <em>Collapsed Bundle Category Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryOverviewContext#getDetailedBundleCategoryContexts <em>Detailed Bundle Category Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryOverviewContext#getBundleCategories <em>Bundle Categories</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryOverviewContext#getUncategorized <em>Uncategorized</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryOverviewContext#isDetailedUncategorized <em>Detailed Uncategorized</em>}</li>
  * </ul>
  *
  * @see de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage#getBundleCategoryOverviewContext()
@@ -69,5 +71,56 @@ public interface BundleCategoryOverviewContext extends IOverviewVisualizationCon
 	 * @generated
 	 */
 	EList<BundleCategory> getBundleCategories();
+
+	/**
+	 * Returns the value of the '<em><b>Uncategorized</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A bundle category separate from the osgi model that contains all bundles not categorized.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Uncategorized</em>' containment reference.
+	 * @see #setUncategorized(BundleCategory)
+	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage#getBundleCategoryOverviewContext_Uncategorized()
+	 * @model containment="true"
+	 * @generated
+	 */
+	BundleCategory getUncategorized();
+
+	/**
+	 * Sets the value of the '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryOverviewContext#getUncategorized <em>Uncategorized</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Uncategorized</em>' containment reference.
+	 * @see #getUncategorized()
+	 * @generated
+	 */
+	void setUncategorized(BundleCategory value);
+
+	/**
+	 * Returns the value of the '<em><b>Detailed Uncategorized</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * indicates if the 'uncategorized' bundle category is detailed or not.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Detailed Uncategorized</em>' attribute.
+	 * @see #setDetailedUncategorized(boolean)
+	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage#getBundleCategoryOverviewContext_DetailedUncategorized()
+	 * @model default="false" unique="false"
+	 * @generated
+	 */
+	boolean isDetailedUncategorized();
+
+	/**
+	 * Sets the value of the '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryOverviewContext#isDetailedUncategorized <em>Detailed Uncategorized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Detailed Uncategorized</em>' attribute.
+	 * @see #isDetailedUncategorized()
+	 * @generated
+	 */
+	void setDetailedUncategorized(boolean value);
 
 } // BundleCategoryOverviewContext

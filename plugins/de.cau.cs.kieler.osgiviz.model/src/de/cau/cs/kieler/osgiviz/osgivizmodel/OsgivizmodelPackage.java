@@ -1357,13 +1357,31 @@ public interface OsgivizmodelPackage extends EPackage {
 	int BUNDLE_CATEGORY_OVERVIEW_CONTEXT__BUNDLE_CATEGORIES = IOVERVIEW_VISUALIZATION_CONTEXT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Uncategorized</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUNDLE_CATEGORY_OVERVIEW_CONTEXT__UNCATEGORIZED = IOVERVIEW_VISUALIZATION_CONTEXT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Detailed Uncategorized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUNDLE_CATEGORY_OVERVIEW_CONTEXT__DETAILED_UNCATEGORIZED = IOVERVIEW_VISUALIZATION_CONTEXT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Bundle Category Overview Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUNDLE_CATEGORY_OVERVIEW_CONTEXT_FEATURE_COUNT = IOVERVIEW_VISUALIZATION_CONTEXT_FEATURE_COUNT + 3;
+	int BUNDLE_CATEGORY_OVERVIEW_CONTEXT_FEATURE_COUNT = IOVERVIEW_VISUALIZATION_CONTEXT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Bundle Category Overview Context</em>' class.
@@ -2574,6 +2592,28 @@ public interface OsgivizmodelPackage extends EPackage {
 	EReference getBundleCategoryOverviewContext_BundleCategories();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryOverviewContext#getUncategorized <em>Uncategorized</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Uncategorized</em>'.
+	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryOverviewContext#getUncategorized()
+	 * @see #getBundleCategoryOverviewContext()
+	 * @generated
+	 */
+	EReference getBundleCategoryOverviewContext_Uncategorized();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryOverviewContext#isDetailedUncategorized <em>Detailed Uncategorized</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Detailed Uncategorized</em>'.
+	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryOverviewContext#isDetailedUncategorized()
+	 * @see #getBundleCategoryOverviewContext()
+	 * @generated
+	 */
+	EAttribute getBundleCategoryOverviewContext_DetailedUncategorized();
+
+	/**
 	 * Returns the meta object for class '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.ReferencedInterfaceEdgeConnection <em>Referenced Interface Edge Connection</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3538,6 +3578,22 @@ public interface OsgivizmodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference BUNDLE_CATEGORY_OVERVIEW_CONTEXT__BUNDLE_CATEGORIES = eINSTANCE.getBundleCategoryOverviewContext_BundleCategories();
+
+		/**
+		 * The meta object literal for the '<em><b>Uncategorized</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BUNDLE_CATEGORY_OVERVIEW_CONTEXT__UNCATEGORIZED = eINSTANCE.getBundleCategoryOverviewContext_Uncategorized();
+
+		/**
+		 * The meta object literal for the '<em><b>Detailed Uncategorized</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUNDLE_CATEGORY_OVERVIEW_CONTEXT__DETAILED_UNCATEGORIZED = eINSTANCE.getBundleCategoryOverviewContext_DetailedUncategorized();
 
 		/**
 		 * The meta object literal for the '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ReferencedInterfaceEdgeConnectionImpl <em>Referenced Interface Edge Connection</em>}' class.
