@@ -46,7 +46,11 @@ class SimpleBundleCategorySynthesis extends AbstractSubSynthesis<BundleCategoryC
             bcc.createNode() => [
                 associateWith(bcc)
                 data += createKIdentifier => [ it.id = bcc.hashCode.toString ]
-                val label = bundleCategory.categoryName
+                val label = if (bundleCategory !== null) {
+                    bundleCategory.categoryName
+                } else {
+                    "Uncategorized"
+                }
                 setLayoutOption(CoreOptions::PRIORITY, priority)
                 addBundleCategoryInOverviewRendering(bundleCategory, label, usedContext)
             ]

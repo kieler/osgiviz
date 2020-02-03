@@ -106,7 +106,11 @@ class BundleCategoryOverviewSynthesis extends AbstractSubSynthesis<BundleCategor
             tooltip = bundleCategoryOverviewContext.overviewText
             
             filteredCollapsedBundleCategoryContexts.sortBy [
-                modelElement.categoryName
+                if (modelElement !== null) {
+                    modelElement.categoryName
+                } else {
+                    "Uncategorized"
+                }
             ].forEach [ collapsedBundleCategoryContext, index |
                 children += simpleBundleCategorySynthesis.transform(
                     collapsedBundleCategoryContext as BundleCategoryContext, -index)

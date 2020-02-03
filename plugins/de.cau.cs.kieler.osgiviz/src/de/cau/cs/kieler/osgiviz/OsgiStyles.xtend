@@ -1455,7 +1455,11 @@ class OsgiStyles {
             addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
                 ModifierState.NOT_PRESSED)
             setShadow(SHADOW_COLOR.color, 4, 4)
-            tooltip = bc.categoryName
+            tooltip = if (bc !== null) {
+                bc.categoryName
+            } else {
+                "Uncategorized"
+            }
             setSelectionStyle
         ]
     }
@@ -1485,7 +1489,12 @@ class OsgiStyles {
                 invisible = true
                 addRectangle => [
                     invisible = true
-                    addSimpleLabel(bc.categoryName) => [
+                    val label = if (bc !== null) {
+                        bc.categoryName
+                    } else {
+                        "Uncategorized"
+                    }
+                    addSimpleLabel(label) => [
                         addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
                             ModifierState.NOT_PRESSED)
                         fontBold = true

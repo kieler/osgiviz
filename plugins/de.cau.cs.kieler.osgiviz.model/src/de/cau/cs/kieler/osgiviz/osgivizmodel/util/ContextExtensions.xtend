@@ -74,6 +74,7 @@ class ContextExtensions {
         connection.sourceBundleContext = sourceBundleContext
         connection.product = product
         connection.targetBundleContext = targetBundleContext
+        
         return connection
     }
     
@@ -262,19 +263,24 @@ class ContextExtensions {
         }
         overviewContext.parent = parent
         
-        // Put all uncategorized bundles in a 'uncategorized' bundle category.
+        // Put all uncategorized bundles in a list.
         
-        val uncategorizedBC = OsgimodelFactory.eINSTANCE.createBundleCategory
-        uncategorizedBC.categoryName = "Uncategorized"
+        val uncategorizedBs = newArrayList
         bundles.filter [
             return it.bundleCategory.empty
         ].forEach [
-            uncategorizedBC.bundle.add(it)
+            uncategorizedBs.add(it)
         ]
         
-        overviewContext.uncategorized = uncategorizedBC
+        // Create and initialize a bundle category for the uncategorized bundles.
+        
+        val uncategorizedBCC = OsgivizmodelUtil.createBundleCategoryContext(null, overviewContext)
+        uncategorizedBCC.bundleOverviewContext = OsgivizmodelUtil.createBundleOverviewContext(uncategorizedBs,
+            uncategorizedBCC)
+        uncategorizedBCC.childrenInitialized = true
         
         overviewContext.initializeChildVisualizationContexts
+        overviewContext.collapsedBundleCategoryContexts += uncategorizedBCC
         
         return overviewContext
     }
@@ -346,6 +352,7 @@ class ContextExtensions {
         
         productContext.serviceOverviewContext = OsgivizmodelUtil.createServiceOverviewContext(allServiceComponents,
             allServiceInterfaces, allClasses, productContext, true)
+        productContext.childrenInitialized = true
     }
     
     /**
@@ -354,6 +361,7 @@ class ContextExtensions {
     def static dispatch void initializeChildVisualizationContexts(FeatureContext featureContext) {
         featureContext.bundleOverviewContext = OsgivizmodelUtil.createBundleOverviewContext
             (featureContext.modelElement.bundles, featureContext)
+        featureContext.childrenInitialized = true
     }
     
     /**
@@ -380,6 +388,7 @@ class ContextExtensions {
                 bundleContext.serviceOverviewContext.expanded = true
             }
         }
+        bundleContext.childrenInitialized = true
     }
     
     /**
@@ -388,6 +397,7 @@ class ContextExtensions {
     def static dispatch void initializeChildVisualizationContexts(BundleCategoryContext bundleCategoryContext) {
         bundleCategoryContext.bundleOverviewContext = OsgivizmodelUtil.createBundleOverviewContext(
             bundleCategoryContext.modelElement.bundle, bundleCategoryContext)
+        bundleCategoryContext.childrenInitialized = true
     }
     
     /**
@@ -395,6 +405,7 @@ class ContextExtensions {
      */
     def static dispatch void initializeChildVisualizationContexts(ServiceInterfaceContext serviceInterfaceContext) {
         // Nothing to do yet.
+        serviceInterfaceContext.childrenInitialized = true
     }
     
     /**
@@ -402,6 +413,7 @@ class ContextExtensions {
      */
     def static dispatch void initializeChildVisualizationContexts(ServiceComponentContext serviceComponentContext) {
         // Nothing to do yet.
+        serviceComponentContext.childrenInitialized = true
     }
     
     /**
@@ -409,6 +421,7 @@ class ContextExtensions {
      */
     def static dispatch void initializeChildVisualizationContexts(ClassContext classContext) {
         // Nothing to do yet.
+        classContext.childrenInitialized = true
     }
     
     /**
@@ -416,6 +429,7 @@ class ContextExtensions {
      */
     def static dispatch void initializeChildVisualizationContexts(PackageObjectContext packageObjectContext) {
         // Nothing to do yet.
+        packageObjectContext.childrenInitialized = true
     }
     
     /**
@@ -425,6 +439,7 @@ class ContextExtensions {
         overviewContext.products.forEach [
             overviewContext.collapsedProductContexts += OsgivizmodelUtil.createProductContext(it, overviewContext)
         ]
+        overviewContext.childrenInitialized = true
     }
     
     /**
@@ -434,6 +449,7 @@ class ContextExtensions {
         overviewContext.features.forEach [
             overviewContext.collapsedFeatureContexts += OsgivizmodelUtil.createFeatureContext(it, overviewContext)
         ]
+        overviewContext.childrenInitialized = true
     }
     
     /**
@@ -443,6 +459,7 @@ class ContextExtensions {
         overviewContext.bundles.forEach [
             overviewContext.collapsedBundleContexts += OsgivizmodelUtil.createBundleContext(it, overviewContext)
         ]
+        overviewContext.childrenInitialized = true
     }
     
     /**
@@ -453,8 +470,7 @@ class ContextExtensions {
             overviewContext.collapsedBundleCategoryContexts += OsgivizmodelUtil.createBundleCategoryContext(it,
                 overviewContext)
         ]
-        overviewContext.collapsedBundleCategoryContexts += OsgivizmodelUtil.createBundleCategoryContext(
-            overviewContext.uncategorized, overviewContext)
+        overviewContext.childrenInitialized = true
     }
     
     /**
@@ -499,6 +515,7 @@ class ContextExtensions {
                 }
             ]
         }
+        overviewContext.childrenInitialized = true
     }
     
     /**
@@ -509,6 +526,7 @@ class ContextExtensions {
             overviewContext.collapsedPackageObjectContexts += OsgivizmodelUtil.createPackageObjectContext(it,
                 overviewContext)
         ]
+        overviewContext.childrenInitialized = true
     }
     
     /**
@@ -528,6 +546,7 @@ class ContextExtensions {
             viz.modelElement.importedPackages, viz)
         viz.bundleCategoryOverviewContext = OsgivizmodelUtil.createBundleCategoryOverviewContext(
             viz.modelElement.bundleCategories, viz.modelElement.bundles, viz)
+        viz.childrenInitialized = true
     }
     
     /**
@@ -1257,18 +1276,34 @@ class ContextExtensions {
      * @return If the context comes from the project.
      */
     def static boolean isRootModel(IVisualizationContext<?> context, OsgiProject project) {
-        var IVisualizationContext<?> currentContext = context
-        while(currentContext.parent !== null) {
-            currentContext = currentContext.parent
-        }
+        val root = rootVisualization(context)
         
-        if (currentContext instanceof OsgiViz) {
-            return currentContext.modelElement === project
+        if (root instanceof OsgiViz) {
+            return root.modelElement === project
         } else {
             // If the parent hierarchy on the context does end in an OsgiViz, it was lost in some focus
             // action. But that also indicates that the root model has not changed and this context has to come from
             // that.
             return true
+        }
+    }
+    
+    /**
+     * Returns the root context of the given visualization context.
+     * 
+     * @param context The visualization context to find the root for.
+     * @return The root OsgiViz, or {@code null} if the root is not of that type.
+     */
+    def static OsgiViz rootVisualization(IVisualizationContext<?> context) {
+        var IVisualizationContext<?> currentContext = context
+        while (currentContext.parent !== null) {
+            currentContext = currentContext.parent
+        }
+        
+        if (currentContext instanceof OsgiViz) {
+            return currentContext
+        } else {
+            return null
         }
     }
     
@@ -1295,9 +1330,9 @@ class ContextExtensions {
         // the detailed elements list are always of the same type. If they are not, the collapsed/detailed state
         // here would not make any sense.
         (overview.detailedElements as List<IVisualizationContext<?>>).add(collapsedContext)
-        // TODO: check if this really should be called every time or if we should remember if the child contexts have
-        // been initialized earlier already.
-        collapsedContext.initializeChildVisualizationContexts
+        if (!collapsedContext.childrenInitialized) {
+            collapsedContext.initializeChildVisualizationContexts
+        }
     }
     def static dispatch makeDetailed(ServiceOverviewContext overview, IVisualizationContext<?> collapsedContext) {
         if (collapsedContext === null) {

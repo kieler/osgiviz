@@ -57,6 +57,11 @@ interface IVisualizationContext<M> {
      */
     container IVisualizationContext<?> parent opposite childContexts
     
+    /**
+     * Indicating if the child contexts of this context have been initialized correctly.
+     */
+    boolean childrenInitialized
+    
 }
 
 /*
@@ -442,7 +447,7 @@ class BundleCategoryOverviewContext extends IOverviewVisualizationContext<Bundle
     /*
      * A bundle category separate from the osgi model that contains all bundles not categorized.
      */
-    contains BundleCategory uncategorized
+    contains BundleCategoryContext uncategorized
     
     /*
      * indicates if the 'uncategorized' bundle category is detailed or not.
