@@ -43,6 +43,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ServiceOverviewContextImpl#getChildContexts <em>Child Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ServiceOverviewContextImpl#getModelElement <em>Model Element</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ServiceOverviewContextImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ServiceOverviewContextImpl#isChildrenInitialized <em>Children Initialized</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ServiceOverviewContextImpl#isExpanded <em>Expanded</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ServiceOverviewContextImpl#getCollapsedServiceComponentContexts <em>Collapsed Service Component Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ServiceOverviewContextImpl#getDetailedServiceComponentContexts <em>Detailed Service Component Contexts</em>}</li>
@@ -87,6 +88,26 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * @ordered
 	 */
 	protected EList<Object> modelElement;
+
+	/**
+	 * The default value of the '{@link #isChildrenInitialized() <em>Children Initialized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChildrenInitialized()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CHILDREN_INITIALIZED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isChildrenInitialized() <em>Children Initialized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChildrenInitialized()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean childrenInitialized = CHILDREN_INITIALIZED_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isExpanded() <em>Expanded</em>}' attribute.
@@ -440,6 +461,29 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * @generated
 	 */
 	@Override
+	public boolean isChildrenInitialized() {
+		return childrenInitialized;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setChildrenInitialized(boolean newChildrenInitialized) {
+		boolean oldChildrenInitialized = childrenInitialized;
+		childrenInitialized = newChildrenInitialized;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED, oldChildrenInitialized, childrenInitialized));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean isExpanded() {
 		return expanded;
 	}
@@ -781,6 +825,8 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__PARENT:
 				if (resolve) return getParent();
 				return basicGetParent();
+			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED:
+				return isChildrenInitialized();
 			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__EXPANDED:
 				return isExpanded();
 			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__COLLAPSED_SERVICE_COMPONENT_CONTEXTS:
@@ -843,6 +889,9 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 				return;
 			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__PARENT:
 				setParent((IVisualizationContext<?>)newValue);
+				return;
+			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED:
+				setChildrenInitialized((Boolean)newValue);
 				return;
 			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__EXPANDED:
 				setExpanded((Boolean)newValue);
@@ -943,6 +992,9 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__PARENT:
 				setParent((IVisualizationContext<?>)null);
 				return;
+			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED:
+				setChildrenInitialized(CHILDREN_INITIALIZED_EDEFAULT);
+				return;
 			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__EXPANDED:
 				setExpanded(EXPANDED_EDEFAULT);
 				return;
@@ -1021,6 +1073,8 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 				return modelElement != null;
 			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__PARENT:
 				return basicGetParent() != null;
+			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED:
+				return childrenInitialized != CHILDREN_INITIALIZED_EDEFAULT;
 			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__EXPANDED:
 				return expanded != EXPANDED_EDEFAULT;
 			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__COLLAPSED_SERVICE_COMPONENT_CONTEXTS:
@@ -1075,7 +1129,9 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (expanded: ");
+		result.append(" (childrenInitialized: ");
+		result.append(childrenInitialized);
+		result.append(", expanded: ");
 		result.append(expanded);
 		result.append(", allowInBundleConnections: ");
 		result.append(allowInBundleConnections);

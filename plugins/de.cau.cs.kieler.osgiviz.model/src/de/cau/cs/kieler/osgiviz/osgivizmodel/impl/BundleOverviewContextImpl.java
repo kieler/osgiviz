@@ -41,6 +41,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleOverviewContextImpl#getChildContexts <em>Child Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleOverviewContextImpl#getModelElement <em>Model Element</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleOverviewContextImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleOverviewContextImpl#isChildrenInitialized <em>Children Initialized</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleOverviewContextImpl#isExpanded <em>Expanded</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleOverviewContextImpl#getRequiredBundleEdges <em>Required Bundle Edges</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleOverviewContextImpl#getUsedPackagesOfBundleEdges <em>Used Packages Of Bundle Edges</em>}</li>
@@ -73,6 +74,26 @@ public class BundleOverviewContextImpl extends MinimalEObjectImpl.Container impl
 	 * @ordered
 	 */
 	protected EList<Bundle> modelElement;
+
+	/**
+	 * The default value of the '{@link #isChildrenInitialized() <em>Children Initialized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChildrenInitialized()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CHILDREN_INITIALIZED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isChildrenInitialized() <em>Children Initialized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChildrenInitialized()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean childrenInitialized = CHILDREN_INITIALIZED_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isExpanded() <em>Expanded</em>}' attribute.
@@ -296,6 +317,29 @@ public class BundleOverviewContextImpl extends MinimalEObjectImpl.Container impl
 	 * @generated
 	 */
 	@Override
+	public boolean isChildrenInitialized() {
+		return childrenInitialized;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setChildrenInitialized(boolean newChildrenInitialized) {
+		boolean oldChildrenInitialized = childrenInitialized;
+		childrenInitialized = newChildrenInitialized;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED, oldChildrenInitialized, childrenInitialized));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean isExpanded() {
 		return expanded;
 	}
@@ -475,6 +519,8 @@ public class BundleOverviewContextImpl extends MinimalEObjectImpl.Container impl
 			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__PARENT:
 				if (resolve) return getParent();
 				return basicGetParent();
+			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED:
+				return isChildrenInitialized();
 			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__EXPANDED:
 				return isExpanded();
 			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__REQUIRED_BUNDLE_EDGES:
@@ -513,6 +559,9 @@ public class BundleOverviewContextImpl extends MinimalEObjectImpl.Container impl
 				return;
 			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__PARENT:
 				setParent((IVisualizationContext<?>)newValue);
+				return;
+			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED:
+				setChildrenInitialized((Boolean)newValue);
 				return;
 			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__EXPANDED:
 				setExpanded((Boolean)newValue);
@@ -566,6 +615,9 @@ public class BundleOverviewContextImpl extends MinimalEObjectImpl.Container impl
 			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__PARENT:
 				setParent((IVisualizationContext<?>)null);
 				return;
+			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED:
+				setChildrenInitialized(CHILDREN_INITIALIZED_EDEFAULT);
+				return;
 			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__EXPANDED:
 				setExpanded(EXPANDED_EDEFAULT);
 				return;
@@ -608,6 +660,8 @@ public class BundleOverviewContextImpl extends MinimalEObjectImpl.Container impl
 				return modelElement != null;
 			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__PARENT:
 				return basicGetParent() != null;
+			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED:
+				return childrenInitialized != CHILDREN_INITIALIZED_EDEFAULT;
 			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__EXPANDED:
 				return expanded != EXPANDED_EDEFAULT;
 			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__REQUIRED_BUNDLE_EDGES:
@@ -638,7 +692,9 @@ public class BundleOverviewContextImpl extends MinimalEObjectImpl.Container impl
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (expanded: ");
+		result.append(" (childrenInitialized: ");
+		result.append(childrenInitialized);
+		result.append(", expanded: ");
 		result.append(expanded);
 		result.append(')');
 		return result.toString();

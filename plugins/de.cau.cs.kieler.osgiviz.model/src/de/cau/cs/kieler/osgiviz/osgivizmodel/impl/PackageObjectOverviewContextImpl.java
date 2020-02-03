@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.PackageObjectOverviewContextImpl#getChildContexts <em>Child Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.PackageObjectOverviewContextImpl#getModelElement <em>Model Element</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.PackageObjectOverviewContextImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.PackageObjectOverviewContextImpl#isChildrenInitialized <em>Children Initialized</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.PackageObjectOverviewContextImpl#isExpanded <em>Expanded</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.PackageObjectOverviewContextImpl#getCollapsedPackageObjectContexts <em>Collapsed Package Object Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.PackageObjectOverviewContextImpl#getDetailedPackageObjectContexts <em>Detailed Package Object Contexts</em>}</li>
@@ -65,6 +66,26 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 	 * @ordered
 	 */
 	protected EList<PackageObject> modelElement;
+
+	/**
+	 * The default value of the '{@link #isChildrenInitialized() <em>Children Initialized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChildrenInitialized()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CHILDREN_INITIALIZED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isChildrenInitialized() <em>Children Initialized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChildrenInitialized()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean childrenInitialized = CHILDREN_INITIALIZED_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isExpanded() <em>Expanded</em>}' attribute.
@@ -248,6 +269,29 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 */
 	@Override
+	public boolean isChildrenInitialized() {
+		return childrenInitialized;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setChildrenInitialized(boolean newChildrenInitialized) {
+		boolean oldChildrenInitialized = childrenInitialized;
+		childrenInitialized = newChildrenInitialized;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED, oldChildrenInitialized, childrenInitialized));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean isExpanded() {
 		return expanded;
 	}
@@ -369,6 +413,8 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__PARENT:
 				if (resolve) return getParent();
 				return basicGetParent();
+			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED:
+				return isChildrenInitialized();
 			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__EXPANDED:
 				return isExpanded();
 			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__COLLAPSED_PACKAGE_OBJECT_CONTEXTS:
@@ -399,6 +445,9 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 				return;
 			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__PARENT:
 				setParent((IVisualizationContext<?>)newValue);
+				return;
+			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED:
+				setChildrenInitialized((Boolean)newValue);
 				return;
 			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__EXPANDED:
 				setExpanded((Boolean)newValue);
@@ -436,6 +485,9 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__PARENT:
 				setParent((IVisualizationContext<?>)null);
 				return;
+			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED:
+				setChildrenInitialized(CHILDREN_INITIALIZED_EDEFAULT);
+				return;
 			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__EXPANDED:
 				setExpanded(EXPANDED_EDEFAULT);
 				return;
@@ -466,6 +518,8 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 				return modelElement != null;
 			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__PARENT:
 				return basicGetParent() != null;
+			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED:
+				return childrenInitialized != CHILDREN_INITIALIZED_EDEFAULT;
 			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__EXPANDED:
 				return expanded != EXPANDED_EDEFAULT;
 			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__COLLAPSED_PACKAGE_OBJECT_CONTEXTS:
@@ -488,7 +542,9 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (expanded: ");
+		result.append(" (childrenInitialized: ");
+		result.append(childrenInitialized);
+		result.append(", expanded: ");
 		result.append(expanded);
 		result.append(')');
 		return result.toString();

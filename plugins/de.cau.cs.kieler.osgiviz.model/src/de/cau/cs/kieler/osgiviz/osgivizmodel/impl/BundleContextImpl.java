@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleContextImpl#getChildContexts <em>Child Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleContextImpl#getModelElement <em>Model Element</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleContextImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleContextImpl#isChildrenInitialized <em>Children Initialized</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleContextImpl#getClassesWithInjections <em>Classes With Injections</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleContextImpl#isAllRequiredBundlesShown <em>All Required Bundles Shown</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleContextImpl#isAllRequiringBundlesShown <em>All Requiring Bundles Shown</em>}</li>
@@ -65,6 +66,26 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 	 * @ordered
 	 */
 	protected Bundle modelElement;
+
+	/**
+	 * The default value of the '{@link #isChildrenInitialized() <em>Children Initialized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChildrenInitialized()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CHILDREN_INITIALIZED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isChildrenInitialized() <em>Children Initialized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChildrenInitialized()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean childrenInitialized = CHILDREN_INITIALIZED_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getClassesWithInjections() <em>Classes With Injections</em>}' containment reference list.
@@ -277,6 +298,29 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 	 * @generated
 	 */
 	@Override
+	public boolean isChildrenInitialized() {
+		return childrenInitialized;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setChildrenInitialized(boolean newChildrenInitialized) {
+		boolean oldChildrenInitialized = childrenInitialized;
+		childrenInitialized = newChildrenInitialized;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.BUNDLE_CONTEXT__CHILDREN_INITIALIZED, oldChildrenInitialized, childrenInitialized));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<de.cau.cs.kieler.osgiviz.osgivizmodel.Class> getClassesWithInjections() {
 		if (classesWithInjections == null) {
 			classesWithInjections = new EObjectContainmentEList<de.cau.cs.kieler.osgiviz.osgivizmodel.Class>(de.cau.cs.kieler.osgiviz.osgivizmodel.Class.class, this, OsgivizmodelPackage.BUNDLE_CONTEXT__CLASSES_WITH_INJECTIONS);
@@ -460,6 +504,8 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 			case OsgivizmodelPackage.BUNDLE_CONTEXT__PARENT:
 				if (resolve) return getParent();
 				return basicGetParent();
+			case OsgivizmodelPackage.BUNDLE_CONTEXT__CHILDREN_INITIALIZED:
+				return isChildrenInitialized();
 			case OsgivizmodelPackage.BUNDLE_CONTEXT__CLASSES_WITH_INJECTIONS:
 				return getClassesWithInjections();
 			case OsgivizmodelPackage.BUNDLE_CONTEXT__ALL_REQUIRED_BUNDLES_SHOWN:
@@ -493,6 +539,9 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 				return;
 			case OsgivizmodelPackage.BUNDLE_CONTEXT__PARENT:
 				setParent((IVisualizationContext<?>)newValue);
+				return;
+			case OsgivizmodelPackage.BUNDLE_CONTEXT__CHILDREN_INITIALIZED:
+				setChildrenInitialized((Boolean)newValue);
 				return;
 			case OsgivizmodelPackage.BUNDLE_CONTEXT__CLASSES_WITH_INJECTIONS:
 				getClassesWithInjections().clear();
@@ -531,6 +580,9 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 			case OsgivizmodelPackage.BUNDLE_CONTEXT__PARENT:
 				setParent((IVisualizationContext<?>)null);
 				return;
+			case OsgivizmodelPackage.BUNDLE_CONTEXT__CHILDREN_INITIALIZED:
+				setChildrenInitialized(CHILDREN_INITIALIZED_EDEFAULT);
+				return;
 			case OsgivizmodelPackage.BUNDLE_CONTEXT__CLASSES_WITH_INJECTIONS:
 				getClassesWithInjections().clear();
 				return;
@@ -564,6 +616,8 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 				return modelElement != null;
 			case OsgivizmodelPackage.BUNDLE_CONTEXT__PARENT:
 				return basicGetParent() != null;
+			case OsgivizmodelPackage.BUNDLE_CONTEXT__CHILDREN_INITIALIZED:
+				return childrenInitialized != CHILDREN_INITIALIZED_EDEFAULT;
 			case OsgivizmodelPackage.BUNDLE_CONTEXT__CLASSES_WITH_INJECTIONS:
 				return classesWithInjections != null && !classesWithInjections.isEmpty();
 			case OsgivizmodelPackage.BUNDLE_CONTEXT__ALL_REQUIRED_BUNDLES_SHOWN:
@@ -588,7 +642,9 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (allRequiredBundlesShown: ");
+		result.append(" (childrenInitialized: ");
+		result.append(childrenInitialized);
+		result.append(", allRequiredBundlesShown: ");
 		result.append(allRequiredBundlesShown);
 		result.append(", allRequiringBundlesShown: ");
 		result.append(allRequiringBundlesShown);

@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryContextImpl#getChildContexts <em>Child Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryContextImpl#getModelElement <em>Model Element</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryContextImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryContextImpl#isChildrenInitialized <em>Children Initialized</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryContextImpl#getBundleOverviewContext <em>Bundle Overview Context</em>}</li>
  * </ul>
  *
@@ -62,6 +63,26 @@ public class BundleCategoryContextImpl extends MinimalEObjectImpl.Container impl
 	 * @ordered
 	 */
 	protected BundleCategory modelElement;
+
+	/**
+	 * The default value of the '{@link #isChildrenInitialized() <em>Children Initialized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChildrenInitialized()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CHILDREN_INITIALIZED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isChildrenInitialized() <em>Children Initialized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChildrenInitialized()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean childrenInitialized = CHILDREN_INITIALIZED_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getBundleOverviewContext() <em>Bundle Overview Context</em>}' reference.
@@ -204,6 +225,29 @@ public class BundleCategoryContextImpl extends MinimalEObjectImpl.Container impl
 	 * @generated
 	 */
 	@Override
+	public boolean isChildrenInitialized() {
+		return childrenInitialized;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setChildrenInitialized(boolean newChildrenInitialized) {
+		boolean oldChildrenInitialized = childrenInitialized;
+		childrenInitialized = newChildrenInitialized;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.BUNDLE_CATEGORY_CONTEXT__CHILDREN_INITIALIZED, oldChildrenInitialized, childrenInitialized));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public BundleOverviewContext getBundleOverviewContext() {
 		if (bundleOverviewContext != null && bundleOverviewContext.eIsProxy()) {
 			InternalEObject oldBundleOverviewContext = (InternalEObject)bundleOverviewContext;
@@ -303,6 +347,8 @@ public class BundleCategoryContextImpl extends MinimalEObjectImpl.Container impl
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_CONTEXT__PARENT:
 				if (resolve) return getParent();
 				return basicGetParent();
+			case OsgivizmodelPackage.BUNDLE_CATEGORY_CONTEXT__CHILDREN_INITIALIZED:
+				return isChildrenInitialized();
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_CONTEXT__BUNDLE_OVERVIEW_CONTEXT:
 				if (resolve) return getBundleOverviewContext();
 				return basicGetBundleOverviewContext();
@@ -329,6 +375,9 @@ public class BundleCategoryContextImpl extends MinimalEObjectImpl.Container impl
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_CONTEXT__PARENT:
 				setParent((IVisualizationContext<?>)newValue);
 				return;
+			case OsgivizmodelPackage.BUNDLE_CATEGORY_CONTEXT__CHILDREN_INITIALIZED:
+				setChildrenInitialized((Boolean)newValue);
+				return;
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_CONTEXT__BUNDLE_OVERVIEW_CONTEXT:
 				setBundleOverviewContext((BundleOverviewContext)newValue);
 				return;
@@ -353,6 +402,9 @@ public class BundleCategoryContextImpl extends MinimalEObjectImpl.Container impl
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_CONTEXT__PARENT:
 				setParent((IVisualizationContext<?>)null);
 				return;
+			case OsgivizmodelPackage.BUNDLE_CATEGORY_CONTEXT__CHILDREN_INITIALIZED:
+				setChildrenInitialized(CHILDREN_INITIALIZED_EDEFAULT);
+				return;
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_CONTEXT__BUNDLE_OVERVIEW_CONTEXT:
 				setBundleOverviewContext((BundleOverviewContext)null);
 				return;
@@ -374,10 +426,28 @@ public class BundleCategoryContextImpl extends MinimalEObjectImpl.Container impl
 				return modelElement != null;
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_CONTEXT__PARENT:
 				return basicGetParent() != null;
+			case OsgivizmodelPackage.BUNDLE_CATEGORY_CONTEXT__CHILDREN_INITIALIZED:
+				return childrenInitialized != CHILDREN_INITIALIZED_EDEFAULT;
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_CONTEXT__BUNDLE_OVERVIEW_CONTEXT:
 				return bundleOverviewContext != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (childrenInitialized: ");
+		result.append(childrenInitialized);
+		result.append(')');
+		return result.toString();
 	}
 
 } //BundleCategoryContextImpl

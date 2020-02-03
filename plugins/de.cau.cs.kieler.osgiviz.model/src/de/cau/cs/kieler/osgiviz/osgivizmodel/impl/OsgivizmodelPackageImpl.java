@@ -300,6 +300,16 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * @generated
 	 */
 	@Override
+	public EAttribute getIVisualizationContext_ChildrenInitialized() {
+		return (EAttribute)iVisualizationContextEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getIOverviewVisualizationContext() {
 		return iOverviewVisualizationContextEClass;
 	}
@@ -1317,6 +1327,7 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 		createEReference(iVisualizationContextEClass, IVISUALIZATION_CONTEXT__CHILD_CONTEXTS);
 		createEReference(iVisualizationContextEClass, IVISUALIZATION_CONTEXT__MODEL_ELEMENT);
 		createEReference(iVisualizationContextEClass, IVISUALIZATION_CONTEXT__PARENT);
+		createEAttribute(iVisualizationContextEClass, IVISUALIZATION_CONTEXT__CHILDREN_INITIALIZED);
 
 		iOverviewVisualizationContextEClass = createEClass(IOVERVIEW_VISUALIZATION_CONTEXT);
 		createEAttribute(iOverviewVisualizationContextEClass, IOVERVIEW_VISUALIZATION_CONTEXT__EXPANDED);
@@ -1553,6 +1564,7 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
 		initEReference(getIVisualizationContext_Parent(), g1, this.getIVisualizationContext_ChildContexts(), "parent", null, 0, 1, IVisualizationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIVisualizationContext_ChildrenInitialized(), theEcorePackage.getEBoolean(), "childrenInitialized", null, 0, 1, IVisualizationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iOverviewVisualizationContextEClass, IOverviewVisualizationContext.class, "IOverviewVisualizationContext", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIOverviewVisualizationContext_Expanded(), theEcorePackage.getEBoolean(), "expanded", "false", 0, 1, IOverviewVisualizationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1643,7 +1655,7 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 		initEReference(getBundleCategoryOverviewContext_CollapsedBundleCategoryContexts(), this.getBundleCategoryContext(), null, "collapsedBundleCategoryContexts", null, 0, -1, BundleCategoryOverviewContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBundleCategoryOverviewContext_DetailedBundleCategoryContexts(), this.getBundleCategoryContext(), null, "detailedBundleCategoryContexts", null, 0, -1, BundleCategoryOverviewContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBundleCategoryOverviewContext_BundleCategories(), theOsgimodelPackage.getBundleCategory(), null, "bundleCategories", null, 0, -1, BundleCategoryOverviewContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBundleCategoryOverviewContext_Uncategorized(), theOsgimodelPackage.getBundleCategory(), null, "uncategorized", null, 0, 1, BundleCategoryOverviewContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBundleCategoryOverviewContext_Uncategorized(), this.getBundleCategoryContext(), null, "uncategorized", null, 0, 1, BundleCategoryOverviewContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBundleCategoryOverviewContext_DetailedUncategorized(), theEcorePackage.getEBoolean(), "detailedUncategorized", "false", 0, 1, BundleCategoryOverviewContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(referencedInterfaceEdgeConnectionEClass, ReferencedInterfaceEdgeConnection.class, "ReferencedInterfaceEdgeConnection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

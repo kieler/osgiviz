@@ -80,12 +80,12 @@ public interface BundleCategoryOverviewContext extends IOverviewVisualizationCon
 	 * A bundle category separate from the osgi model that contains all bundles not categorized.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Uncategorized</em>' containment reference.
-	 * @see #setUncategorized(BundleCategory)
+	 * @see #setUncategorized(BundleCategoryContext)
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage#getBundleCategoryOverviewContext_Uncategorized()
 	 * @model containment="true"
 	 * @generated
 	 */
-	BundleCategory getUncategorized();
+	BundleCategoryContext getUncategorized();
 
 	/**
 	 * Sets the value of the '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryOverviewContext#getUncategorized <em>Uncategorized</em>}' containment reference.
@@ -95,7 +95,7 @@ public interface BundleCategoryOverviewContext extends IOverviewVisualizationCon
 	 * @see #getUncategorized()
 	 * @generated
 	 */
-	void setUncategorized(BundleCategory value);
+	void setUncategorized(BundleCategoryContext value);
 
 	/**
 	 * Returns the value of the '<em><b>Detailed Uncategorized</b></em>' attribute.

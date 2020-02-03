@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ClassContextImpl#getChildContexts <em>Child Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ClassContextImpl#getModelElement <em>Model Element</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ClassContextImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ClassContextImpl#isChildrenInitialized <em>Children Initialized</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ClassContextImpl#isAllInjectedInterfacesShownPlain <em>All Injected Interfaces Shown Plain</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ClassContextImpl#isAllInjectedInterfacesShownInBundles <em>All Injected Interfaces Shown In Bundles</em>}</li>
  * </ul>
@@ -60,6 +61,26 @@ public class ClassContextImpl extends MinimalEObjectImpl.Container implements Cl
 	 * @ordered
 	 */
 	protected de.cau.cs.kieler.osgiviz.osgivizmodel.Class modelElement;
+
+	/**
+	 * The default value of the '{@link #isChildrenInitialized() <em>Children Initialized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChildrenInitialized()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CHILDREN_INITIALIZED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isChildrenInitialized() <em>Children Initialized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChildrenInitialized()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean childrenInitialized = CHILDREN_INITIALIZED_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isAllInjectedInterfacesShownPlain() <em>All Injected Interfaces Shown Plain</em>}' attribute.
@@ -232,6 +253,29 @@ public class ClassContextImpl extends MinimalEObjectImpl.Container implements Cl
 	 * @generated
 	 */
 	@Override
+	public boolean isChildrenInitialized() {
+		return childrenInitialized;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setChildrenInitialized(boolean newChildrenInitialized) {
+		boolean oldChildrenInitialized = childrenInitialized;
+		childrenInitialized = newChildrenInitialized;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.CLASS_CONTEXT__CHILDREN_INITIALIZED, oldChildrenInitialized, childrenInitialized));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean isAllInjectedInterfacesShownPlain() {
 		return allInjectedInterfacesShownPlain;
 	}
@@ -337,6 +381,8 @@ public class ClassContextImpl extends MinimalEObjectImpl.Container implements Cl
 			case OsgivizmodelPackage.CLASS_CONTEXT__PARENT:
 				if (resolve) return getParent();
 				return basicGetParent();
+			case OsgivizmodelPackage.CLASS_CONTEXT__CHILDREN_INITIALIZED:
+				return isChildrenInitialized();
 			case OsgivizmodelPackage.CLASS_CONTEXT__ALL_INJECTED_INTERFACES_SHOWN_PLAIN:
 				return isAllInjectedInterfacesShownPlain();
 			case OsgivizmodelPackage.CLASS_CONTEXT__ALL_INJECTED_INTERFACES_SHOWN_IN_BUNDLES:
@@ -363,6 +409,9 @@ public class ClassContextImpl extends MinimalEObjectImpl.Container implements Cl
 				return;
 			case OsgivizmodelPackage.CLASS_CONTEXT__PARENT:
 				setParent((IVisualizationContext<?>)newValue);
+				return;
+			case OsgivizmodelPackage.CLASS_CONTEXT__CHILDREN_INITIALIZED:
+				setChildrenInitialized((Boolean)newValue);
 				return;
 			case OsgivizmodelPackage.CLASS_CONTEXT__ALL_INJECTED_INTERFACES_SHOWN_PLAIN:
 				setAllInjectedInterfacesShownPlain((Boolean)newValue);
@@ -391,6 +440,9 @@ public class ClassContextImpl extends MinimalEObjectImpl.Container implements Cl
 			case OsgivizmodelPackage.CLASS_CONTEXT__PARENT:
 				setParent((IVisualizationContext<?>)null);
 				return;
+			case OsgivizmodelPackage.CLASS_CONTEXT__CHILDREN_INITIALIZED:
+				setChildrenInitialized(CHILDREN_INITIALIZED_EDEFAULT);
+				return;
 			case OsgivizmodelPackage.CLASS_CONTEXT__ALL_INJECTED_INTERFACES_SHOWN_PLAIN:
 				setAllInjectedInterfacesShownPlain(ALL_INJECTED_INTERFACES_SHOWN_PLAIN_EDEFAULT);
 				return;
@@ -415,6 +467,8 @@ public class ClassContextImpl extends MinimalEObjectImpl.Container implements Cl
 				return modelElement != null;
 			case OsgivizmodelPackage.CLASS_CONTEXT__PARENT:
 				return basicGetParent() != null;
+			case OsgivizmodelPackage.CLASS_CONTEXT__CHILDREN_INITIALIZED:
+				return childrenInitialized != CHILDREN_INITIALIZED_EDEFAULT;
 			case OsgivizmodelPackage.CLASS_CONTEXT__ALL_INJECTED_INTERFACES_SHOWN_PLAIN:
 				return allInjectedInterfacesShownPlain != ALL_INJECTED_INTERFACES_SHOWN_PLAIN_EDEFAULT;
 			case OsgivizmodelPackage.CLASS_CONTEXT__ALL_INJECTED_INTERFACES_SHOWN_IN_BUNDLES:
@@ -433,7 +487,9 @@ public class ClassContextImpl extends MinimalEObjectImpl.Container implements Cl
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (allInjectedInterfacesShownPlain: ");
+		result.append(" (childrenInitialized: ");
+		result.append(childrenInitialized);
+		result.append(", allInjectedInterfacesShownPlain: ");
 		result.append(allInjectedInterfacesShownPlain);
 		result.append(", allInjectedInterfacesShownInBundles: ");
 		result.append(allInjectedInterfacesShownInBundles);

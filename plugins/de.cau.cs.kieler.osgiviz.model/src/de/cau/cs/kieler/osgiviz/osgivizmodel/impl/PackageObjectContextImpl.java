@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.PackageObjectContextImpl#getChildContexts <em>Child Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.PackageObjectContextImpl#getModelElement <em>Model Element</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.PackageObjectContextImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.PackageObjectContextImpl#isChildrenInitialized <em>Children Initialized</em>}</li>
  * </ul>
  *
  * @generated
@@ -60,6 +61,26 @@ public class PackageObjectContextImpl extends MinimalEObjectImpl.Container imple
 	 * @ordered
 	 */
 	protected PackageObject modelElement;
+
+	/**
+	 * The default value of the '{@link #isChildrenInitialized() <em>Children Initialized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChildrenInitialized()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CHILDREN_INITIALIZED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isChildrenInitialized() <em>Children Initialized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChildrenInitialized()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean childrenInitialized = CHILDREN_INITIALIZED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -191,6 +212,29 @@ public class PackageObjectContextImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public boolean isChildrenInitialized() {
+		return childrenInitialized;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setChildrenInitialized(boolean newChildrenInitialized) {
+		boolean oldChildrenInitialized = childrenInitialized;
+		childrenInitialized = newChildrenInitialized;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.PACKAGE_OBJECT_CONTEXT__CHILDREN_INITIALIZED, oldChildrenInitialized, childrenInitialized));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -251,6 +295,8 @@ public class PackageObjectContextImpl extends MinimalEObjectImpl.Container imple
 			case OsgivizmodelPackage.PACKAGE_OBJECT_CONTEXT__PARENT:
 				if (resolve) return getParent();
 				return basicGetParent();
+			case OsgivizmodelPackage.PACKAGE_OBJECT_CONTEXT__CHILDREN_INITIALIZED:
+				return isChildrenInitialized();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -274,6 +320,9 @@ public class PackageObjectContextImpl extends MinimalEObjectImpl.Container imple
 			case OsgivizmodelPackage.PACKAGE_OBJECT_CONTEXT__PARENT:
 				setParent((IVisualizationContext<?>)newValue);
 				return;
+			case OsgivizmodelPackage.PACKAGE_OBJECT_CONTEXT__CHILDREN_INITIALIZED:
+				setChildrenInitialized((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -295,6 +344,9 @@ public class PackageObjectContextImpl extends MinimalEObjectImpl.Container imple
 			case OsgivizmodelPackage.PACKAGE_OBJECT_CONTEXT__PARENT:
 				setParent((IVisualizationContext<?>)null);
 				return;
+			case OsgivizmodelPackage.PACKAGE_OBJECT_CONTEXT__CHILDREN_INITIALIZED:
+				setChildrenInitialized(CHILDREN_INITIALIZED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -313,8 +365,26 @@ public class PackageObjectContextImpl extends MinimalEObjectImpl.Container imple
 				return modelElement != null;
 			case OsgivizmodelPackage.PACKAGE_OBJECT_CONTEXT__PARENT:
 				return basicGetParent() != null;
+			case OsgivizmodelPackage.PACKAGE_OBJECT_CONTEXT__CHILDREN_INITIALIZED:
+				return childrenInitialized != CHILDREN_INITIALIZED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (childrenInitialized: ");
+		result.append(childrenInitialized);
+		result.append(')');
+		return result.toString();
 	}
 
 } //PackageObjectContextImpl

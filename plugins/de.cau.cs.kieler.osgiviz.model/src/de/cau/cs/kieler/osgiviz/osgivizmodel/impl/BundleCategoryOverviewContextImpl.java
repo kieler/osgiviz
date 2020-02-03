@@ -6,7 +6,6 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryOverviewContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
-
 import de.scheidtbachmann.osgimodel.BundleCategory;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
@@ -37,6 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryOverviewContextImpl#getChildContexts <em>Child Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryOverviewContextImpl#getModelElement <em>Model Element</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryOverviewContextImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryOverviewContextImpl#isChildrenInitialized <em>Children Initialized</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryOverviewContextImpl#isExpanded <em>Expanded</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryOverviewContextImpl#getCollapsedBundleCategoryContexts <em>Collapsed Bundle Category Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryOverviewContextImpl#getDetailedBundleCategoryContexts <em>Detailed Bundle Category Contexts</em>}</li>
@@ -67,6 +67,26 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * @ordered
 	 */
 	protected EList<BundleCategory> modelElement;
+
+	/**
+	 * The default value of the '{@link #isChildrenInitialized() <em>Children Initialized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChildrenInitialized()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CHILDREN_INITIALIZED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isChildrenInitialized() <em>Children Initialized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChildrenInitialized()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean childrenInitialized = CHILDREN_INITIALIZED_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isExpanded() <em>Expanded</em>}' attribute.
@@ -126,7 +146,7 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * @generated
 	 * @ordered
 	 */
-	protected BundleCategory uncategorized;
+	protected BundleCategoryContext uncategorized;
 
 	/**
 	 * The default value of the '{@link #isDetailedUncategorized() <em>Detailed Uncategorized</em>}' attribute.
@@ -280,6 +300,29 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * @generated
 	 */
 	@Override
+	public boolean isChildrenInitialized() {
+		return childrenInitialized;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setChildrenInitialized(boolean newChildrenInitialized) {
+		boolean oldChildrenInitialized = childrenInitialized;
+		childrenInitialized = newChildrenInitialized;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED, oldChildrenInitialized, childrenInitialized));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean isExpanded() {
 		return expanded;
 	}
@@ -342,7 +385,7 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * @generated
 	 */
 	@Override
-	public BundleCategory getUncategorized() {
+	public BundleCategoryContext getUncategorized() {
 		return uncategorized;
 	}
 
@@ -351,8 +394,8 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetUncategorized(BundleCategory newUncategorized, NotificationChain msgs) {
-		BundleCategory oldUncategorized = uncategorized;
+	public NotificationChain basicSetUncategorized(BundleCategoryContext newUncategorized, NotificationChain msgs) {
+		BundleCategoryContext oldUncategorized = uncategorized;
 		uncategorized = newUncategorized;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__UNCATEGORIZED, oldUncategorized, newUncategorized);
@@ -367,7 +410,7 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * @generated
 	 */
 	@Override
-	public void setUncategorized(BundleCategory newUncategorized) {
+	public void setUncategorized(BundleCategoryContext newUncategorized) {
 		if (newUncategorized != uncategorized) {
 			NotificationChain msgs = null;
 			if (uncategorized != null)
@@ -471,6 +514,8 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__PARENT:
 				if (resolve) return getParent();
 				return basicGetParent();
+			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED:
+				return isChildrenInitialized();
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__EXPANDED:
 				return isExpanded();
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__COLLAPSED_BUNDLE_CATEGORY_CONTEXTS:
@@ -506,6 +551,9 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__PARENT:
 				setParent((IVisualizationContext<?>)newValue);
 				return;
+			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED:
+				setChildrenInitialized((Boolean)newValue);
+				return;
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__EXPANDED:
 				setExpanded((Boolean)newValue);
 				return;
@@ -522,7 +570,7 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 				getBundleCategories().addAll((Collection<? extends BundleCategory>)newValue);
 				return;
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__UNCATEGORIZED:
-				setUncategorized((BundleCategory)newValue);
+				setUncategorized((BundleCategoryContext)newValue);
 				return;
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__DETAILED_UNCATEGORIZED:
 				setDetailedUncategorized((Boolean)newValue);
@@ -548,6 +596,9 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__PARENT:
 				setParent((IVisualizationContext<?>)null);
 				return;
+			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED:
+				setChildrenInitialized(CHILDREN_INITIALIZED_EDEFAULT);
+				return;
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__EXPANDED:
 				setExpanded(EXPANDED_EDEFAULT);
 				return;
@@ -561,7 +612,7 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 				getBundleCategories().clear();
 				return;
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__UNCATEGORIZED:
-				setUncategorized((BundleCategory)null);
+				setUncategorized((BundleCategoryContext)null);
 				return;
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__DETAILED_UNCATEGORIZED:
 				setDetailedUncategorized(DETAILED_UNCATEGORIZED_EDEFAULT);
@@ -584,6 +635,8 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 				return modelElement != null;
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__PARENT:
 				return basicGetParent() != null;
+			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED:
+				return childrenInitialized != CHILDREN_INITIALIZED_EDEFAULT;
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__EXPANDED:
 				return expanded != EXPANDED_EDEFAULT;
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__COLLAPSED_BUNDLE_CATEGORY_CONTEXTS:
@@ -610,7 +663,9 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (expanded: ");
+		result.append(" (childrenInitialized: ");
+		result.append(childrenInitialized);
+		result.append(", expanded: ");
 		result.append(expanded);
 		result.append(", detailedUncategorized: ");
 		result.append(detailedUncategorized);

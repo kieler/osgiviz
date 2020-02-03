@@ -108,13 +108,22 @@ public interface OsgivizmodelPackage extends EPackage {
 	int IVISUALIZATION_CONTEXT__PARENT = 2;
 
 	/**
+	 * The feature id for the '<em><b>Children Initialized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IVISUALIZATION_CONTEXT__CHILDREN_INITIALIZED = 3;
+
+	/**
 	 * The number of structural features of the '<em>IVisualization Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IVISUALIZATION_CONTEXT_FEATURE_COUNT = 3;
+	int IVISUALIZATION_CONTEXT_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>IVisualization Context</em>' class.
@@ -161,6 +170,15 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int IOVERVIEW_VISUALIZATION_CONTEXT__PARENT = IVISUALIZATION_CONTEXT__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Children Initialized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IOVERVIEW_VISUALIZATION_CONTEXT__CHILDREN_INITIALIZED = IVISUALIZATION_CONTEXT__CHILDREN_INITIALIZED;
 
 	/**
 	 * The feature id for the '<em><b>Expanded</b></em>' attribute.
@@ -328,6 +346,15 @@ public interface OsgivizmodelPackage extends EPackage {
 	int PRODUCT_CONTEXT__PARENT = IVISUALIZATION_CONTEXT__PARENT;
 
 	/**
+	 * The feature id for the '<em><b>Children Initialized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_CONTEXT__CHILDREN_INITIALIZED = IVISUALIZATION_CONTEXT__CHILDREN_INITIALIZED;
+
+	/**
 	 * The feature id for the '<em><b>Feature Overview Context</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -410,6 +437,15 @@ public interface OsgivizmodelPackage extends EPackage {
 	int FEATURE_CONTEXT__PARENT = IVISUALIZATION_CONTEXT__PARENT;
 
 	/**
+	 * The feature id for the '<em><b>Children Initialized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CONTEXT__CHILDREN_INITIALIZED = IVISUALIZATION_CONTEXT__CHILDREN_INITIALIZED;
+
+	/**
 	 * The feature id for the '<em><b>Bundle Overview Context</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -472,6 +508,15 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int BUNDLE_CONTEXT__PARENT = IVISUALIZATION_CONTEXT__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Children Initialized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUNDLE_CONTEXT__CHILDREN_INITIALIZED = IVISUALIZATION_CONTEXT__CHILDREN_INITIALIZED;
 
 	/**
 	 * The feature id for the '<em><b>Classes With Injections</b></em>' containment reference list.
@@ -574,6 +619,15 @@ public interface OsgivizmodelPackage extends EPackage {
 	int BUNDLE_CATEGORY_CONTEXT__PARENT = IVISUALIZATION_CONTEXT__PARENT;
 
 	/**
+	 * The feature id for the '<em><b>Children Initialized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUNDLE_CATEGORY_CONTEXT__CHILDREN_INITIALIZED = IVISUALIZATION_CONTEXT__CHILDREN_INITIALIZED;
+
+	/**
 	 * The feature id for the '<em><b>Bundle Overview Context</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -636,6 +690,15 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int CLASS_CONTEXT__PARENT = IVISUALIZATION_CONTEXT__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Children Initialized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CONTEXT__CHILDREN_INITIALIZED = IVISUALIZATION_CONTEXT__CHILDREN_INITIALIZED;
 
 	/**
 	 * The feature id for the '<em><b>All Injected Interfaces Shown Plain</b></em>' attribute.
@@ -709,6 +772,15 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SERVICE_COMPONENT_CONTEXT__PARENT = IVISUALIZATION_CONTEXT__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Children Initialized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_COMPONENT_CONTEXT__CHILDREN_INITIALIZED = IVISUALIZATION_CONTEXT__CHILDREN_INITIALIZED;
 
 	/**
 	 * The feature id for the '<em><b>All Implemented Interfaces Shown Plain</b></em>' attribute.
@@ -802,6 +874,15 @@ public interface OsgivizmodelPackage extends EPackage {
 	int SERVICE_INTERFACE_CONTEXT__PARENT = IVISUALIZATION_CONTEXT__PARENT;
 
 	/**
+	 * The feature id for the '<em><b>Children Initialized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_INTERFACE_CONTEXT__CHILDREN_INITIALIZED = IVISUALIZATION_CONTEXT__CHILDREN_INITIALIZED;
+
+	/**
 	 * The feature id for the '<em><b>All Implementing Components Shown Plain</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -891,6 +972,15 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int PACKAGE_OBJECT_CONTEXT__PARENT = IVISUALIZATION_CONTEXT__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Children Initialized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_OBJECT_CONTEXT__CHILDREN_INITIALIZED = IVISUALIZATION_CONTEXT__CHILDREN_INITIALIZED;
 
 	/**
 	 * The number of structural features of the '<em>Package Object Context</em>' class.
@@ -1012,6 +1102,15 @@ public interface OsgivizmodelPackage extends EPackage {
 	int PRODUCT_OVERVIEW_CONTEXT__PARENT = IOVERVIEW_VISUALIZATION_CONTEXT__PARENT;
 
 	/**
+	 * The feature id for the '<em><b>Children Initialized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED = IOVERVIEW_VISUALIZATION_CONTEXT__CHILDREN_INITIALIZED;
+
+	/**
 	 * The feature id for the '<em><b>Expanded</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1103,6 +1202,15 @@ public interface OsgivizmodelPackage extends EPackage {
 	int FEATURE_OVERVIEW_CONTEXT__PARENT = IOVERVIEW_VISUALIZATION_CONTEXT__PARENT;
 
 	/**
+	 * The feature id for the '<em><b>Children Initialized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED = IOVERVIEW_VISUALIZATION_CONTEXT__CHILDREN_INITIALIZED;
+
+	/**
 	 * The feature id for the '<em><b>Expanded</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1192,6 +1300,15 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int BUNDLE_OVERVIEW_CONTEXT__PARENT = IOVERVIEW_VISUALIZATION_CONTEXT__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Children Initialized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUNDLE_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED = IOVERVIEW_VISUALIZATION_CONTEXT__CHILDREN_INITIALIZED;
 
 	/**
 	 * The feature id for the '<em><b>Expanded</b></em>' attribute.
@@ -1319,6 +1436,15 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int BUNDLE_CATEGORY_OVERVIEW_CONTEXT__PARENT = IOVERVIEW_VISUALIZATION_CONTEXT__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Children Initialized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUNDLE_CATEGORY_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED = IOVERVIEW_VISUALIZATION_CONTEXT__CHILDREN_INITIALIZED;
 
 	/**
 	 * The feature id for the '<em><b>Expanded</b></em>' attribute.
@@ -1483,6 +1609,15 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SERVICE_OVERVIEW_CONTEXT__PARENT = IOVERVIEW_VISUALIZATION_CONTEXT__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Children Initialized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED = IOVERVIEW_VISUALIZATION_CONTEXT__CHILDREN_INITIALIZED;
 
 	/**
 	 * The feature id for the '<em><b>Expanded</b></em>' attribute.
@@ -1720,6 +1855,15 @@ public interface OsgivizmodelPackage extends EPackage {
 	int PACKAGE_OBJECT_OVERVIEW_CONTEXT__PARENT = IOVERVIEW_VISUALIZATION_CONTEXT__PARENT;
 
 	/**
+	 * The feature id for the '<em><b>Children Initialized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_OBJECT_OVERVIEW_CONTEXT__CHILDREN_INITIALIZED = IOVERVIEW_VISUALIZATION_CONTEXT__CHILDREN_INITIALIZED;
+
+	/**
 	 * The feature id for the '<em><b>Expanded</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1809,6 +1953,15 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int OSGI_VIZ__PARENT = IVISUALIZATION_CONTEXT__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Children Initialized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OSGI_VIZ__CHILDREN_INITIALIZED = IVISUALIZATION_CONTEXT__CHILDREN_INITIALIZED;
 
 	/**
 	 * The feature id for the '<em><b>Bundle Overview Context</b></em>' reference.
@@ -1924,6 +2077,17 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getIVisualizationContext_Parent();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext#isChildrenInitialized <em>Children Initialized</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Children Initialized</em>'.
+	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext#isChildrenInitialized()
+	 * @see #getIVisualizationContext()
+	 * @generated
+	 */
+	EAttribute getIVisualizationContext_ChildrenInitialized();
 
 	/**
 	 * Returns the meta object for class '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.IOverviewVisualizationContext <em>IOverview Visualization Context</em>}'.
@@ -3050,6 +3214,14 @@ public interface OsgivizmodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference IVISUALIZATION_CONTEXT__PARENT = eINSTANCE.getIVisualizationContext_Parent();
+
+		/**
+		 * The meta object literal for the '<em><b>Children Initialized</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IVISUALIZATION_CONTEXT__CHILDREN_INITIALIZED = eINSTANCE.getIVisualizationContext_ChildrenInitialized();
 
 		/**
 		 * The meta object literal for the '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.IOverviewVisualizationContext <em>IOverview Visualization Context</em>}' class.

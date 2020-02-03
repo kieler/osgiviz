@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext#getChildContexts <em>Child Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext#getModelElement <em>Model Element</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext#getParent <em>Parent</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext#isChildrenInitialized <em>Children Initialized</em>}</li>
  * </ul>
  *
  * @see de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage#getIVisualizationContext()
@@ -102,5 +103,31 @@ public interface IVisualizationContext<M> extends EObject {
 	 * @generated
 	 */
 	void setParent(IVisualizationContext<?> value);
+
+	/**
+	 * Returns the value of the '<em><b>Children Initialized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * *
+	 * Indicating if the child contexts of this context have been initialized correctly.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Children Initialized</em>' attribute.
+	 * @see #setChildrenInitialized(boolean)
+	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage#getIVisualizationContext_ChildrenInitialized()
+	 * @model unique="false"
+	 * @generated
+	 */
+	boolean isChildrenInitialized();
+
+	/**
+	 * Sets the value of the '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext#isChildrenInitialized <em>Children Initialized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Children Initialized</em>' attribute.
+	 * @see #isChildrenInitialized()
+	 * @generated
+	 */
+	void setChildrenInitialized(boolean value);
 
 } // IVisualizationContext

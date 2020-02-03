@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl#getChildContexts <em>Child Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl#getModelElement <em>Model Element</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl#isChildrenInitialized <em>Children Initialized</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl#getBundleOverviewContext <em>Bundle Overview Context</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl#getProductOverviewContext <em>Product Overview Context</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl#getServiceOverviewContext <em>Service Overview Context</em>}</li>
@@ -69,6 +70,26 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * @ordered
 	 */
 	protected OsgiProject modelElement;
+
+	/**
+	 * The default value of the '{@link #isChildrenInitialized() <em>Children Initialized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChildrenInitialized()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CHILDREN_INITIALIZED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isChildrenInitialized() <em>Children Initialized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChildrenInitialized()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean childrenInitialized = CHILDREN_INITIALIZED_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getBundleOverviewContext() <em>Bundle Overview Context</em>}' reference.
@@ -253,6 +274,29 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.OSGI_VIZ__PARENT, newParent, newParent));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isChildrenInitialized() {
+		return childrenInitialized;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setChildrenInitialized(boolean newChildrenInitialized) {
+		boolean oldChildrenInitialized = childrenInitialized;
+		childrenInitialized = newChildrenInitialized;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.OSGI_VIZ__CHILDREN_INITIALIZED, oldChildrenInitialized, childrenInitialized));
 	}
 
 	/**
@@ -560,6 +604,8 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 			case OsgivizmodelPackage.OSGI_VIZ__PARENT:
 				if (resolve) return getParent();
 				return basicGetParent();
+			case OsgivizmodelPackage.OSGI_VIZ__CHILDREN_INITIALIZED:
+				return isChildrenInitialized();
 			case OsgivizmodelPackage.OSGI_VIZ__BUNDLE_OVERVIEW_CONTEXT:
 				if (resolve) return getBundleOverviewContext();
 				return basicGetBundleOverviewContext();
@@ -601,6 +647,9 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 			case OsgivizmodelPackage.OSGI_VIZ__PARENT:
 				setParent((IVisualizationContext<?>)newValue);
 				return;
+			case OsgivizmodelPackage.OSGI_VIZ__CHILDREN_INITIALIZED:
+				setChildrenInitialized((Boolean)newValue);
+				return;
 			case OsgivizmodelPackage.OSGI_VIZ__BUNDLE_OVERVIEW_CONTEXT:
 				setBundleOverviewContext((BundleOverviewContext)newValue);
 				return;
@@ -640,6 +689,9 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 			case OsgivizmodelPackage.OSGI_VIZ__PARENT:
 				setParent((IVisualizationContext<?>)null);
 				return;
+			case OsgivizmodelPackage.OSGI_VIZ__CHILDREN_INITIALIZED:
+				setChildrenInitialized(CHILDREN_INITIALIZED_EDEFAULT);
+				return;
 			case OsgivizmodelPackage.OSGI_VIZ__BUNDLE_OVERVIEW_CONTEXT:
 				setBundleOverviewContext((BundleOverviewContext)null);
 				return;
@@ -676,6 +728,8 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 				return modelElement != null;
 			case OsgivizmodelPackage.OSGI_VIZ__PARENT:
 				return basicGetParent() != null;
+			case OsgivizmodelPackage.OSGI_VIZ__CHILDREN_INITIALIZED:
+				return childrenInitialized != CHILDREN_INITIALIZED_EDEFAULT;
 			case OsgivizmodelPackage.OSGI_VIZ__BUNDLE_OVERVIEW_CONTEXT:
 				return bundleOverviewContext != null;
 			case OsgivizmodelPackage.OSGI_VIZ__PRODUCT_OVERVIEW_CONTEXT:
@@ -690,6 +744,22 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 				return bundleCategoryOverviewContext != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (childrenInitialized: ");
+		result.append(childrenInitialized);
+		result.append(')');
+		return result.toString();
 	}
 
 } //OsgiVizImpl

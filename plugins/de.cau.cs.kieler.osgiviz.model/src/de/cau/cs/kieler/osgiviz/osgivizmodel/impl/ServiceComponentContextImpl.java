@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ServiceComponentContextImpl#getChildContexts <em>Child Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ServiceComponentContextImpl#getModelElement <em>Model Element</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ServiceComponentContextImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ServiceComponentContextImpl#isChildrenInitialized <em>Children Initialized</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ServiceComponentContextImpl#isAllImplementedInterfacesShownPlain <em>All Implemented Interfaces Shown Plain</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ServiceComponentContextImpl#isAllImplementedInterfacesShownInBundles <em>All Implemented Interfaces Shown In Bundles</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ServiceComponentContextImpl#isAllReferencedInterfacesShownPlain <em>All Referenced Interfaces Shown Plain</em>}</li>
@@ -64,6 +65,26 @@ public class ServiceComponentContextImpl extends MinimalEObjectImpl.Container im
 	 * @ordered
 	 */
 	protected ServiceComponent modelElement;
+
+	/**
+	 * The default value of the '{@link #isChildrenInitialized() <em>Children Initialized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChildrenInitialized()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CHILDREN_INITIALIZED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isChildrenInitialized() <em>Children Initialized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isChildrenInitialized()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean childrenInitialized = CHILDREN_INITIALIZED_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isAllImplementedInterfacesShownPlain() <em>All Implemented Interfaces Shown Plain</em>}' attribute.
@@ -276,6 +297,29 @@ public class ServiceComponentContextImpl extends MinimalEObjectImpl.Container im
 	 * @generated
 	 */
 	@Override
+	public boolean isChildrenInitialized() {
+		return childrenInitialized;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setChildrenInitialized(boolean newChildrenInitialized) {
+		boolean oldChildrenInitialized = childrenInitialized;
+		childrenInitialized = newChildrenInitialized;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.SERVICE_COMPONENT_CONTEXT__CHILDREN_INITIALIZED, oldChildrenInitialized, childrenInitialized));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean isAllImplementedInterfacesShownPlain() {
 		return allImplementedInterfacesShownPlain;
 	}
@@ -427,6 +471,8 @@ public class ServiceComponentContextImpl extends MinimalEObjectImpl.Container im
 			case OsgivizmodelPackage.SERVICE_COMPONENT_CONTEXT__PARENT:
 				if (resolve) return getParent();
 				return basicGetParent();
+			case OsgivizmodelPackage.SERVICE_COMPONENT_CONTEXT__CHILDREN_INITIALIZED:
+				return isChildrenInitialized();
 			case OsgivizmodelPackage.SERVICE_COMPONENT_CONTEXT__ALL_IMPLEMENTED_INTERFACES_SHOWN_PLAIN:
 				return isAllImplementedInterfacesShownPlain();
 			case OsgivizmodelPackage.SERVICE_COMPONENT_CONTEXT__ALL_IMPLEMENTED_INTERFACES_SHOWN_IN_BUNDLES:
@@ -457,6 +503,9 @@ public class ServiceComponentContextImpl extends MinimalEObjectImpl.Container im
 				return;
 			case OsgivizmodelPackage.SERVICE_COMPONENT_CONTEXT__PARENT:
 				setParent((IVisualizationContext<?>)newValue);
+				return;
+			case OsgivizmodelPackage.SERVICE_COMPONENT_CONTEXT__CHILDREN_INITIALIZED:
+				setChildrenInitialized((Boolean)newValue);
 				return;
 			case OsgivizmodelPackage.SERVICE_COMPONENT_CONTEXT__ALL_IMPLEMENTED_INTERFACES_SHOWN_PLAIN:
 				setAllImplementedInterfacesShownPlain((Boolean)newValue);
@@ -491,6 +540,9 @@ public class ServiceComponentContextImpl extends MinimalEObjectImpl.Container im
 			case OsgivizmodelPackage.SERVICE_COMPONENT_CONTEXT__PARENT:
 				setParent((IVisualizationContext<?>)null);
 				return;
+			case OsgivizmodelPackage.SERVICE_COMPONENT_CONTEXT__CHILDREN_INITIALIZED:
+				setChildrenInitialized(CHILDREN_INITIALIZED_EDEFAULT);
+				return;
 			case OsgivizmodelPackage.SERVICE_COMPONENT_CONTEXT__ALL_IMPLEMENTED_INTERFACES_SHOWN_PLAIN:
 				setAllImplementedInterfacesShownPlain(ALL_IMPLEMENTED_INTERFACES_SHOWN_PLAIN_EDEFAULT);
 				return;
@@ -521,6 +573,8 @@ public class ServiceComponentContextImpl extends MinimalEObjectImpl.Container im
 				return modelElement != null;
 			case OsgivizmodelPackage.SERVICE_COMPONENT_CONTEXT__PARENT:
 				return basicGetParent() != null;
+			case OsgivizmodelPackage.SERVICE_COMPONENT_CONTEXT__CHILDREN_INITIALIZED:
+				return childrenInitialized != CHILDREN_INITIALIZED_EDEFAULT;
 			case OsgivizmodelPackage.SERVICE_COMPONENT_CONTEXT__ALL_IMPLEMENTED_INTERFACES_SHOWN_PLAIN:
 				return allImplementedInterfacesShownPlain != ALL_IMPLEMENTED_INTERFACES_SHOWN_PLAIN_EDEFAULT;
 			case OsgivizmodelPackage.SERVICE_COMPONENT_CONTEXT__ALL_IMPLEMENTED_INTERFACES_SHOWN_IN_BUNDLES:
@@ -543,7 +597,9 @@ public class ServiceComponentContextImpl extends MinimalEObjectImpl.Container im
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (allImplementedInterfacesShownPlain: ");
+		result.append(" (childrenInitialized: ");
+		result.append(childrenInitialized);
+		result.append(", allImplementedInterfacesShownPlain: ");
 		result.append(allImplementedInterfacesShownPlain);
 		result.append(", allImplementedInterfacesShownInBundles: ");
 		result.append(allImplementedInterfacesShownInBundles);
