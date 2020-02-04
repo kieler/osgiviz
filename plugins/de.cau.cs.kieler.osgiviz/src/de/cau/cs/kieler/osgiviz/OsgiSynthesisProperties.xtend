@@ -16,6 +16,7 @@ package de.cau.cs.kieler.osgiviz
 
 import de.cau.cs.kieler.klighd.ViewContext
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz
 import java.util.LinkedList
 import java.util.List
 import org.eclipse.elk.graph.properties.IProperty
@@ -45,5 +46,13 @@ class OsgiSynthesisProperties {
      */
     public static final IProperty<Integer> CURRENT_VISUALIZATION_CONTEXT_INDEX
         = new Property<Integer>("osgimodel.currentVisualizationContextIndex", null)
+    
+    /**
+     * The root model visualization context for the OsgiVizSynthesis to figure out the change of file against the usual
+     * change of the visualization model.
+     * May be null if the model visualization context has not been set yet for the view context.
+     */
+    public static final IProperty<OsgiViz> MODEL_VISUALIZATION_CONTEXT
+        = new Property<OsgiViz>("osgimodel.modelVisualizationContext", null)
     
 }

@@ -23,6 +23,7 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractDiagramSynthesis
 import de.cau.cs.kieler.osgiviz.actions.RedoAction
 import de.cau.cs.kieler.osgiviz.actions.ResetViewAction
+import de.cau.cs.kieler.osgiviz.actions.StoreModelAction
 import de.cau.cs.kieler.osgiviz.actions.UndoAction
 import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryOverviewContext
 import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleOverviewContext
@@ -81,7 +82,9 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
             DisplayedActionData.create(RedoAction.ID, "Redo",
                 "Redoes the last action that was undone on the view model."),
             DisplayedActionData.create(ResetViewAction.ID, "Reset View",
-                "Resets the view to its default overview state.")
+                "Resets the view to its default overview state."),
+            DisplayedActionData.create(StoreModelAction.ID, "Store View Model",
+                "Stores the current view configuration and model to disk.")
         ]
     }
     

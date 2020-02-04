@@ -7,6 +7,10 @@
             class="de.cau.cs.kieler.klighd.syntheses.GuiceBasedSynthesisFactory:de.cau.cs.kieler.osgiviz.OsgiDiagramSynthesis"
             id="de.cau.cs.kieler.osgiviz.OsgiDiagramSynthesis">
       </diagramSynthesis>
+      <diagramSynthesis
+            class="de.cau.cs.kieler.klighd.syntheses.GuiceBasedSynthesisFactory:de.cau.cs.kieler.osgiviz.OsgiVizSynthesis"
+            id="de.cau.cs.kieler.osgiviz.OsgiVizSynthesis">
+      </diagramSynthesis>
    </extension>
    <extension
          point="de.cau.cs.kieler.klighd.extensions">
@@ -29,6 +33,10 @@
       <action
             class="de.cau.cs.kieler.osgiviz.actions.ResetViewAction"
             id="de.cau.cs.kieler.osgiviz.actions.ResetViewAction">
+      </action>
+      <action
+            class="de.cau.cs.kieler.osgiviz.actions.StoreModelAction"
+            id="de.cau.cs.kieler.osgiviz.actions.StoreModelAction">
       </action>
       <action
             class="de.cau.cs.kieler.osgiviz.actions.ContextCollapseExpandAction"

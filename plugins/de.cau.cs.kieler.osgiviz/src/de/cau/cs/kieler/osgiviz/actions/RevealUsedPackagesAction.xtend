@@ -63,7 +63,7 @@ class RevealUsedPackagesAction extends AbstractVisualizationContextChangingActio
         
         
         // Find out which bundle provides this package in which product.
-        val osgiModel = actionContext.viewContext.inputModel as OsgiProject
+        val osgiModel = modelVisualizationContext.rootVisualization.modelElement
         
         val overviewParentContext = bundleOverviewContext.parent
         
