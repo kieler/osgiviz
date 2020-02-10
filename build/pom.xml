@@ -43,6 +43,7 @@
         <module>../plugins/de.scheidtbachmann.osgimodel.model</module>
         <module>../plugins/de.scheidtbachmann.osgimodel.model.edit</module>
         <module>../plugins/de.scheidtbachmann.osgimodel.model.editor</module>
+        <module>../plugins/de.scheidtbachmann.osgimodel.model.generate</module>
         <module>../features/de.cau.cs.kieler.osgiviz.feature</module>
         <module>de.cau.cs.kieler.osgiviz.repository</module>
       </modules>

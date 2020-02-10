@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: OSGi Model Generator
+Bundle-SymbolicName: de.scheidtbachmann.osgimodel.model.generate;singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Export-Package: de.scheidtbachmann.osgimodel.model.generate
+Require-Bundle: de.scheidtbachmann.osgimodel.model,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.jdt.core,
+ org.eclipse.xtext,
+ org.eclipse.xtext.generator,
+ org.slf4j.api
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: OpenKieler
