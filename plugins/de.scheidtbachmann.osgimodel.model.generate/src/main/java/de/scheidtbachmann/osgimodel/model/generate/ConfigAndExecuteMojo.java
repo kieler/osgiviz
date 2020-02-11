@@ -42,7 +42,7 @@ import java.util.Optional;
  *
  */
 @Mojo(name = "generate-documentation")
-public class ConfigAndExecute extends AbstractMojo {
+public class ConfigAndExecuteMojo extends AbstractMojo {
 
 	private static final String DEFAULT_OUTPUT = "DEFAULT_OUTPUT"; //$NON-NLS-1$
 
