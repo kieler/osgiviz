@@ -31,6 +31,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.commons.io.FilenameUtils;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTNode;
@@ -87,7 +88,7 @@ public class ReadProjectFiles {
 	final OsgiProject project = OsgimodelFactory.eINSTANCE.createOsgiProject();
 
 	private URL javadocRoot;
-	private final List<String> filePaths = new ArrayList<String>();
+	private final List<Path> filePaths = new ArrayList<Path>();
 	private final List<String> javaFilePaths = new ArrayList<String>();
 	private final Map<String, String> javadocComments = new HashMap<String, String>();
 	private final List<EclipseInjection> e4Injections = new ArrayList<EclipseInjection>();
@@ -133,16 +134,15 @@ public class ReadProjectFiles {
 		// Parsing of manifest data
 		filePaths.clear();
 		findFiles(StaticVariables.MANIFEST_FILE, projectPath);
-		for (final String manifest : filePaths) {
-			final Path manifestPath = Paths.get(manifest);
+		for (final Path manifestPath : filePaths) {
 			extractBundleData(manifestPath);
 		}
 
 		// parsing of feature data
 		filePaths.clear();
 		findFiles(StaticVariables.FEATURE_FILE, projectPath);
-		for (final String featurePath : filePaths) {
-			extractFeatureData(Paths.get(featurePath));
+		for (final Path featurePath : filePaths) {
+			extractFeatureData(featurePath);
 		}
 
 		// parsing of service data
@@ -156,8 +156,8 @@ public class ReadProjectFiles {
 		// parsing of product data
 		filePaths.clear();
 		findFiles(StaticVariables.PRODUCT_FILE, projectPath);
-		for (final String productPath : filePaths) {
-			extractProductData(Paths.get(productPath));
+		for (final Path productPath : filePaths) {
+			extractProductData(productPath);
 		}
 
 		// delete all e4Injections, that are not service interface Injections.
@@ -274,7 +274,7 @@ public class ReadProjectFiles {
 								.setName(serviceComponentFile.getName().replace(".xml", StaticVariables.EMPTY_STRING));
 						bundle.getServiceComponents().add(serviceComponent);
 						project.getServiceComponents().add(serviceComponent);
-						serviceComponent.setPath(serviceComponentFile.getAbsolutePath());
+						serviceComponent.setPath(FilenameUtils.separatorsToUnix(serviceComponentFile.getAbsolutePath()));
 						final int i = 1;
 					}
 				}
@@ -296,7 +296,8 @@ public class ReadProjectFiles {
 					}
 					if (service.contains(StaticVariables.XML_FILE) && !service.contains("*.xml") //$NON-NLS-1$
 							&& bundleRoot != null) {
-						serviceComponent.setPath(bundleRoot + service.replace("OSGI-INF/", "/OSGI-INF/")); //$NON-NLS-1$ //$NON-NLS-2$
+						serviceComponent.setPath(FilenameUtils.separatorsToUnix(
+								bundleRoot + service.replace("OSGI-INF/", "/OSGI-INF/"))); //$NON-NLS-1$ //$NON-NLS-2$
 					}
 
 				}
@@ -346,11 +347,6 @@ public class ReadProjectFiles {
 	 * @param featurePath is the path to the feature.xml file
 	 */
 	private void extractFeatureData(final Path featurePath) {
-		if (featurePath.toString().contains("\\target\\")) {
-			// ignore target folders with feature.xml in it
-			return;
-		}
-
 		String aboutFile = StaticVariables.ABOUT_INFO;
 		final Path featureRoot = featurePath.getParent();
 		if (featureRoot != null) {
@@ -423,8 +419,11 @@ public class ReadProjectFiles {
 			serviceComponent.setImplementationClass(implementationClass);
 			serviceComponent.setJavaDocPath(javadocUri);
 			
-			//change absolut path to relativ path
-			serviceComponent.setPath(serviceComponent.getPath().replaceAll(".+bundles\\\\", ""));
+			//change absolute path to relative path
+			String absoluteSCPathString = serviceComponent.getPath();
+			String relativeSCPathString = FilenameUtils.separatorsToSystem(FilenameUtils//
+					.separatorsToUnix(absoluteSCPathString).replaceAll(".+bundles/", ""));
+			serviceComponent.setPath(relativeSCPathString);
 
 			// read interface
 			if (interfaceList.getLength() != 0) {
@@ -614,11 +613,13 @@ public class ReadProjectFiles {
 		if (list != null) {
 			for (final File fil : list) {
 				if (fil.isDirectory()) {
-					findFiles(name, fil);
-				} else if (fil.getName().endsWith(name)) {
-					if (!fil.toString().contains("\\target\\")) {
-						filePaths.add(fil.toString());
+					// Ignore /target directories.
+					if (!fil.getPath().endsWith(File.separator + "target")) {
+						findFiles(name, fil);
 					}
+				} else if (fil.getName().endsWith(name)) {
+					Path filePath = Paths.get(fil.getPath());
+					filePaths.add(filePath);
 				}
 			}
 		}
@@ -654,13 +655,12 @@ public class ReadProjectFiles {
 	 * @return the absolute file path
 	 */
 	private String findFilePath(final String name) {
-		String filePath = ""; //$NON-NLS-1$
 		for (final String elem : javaFilePaths) {
-			if (elem.endsWith(name.replace(".", "\\") + ".java")) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				filePath = new File(elem).getAbsolutePath();
+			if (elem.endsWith(name.replace(".", File.separator) + ".java")) { //$NON-NLS-1$ //$NON-NLS-2$
+				return new File(elem).getAbsolutePath();
 			}
 		}
-		return filePath;
+		return ""; //$NON-NLS-1$
 	}
 
 	/**
