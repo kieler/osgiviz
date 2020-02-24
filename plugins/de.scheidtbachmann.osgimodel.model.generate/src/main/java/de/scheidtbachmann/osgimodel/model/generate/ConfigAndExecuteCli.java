@@ -66,7 +66,7 @@ public class ConfigAndExecuteCli implements Runnable {
 	/**
 	 * The output path where the model is saved.
 	 */
-	@Option(names = {"-S", "-O", "--output"}, paramLabel = "OUTPUT",
+	@Option(names = {"-S", "-O", "--output"}, required = true, paramLabel = "OUTPUT",
 			description = "The output path where the model is saved.")
 	private String modelSaveFilePath;
 	
