@@ -25,3 +25,6 @@ These can be installed in Eclipse via the *Help -> Install new Software* menu.
 To view the diagram to a model,
 open said model with the now-installed *Osgimodel Model Editor*
 and open the diagram view via *Window -> Show view -> Other... -> KIELER Lightweight Diagrams -> Diagram*.
+
+## The OSGi models
+To generate a model file visualizable with osgiviz, have a look at the readme in the [osgimodel.model.generate bundle](https://github.com/OpenKieler/osgiviz/tree/master/plugins/de.scheidtbachmann.osgimodel.model.generate).
