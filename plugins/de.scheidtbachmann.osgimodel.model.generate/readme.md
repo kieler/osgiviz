@@ -1,58 +1,36 @@
-## Anleitung
+# OSGi Model Generator
+The OSGi model generator is a tool for analyzing workspaces for projects using the OSGi technology and persisting its structure of bundles, products, features, services and more into an EMF model. Generating such a model is the first step of using osgiviz for the visualization of OSGI-based projects. 
 
-Das Plugin unter `<build><plugins>snippet</plugins><build>` einfügen. Die wichtigen Parameter die konfiguriert werden müssen sind:
+## How to build
+The generator is built into the main Maven build of osgiviz and can therefore be built with calling `mvn clean build` in the `build` folder of this repository. That will build the P2 update site for osgiviz as well as a fat jar for the model generation. That file will be located in `plugins/de.scheidtbachmann.osgimodel.model.generate/target/de.scheidtbachmann.osgimodel.model.generate-0.1.0-SNAPSHOT` after a successful build.
 
+Alternatively, this can be build in the usual development Eclipse set up with [the Oomph osgiviz setup](https://github.com/OpenKieler/config/blob/master/OsgiViz.setup) and executed as a Java application with using ConfigAndExecuteCli as the main class.
 
-**`<projectNames>`**
+## How to download
+Building the fat jar is also included in our nightly build, so instead of building this for yourself, you can also download the generator of the latest nightly build directly from [https://rtsys.informatik.uni-kiel.de/~kieler/files/nightly/osgiviz/cli/](https://rtsys.informatik.uni-kiel.de/~kieler/files/nightly/osgiviz/cli/).
 
-Die Namen der einzelnen Projekte, die dann so auch in der Dokumentation als Beschreiber verwendet werden.
+## How to use
+To execute the model generator, you need to feed it with the follwing parameters:
 
-**`<projectPaths>`**
+**`-N, --names`**
 
-Die lokalen Pfade zu den Projektordnern.
+The Names of all projects that should be documented. The names will be used as their descriptor.
 
-**`<projectJavadocUrls>`**
+**`-P, --paths`**
 
-Wenn vorhanden, die URL zum javadoc der Projekte. Falls nicht vorhanden, einfach weglassen, das <projectJavadocUrls> wird aber benötigt.
+The local paths to the folders of the projects that should be documented.
 
-**`<modelSaveFilePath>`**
+**`-J, --javadocs`**
 
-Der Pfad wo die Modelle abgelegt werden soll. Falls keiner angegeben wird, werden keine Modelle gespeichert.
+The URLs to the javadoc of all projects, if available. Optional parameter.
 
-Run Configuration:
+**`-S, -O, --output`**
 
-Für die run configuration sollten folgende Goals gesetzt sein: 
+The output path where the model is saved. Mandatory parameter.
 
-**`clean -X de.scheidtbachmann.common.osgimodel:model.generate:generate-documentation -N -Dmaven.test.skip=true -Dtycho.localArtifacts=ignore`**
+An example:
 
-`de.scheidtbachmann.common.osgimodel:model.generate:generate-documentation:` Ruft das maven plugin mit dem goal generate-documentation auf.<br>
-`-X`: für debug logging, wenn gewünscht<br>
-`-N`: non-recursive, es wird nur die parent-pom beachtet<br>
-`-Dmaven.test.skip=true`: Tests übersrpingen<br>
-`-Dtycho.localArtifacts=ignore`: Lokale Build Artefakte werden ignoriert<br>
+`java -jar de.scheidtbachmann.osgimodel.model.generate-0.1.0-SNAPSHOT.jar -N LanguageDemo=LanguageDemo -P LanguageDemo=[path/to/project]/src/LanguageDemo/ -S /home/[username]/Documents/OSGi/generated-models/`
 
-```
-<plugin>
-	<groupId>de.scheidtbachmann.common.osgimodel</groupId>
-    <artifactId>model.generate</artifactId>
-	<version>1.0.0</version>
-	<inherited>false</inherited>
-	<configuration>
-		<projectNames>
-			<example1>ExampleName</example1>
-			<example2>ExampleName2</example2>
-		</projectNames>
-		<projectPaths>	
-			<example1>C:\ws_intern\svn\example1\src\example1\java</example1>
-			<example2>C:\ws_intern\svn\example2\src\example2\java</example2>
-		</projectPaths>
-		<projectJavadocUrls>
-			<example1[...]site/trunk/apidocs/index.html</example1>
-			<example2>[...]site/trunk/apidocs/index.html</example2>
-		</projectJavadocUrls>
-       		<modelSaveFilePath>
-   			${project.basedir}/OSGiModel/models
-		</modelSaveFilePath>
-	</configuration>
-</plugin>
-```
+This will generate an OSGi model file for the Language Demo project in `/home/[username]/Documents/OSGi/generated-models/LanguageDemo.model`.
+This file can then be imported into an Eclipse with the installed osgiviz and visualized there.
