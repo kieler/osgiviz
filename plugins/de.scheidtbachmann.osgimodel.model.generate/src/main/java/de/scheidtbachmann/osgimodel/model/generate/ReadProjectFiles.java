@@ -216,16 +216,16 @@ public class ReadProjectFiles {
 			final String bundleCategory = attributes.getValue(StaticVariables.BUNDLE_CATEGORY);
 
 			if (bundleCategory != null) {
-				for (final String category : bundleCategory.split(", ")) {
+				for (final String category : bundleCategory.split(",")) {
 
 					final Optional<BundleCategory> categoryObject = project.getBundleCategories()//
 							.stream()//
-							.filter(elem -> elem.getCategoryName().equals(category)).findFirst();
+							.filter(elem -> elem.getCategoryName().equals(category.trim())).findFirst();
 					if (categoryObject.isPresent()) {
 						categoryObject.get().getBundle().add(bundle);
 					} else {
 						final BundleCategory newCategory = OsgimodelFactory.eINSTANCE.createBundleCategory();
-						newCategory.setCategoryName(category);
+						newCategory.setCategoryName(category.trim());
 						newCategory.getBundle().add(bundle);
 						project.getBundleCategories().add(newCategory);
 					}
