@@ -16,4 +16,7 @@
    <feature url="features/de.cau.cs.kieler.osgiviz_0.1.0.qualifier.jar" id="de.cau.cs.kieler.osgiviz.feature" version="0.1.0.qualifier">
       <category name="osgiviz"/>
    </feature>
+
+   <repository-reference location="https://kieler.github.io/KLighD/v1.1.0/" enabled="true" />
+
 </site>
