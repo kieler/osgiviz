@@ -162,15 +162,31 @@ final class SynthesisUtils {
     def static <M> Iterable<? extends IVisualizationContext<M>> filteredElementContexts(
         List<? extends IVisualizationContext<M>> visualizationContexts, ViewContext usedContext) {
         val regex = ".*" + usedContext.getOptionValue(FILTER_BY) as String + ".*"
+        val filterByBundleCategory = usedContext.getOptionValue(FILTER_BY_BUNDLE_CATEGORY) as String
+        val filterBundleCategoryRegex = ".*" + filterByBundleCategory + ".*"
         if (!regex.empty && !visualizationContexts.empty) {
             val (IVisualizationContext<M>) => boolean filter = switch (visualizationContexts.head.modelElement) {
                 Bundle           case usedContext.getOptionValue(FILTER_BUNDLES)            === true: {
-                    [ (modelElement as Bundle)          .uniqueId       .matches(regex) 
-                        && if (usedContext.getOptionValue(OsgiOptions.SHOW_EXTERNAL) === true) {
-                            true
-                        } else {
-                            !(modelElement as Bundle).isExternal
+                        
+                    // The filter function returned in the Bundle case.
+                    [ 
+                        // The bundle's ID needs to match the FILTER_BY regex,
+                        if (!(modelElement as Bundle).uniqueId.matches(regex)) {
+                            return false
                         }
+                        // and we need to filter out if external elements are not shown,
+                        if ((usedContext.getOptionValue(OsgiOptions.SHOW_EXTERNAL) === false)
+                            && (modelElement as Bundle).isExternal) {
+                            return false
+                        }
+                        // and the the bundle needs to be in a bundle category matching FILTER_BY_BUNDLE_CATEGORY regex
+                        // if that filter is non-empty
+                        if (!filterByBundleCategory.empty && (modelElement as Bundle).bundleCategory.findFirst [
+                            categoryName.matches(filterBundleCategoryRegex)
+                        ] === null) {
+                            return false
+                        }
+                        return true
                     ]
                 }
                 Feature          case usedContext.getOptionValue(FILTER_FEATURES)           === true: {
