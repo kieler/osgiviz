@@ -36,6 +36,9 @@ import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtens
  * Persists the currently viewed {@link IVisualizationContext} and the model it belongs to to disk.
  * Uses the path relative to the execution of this model
  * "models/[projectName]-visualization-[yyyyMMddHHmmss].osgiviz".
+ * The .osgiviz file can then be opened and viewed and will generate the exact view on the underlying .model file as
+ * visualized when saved.
+ * Note that the .model file needs to be located next to the .osgiviz file when opening.
  * 
  * @author nre
  */
@@ -56,7 +59,7 @@ class StoreModelAction implements IAction {
         val OsgiProject rootModel = rootContext?.modelElement
         
         // Take a copy of the context and model first to not mess up the current resource they might be stored in.
-        val Copier copier = new Copier
+        val Copier copier = new Copier(true, true)
         val OsgiProject copiedModel = copier.copy(rootModel) as OsgiProject
         val OsgiViz copiedRoot = copier.copy(rootContext) as OsgiViz
         val copiedContext = if (currentContext === rootContext) {
@@ -72,8 +75,9 @@ class StoreModelAction implements IAction {
         val r = Resource.Factory.Registry.INSTANCE
         val extensionFactories = r.getExtensionToFactoryMap
         val osgivizFileEnding = "osgiviz"
+        val modelFileEnding = "model"
         extensionFactories.put(osgivizFileEnding, new XMIResourceFactoryImpl)
-        extensionFactories.put("model", new XMIResourceFactoryImpl)
+        extensionFactories.put(modelFileEnding, new XMIResourceFactoryImpl)
         val resSet = new ResourceSetImpl
         resSet.packageRegistry.put(OsgivizmodelPackage.eNS_URI, OsgivizmodelPackage.eINSTANCE)
         resSet.packageRegistry.put(OsgimodelPackage.eNS_URI, OsgimodelPackage.eINSTANCE)
@@ -81,12 +85,16 @@ class StoreModelAction implements IAction {
         val folder = "models/"
         val projectName = rootModel.projectName
         val timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date)
-        val fileEnding = "." + osgivizFileEnding
-        val filePath = folder + projectName + "-visualization-" + timeStamp + fileEnding
+        val dotOsgivizFileEnding = "." + osgivizFileEnding
+        val filePath = folder + projectName + "-visualization-" + timeStamp + dotOsgivizFileEnding
         
         val res = resSet.createResource(URI.createURI(filePath))
         res.getContents().add(copiedContext)
-        res.getContents().add(copiedModel)
+        
+        // A resource to hold the original model to reference to while saving
+        val dotModelFileEnding = "." + modelFileEnding
+        val osgiModelRes = resSet.createResource(URI.createURI(projectName + dotModelFileEnding))
+        osgiModelRes.getContents().add(copiedModel)
 
         // Save the content.
         res.save(Collections.EMPTY_MAP)
