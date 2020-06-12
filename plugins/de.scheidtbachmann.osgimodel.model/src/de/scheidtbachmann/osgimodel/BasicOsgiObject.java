@@ -35,7 +35,7 @@ public interface BasicOsgiObject extends EObject {
 	 * @return the value of the '<em>Unique Id</em>' attribute.
 	 * @see #setUniqueId(String)
 	 * @see de.scheidtbachmann.osgimodel.OsgimodelPackage#getBasicOsgiObject_UniqueId()
-	 * @model unique="false"
+	 * @model id="true"
 	 * @generated
 	 */
 	String getUniqueId();

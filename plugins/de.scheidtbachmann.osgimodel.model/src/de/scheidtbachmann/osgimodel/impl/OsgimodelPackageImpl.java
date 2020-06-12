@@ -1019,7 +1019,7 @@ public class OsgimodelPackageImpl extends EPackageImpl implements OsgimodelPacka
 		initEReference(getOsgiProject_BundleCategories(), this.getBundleCategory(), null, "bundleCategories", null, 0, -1, OsgiProject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(basicOsgiObjectEClass, BasicOsgiObject.class, "BasicOsgiObject", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBasicOsgiObject_UniqueId(), theEcorePackage.getEString(), "uniqueId", null, 0, 1, BasicOsgiObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBasicOsgiObject_UniqueId(), theEcorePackage.getEString(), "uniqueId", null, 0, 1, BasicOsgiObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBasicOsgiObject_DescriptiveName(), theEcorePackage.getEString(), "descriptiveName", null, 0, 1, BasicOsgiObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBasicOsgiObject_Version(), theEcorePackage.getEString(), "version", null, 0, 1, BasicOsgiObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBasicOsgiObject_About(), theEcorePackage.getEString(), "about", null, 0, 1, BasicOsgiObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see de.scheidtbachmann.osgimodel.OsgimodelFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel modelDirectory='de.scheidtbachmann.osgimodel.model/src' basePackage='de.scheidtbachmann'"
  * @generated
  */
 public interface OsgimodelPackage extends EPackage {

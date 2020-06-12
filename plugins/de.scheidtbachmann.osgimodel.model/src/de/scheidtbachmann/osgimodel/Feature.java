@@ -18,7 +18,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see de.scheidtbachmann.osgimodel.OsgimodelPackage#getFeature()
- * @model annotation="http://www.eclipse.org/emf/2002/GenModel labelFeature='uniqueId'"
+ * @model
  * @generated
  */
 public interface Feature extends BasicOsgiObject {

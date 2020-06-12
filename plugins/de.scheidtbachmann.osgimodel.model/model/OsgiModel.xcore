@@ -23,7 +23,7 @@ class  OsgiProject
  
 abstract class BasicOsgiObject
 {
-    String uniqueId
+    unique id String uniqueId
     String descriptiveName
     String version
     String about
