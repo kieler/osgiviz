@@ -20,10 +20,15 @@ class  OsgiProject
 /*
  * Basic Objects
  */
- 
-abstract class BasicOsgiObject
+
+abstract class Identifiable
 {
-    unique id String uniqueId
+    unique id String ecoreId
+}
+
+abstract class BasicOsgiObject extends Identifiable
+{
+    String uniqueId
     String descriptiveName
     String version
     String about
@@ -65,7 +70,7 @@ class PackageObject
     String javaDocPath
 }
 
-class ServiceComponent
+class ServiceComponent extends Identifiable
 {
     String name
     String path
@@ -77,16 +82,16 @@ class ServiceComponent
     String javaDocPath = ""
 }
 
-class ServiceInterface
+class ServiceInterface extends Identifiable
 {
-    refers ServiceComponent[] serviceComponent opposite serviceInterfaces
     String name
     String about
     refers Bundle implementedIn
+    refers ServiceComponent[] serviceComponent opposite serviceInterfaces
     refers Reference[] referencedBy opposite serviceInterface
 }
 
-class BundleCategory
+class BundleCategory extends Identifiable
 {
     String categoryName
     refers Bundle[] bundle opposite bundleCategory
