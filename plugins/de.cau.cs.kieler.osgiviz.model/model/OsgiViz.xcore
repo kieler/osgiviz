@@ -544,7 +544,7 @@ class ServiceOverviewContext extends IOverviewVisualizationContext<Object> {
      * if in bundle connections are not allowed.
      * The pairs should be viewed that the first component implements the second interface.
      */
-    refers Pair<ServiceComponentContext, ServiceInterfaceContext>[] implementedInterfaceEdgesPlain
+    contains Pair<ServiceComponentContext, ServiceInterfaceContext>[] implementedInterfaceEdgesPlain
     
     /*
      * All connections for the implemented service interfaces that should be drawn in the inBundles variant of the
@@ -552,21 +552,21 @@ class ServiceOverviewContext extends IOverviewVisualizationContext<Object> {
      * allowed.
      * The pairs should be viewed that the first component implements the second interface.
      */
-    refers Pair<ServiceComponentContext, ServiceInterfaceContext>[] implementedInterfaceEdgesInBundles
+    contains Pair<ServiceComponentContext, ServiceInterfaceContext>[] implementedInterfaceEdgesInBundles
     
     /*
      * All connections for the referenced service interfaces that should be drawn in the plain variant of the
      * {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option or also in any other variant, 
      * if in bundle connections are not allowed.
      */
-    refers ReferencedInterfaceEdgeConnection[] referencedInterfaceEdgesPlain
+    contains ReferencedInterfaceEdgeConnection[] referencedInterfaceEdgesPlain
     
     /*
      * All connections for the referenced service interface that should be drawn in the inBundles variant of the
      * {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option if in bundle connections
      * are allowed.
      */
-    refers ReferencedInterfaceEdgeConnection[] referencedInterfaceEdgesInBundles
+    contains ReferencedInterfaceEdgeConnection[] referencedInterfaceEdgesInBundles
     
     /*
      * All connections for the injected service interfaces that should be drawn in the plain variant of the
@@ -574,7 +574,7 @@ class ServiceOverviewContext extends IOverviewVisualizationContext<Object> {
      * not allowed.
      * The pairs should be viewed that the first injection context is used to inject the second interface.
      */
-    refers Pair<ClassContext, ServiceInterfaceContext>[] injectedInterfaceEdgesPlain
+    contains Pair<ClassContext, ServiceInterfaceContext>[] injectedInterfaceEdgesPlain
     
     /*
      * All connections for the injected service interfaces that should be drawn in the inBundles variant of the
@@ -582,7 +582,7 @@ class ServiceOverviewContext extends IOverviewVisualizationContext<Object> {
      * are allowed.
      * The pairs should be viewed that the first class context is used to inject the second interface.
      */
-    refers Pair<ClassContext, ServiceInterfaceContext>[] injectedInterfaceEdgesInBundles
+    contains Pair<ClassContext, ServiceInterfaceContext>[] injectedInterfaceEdgesInBundles
     
     /*
      * The service components displayed in this context.
