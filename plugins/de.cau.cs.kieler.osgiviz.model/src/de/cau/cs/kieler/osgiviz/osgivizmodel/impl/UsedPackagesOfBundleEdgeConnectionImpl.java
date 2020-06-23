@@ -5,7 +5,6 @@ package de.cau.cs.kieler.osgiviz.osgivizmodel.impl;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.UsedPackagesOfBundleEdgeConnection;
-
 import de.scheidtbachmann.osgimodel.PackageObject;
 import de.scheidtbachmann.osgimodel.Product;
 import java.util.Collection;

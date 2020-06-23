@@ -1710,7 +1710,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	int SERVICE_OVERVIEW_CONTEXT__DETAILED_REFERENCED_BUNDLE_CONTEXTS = IOVERVIEW_VISUALIZATION_CONTEXT_FEATURE_COUNT + 8;
 
 	/**
-	 * The feature id for the '<em><b>Implemented Interface Edges Plain</b></em>' reference list.
+	 * The feature id for the '<em><b>Implemented Interface Edges Plain</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1719,7 +1719,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	int SERVICE_OVERVIEW_CONTEXT__IMPLEMENTED_INTERFACE_EDGES_PLAIN = IOVERVIEW_VISUALIZATION_CONTEXT_FEATURE_COUNT + 9;
 
 	/**
-	 * The feature id for the '<em><b>Implemented Interface Edges In Bundles</b></em>' reference list.
+	 * The feature id for the '<em><b>Implemented Interface Edges In Bundles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1728,7 +1728,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	int SERVICE_OVERVIEW_CONTEXT__IMPLEMENTED_INTERFACE_EDGES_IN_BUNDLES = IOVERVIEW_VISUALIZATION_CONTEXT_FEATURE_COUNT + 10;
 
 	/**
-	 * The feature id for the '<em><b>Referenced Interface Edges Plain</b></em>' reference list.
+	 * The feature id for the '<em><b>Referenced Interface Edges Plain</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1737,7 +1737,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	int SERVICE_OVERVIEW_CONTEXT__REFERENCED_INTERFACE_EDGES_PLAIN = IOVERVIEW_VISUALIZATION_CONTEXT_FEATURE_COUNT + 11;
 
 	/**
-	 * The feature id for the '<em><b>Referenced Interface Edges In Bundles</b></em>' reference list.
+	 * The feature id for the '<em><b>Referenced Interface Edges In Bundles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1746,7 +1746,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	int SERVICE_OVERVIEW_CONTEXT__REFERENCED_INTERFACE_EDGES_IN_BUNDLES = IOVERVIEW_VISUALIZATION_CONTEXT_FEATURE_COUNT + 12;
 
 	/**
-	 * The feature id for the '<em><b>Injected Interface Edges Plain</b></em>' reference list.
+	 * The feature id for the '<em><b>Injected Interface Edges Plain</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1755,7 +1755,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	int SERVICE_OVERVIEW_CONTEXT__INJECTED_INTERFACE_EDGES_PLAIN = IOVERVIEW_VISUALIZATION_CONTEXT_FEATURE_COUNT + 13;
 
 	/**
-	 * The feature id for the '<em><b>Injected Interface Edges In Bundles</b></em>' reference list.
+	 * The feature id for the '<em><b>Injected Interface Edges In Bundles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2930,10 +2930,10 @@ public interface OsgivizmodelPackage extends EPackage {
 	EReference getServiceOverviewContext_DetailedReferencedBundleContexts();
 
 	/**
-	 * Returns the meta object for the reference list '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext#getImplementedInterfaceEdgesPlain <em>Implemented Interface Edges Plain</em>}'.
+	 * Returns the meta object for the containment reference list '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext#getImplementedInterfaceEdgesPlain <em>Implemented Interface Edges Plain</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Implemented Interface Edges Plain</em>'.
+	 * @return the meta object for the containment reference list '<em>Implemented Interface Edges Plain</em>'.
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext#getImplementedInterfaceEdgesPlain()
 	 * @see #getServiceOverviewContext()
 	 * @generated
@@ -2941,10 +2941,10 @@ public interface OsgivizmodelPackage extends EPackage {
 	EReference getServiceOverviewContext_ImplementedInterfaceEdgesPlain();
 
 	/**
-	 * Returns the meta object for the reference list '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext#getImplementedInterfaceEdgesInBundles <em>Implemented Interface Edges In Bundles</em>}'.
+	 * Returns the meta object for the containment reference list '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext#getImplementedInterfaceEdgesInBundles <em>Implemented Interface Edges In Bundles</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Implemented Interface Edges In Bundles</em>'.
+	 * @return the meta object for the containment reference list '<em>Implemented Interface Edges In Bundles</em>'.
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext#getImplementedInterfaceEdgesInBundles()
 	 * @see #getServiceOverviewContext()
 	 * @generated
@@ -2952,10 +2952,10 @@ public interface OsgivizmodelPackage extends EPackage {
 	EReference getServiceOverviewContext_ImplementedInterfaceEdgesInBundles();
 
 	/**
-	 * Returns the meta object for the reference list '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext#getReferencedInterfaceEdgesPlain <em>Referenced Interface Edges Plain</em>}'.
+	 * Returns the meta object for the containment reference list '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext#getReferencedInterfaceEdgesPlain <em>Referenced Interface Edges Plain</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Referenced Interface Edges Plain</em>'.
+	 * @return the meta object for the containment reference list '<em>Referenced Interface Edges Plain</em>'.
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext#getReferencedInterfaceEdgesPlain()
 	 * @see #getServiceOverviewContext()
 	 * @generated
@@ -2963,10 +2963,10 @@ public interface OsgivizmodelPackage extends EPackage {
 	EReference getServiceOverviewContext_ReferencedInterfaceEdgesPlain();
 
 	/**
-	 * Returns the meta object for the reference list '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext#getReferencedInterfaceEdgesInBundles <em>Referenced Interface Edges In Bundles</em>}'.
+	 * Returns the meta object for the containment reference list '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext#getReferencedInterfaceEdgesInBundles <em>Referenced Interface Edges In Bundles</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Referenced Interface Edges In Bundles</em>'.
+	 * @return the meta object for the containment reference list '<em>Referenced Interface Edges In Bundles</em>'.
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext#getReferencedInterfaceEdgesInBundles()
 	 * @see #getServiceOverviewContext()
 	 * @generated
@@ -2974,10 +2974,10 @@ public interface OsgivizmodelPackage extends EPackage {
 	EReference getServiceOverviewContext_ReferencedInterfaceEdgesInBundles();
 
 	/**
-	 * Returns the meta object for the reference list '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext#getInjectedInterfaceEdgesPlain <em>Injected Interface Edges Plain</em>}'.
+	 * Returns the meta object for the containment reference list '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext#getInjectedInterfaceEdgesPlain <em>Injected Interface Edges Plain</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Injected Interface Edges Plain</em>'.
+	 * @return the meta object for the containment reference list '<em>Injected Interface Edges Plain</em>'.
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext#getInjectedInterfaceEdgesPlain()
 	 * @see #getServiceOverviewContext()
 	 * @generated
@@ -2985,10 +2985,10 @@ public interface OsgivizmodelPackage extends EPackage {
 	EReference getServiceOverviewContext_InjectedInterfaceEdgesPlain();
 
 	/**
-	 * Returns the meta object for the reference list '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext#getInjectedInterfaceEdgesInBundles <em>Injected Interface Edges In Bundles</em>}'.
+	 * Returns the meta object for the containment reference list '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext#getInjectedInterfaceEdgesInBundles <em>Injected Interface Edges In Bundles</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Injected Interface Edges In Bundles</em>'.
+	 * @return the meta object for the containment reference list '<em>Injected Interface Edges In Bundles</em>'.
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext#getInjectedInterfaceEdgesInBundles()
 	 * @see #getServiceOverviewContext()
 	 * @generated
@@ -3884,7 +3884,7 @@ public interface OsgivizmodelPackage extends EPackage {
 		EReference SERVICE_OVERVIEW_CONTEXT__DETAILED_REFERENCED_BUNDLE_CONTEXTS = eINSTANCE.getServiceOverviewContext_DetailedReferencedBundleContexts();
 
 		/**
-		 * The meta object literal for the '<em><b>Implemented Interface Edges Plain</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Implemented Interface Edges Plain</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -3892,7 +3892,7 @@ public interface OsgivizmodelPackage extends EPackage {
 		EReference SERVICE_OVERVIEW_CONTEXT__IMPLEMENTED_INTERFACE_EDGES_PLAIN = eINSTANCE.getServiceOverviewContext_ImplementedInterfaceEdgesPlain();
 
 		/**
-		 * The meta object literal for the '<em><b>Implemented Interface Edges In Bundles</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Implemented Interface Edges In Bundles</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -3900,7 +3900,7 @@ public interface OsgivizmodelPackage extends EPackage {
 		EReference SERVICE_OVERVIEW_CONTEXT__IMPLEMENTED_INTERFACE_EDGES_IN_BUNDLES = eINSTANCE.getServiceOverviewContext_ImplementedInterfaceEdgesInBundles();
 
 		/**
-		 * The meta object literal for the '<em><b>Referenced Interface Edges Plain</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Referenced Interface Edges Plain</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -3908,7 +3908,7 @@ public interface OsgivizmodelPackage extends EPackage {
 		EReference SERVICE_OVERVIEW_CONTEXT__REFERENCED_INTERFACE_EDGES_PLAIN = eINSTANCE.getServiceOverviewContext_ReferencedInterfaceEdgesPlain();
 
 		/**
-		 * The meta object literal for the '<em><b>Referenced Interface Edges In Bundles</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Referenced Interface Edges In Bundles</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -3916,7 +3916,7 @@ public interface OsgivizmodelPackage extends EPackage {
 		EReference SERVICE_OVERVIEW_CONTEXT__REFERENCED_INTERFACE_EDGES_IN_BUNDLES = eINSTANCE.getServiceOverviewContext_ReferencedInterfaceEdgesInBundles();
 
 		/**
-		 * The meta object literal for the '<em><b>Injected Interface Edges Plain</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Injected Interface Edges Plain</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -3924,7 +3924,7 @@ public interface OsgivizmodelPackage extends EPackage {
 		EReference SERVICE_OVERVIEW_CONTEXT__INJECTED_INTERFACE_EDGES_PLAIN = eINSTANCE.getServiceOverviewContext_InjectedInterfaceEdgesPlain();
 
 		/**
-		 * The meta object literal for the '<em><b>Injected Interface Edges In Bundles</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Injected Interface Edges In Bundles</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

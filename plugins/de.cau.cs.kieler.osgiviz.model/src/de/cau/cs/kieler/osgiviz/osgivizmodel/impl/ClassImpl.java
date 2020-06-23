@@ -3,7 +3,6 @@
 package de.cau.cs.kieler.osgiviz.osgivizmodel.impl;
 
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
-
 import de.scheidtbachmann.osgimodel.Bundle;
 import de.scheidtbachmann.osgimodel.ServiceInterface;
 import java.util.Collection;

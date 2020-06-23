@@ -220,7 +220,7 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	protected EList<BundleContext> detailedReferencedBundleContexts;
 
 	/**
-	 * The cached value of the '{@link #getImplementedInterfaceEdgesPlain() <em>Implemented Interface Edges Plain</em>}' reference list.
+	 * The cached value of the '{@link #getImplementedInterfaceEdgesPlain() <em>Implemented Interface Edges Plain</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getImplementedInterfaceEdgesPlain()
@@ -230,7 +230,7 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	protected EList<Pair<ServiceComponentContext, ServiceInterfaceContext>> implementedInterfaceEdgesPlain;
 
 	/**
-	 * The cached value of the '{@link #getImplementedInterfaceEdgesInBundles() <em>Implemented Interface Edges In Bundles</em>}' reference list.
+	 * The cached value of the '{@link #getImplementedInterfaceEdgesInBundles() <em>Implemented Interface Edges In Bundles</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getImplementedInterfaceEdgesInBundles()
@@ -240,7 +240,7 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	protected EList<Pair<ServiceComponentContext, ServiceInterfaceContext>> implementedInterfaceEdgesInBundles;
 
 	/**
-	 * The cached value of the '{@link #getReferencedInterfaceEdgesPlain() <em>Referenced Interface Edges Plain</em>}' reference list.
+	 * The cached value of the '{@link #getReferencedInterfaceEdgesPlain() <em>Referenced Interface Edges Plain</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getReferencedInterfaceEdgesPlain()
@@ -250,7 +250,7 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	protected EList<ReferencedInterfaceEdgeConnection> referencedInterfaceEdgesPlain;
 
 	/**
-	 * The cached value of the '{@link #getReferencedInterfaceEdgesInBundles() <em>Referenced Interface Edges In Bundles</em>}' reference list.
+	 * The cached value of the '{@link #getReferencedInterfaceEdgesInBundles() <em>Referenced Interface Edges In Bundles</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getReferencedInterfaceEdgesInBundles()
@@ -260,7 +260,7 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	protected EList<ReferencedInterfaceEdgeConnection> referencedInterfaceEdgesInBundles;
 
 	/**
-	 * The cached value of the '{@link #getInjectedInterfaceEdgesPlain() <em>Injected Interface Edges Plain</em>}' reference list.
+	 * The cached value of the '{@link #getInjectedInterfaceEdgesPlain() <em>Injected Interface Edges Plain</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInjectedInterfaceEdgesPlain()
@@ -270,7 +270,7 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	protected EList<Pair<ClassContext, ServiceInterfaceContext>> injectedInterfaceEdgesPlain;
 
 	/**
-	 * The cached value of the '{@link #getInjectedInterfaceEdgesInBundles() <em>Injected Interface Edges In Bundles</em>}' reference list.
+	 * The cached value of the '{@link #getInjectedInterfaceEdgesInBundles() <em>Injected Interface Edges In Bundles</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInjectedInterfaceEdgesInBundles()
@@ -626,7 +626,7 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	@Override
 	public EList<Pair<ServiceComponentContext, ServiceInterfaceContext>> getImplementedInterfaceEdgesPlain() {
 		if (implementedInterfaceEdgesPlain == null) {
-			implementedInterfaceEdgesPlain = new EObjectResolvingEList<Pair<ServiceComponentContext, ServiceInterfaceContext>>(Pair.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__IMPLEMENTED_INTERFACE_EDGES_PLAIN);
+			implementedInterfaceEdgesPlain = new EObjectContainmentEList<Pair<ServiceComponentContext, ServiceInterfaceContext>>(Pair.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__IMPLEMENTED_INTERFACE_EDGES_PLAIN);
 		}
 		return implementedInterfaceEdgesPlain;
 	}
@@ -639,7 +639,7 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	@Override
 	public EList<Pair<ServiceComponentContext, ServiceInterfaceContext>> getImplementedInterfaceEdgesInBundles() {
 		if (implementedInterfaceEdgesInBundles == null) {
-			implementedInterfaceEdgesInBundles = new EObjectResolvingEList<Pair<ServiceComponentContext, ServiceInterfaceContext>>(Pair.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__IMPLEMENTED_INTERFACE_EDGES_IN_BUNDLES);
+			implementedInterfaceEdgesInBundles = new EObjectContainmentEList<Pair<ServiceComponentContext, ServiceInterfaceContext>>(Pair.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__IMPLEMENTED_INTERFACE_EDGES_IN_BUNDLES);
 		}
 		return implementedInterfaceEdgesInBundles;
 	}
@@ -652,7 +652,7 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	@Override
 	public EList<ReferencedInterfaceEdgeConnection> getReferencedInterfaceEdgesPlain() {
 		if (referencedInterfaceEdgesPlain == null) {
-			referencedInterfaceEdgesPlain = new EObjectResolvingEList<ReferencedInterfaceEdgeConnection>(ReferencedInterfaceEdgeConnection.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__REFERENCED_INTERFACE_EDGES_PLAIN);
+			referencedInterfaceEdgesPlain = new EObjectContainmentEList<ReferencedInterfaceEdgeConnection>(ReferencedInterfaceEdgeConnection.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__REFERENCED_INTERFACE_EDGES_PLAIN);
 		}
 		return referencedInterfaceEdgesPlain;
 	}
@@ -665,7 +665,7 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	@Override
 	public EList<ReferencedInterfaceEdgeConnection> getReferencedInterfaceEdgesInBundles() {
 		if (referencedInterfaceEdgesInBundles == null) {
-			referencedInterfaceEdgesInBundles = new EObjectResolvingEList<ReferencedInterfaceEdgeConnection>(ReferencedInterfaceEdgeConnection.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__REFERENCED_INTERFACE_EDGES_IN_BUNDLES);
+			referencedInterfaceEdgesInBundles = new EObjectContainmentEList<ReferencedInterfaceEdgeConnection>(ReferencedInterfaceEdgeConnection.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__REFERENCED_INTERFACE_EDGES_IN_BUNDLES);
 		}
 		return referencedInterfaceEdgesInBundles;
 	}
@@ -678,7 +678,7 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	@Override
 	public EList<Pair<ClassContext, ServiceInterfaceContext>> getInjectedInterfaceEdgesPlain() {
 		if (injectedInterfaceEdgesPlain == null) {
-			injectedInterfaceEdgesPlain = new EObjectResolvingEList<Pair<ClassContext, ServiceInterfaceContext>>(Pair.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__INJECTED_INTERFACE_EDGES_PLAIN);
+			injectedInterfaceEdgesPlain = new EObjectContainmentEList<Pair<ClassContext, ServiceInterfaceContext>>(Pair.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__INJECTED_INTERFACE_EDGES_PLAIN);
 		}
 		return injectedInterfaceEdgesPlain;
 	}
@@ -691,7 +691,7 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	@Override
 	public EList<Pair<ClassContext, ServiceInterfaceContext>> getInjectedInterfaceEdgesInBundles() {
 		if (injectedInterfaceEdgesInBundles == null) {
-			injectedInterfaceEdgesInBundles = new EObjectResolvingEList<Pair<ClassContext, ServiceInterfaceContext>>(Pair.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__INJECTED_INTERFACE_EDGES_IN_BUNDLES);
+			injectedInterfaceEdgesInBundles = new EObjectContainmentEList<Pair<ClassContext, ServiceInterfaceContext>>(Pair.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__INJECTED_INTERFACE_EDGES_IN_BUNDLES);
 		}
 		return injectedInterfaceEdgesInBundles;
 	}
@@ -791,6 +791,18 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 				return basicSetParent(null, msgs);
 			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__CLASSES:
 				return ((InternalEList<?>)getClasses()).basicRemove(otherEnd, msgs);
+			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__IMPLEMENTED_INTERFACE_EDGES_PLAIN:
+				return ((InternalEList<?>)getImplementedInterfaceEdgesPlain()).basicRemove(otherEnd, msgs);
+			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__IMPLEMENTED_INTERFACE_EDGES_IN_BUNDLES:
+				return ((InternalEList<?>)getImplementedInterfaceEdgesInBundles()).basicRemove(otherEnd, msgs);
+			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__REFERENCED_INTERFACE_EDGES_PLAIN:
+				return ((InternalEList<?>)getReferencedInterfaceEdgesPlain()).basicRemove(otherEnd, msgs);
+			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__REFERENCED_INTERFACE_EDGES_IN_BUNDLES:
+				return ((InternalEList<?>)getReferencedInterfaceEdgesInBundles()).basicRemove(otherEnd, msgs);
+			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__INJECTED_INTERFACE_EDGES_PLAIN:
+				return ((InternalEList<?>)getInjectedInterfaceEdgesPlain()).basicRemove(otherEnd, msgs);
+			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__INJECTED_INTERFACE_EDGES_IN_BUNDLES:
+				return ((InternalEList<?>)getInjectedInterfaceEdgesInBundles()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}

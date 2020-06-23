@@ -4,7 +4,6 @@ package de.cau.cs.kieler.osgiviz.osgivizmodel;
 
 import de.scheidtbachmann.osgimodel.Bundle;
 import de.scheidtbachmann.osgimodel.ServiceInterface;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;

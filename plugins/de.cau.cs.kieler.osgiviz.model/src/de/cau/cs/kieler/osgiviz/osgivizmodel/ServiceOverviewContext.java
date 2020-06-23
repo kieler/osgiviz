@@ -189,7 +189,7 @@ public interface ServiceOverviewContext extends IOverviewVisualizationContext<Ob
 	EList<BundleContext> getDetailedReferencedBundleContexts();
 
 	/**
-	 * Returns the value of the '<em><b>Implemented Interface Edges Plain</b></em>' reference list.
+	 * Returns the value of the '<em><b>Implemented Interface Edges Plain</b></em>' containment reference list.
 	 * The list contents are of type {@link de.cau.cs.kieler.osgiviz.osgivizmodel.Pair}<code>&lt;de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceComponentContext, de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceInterfaceContext&gt;</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -199,15 +199,15 @@ public interface ServiceOverviewContext extends IOverviewVisualizationContext<Ob
 	 * if in bundle connections are not allowed.
 	 * The pairs should be viewed that the first component implements the second interface.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Implemented Interface Edges Plain</em>' reference list.
+	 * @return the value of the '<em>Implemented Interface Edges Plain</em>' containment reference list.
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage#getServiceOverviewContext_ImplementedInterfaceEdgesPlain()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Pair<ServiceComponentContext, ServiceInterfaceContext>> getImplementedInterfaceEdgesPlain();
 
 	/**
-	 * Returns the value of the '<em><b>Implemented Interface Edges In Bundles</b></em>' reference list.
+	 * Returns the value of the '<em><b>Implemented Interface Edges In Bundles</b></em>' containment reference list.
 	 * The list contents are of type {@link de.cau.cs.kieler.osgiviz.osgivizmodel.Pair}<code>&lt;de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceComponentContext, de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceInterfaceContext&gt;</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -217,15 +217,15 @@ public interface ServiceOverviewContext extends IOverviewVisualizationContext<Ob
 	 * allowed.
 	 * The pairs should be viewed that the first component implements the second interface.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Implemented Interface Edges In Bundles</em>' reference list.
+	 * @return the value of the '<em>Implemented Interface Edges In Bundles</em>' containment reference list.
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage#getServiceOverviewContext_ImplementedInterfaceEdgesInBundles()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Pair<ServiceComponentContext, ServiceInterfaceContext>> getImplementedInterfaceEdgesInBundles();
 
 	/**
-	 * Returns the value of the '<em><b>Referenced Interface Edges Plain</b></em>' reference list.
+	 * Returns the value of the '<em><b>Referenced Interface Edges Plain</b></em>' containment reference list.
 	 * The list contents are of type {@link de.cau.cs.kieler.osgiviz.osgivizmodel.ReferencedInterfaceEdgeConnection}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -234,15 +234,15 @@ public interface ServiceOverviewContext extends IOverviewVisualizationContext<Ob
 	 * {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option or also in any other variant,
 	 * if in bundle connections are not allowed.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Referenced Interface Edges Plain</em>' reference list.
+	 * @return the value of the '<em>Referenced Interface Edges Plain</em>' containment reference list.
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage#getServiceOverviewContext_ReferencedInterfaceEdgesPlain()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<ReferencedInterfaceEdgeConnection> getReferencedInterfaceEdgesPlain();
 
 	/**
-	 * Returns the value of the '<em><b>Referenced Interface Edges In Bundles</b></em>' reference list.
+	 * Returns the value of the '<em><b>Referenced Interface Edges In Bundles</b></em>' containment reference list.
 	 * The list contents are of type {@link de.cau.cs.kieler.osgiviz.osgivizmodel.ReferencedInterfaceEdgeConnection}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -251,15 +251,15 @@ public interface ServiceOverviewContext extends IOverviewVisualizationContext<Ob
 	 * {@link OsgiOptions#SERVICE_CONNECTION_VISUALIZATION_IN_BUNDLES} option if in bundle connections
 	 * are allowed.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Referenced Interface Edges In Bundles</em>' reference list.
+	 * @return the value of the '<em>Referenced Interface Edges In Bundles</em>' containment reference list.
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage#getServiceOverviewContext_ReferencedInterfaceEdgesInBundles()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<ReferencedInterfaceEdgeConnection> getReferencedInterfaceEdgesInBundles();
 
 	/**
-	 * Returns the value of the '<em><b>Injected Interface Edges Plain</b></em>' reference list.
+	 * Returns the value of the '<em><b>Injected Interface Edges Plain</b></em>' containment reference list.
 	 * The list contents are of type {@link de.cau.cs.kieler.osgiviz.osgivizmodel.Pair}<code>&lt;de.cau.cs.kieler.osgiviz.osgivizmodel.ClassContext, de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceInterfaceContext&gt;</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -269,15 +269,15 @@ public interface ServiceOverviewContext extends IOverviewVisualizationContext<Ob
 	 * not allowed.
 	 * The pairs should be viewed that the first injection context is used to inject the second interface.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Injected Interface Edges Plain</em>' reference list.
+	 * @return the value of the '<em>Injected Interface Edges Plain</em>' containment reference list.
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage#getServiceOverviewContext_InjectedInterfaceEdgesPlain()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Pair<ClassContext, ServiceInterfaceContext>> getInjectedInterfaceEdgesPlain();
 
 	/**
-	 * Returns the value of the '<em><b>Injected Interface Edges In Bundles</b></em>' reference list.
+	 * Returns the value of the '<em><b>Injected Interface Edges In Bundles</b></em>' containment reference list.
 	 * The list contents are of type {@link de.cau.cs.kieler.osgiviz.osgivizmodel.Pair}<code>&lt;de.cau.cs.kieler.osgiviz.osgivizmodel.ClassContext, de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceInterfaceContext&gt;</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -287,9 +287,9 @@ public interface ServiceOverviewContext extends IOverviewVisualizationContext<Ob
 	 * are allowed.
 	 * The pairs should be viewed that the first class context is used to inject the second interface.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Injected Interface Edges In Bundles</em>' reference list.
+	 * @return the value of the '<em>Injected Interface Edges In Bundles</em>' containment reference list.
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage#getServiceOverviewContext_InjectedInterfaceEdgesInBundles()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Pair<ClassContext, ServiceInterfaceContext>> getInjectedInterfaceEdgesInBundles();
