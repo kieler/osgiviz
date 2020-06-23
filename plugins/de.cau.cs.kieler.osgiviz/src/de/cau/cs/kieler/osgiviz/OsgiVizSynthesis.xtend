@@ -18,9 +18,7 @@ import com.google.inject.Inject
 import de.cau.cs.kieler.klighd.krendering.ViewSynthesisShared
 import de.cau.cs.kieler.klighd.syntheses.AbstractDiagramSynthesis
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
-import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz
 import de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl
-import org.eclipse.emf.ecore.util.EcoreUtil.Copier
 
 /**
  * Diagram synthesis for predefined visualization models.
@@ -63,12 +61,11 @@ class OsgiVizSynthesis extends AbstractDiagramSynthesis<OsgiVizImpl> {
             visualizationContexts.removeIf [ true ]
             index = 0
             usedContext.setProperty(OsgiSynthesisProperties.CURRENT_VISUALIZATION_CONTEXT_INDEX, index)
-            // Copy the model so that changes don't modify the resource.
-            val Copier copier = new Copier
-            val copy = copier.copy(model) as OsgiViz
-            copier.copyReferences
             
-            visualizationContext = copy
+            // As we use a different model, the root OSGi model may differ from what is shown in the visualization
+            // context. So create a new visualization context and initialize and connect it with everything the old model
+            // had as well.
+            visualizationContext = VisualizationReInitializer.reInitialize(model)
             visualizationContexts.add(visualizationContext)
             usedContext.setProperty(OsgiSynthesisProperties.MODEL_VISUALIZATION_CONTEXT, model)
         }

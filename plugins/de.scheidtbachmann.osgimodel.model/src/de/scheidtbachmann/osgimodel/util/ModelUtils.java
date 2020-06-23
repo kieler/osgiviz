@@ -26,6 +26,24 @@ import org.eclipse.emf.ecore.EObject;
  * Handy methods for handling with OSGi model elements.
  */
 public final class ModelUtils {
+	
+	/**
+	 * Returns the OsgiProject this model element belongs to.
+	 * 
+	 * @param element The element to find the project for.
+	 * @return The project containing the element.
+	 */
+	public static OsgiProject parentProject(EObject element) {
+		EObject current = element;
+		while (!(current instanceof OsgiProject) && current != null) {
+			current = current.eContainer();
+		}
+		if (current instanceof OsgiProject) {
+			return (OsgiProject) current;
+		} else {
+			return null;
+		}
+	}
     
     /**
      * Returns the injected interface of the given injection.
@@ -34,12 +52,7 @@ public final class ModelUtils {
      * @return The injected interface.
      */
     public static ServiceInterface injectedInterface(EclipseInjection ei) {
-        // Look for the osgiProject container.
-        EObject current = ei;
-        while (!(current instanceof OsgiProject)) {
-            current = current.eContainer();
-        }
-        final OsgiProject osgiProject = (OsgiProject) current;
+        final OsgiProject osgiProject = parentProject(ei);
         
         // Look in the project's interfaces and match the searched for interface.
         for (ServiceInterface theInterface: osgiProject.getServiceInterfaces()) {
