@@ -319,8 +319,7 @@ class VisualizationReInitializer {
             val product = oldEdge.product
             val target = oldEdge.targetBundleContext.modelElement
             if (newContext.bundles.contains(source)
-                && newContext.bundles.contains(target)
-                && osgiModel.products.contains(product)) {
+                && newContext.bundles.contains(target)) {
                 // The target bundle needs to at least export one package that the source bundle imports for this
                 // connection to still be valid.
                 val requiredPackages = <PackageObject>newArrayList
@@ -329,9 +328,15 @@ class VisualizationReInitializer {
                         requiredPackages.add(imported)
                     }
                 }
-                val sourceContext = newContext.childContexts.findFirst [ source === it.modelElement ] as BundleContext
-                val targetContext = newContext.childContexts.findFirst [ target === it.modelElement ] as BundleContext
-                sourceContext.addUsedPackagesEdge(requiredPackages, product, targetContext)
+                val containedInProduct = product !== null
+                    && product.features.exists [ feature |
+                        feature.bundles.contains(target)
+                    ]
+                if (!requiredPackages.empty && (product === null || containedInProduct)) {
+                    val sourceContext = newContext.childContexts.findFirst [ source === it.modelElement ] as BundleContext
+                    val targetContext = newContext.childContexts.findFirst [ target === it.modelElement ] as BundleContext
+                    sourceContext.addUsedPackagesEdge(requiredPackages, product, targetContext)
+                }
             }
         }
         for (oldEdge : oldContext.usedPackageEdges) {
