@@ -148,7 +148,9 @@ public class ReadProjectFiles {
 		// parsing of service data
 		final ServiceInterface interfaceMockup = OsgimodelFactory.eINSTANCE.createServiceInterface();
 		project.getServiceInterfaces().add(interfaceMockup);
-		interfaceMockup.setName(StaticVariables.NO_INTERFACE_OPTION);
+		String interfaceName = StaticVariables.NO_INTERFACE_OPTION;
+		interfaceMockup.setName(interfaceName);
+		interfaceMockup.setEcoreId(StaticVariables.SERVICE_INTERFACE_PREFIX + interfaceName);
 		interfaceMockup.setAbout("Service Components with no implemented Interfaces");
 
 		project.getServiceComponents().forEach(elem -> extractServiceData(elem));
@@ -225,7 +227,9 @@ public class ReadProjectFiles {
 						categoryObject.get().getBundle().add(bundle);
 					} else {
 						final BundleCategory newCategory = OsgimodelFactory.eINSTANCE.createBundleCategory();
-						newCategory.setCategoryName(category.trim());
+						String categoryName = category.trim();
+						newCategory.setCategoryName(categoryName);
+						newCategory.setEcoreId(StaticVariables.BUNDLE_CATEGORY_PREFIX + categoryName);
 						newCategory.getBundle().add(bundle);
 						project.getBundleCategories().add(newCategory);
 					}
@@ -270,8 +274,10 @@ public class ReadProjectFiles {
 					for (final File serviceComponentFile : serviceComponentFiles) {
 
 						final ServiceComponent serviceComponent = OsgimodelFactory.eINSTANCE.createServiceComponent();
-						serviceComponent
-								.setName(serviceComponentFile.getName().replace(".xml", StaticVariables.EMPTY_STRING));
+						String componentName = serviceComponentFile.getName()
+								.replace(".xml", StaticVariables.EMPTY_STRING);
+						serviceComponent.setName(componentName);
+						serviceComponent.setEcoreId(StaticVariables.SERVICE_COMPONENT_PREFIX + componentName);
 						bundle.getServiceComponents().add(serviceComponent);
 						project.getServiceComponents().add(serviceComponent);
 						serviceComponent.setPath(FilenameUtils.separatorsToUnix(serviceComponentFile.getAbsolutePath()));
@@ -287,6 +293,7 @@ public class ReadProjectFiles {
 							"OSGI-INF/", StaticVariables.EMPTY_STRING);
 					final ServiceComponent serviceComponent = OsgimodelFactory.eINSTANCE.createServiceComponent();
 					serviceComponent.setName(serviceName);
+					serviceComponent.setEcoreId(StaticVariables.SERVICE_COMPONENT_PREFIX + serviceName);
 					bundle.getServiceComponents().add(serviceComponent);
 					project.getServiceComponents().add(serviceComponent);
 
@@ -333,6 +340,7 @@ public class ReadProjectFiles {
 		} else {
 			final Bundle bundle = OsgimodelFactory.eINSTANCE.createBundle();
 			bundle.setUniqueId(uniqueId);
+			bundle.setEcoreId(StaticVariables.BUNDLE_PREFIX + uniqueId);
 			// initialize all bundles as external
 			bundle.setIsExternal(true);
 			project.getBundles().add(bundle);
@@ -369,7 +377,9 @@ public class ReadProjectFiles {
 						.getNodeValue();
 				feature.getBundles().add(getOrCreateBundle(plugin));
 			}
-			feature.setUniqueId(doc.getDocumentElement().getAttribute(StaticVariables.ID));
+			String uniqueId = doc.getDocumentElement().getAttribute(StaticVariables.ID);
+			feature.setUniqueId(uniqueId);
+			feature.setEcoreId(StaticVariables.FEATURE_PREFIX + uniqueId);
 			feature.setDescriptiveName(doc.getDocumentElement().getAttribute(StaticVariables.LABEL));
 			feature.setAbout(aboutFile);
 			feature.setVersion(doc.getDocumentElement().getAttribute(StaticVariables.VERSION));
@@ -442,6 +452,7 @@ public class ReadProjectFiles {
 						final ServiceInterface serviceInterface = OsgimodelFactory.eINSTANCE.createServiceInterface();
 						serviceInterface.getServiceComponent().add(serviceComponent);
 						serviceInterface.setName(interfaceName);
+						serviceInterface.setEcoreId(StaticVariables.SERVICE_INTERFACE_PREFIX + interfaceName);
 						if (interfaceBundle != null) {
 							serviceInterface.setImplementedIn(interfaceBundle);
 						}
@@ -523,6 +534,7 @@ public class ReadProjectFiles {
 					final ServiceInterface serviceInterface = OsgimodelFactory.eINSTANCE.createServiceInterface();
 					Bundle interfaceBundle = ReadProjectFilesUtility.getBundleFromInterface(interfaceName, project);
 					serviceInterface.setName(interfaceName);
+					serviceInterface.setEcoreId(StaticVariables.SERVICE_INTERFACE_PREFIX + interfaceName);
 					if (interfaceBundle != null) {
 						serviceInterface.setImplementedIn(interfaceBundle);
 					}
@@ -566,6 +578,7 @@ public class ReadProjectFiles {
 
 			final Product product = OsgimodelFactory.eINSTANCE.createProduct();
 			product.setUniqueId(id);
+			product.setEcoreId(StaticVariables.PRODUCT_PREFIX + id);
 			product.setAbout(aboutFile);
 			product.setDescriptiveName(descriptiveName);
 			product.setVersion(version);
@@ -586,6 +599,7 @@ public class ReadProjectFiles {
 				} else {
 					final Feature feature = OsgimodelFactory.eINSTANCE.createFeature();
 					feature.setUniqueId(featureName);
+					feature.setEcoreId(StaticVariables.FEATURE_PREFIX + featureName);
 					feature.setIsExternal(true);
 					project.getFeatures().add(feature);
 					product.getFeatures().add(feature);
@@ -691,6 +705,7 @@ public class ReadProjectFiles {
 				if (importOrExport.equals(StaticVariables.EXPORT_PACKAGE)) {
 					final PackageObject newExportedPackage = OsgimodelFactory.eINSTANCE.createPackageObject();
 					newExportedPackage.setUniqueId(packageName);
+//					newExportedPackage.setEcoreId(StaticVariables.PACKAGE_OBJECT_PREFIX + packageName);
 					newExportedPackage.setJavaDocPath(javadocUri);
 					bundle.getExportedPackages().add(newExportedPackage);
 					project.getExportedPackages().add(newExportedPackage);
@@ -706,6 +721,7 @@ public class ReadProjectFiles {
 					} else {
 						final PackageObject newImportedPackage = OsgimodelFactory.eINSTANCE.createPackageObject();
 						newImportedPackage.setUniqueId(packageName);
+//						newImportedPackage.setEcoreId(StaticVariables.PACKAGE_OBJECT_PREFIX + packageName);
 						newImportedPackage.setJavaDocPath(javadocUri);
 						newImportedPackage.getImplementedBy().add(bundle);
 						project.getImportedPackages().add(newImportedPackage);

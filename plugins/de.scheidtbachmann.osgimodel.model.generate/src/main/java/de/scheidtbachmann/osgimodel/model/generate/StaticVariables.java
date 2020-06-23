@@ -76,4 +76,13 @@ public class StaticVariables {
                     + "<b>\"about.txt\"</b> file in the product folder</p>";
     static final String INCLUDES = "includes";
 
+
+	static final String BUNDLE_PREFIX = "Bundle_";
+	static final String PRODUCT_PREFIX = "Product_";
+	static final String FEATURE_PREFIX = "Feature_";
+	static final String PACKAGE_OBJECT_PREFIX = "PackageObject_";
+	static final String SERVICE_COMPONENT_PREFIX = "ServiceComponent_";
+	static final String SERVICE_INTERFACE_PREFIX = "ServiceInterface_";
+	static final String BUNDLE_CATEGORY_PREFIX = "BundleCategory_";
+
 }
