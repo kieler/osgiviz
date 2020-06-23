@@ -6,7 +6,6 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ProductContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ProductOverviewContext;
-
 import de.scheidtbachmann.osgimodel.Product;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;

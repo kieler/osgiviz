@@ -3,7 +3,7 @@
 package de.scheidtbachmann.osgimodel.provider;
 
 
-import de.scheidtbachmann.osgimodel.BundleCategory;
+import de.scheidtbachmann.osgimodel.Identifiable;
 import de.scheidtbachmann.osgimodel.OsgimodelPackage;
 
 import java.util.Collection;
@@ -11,26 +11,41 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link de.scheidtbachmann.osgimodel.BundleCategory} object.
+ * This is the item provider adapter for a {@link de.scheidtbachmann.osgimodel.Identifiable} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class BundleCategoryItemProvider 
-	extends IdentifiableItemProvider {
+public class IdentifiableItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BundleCategoryItemProvider(AdapterFactory adapterFactory) {
+	public IdentifiableItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -45,65 +60,31 @@ public class BundleCategoryItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addCategoryNamePropertyDescriptor(object);
-			addBundlePropertyDescriptor(object);
+			addEcoreIdPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Category Name feature.
+	 * This adds a property descriptor for the Ecore Id feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addCategoryNamePropertyDescriptor(Object object) {
+	protected void addEcoreIdPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_BundleCategory_categoryName_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BundleCategory_categoryName_feature", "_UI_BundleCategory_type"),
-				 OsgimodelPackage.Literals.BUNDLE_CATEGORY__CATEGORY_NAME,
+				 getString("_UI_Identifiable_ecoreId_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Identifiable_ecoreId_feature", "_UI_Identifiable_type"),
+				 OsgimodelPackage.Literals.IDENTIFIABLE__ECORE_ID,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Bundle feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addBundlePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_BundleCategory_bundle_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BundleCategory_bundle_feature", "_UI_BundleCategory_type"),
-				 OsgimodelPackage.Literals.BUNDLE_CATEGORY__BUNDLE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns BundleCategory.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/BundleCategory"));
 	}
 
 	/**
@@ -114,10 +95,10 @@ public class BundleCategoryItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((BundleCategory)object).getCategoryName();
+		String label = ((Identifiable)object).getEcoreId();
 		return label == null || label.length() == 0 ?
-			getString("_UI_BundleCategory_type") :
-			getString("_UI_BundleCategory_type") + " " + label;
+			getString("_UI_Identifiable_type") :
+			getString("_UI_Identifiable_type") + " " + label;
 	}
 
 
@@ -132,8 +113,8 @@ public class BundleCategoryItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(BundleCategory.class)) {
-			case OsgimodelPackage.BUNDLE_CATEGORY__CATEGORY_NAME:
+		switch (notification.getFeatureID(Identifiable.class)) {
+			case OsgimodelPackage.IDENTIFIABLE__ECORE_ID:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -150,6 +131,17 @@ public class BundleCategoryItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return OsgiModelEditPlugin.INSTANCE;
 	}
 
 }

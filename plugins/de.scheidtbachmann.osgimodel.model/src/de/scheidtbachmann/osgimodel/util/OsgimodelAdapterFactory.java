@@ -72,6 +72,10 @@ public class OsgimodelAdapterFactory extends AdapterFactoryImpl {
 				return createOsgiProjectAdapter();
 			}
 			@Override
+			public Adapter caseIdentifiable(Identifiable object) {
+				return createIdentifiableAdapter();
+			}
+			@Override
 			public Adapter caseBasicOsgiObject(BasicOsgiObject object) {
 				return createBasicOsgiObjectAdapter();
 			}
@@ -146,6 +150,20 @@ public class OsgimodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOsgiProjectAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.scheidtbachmann.osgimodel.Identifiable <em>Identifiable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.scheidtbachmann.osgimodel.Identifiable
+	 * @generated
+	 */
+	public Adapter createIdentifiableAdapter() {
 		return null;
 	}
 

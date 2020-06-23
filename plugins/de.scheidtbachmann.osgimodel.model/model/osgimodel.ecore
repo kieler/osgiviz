@@ -27,12 +27,20 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="bundleCategories" upperBound="-1"
         eType="#//BundleCategory" containment="true" resolveProxies="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BasicOsgiObject" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="Identifiable" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Basic Objects"/>
     </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ecoreId" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+        iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BasicOsgiObject" abstract="true" eSuperTypes="#//Identifiable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="uniqueId" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="unique id"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="descriptiveName" unique="false"
         eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" unique="false"
@@ -90,7 +98,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="javaDocPath" unique="false"
         eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ServiceComponent">
+  <eClassifiers xsi:type="ecore:EClass" name="ServiceComponent" eSuperTypes="#//Identifiable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="about" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
@@ -106,16 +114,16 @@
         eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
         defaultValueLiteral=""/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ServiceInterface">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceComponent" upperBound="-1"
-        eType="#//ServiceComponent" eOpposite="#//ServiceComponent/serviceInterfaces"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ServiceInterface" eSuperTypes="#//Identifiable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="about" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="implementedIn" eType="#//Bundle"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceComponent" upperBound="-1"
+        eType="#//ServiceComponent" eOpposite="#//ServiceComponent/serviceInterfaces"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="referencedBy" upperBound="-1"
         eType="#//Reference" eOpposite="#//Reference/serviceInterface"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BundleCategory">
+  <eClassifiers xsi:type="ecore:EClass" name="BundleCategory" eSuperTypes="#//Identifiable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="categoryName" unique="false"
         eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bundle" upperBound="-1"

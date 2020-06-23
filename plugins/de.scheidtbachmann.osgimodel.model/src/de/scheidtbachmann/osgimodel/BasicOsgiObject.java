@@ -2,16 +2,10 @@
  */
 package de.scheidtbachmann.osgimodel;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Basic Osgi Object</b></em>'.
  * <!-- end-user-doc -->
- *
- * <!-- begin-model-doc -->
- * Basic Objects
- * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
@@ -27,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface BasicOsgiObject extends EObject {
+public interface BasicOsgiObject extends Identifiable {
 	/**
 	 * Returns the value of the '<em><b>Unique Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -35,7 +29,7 @@ public interface BasicOsgiObject extends EObject {
 	 * @return the value of the '<em>Unique Id</em>' attribute.
 	 * @see #setUniqueId(String)
 	 * @see de.scheidtbachmann.osgimodel.OsgimodelPackage#getBasicOsgiObject_UniqueId()
-	 * @model id="true"
+	 * @model unique="false"
 	 * @generated
 	 */
 	String getUniqueId();

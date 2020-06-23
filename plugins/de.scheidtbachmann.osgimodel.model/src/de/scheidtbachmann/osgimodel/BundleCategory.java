@@ -4,8 +4,6 @@ package de.scheidtbachmann.osgimodel;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Bundle Category</b></em>'.
@@ -23,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface BundleCategory extends EObject {
+public interface BundleCategory extends Identifiable {
 	/**
 	 * Returns the value of the '<em><b>Category Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

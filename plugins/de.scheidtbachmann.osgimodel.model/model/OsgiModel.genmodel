@@ -36,6 +36,9 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference osgimodel.ecore#//OsgiProject/exportedPackages"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference osgimodel.ecore#//OsgiProject/bundleCategories"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="osgimodel.ecore#//Identifiable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//Identifiable/ecoreId"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="osgimodel.ecore#//BasicOsgiObject">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//BasicOsgiObject/uniqueId"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//BasicOsgiObject/descriptiveName"/>
@@ -78,10 +81,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//ServiceComponent/javaDocPath"/>
     </genClasses>
     <genClasses ecoreClass="osgimodel.ecore#//ServiceInterface">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference osgimodel.ecore#//ServiceInterface/serviceComponent"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//ServiceInterface/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute osgimodel.ecore#//ServiceInterface/about"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference osgimodel.ecore#//ServiceInterface/implementedIn"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference osgimodel.ecore#//ServiceInterface/serviceComponent"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference osgimodel.ecore#//ServiceInterface/referencedBy"/>
     </genClasses>
     <genClasses ecoreClass="osgimodel.ecore#//BundleCategory">

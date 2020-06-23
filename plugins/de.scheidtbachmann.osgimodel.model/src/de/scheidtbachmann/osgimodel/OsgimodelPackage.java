@@ -175,6 +175,43 @@ public interface OsgimodelPackage extends EPackage {
 	int OSGI_PROJECT_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link de.scheidtbachmann.osgimodel.impl.IdentifiableImpl <em>Identifiable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.scheidtbachmann.osgimodel.impl.IdentifiableImpl
+	 * @see de.scheidtbachmann.osgimodel.impl.OsgimodelPackageImpl#getIdentifiable()
+	 * @generated
+	 */
+	int IDENTIFIABLE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Ecore Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTIFIABLE__ECORE_ID = 0;
+
+	/**
+	 * The number of structural features of the '<em>Identifiable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTIFIABLE_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Identifiable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTIFIABLE_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link de.scheidtbachmann.osgimodel.impl.BasicOsgiObjectImpl <em>Basic Osgi Object</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -182,7 +219,16 @@ public interface OsgimodelPackage extends EPackage {
 	 * @see de.scheidtbachmann.osgimodel.impl.OsgimodelPackageImpl#getBasicOsgiObject()
 	 * @generated
 	 */
-	int BASIC_OSGI_OBJECT = 1;
+	int BASIC_OSGI_OBJECT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Ecore Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_OSGI_OBJECT__ECORE_ID = IDENTIFIABLE__ECORE_ID;
 
 	/**
 	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
@@ -191,7 +237,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BASIC_OSGI_OBJECT__UNIQUE_ID = 0;
+	int BASIC_OSGI_OBJECT__UNIQUE_ID = IDENTIFIABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Descriptive Name</b></em>' attribute.
@@ -200,7 +246,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BASIC_OSGI_OBJECT__DESCRIPTIVE_NAME = 1;
+	int BASIC_OSGI_OBJECT__DESCRIPTIVE_NAME = IDENTIFIABLE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Version</b></em>' attribute.
@@ -209,7 +255,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BASIC_OSGI_OBJECT__VERSION = 2;
+	int BASIC_OSGI_OBJECT__VERSION = IDENTIFIABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>About</b></em>' attribute.
@@ -218,7 +264,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BASIC_OSGI_OBJECT__ABOUT = 3;
+	int BASIC_OSGI_OBJECT__ABOUT = IDENTIFIABLE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Basic Osgi Object</em>' class.
@@ -227,7 +273,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BASIC_OSGI_OBJECT_FEATURE_COUNT = 4;
+	int BASIC_OSGI_OBJECT_FEATURE_COUNT = IDENTIFIABLE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Basic Osgi Object</em>' class.
@@ -236,7 +282,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BASIC_OSGI_OBJECT_OPERATION_COUNT = 0;
+	int BASIC_OSGI_OBJECT_OPERATION_COUNT = IDENTIFIABLE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.scheidtbachmann.osgimodel.impl.ProductImpl <em>Product</em>}' class.
@@ -246,7 +292,16 @@ public interface OsgimodelPackage extends EPackage {
 	 * @see de.scheidtbachmann.osgimodel.impl.OsgimodelPackageImpl#getProduct()
 	 * @generated
 	 */
-	int PRODUCT = 2;
+	int PRODUCT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Ecore Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT__ECORE_ID = BASIC_OSGI_OBJECT__ECORE_ID;
 
 	/**
 	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
@@ -319,7 +374,16 @@ public interface OsgimodelPackage extends EPackage {
 	 * @see de.scheidtbachmann.osgimodel.impl.OsgimodelPackageImpl#getFeature()
 	 * @generated
 	 */
-	int FEATURE = 3;
+	int FEATURE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Ecore Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__ECORE_ID = BASIC_OSGI_OBJECT__ECORE_ID;
 
 	/**
 	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
@@ -401,7 +465,16 @@ public interface OsgimodelPackage extends EPackage {
 	 * @see de.scheidtbachmann.osgimodel.impl.OsgimodelPackageImpl#getBundle()
 	 * @generated
 	 */
-	int BUNDLE = 4;
+	int BUNDLE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Ecore Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUNDLE__ECORE_ID = BASIC_OSGI_OBJECT__ECORE_ID;
 
 	/**
 	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
@@ -564,7 +637,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @see de.scheidtbachmann.osgimodel.impl.OsgimodelPackageImpl#getPackageObject()
 	 * @generated
 	 */
-	int PACKAGE_OBJECT = 5;
+	int PACKAGE_OBJECT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
@@ -619,7 +692,16 @@ public interface OsgimodelPackage extends EPackage {
 	 * @see de.scheidtbachmann.osgimodel.impl.OsgimodelPackageImpl#getServiceComponent()
 	 * @generated
 	 */
-	int SERVICE_COMPONENT = 6;
+	int SERVICE_COMPONENT = 7;
+
+	/**
+	 * The feature id for the '<em><b>Ecore Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_COMPONENT__ECORE_ID = IDENTIFIABLE__ECORE_ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -628,7 +710,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_COMPONENT__NAME = 0;
+	int SERVICE_COMPONENT__NAME = IDENTIFIABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -637,7 +719,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_COMPONENT__PATH = 1;
+	int SERVICE_COMPONENT__PATH = IDENTIFIABLE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>About</b></em>' attribute.
@@ -646,7 +728,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_COMPONENT__ABOUT = 2;
+	int SERVICE_COMPONENT__ABOUT = IDENTIFIABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Implementation Class</b></em>' attribute.
@@ -655,7 +737,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_COMPONENT__IMPLEMENTATION_CLASS = 3;
+	int SERVICE_COMPONENT__IMPLEMENTATION_CLASS = IDENTIFIABLE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Bundle</b></em>' container reference.
@@ -664,7 +746,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_COMPONENT__BUNDLE = 4;
+	int SERVICE_COMPONENT__BUNDLE = IDENTIFIABLE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Service Interfaces</b></em>' reference list.
@@ -673,7 +755,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_COMPONENT__SERVICE_INTERFACES = 5;
+	int SERVICE_COMPONENT__SERVICE_INTERFACES = IDENTIFIABLE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Reference</b></em>' containment reference list.
@@ -682,7 +764,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_COMPONENT__REFERENCE = 6;
+	int SERVICE_COMPONENT__REFERENCE = IDENTIFIABLE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Java Doc Path</b></em>' attribute.
@@ -691,7 +773,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_COMPONENT__JAVA_DOC_PATH = 7;
+	int SERVICE_COMPONENT__JAVA_DOC_PATH = IDENTIFIABLE_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of structural features of the '<em>Service Component</em>' class.
@@ -700,7 +782,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_COMPONENT_FEATURE_COUNT = 8;
+	int SERVICE_COMPONENT_FEATURE_COUNT = IDENTIFIABLE_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of operations of the '<em>Service Component</em>' class.
@@ -709,7 +791,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_COMPONENT_OPERATION_COUNT = 0;
+	int SERVICE_COMPONENT_OPERATION_COUNT = IDENTIFIABLE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.scheidtbachmann.osgimodel.impl.ServiceInterfaceImpl <em>Service Interface</em>}' class.
@@ -719,16 +801,16 @@ public interface OsgimodelPackage extends EPackage {
 	 * @see de.scheidtbachmann.osgimodel.impl.OsgimodelPackageImpl#getServiceInterface()
 	 * @generated
 	 */
-	int SERVICE_INTERFACE = 7;
+	int SERVICE_INTERFACE = 8;
 
 	/**
-	 * The feature id for the '<em><b>Service Component</b></em>' reference list.
+	 * The feature id for the '<em><b>Ecore Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_INTERFACE__SERVICE_COMPONENT = 0;
+	int SERVICE_INTERFACE__ECORE_ID = IDENTIFIABLE__ECORE_ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -737,7 +819,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_INTERFACE__NAME = 1;
+	int SERVICE_INTERFACE__NAME = IDENTIFIABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>About</b></em>' attribute.
@@ -746,7 +828,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_INTERFACE__ABOUT = 2;
+	int SERVICE_INTERFACE__ABOUT = IDENTIFIABLE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Implemented In</b></em>' reference.
@@ -755,7 +837,16 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_INTERFACE__IMPLEMENTED_IN = 3;
+	int SERVICE_INTERFACE__IMPLEMENTED_IN = IDENTIFIABLE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Service Component</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_INTERFACE__SERVICE_COMPONENT = IDENTIFIABLE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Referenced By</b></em>' reference list.
@@ -764,7 +855,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_INTERFACE__REFERENCED_BY = 4;
+	int SERVICE_INTERFACE__REFERENCED_BY = IDENTIFIABLE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Service Interface</em>' class.
@@ -773,7 +864,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_INTERFACE_FEATURE_COUNT = 5;
+	int SERVICE_INTERFACE_FEATURE_COUNT = IDENTIFIABLE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Service Interface</em>' class.
@@ -782,7 +873,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_INTERFACE_OPERATION_COUNT = 0;
+	int SERVICE_INTERFACE_OPERATION_COUNT = IDENTIFIABLE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.scheidtbachmann.osgimodel.impl.BundleCategoryImpl <em>Bundle Category</em>}' class.
@@ -792,7 +883,16 @@ public interface OsgimodelPackage extends EPackage {
 	 * @see de.scheidtbachmann.osgimodel.impl.OsgimodelPackageImpl#getBundleCategory()
 	 * @generated
 	 */
-	int BUNDLE_CATEGORY = 8;
+	int BUNDLE_CATEGORY = 9;
+
+	/**
+	 * The feature id for the '<em><b>Ecore Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUNDLE_CATEGORY__ECORE_ID = IDENTIFIABLE__ECORE_ID;
 
 	/**
 	 * The feature id for the '<em><b>Category Name</b></em>' attribute.
@@ -801,7 +901,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUNDLE_CATEGORY__CATEGORY_NAME = 0;
+	int BUNDLE_CATEGORY__CATEGORY_NAME = IDENTIFIABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Bundle</b></em>' reference list.
@@ -810,7 +910,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUNDLE_CATEGORY__BUNDLE = 1;
+	int BUNDLE_CATEGORY__BUNDLE = IDENTIFIABLE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Bundle Category</em>' class.
@@ -819,7 +919,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUNDLE_CATEGORY_FEATURE_COUNT = 2;
+	int BUNDLE_CATEGORY_FEATURE_COUNT = IDENTIFIABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Bundle Category</em>' class.
@@ -828,7 +928,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUNDLE_CATEGORY_OPERATION_COUNT = 0;
+	int BUNDLE_CATEGORY_OPERATION_COUNT = IDENTIFIABLE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.scheidtbachmann.osgimodel.impl.EclipseInjectionImpl <em>Eclipse Injection</em>}' class.
@@ -838,7 +938,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @see de.scheidtbachmann.osgimodel.impl.OsgimodelPackageImpl#getEclipseInjection()
 	 * @generated
 	 */
-	int ECLIPSE_INJECTION = 9;
+	int ECLIPSE_INJECTION = 10;
 
 	/**
 	 * The feature id for the '<em><b>Injected Interface</b></em>' attribute.
@@ -884,7 +984,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @see de.scheidtbachmann.osgimodel.impl.OsgimodelPackageImpl#getAttributeData()
 	 * @generated
 	 */
-	int ATTRIBUTE_DATA = 10;
+	int ATTRIBUTE_DATA = 11;
 
 	/**
 	 * The feature id for the '<em><b>Attribute Name</b></em>' attribute.
@@ -930,7 +1030,7 @@ public interface OsgimodelPackage extends EPackage {
 	 * @see de.scheidtbachmann.osgimodel.impl.OsgimodelPackageImpl#getReference()
 	 * @generated
 	 */
-	int REFERENCE = 11;
+	int REFERENCE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Reference Name</b></em>' attribute.
@@ -1124,6 +1224,27 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getOsgiProject_BundleCategories();
+
+	/**
+	 * Returns the meta object for class '{@link de.scheidtbachmann.osgimodel.Identifiable <em>Identifiable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Identifiable</em>'.
+	 * @see de.scheidtbachmann.osgimodel.Identifiable
+	 * @generated
+	 */
+	EClass getIdentifiable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.scheidtbachmann.osgimodel.Identifiable#getEcoreId <em>Ecore Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Ecore Id</em>'.
+	 * @see de.scheidtbachmann.osgimodel.Identifiable#getEcoreId()
+	 * @see #getIdentifiable()
+	 * @generated
+	 */
+	EAttribute getIdentifiable_EcoreId();
 
 	/**
 	 * Returns the meta object for class '{@link de.scheidtbachmann.osgimodel.BasicOsgiObject <em>Basic Osgi Object</em>}'.
@@ -1853,6 +1974,24 @@ public interface OsgimodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OSGI_PROJECT__BUNDLE_CATEGORIES = eINSTANCE.getOsgiProject_BundleCategories();
+
+		/**
+		 * The meta object literal for the '{@link de.scheidtbachmann.osgimodel.impl.IdentifiableImpl <em>Identifiable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.scheidtbachmann.osgimodel.impl.IdentifiableImpl
+		 * @see de.scheidtbachmann.osgimodel.impl.OsgimodelPackageImpl#getIdentifiable()
+		 * @generated
+		 */
+		EClass IDENTIFIABLE = eINSTANCE.getIdentifiable();
+
+		/**
+		 * The meta object literal for the '<em><b>Ecore Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IDENTIFIABLE__ECORE_ID = eINSTANCE.getIdentifiable_EcoreId();
 
 		/**
 		 * The meta object literal for the '{@link de.scheidtbachmann.osgimodel.impl.BasicOsgiObjectImpl <em>Basic Osgi Object</em>}' class.

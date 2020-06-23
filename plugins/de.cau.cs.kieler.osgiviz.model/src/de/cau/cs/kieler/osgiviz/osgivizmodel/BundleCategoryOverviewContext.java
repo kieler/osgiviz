@@ -3,7 +3,6 @@
 package de.cau.cs.kieler.osgiviz.osgivizmodel;
 
 import de.scheidtbachmann.osgimodel.BundleCategory;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

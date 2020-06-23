@@ -19,8 +19,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -32,26 +30,16 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.scheidtbachmann.osgimodel.impl.ServiceInterfaceImpl#getServiceComponent <em>Service Component</em>}</li>
  *   <li>{@link de.scheidtbachmann.osgimodel.impl.ServiceInterfaceImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.scheidtbachmann.osgimodel.impl.ServiceInterfaceImpl#getAbout <em>About</em>}</li>
  *   <li>{@link de.scheidtbachmann.osgimodel.impl.ServiceInterfaceImpl#getImplementedIn <em>Implemented In</em>}</li>
+ *   <li>{@link de.scheidtbachmann.osgimodel.impl.ServiceInterfaceImpl#getServiceComponent <em>Service Component</em>}</li>
  *   <li>{@link de.scheidtbachmann.osgimodel.impl.ServiceInterfaceImpl#getReferencedBy <em>Referenced By</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ServiceInterfaceImpl extends MinimalEObjectImpl.Container implements ServiceInterface {
-	/**
-	 * The cached value of the '{@link #getServiceComponent() <em>Service Component</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getServiceComponent()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ServiceComponent> serviceComponent;
-
+public class ServiceInterfaceImpl extends IdentifiableImpl implements ServiceInterface {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -101,6 +89,16 @@ public class ServiceInterfaceImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected Bundle implementedIn;
+
+	/**
+	 * The cached value of the '{@link #getServiceComponent() <em>Service Component</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getServiceComponent()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ServiceComponent> serviceComponent;
 
 	/**
 	 * The cached value of the '{@link #getReferencedBy() <em>Referenced By</em>}' reference list.
@@ -284,8 +282,6 @@ public class ServiceInterfaceImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OsgimodelPackage.SERVICE_INTERFACE__SERVICE_COMPONENT:
-				return getServiceComponent();
 			case OsgimodelPackage.SERVICE_INTERFACE__NAME:
 				return getName();
 			case OsgimodelPackage.SERVICE_INTERFACE__ABOUT:
@@ -293,6 +289,8 @@ public class ServiceInterfaceImpl extends MinimalEObjectImpl.Container implement
 			case OsgimodelPackage.SERVICE_INTERFACE__IMPLEMENTED_IN:
 				if (resolve) return getImplementedIn();
 				return basicGetImplementedIn();
+			case OsgimodelPackage.SERVICE_INTERFACE__SERVICE_COMPONENT:
+				return getServiceComponent();
 			case OsgimodelPackage.SERVICE_INTERFACE__REFERENCED_BY:
 				return getReferencedBy();
 		}
@@ -308,10 +306,6 @@ public class ServiceInterfaceImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OsgimodelPackage.SERVICE_INTERFACE__SERVICE_COMPONENT:
-				getServiceComponent().clear();
-				getServiceComponent().addAll((Collection<? extends ServiceComponent>)newValue);
-				return;
 			case OsgimodelPackage.SERVICE_INTERFACE__NAME:
 				setName((String)newValue);
 				return;
@@ -320,6 +314,10 @@ public class ServiceInterfaceImpl extends MinimalEObjectImpl.Container implement
 				return;
 			case OsgimodelPackage.SERVICE_INTERFACE__IMPLEMENTED_IN:
 				setImplementedIn((Bundle)newValue);
+				return;
+			case OsgimodelPackage.SERVICE_INTERFACE__SERVICE_COMPONENT:
+				getServiceComponent().clear();
+				getServiceComponent().addAll((Collection<? extends ServiceComponent>)newValue);
 				return;
 			case OsgimodelPackage.SERVICE_INTERFACE__REFERENCED_BY:
 				getReferencedBy().clear();
@@ -337,9 +335,6 @@ public class ServiceInterfaceImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OsgimodelPackage.SERVICE_INTERFACE__SERVICE_COMPONENT:
-				getServiceComponent().clear();
-				return;
 			case OsgimodelPackage.SERVICE_INTERFACE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -348,6 +343,9 @@ public class ServiceInterfaceImpl extends MinimalEObjectImpl.Container implement
 				return;
 			case OsgimodelPackage.SERVICE_INTERFACE__IMPLEMENTED_IN:
 				setImplementedIn((Bundle)null);
+				return;
+			case OsgimodelPackage.SERVICE_INTERFACE__SERVICE_COMPONENT:
+				getServiceComponent().clear();
 				return;
 			case OsgimodelPackage.SERVICE_INTERFACE__REFERENCED_BY:
 				getReferencedBy().clear();
@@ -364,14 +362,14 @@ public class ServiceInterfaceImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OsgimodelPackage.SERVICE_INTERFACE__SERVICE_COMPONENT:
-				return serviceComponent != null && !serviceComponent.isEmpty();
 			case OsgimodelPackage.SERVICE_INTERFACE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case OsgimodelPackage.SERVICE_INTERFACE__ABOUT:
 				return ABOUT_EDEFAULT == null ? about != null : !ABOUT_EDEFAULT.equals(about);
 			case OsgimodelPackage.SERVICE_INTERFACE__IMPLEMENTED_IN:
 				return implementedIn != null;
+			case OsgimodelPackage.SERVICE_INTERFACE__SERVICE_COMPONENT:
+				return serviceComponent != null && !serviceComponent.isEmpty();
 			case OsgimodelPackage.SERVICE_INTERFACE__REFERENCED_BY:
 				return referencedBy != null && !referencedBy.isEmpty();
 		}

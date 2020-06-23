@@ -6,7 +6,6 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ReferencedInterfaceEdgeConnection;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceComponentContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceInterfaceContext;
-
 import de.scheidtbachmann.osgimodel.Reference;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;

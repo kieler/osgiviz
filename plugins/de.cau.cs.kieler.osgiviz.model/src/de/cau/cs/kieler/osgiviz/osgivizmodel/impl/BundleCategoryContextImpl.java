@@ -6,7 +6,6 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleOverviewContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
-
 import de.scheidtbachmann.osgimodel.BundleCategory;
 import java.util.Collection;
 

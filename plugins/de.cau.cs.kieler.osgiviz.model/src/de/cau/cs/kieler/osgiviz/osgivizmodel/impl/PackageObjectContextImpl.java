@@ -5,7 +5,6 @@ package de.cau.cs.kieler.osgiviz.osgivizmodel.impl;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.PackageObjectContext;
-
 import de.scheidtbachmann.osgimodel.PackageObject;
 import java.util.Collection;
 

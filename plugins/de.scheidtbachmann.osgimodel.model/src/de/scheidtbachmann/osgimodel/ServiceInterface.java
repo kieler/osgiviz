@@ -4,8 +4,6 @@ package de.scheidtbachmann.osgimodel;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Service Interface</b></em>'.
@@ -15,10 +13,10 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.scheidtbachmann.osgimodel.ServiceInterface#getServiceComponent <em>Service Component</em>}</li>
  *   <li>{@link de.scheidtbachmann.osgimodel.ServiceInterface#getName <em>Name</em>}</li>
  *   <li>{@link de.scheidtbachmann.osgimodel.ServiceInterface#getAbout <em>About</em>}</li>
  *   <li>{@link de.scheidtbachmann.osgimodel.ServiceInterface#getImplementedIn <em>Implemented In</em>}</li>
+ *   <li>{@link de.scheidtbachmann.osgimodel.ServiceInterface#getServiceComponent <em>Service Component</em>}</li>
  *   <li>{@link de.scheidtbachmann.osgimodel.ServiceInterface#getReferencedBy <em>Referenced By</em>}</li>
  * </ul>
  *
@@ -26,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface ServiceInterface extends EObject {
+public interface ServiceInterface extends Identifiable {
 	/**
 	 * Returns the value of the '<em><b>Service Component</b></em>' reference list.
 	 * The list contents are of type {@link de.scheidtbachmann.osgimodel.ServiceComponent}.

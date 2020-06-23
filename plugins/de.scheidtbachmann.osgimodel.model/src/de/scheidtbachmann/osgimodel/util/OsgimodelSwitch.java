@@ -72,9 +72,16 @@ public class OsgimodelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case OsgimodelPackage.IDENTIFIABLE: {
+				Identifiable identifiable = (Identifiable)theEObject;
+				T result = caseIdentifiable(identifiable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case OsgimodelPackage.BASIC_OSGI_OBJECT: {
 				BasicOsgiObject basicOsgiObject = (BasicOsgiObject)theEObject;
 				T result = caseBasicOsgiObject(basicOsgiObject);
+				if (result == null) result = caseIdentifiable(basicOsgiObject);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -82,6 +89,7 @@ public class OsgimodelSwitch<T> extends Switch<T> {
 				Product product = (Product)theEObject;
 				T result = caseProduct(product);
 				if (result == null) result = caseBasicOsgiObject(product);
+				if (result == null) result = caseIdentifiable(product);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -89,6 +97,7 @@ public class OsgimodelSwitch<T> extends Switch<T> {
 				Feature feature = (Feature)theEObject;
 				T result = caseFeature(feature);
 				if (result == null) result = caseBasicOsgiObject(feature);
+				if (result == null) result = caseIdentifiable(feature);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -96,6 +105,7 @@ public class OsgimodelSwitch<T> extends Switch<T> {
 				Bundle bundle = (Bundle)theEObject;
 				T result = caseBundle(bundle);
 				if (result == null) result = caseBasicOsgiObject(bundle);
+				if (result == null) result = caseIdentifiable(bundle);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -108,18 +118,21 @@ public class OsgimodelSwitch<T> extends Switch<T> {
 			case OsgimodelPackage.SERVICE_COMPONENT: {
 				ServiceComponent serviceComponent = (ServiceComponent)theEObject;
 				T result = caseServiceComponent(serviceComponent);
+				if (result == null) result = caseIdentifiable(serviceComponent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case OsgimodelPackage.SERVICE_INTERFACE: {
 				ServiceInterface serviceInterface = (ServiceInterface)theEObject;
 				T result = caseServiceInterface(serviceInterface);
+				if (result == null) result = caseIdentifiable(serviceInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case OsgimodelPackage.BUNDLE_CATEGORY: {
 				BundleCategory bundleCategory = (BundleCategory)theEObject;
 				T result = caseBundleCategory(bundleCategory);
+				if (result == null) result = caseIdentifiable(bundleCategory);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -157,6 +170,21 @@ public class OsgimodelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseOsgiProject(OsgiProject object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Identifiable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Identifiable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIdentifiable(Identifiable object) {
 		return null;
 	}
 

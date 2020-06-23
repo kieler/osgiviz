@@ -9,7 +9,6 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.PackageObjectContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.Pair;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.UsedPackagesOfBundleEdgeConnection;
-
 import de.scheidtbachmann.osgimodel.Bundle;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
