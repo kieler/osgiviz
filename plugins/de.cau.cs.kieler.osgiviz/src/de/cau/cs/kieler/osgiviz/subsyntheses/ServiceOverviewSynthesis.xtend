@@ -24,6 +24,7 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KRenderingExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractSubSynthesis
 import de.cau.cs.kieler.osgiviz.OsgiStyles
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
+import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleContext
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ClassContext
 import de.cau.cs.kieler.osgiviz.osgivizmodel.Pair
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ReferencedInterfaceEdgeConnection
@@ -115,6 +116,8 @@ class ServiceOverviewSynthesis extends AbstractSubSynthesis<ServiceOverviewConte
             serviceOverviewContext.collapsedServiceInterfaceContexts, usedContext)
         val filteredCollapsedClassContexts = SynthesisUtils.filteredElementContexts(
             serviceOverviewContext.collapsedClassContexts, usedContext)
+        val filteredCollapsedBundleContexts = SynthesisUtils.filteredElementContexts(
+            serviceOverviewContext.collapsedReferencedBundleContexts, usedContext)
         createNode => [
             associateWith(serviceOverviewContext)
             configureBoxLayout
@@ -154,9 +157,9 @@ class ServiceOverviewSynthesis extends AbstractSubSynthesis<ServiceOverviewConte
             if (serviceOverviewContext.allowInBundleConnections && currentVisualizationModeInBundles) {
                 // All bundles.
                 val bundleIndexOffset = children.size
-                val filteredBundleContexts = serviceOverviewContext.collapsedReferencedBundleContexts
-                filteredBundleContexts.forEach [ bundleContext, index |
-                    children += simpleBundleSynthesis.transform(bundleContext, -index - bundleIndexOffset)
+                filteredCollapsedBundleContexts.forEach [ bundleContext, index |
+                    children += simpleBundleSynthesis.transform(bundleContext as BundleContext,
+                        -index - bundleIndexOffset)
                 ]   
             }
         ]
@@ -207,9 +210,10 @@ class ServiceOverviewSynthesis extends AbstractSubSynthesis<ServiceOverviewConte
             if (serviceOverviewContext.allowInBundleConnections && currentVisualizationModeInBundles) {
                 setLayoutOption(CoreOptions::HIERARCHY_HANDLING, HierarchyHandling.INCLUDE_CHILDREN)
                 // All bundles containing the service components and injections.
-                val filteredBundleContexts = serviceOverviewContext.detailedReferencedBundleContexts
+                val filteredBundleContexts = SynthesisUtils.filteredElementContexts(
+                    serviceOverviewContext.detailedReferencedBundleContexts, usedContext)
                 children += filteredBundleContexts.flatMap [
-                    return bundleSynthesis.transform(it)
+                    return bundleSynthesis.transform(it as BundleContext)
                 ]
                 implementedInterfaceEdges = serviceOverviewContext.implementedInterfaceEdgesInBundles
                 referencedInterfaceEdges = serviceOverviewContext.referencedInterfaceEdgesInBundles

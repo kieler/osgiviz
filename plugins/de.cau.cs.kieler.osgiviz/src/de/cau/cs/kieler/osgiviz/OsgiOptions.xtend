@@ -43,7 +43,7 @@ class OsgiOptions {
     public static final SynthesisOption TEXT_FILTER_CATEGORY = SynthesisOption.createCategory("Text filter", false)
         .setCategory(FILTER_CATEGORY)
     
-    /** Option for filtering bundles of a bundle overview by their bundle category. */
+    /** Option for filtering bundles and services by their bundle category. */
     public static final SynthesisOption FILTER_BY_BUNDLE_CATEGORY = SynthesisOption.createTextOption(
         "Filter by Bundle Categories containing ... (Java regex)", "").setCategory(TEXT_FILTER_CATEGORY)
     

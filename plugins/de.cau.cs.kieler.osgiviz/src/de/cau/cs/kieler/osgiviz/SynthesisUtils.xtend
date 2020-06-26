@@ -208,10 +208,38 @@ final class SynthesisUtils {
                     [ (modelElement as PackageObject)   .uniqueId       .matches(regex) ]
                 }
                 ServiceComponent case usedContext.getOptionValue(FILTER_SERVICE_COMPONENTS) === true: {
-                    [ (modelElement as ServiceComponent).name           .matches(regex) ]
+                    [
+                        // The component's ID needs to match the FILTER_BY regex,
+                        if (!(modelElement as ServiceComponent).name.matches(regex)) {
+                            return false
+                        }
+                        // and the the component needs to be defined in a bundle with a bundle category
+                        // matching FILTER_BY_BUNDLE_CATEGORY regex if that filter is non-empty.
+                        if (!filterByBundleCategory.empty && (modelElement as ServiceComponent).bundle?.bundleCategory
+                            ?.findFirst [
+                                categoryName.matches(filterBundleCategoryRegex)
+                            ] === null) {
+                            return false
+                        }
+                        return true
+                    ]
                 }
                 ServiceInterface case usedContext.getOptionValue(FILTER_SERVICE_INTERFACES) === true: {
-                    [ (modelElement as ServiceInterface).name           .matches(regex) ]
+                    [
+                        // The interface's ID needs to match the FILTER_BY regex,
+                        if (!(modelElement as ServiceInterface).name.matches(regex)) {
+                            return false
+                        }
+                        // and the the interface needs to be defined in a bundle with a bundle category
+                        // matching FILTER_BY_BUNDLE_CATEGORY regex if that filter is non-empty.
+                        if (!filterByBundleCategory.empty && (modelElement as ServiceInterface).implementedIn
+                            ?.bundleCategory?.findFirst [
+                                categoryName.matches(filterBundleCategoryRegex)
+                            ] === null) {
+                            return false
+                        }
+                        return true
+                    ]
                 }
                 Class case usedContext.getOptionValue(FILTER_CLASSES)                       === true: {
                     [ (modelElement as Class).displayedString           .matches(regex) ]
