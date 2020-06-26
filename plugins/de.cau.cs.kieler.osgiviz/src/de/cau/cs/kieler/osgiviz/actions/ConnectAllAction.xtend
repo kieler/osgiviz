@@ -41,8 +41,7 @@ class ConnectAllAction extends AbstractVisualizationContextChangingAction {
      */
     public static val String ID = ConnectAllAction.name
     
-    override <M> changeVisualization(IVisualizationContext<M> modelVisualizationContext,
-        ActionContext actionContext) {
+    override <M> changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
         val kdm = KlighdDataManager.instance
         val revealImplementedServiceInterfacesAction = kdm.getActionById(RevealImplementedServiceInterfacesAction.ID)
             as RevealImplementedServiceInterfacesAction
@@ -114,7 +113,6 @@ class ConnectAllAction extends AbstractVisualizationContextChangingAction {
                 }
             }
         ]
-        return null
     }
 
     

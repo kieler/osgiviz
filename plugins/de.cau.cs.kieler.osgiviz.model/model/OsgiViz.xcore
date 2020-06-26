@@ -675,4 +675,9 @@ class OsgiViz extends IVisualizationContext<OsgiProject> {
      */
     refers BundleCategoryOverviewContext bundleCategoryOverviewContext
     
+    /*
+     * The child context currently in focus of the view.
+     */
+    refers IVisualizationContext<?> focus
+    
 }

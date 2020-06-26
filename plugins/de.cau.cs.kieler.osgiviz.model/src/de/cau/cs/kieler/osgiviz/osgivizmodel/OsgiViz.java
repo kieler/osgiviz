@@ -25,6 +25,7 @@ import de.scheidtbachmann.osgimodel.OsgiProject;
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz#getFeatureOverviewContext <em>Feature Overview Context</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz#getImportedPackageOverviewContext <em>Imported Package Overview Context</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz#getBundleCategoryOverviewContext <em>Bundle Category Overview Context</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz#getFocus <em>Focus</em>}</li>
  * </ul>
  *
  * @see de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage#getOsgiViz()
@@ -181,5 +182,30 @@ public interface OsgiViz extends IVisualizationContext<OsgiProject> {
 	 * @generated
 	 */
 	void setBundleCategoryOverviewContext(BundleCategoryOverviewContext value);
+
+	/**
+	 * Returns the value of the '<em><b>Focus</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The child context currently in focus of the view.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Focus</em>' reference.
+	 * @see #setFocus(IVisualizationContext)
+	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage#getOsgiViz_Focus()
+	 * @model
+	 * @generated
+	 */
+	IVisualizationContext<?> getFocus();
+
+	/**
+	 * Sets the value of the '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz#getFocus <em>Focus</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Focus</em>' reference.
+	 * @see #getFocus()
+	 * @generated
+	 */
+	void setFocus(IVisualizationContext<?> value);
 
 } // OsgiViz

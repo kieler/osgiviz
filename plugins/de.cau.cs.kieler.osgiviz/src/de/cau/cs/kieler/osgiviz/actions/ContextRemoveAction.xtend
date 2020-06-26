@@ -32,8 +32,7 @@ class ContextRemoveAction extends AbstractVisualizationContextChangingAction {
      */
     public static val String ID = ContextRemoveAction.name
     
-    override <M> IVisualizationContext<?>
-    changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
+    override <M> changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
         // This action will always be performed on a child visualization context of a IOverviewVisualizationContext.
         val overviewVisContext = modelVisualizationContext.parent
         if (!(overviewVisContext instanceof IOverviewVisualizationContext)) {
@@ -52,8 +51,6 @@ class ContextRemoveAction extends AbstractVisualizationContextChangingAction {
             }
         }
         ovc.removeEdges(modelVisualizationContext)
-        
-        return null
     }
     
 }

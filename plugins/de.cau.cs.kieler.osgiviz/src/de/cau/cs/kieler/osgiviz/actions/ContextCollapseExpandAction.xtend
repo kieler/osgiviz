@@ -30,8 +30,7 @@ class ContextCollapseExpandAction extends AbstractVisualizationContextChangingAc
      */
     public static val String ID = ContextCollapseExpandAction.name
     
-    override <M> IVisualizationContext<?>
-    changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
+    override <M> changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
         // This action will always be performed on a child visualization context of a IOverviewVisualizationContext.
         val overviewVisContext = modelVisualizationContext.parent
         if (!(overviewVisContext instanceof IOverviewVisualizationContext)) {
@@ -50,7 +49,6 @@ class ContextCollapseExpandAction extends AbstractVisualizationContextChangingAc
             throw new IllegalStateException("Bug in code detected. This context has to be either contained within " +
                 "the collapsed or the contained elements")
         }
-        return null
     }
     
 }

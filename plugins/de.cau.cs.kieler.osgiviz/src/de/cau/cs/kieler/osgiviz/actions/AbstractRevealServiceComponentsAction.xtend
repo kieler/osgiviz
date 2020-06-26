@@ -27,8 +27,7 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext
  */
 abstract class AbstractRevealServiceComponentsAction extends AbstractVisualizationContextChangingAction {
     
-    override <M> IVisualizationContext<?>
-    changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
+    override <M> changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
         // The overview context this element is shown in.
         val overviewContext = modelVisualizationContext.parent as ServiceOverviewContext
         
@@ -45,8 +44,6 @@ abstract class AbstractRevealServiceComponentsAction extends AbstractVisualizati
                 revealInServiceOverview(modelVisualizationContext, overviewContext)
             }
         }
-        
-        return null
     }
     
     /**

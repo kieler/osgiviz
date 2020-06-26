@@ -46,6 +46,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl#getFeatureOverviewContext <em>Feature Overview Context</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl#getImportedPackageOverviewContext <em>Imported Package Overview Context</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl#getBundleCategoryOverviewContext <em>Bundle Category Overview Context</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl#getFocus <em>Focus</em>}</li>
  * </ul>
  *
  * @generated
@@ -150,6 +151,16 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * @ordered
 	 */
 	protected BundleCategoryOverviewContext bundleCategoryOverviewContext;
+
+	/**
+	 * The cached value of the '{@link #getFocus() <em>Focus</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFocus()
+	 * @generated
+	 * @ordered
+	 */
+	protected IVisualizationContext<?> focus;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -544,6 +555,46 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public IVisualizationContext<?> getFocus() {
+		if (focus != null && focus.eIsProxy()) {
+			InternalEObject oldFocus = (InternalEObject)focus;
+			focus = (IVisualizationContext<?>)eResolveProxy(oldFocus);
+			if (focus != oldFocus) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OsgivizmodelPackage.OSGI_VIZ__FOCUS, oldFocus, focus));
+			}
+		}
+		return focus;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IVisualizationContext<?> basicGetFocus() {
+		return focus;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFocus(IVisualizationContext<?> newFocus) {
+		IVisualizationContext<?> oldFocus = focus;
+		focus = newFocus;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.OSGI_VIZ__FOCUS, oldFocus, focus));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -624,6 +675,9 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 			case OsgivizmodelPackage.OSGI_VIZ__BUNDLE_CATEGORY_OVERVIEW_CONTEXT:
 				if (resolve) return getBundleCategoryOverviewContext();
 				return basicGetBundleCategoryOverviewContext();
+			case OsgivizmodelPackage.OSGI_VIZ__FOCUS:
+				if (resolve) return getFocus();
+				return basicGetFocus();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -668,6 +722,9 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 			case OsgivizmodelPackage.OSGI_VIZ__BUNDLE_CATEGORY_OVERVIEW_CONTEXT:
 				setBundleCategoryOverviewContext((BundleCategoryOverviewContext)newValue);
 				return;
+			case OsgivizmodelPackage.OSGI_VIZ__FOCUS:
+				setFocus((IVisualizationContext<?>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -710,6 +767,9 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 			case OsgivizmodelPackage.OSGI_VIZ__BUNDLE_CATEGORY_OVERVIEW_CONTEXT:
 				setBundleCategoryOverviewContext((BundleCategoryOverviewContext)null);
 				return;
+			case OsgivizmodelPackage.OSGI_VIZ__FOCUS:
+				setFocus((IVisualizationContext<?>)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -742,6 +802,8 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 				return importedPackageOverviewContext != null;
 			case OsgivizmodelPackage.OSGI_VIZ__BUNDLE_CATEGORY_OVERVIEW_CONTEXT:
 				return bundleCategoryOverviewContext != null;
+			case OsgivizmodelPackage.OSGI_VIZ__FOCUS:
+				return focus != null;
 		}
 		return super.eIsSet(featureID);
 	}

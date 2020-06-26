@@ -54,10 +54,25 @@ class VisualizationReInitializer {
             newViz.initializeChildVisualizationContexts
             // First, reinitialize all child contexts to be the same as before.
             reInitialize(oldViz.bundleCategoryOverviewContext, newViz.bundleCategoryOverviewContext)
+            if (oldViz.focus === oldViz.bundleCategoryOverviewContext) {
+                newViz.focus = newViz.bundleCategoryOverviewContext
+            }
             reInitialize(oldViz.bundleOverviewContext, newViz.bundleOverviewContext)
+            if (oldViz.focus === oldViz.bundleOverviewContext) {
+                newViz.focus = newViz.bundleOverviewContext
+            }
             reInitialize(oldViz.featureOverviewContext, newViz.featureOverviewContext)
+            if (oldViz.focus === oldViz.featureOverviewContext) {
+                newViz.focus = newViz.featureOverviewContext
+            }
             reInitialize(oldViz.productOverviewContext, newViz.productOverviewContext)
+            if (oldViz.focus === oldViz.productOverviewContext) {
+                newViz.focus = newViz.productOverviewContext
+            }
             reInitialize(oldViz.serviceOverviewContext, newViz.serviceOverviewContext)
+            if (oldViz.focus === oldViz.serviceOverviewContext) {
+                newViz.focus = newViz.serviceOverviewContext
+            }
             // Only after all child contexts are as before, reconnect them as before.
             reConnect(oldViz.bundleCategoryOverviewContext, newViz.bundleCategoryOverviewContext)
             reConnect(oldViz.bundleOverviewContext, newViz.bundleOverviewContext)
@@ -66,6 +81,10 @@ class VisualizationReInitializer {
             reConnect(oldViz.serviceOverviewContext, newViz.serviceOverviewContext)
         }
         
+        if (oldViz.focus !== null && newViz.focus === null) {
+            // TODO: let the user know that the focus got lost due to the model having changed.
+            System.out.println("OSGi Visualization: Focus reset, as the underlying OSGi model does not allow for that view anymore.")
+        }
         return newViz
     }
     
@@ -214,6 +233,10 @@ class VisualizationReInitializer {
                     reInitialize(childContext, newChildContext)
                 }
             }
+        }
+        val rootContext = oldOverview.rootVisualization
+        if (rootContext.focus === oldOverview) {
+            newOverview.rootVisualization.focus = newOverview
         }
     }
     

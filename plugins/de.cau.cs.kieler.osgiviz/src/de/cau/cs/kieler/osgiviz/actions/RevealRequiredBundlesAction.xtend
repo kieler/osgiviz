@@ -34,8 +34,7 @@ class RevealRequiredBundlesAction extends AbstractVisualizationContextChangingAc
      */
     public static val String ID = RevealRequiredBundlesAction.name
     
-    override <M> IVisualizationContext<?>
-    changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
+    override <M> changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
         // The BundleContext element for the element that was clicked on.
         val bundleContext = modelVisualizationContext as BundleContext
         
@@ -69,7 +68,6 @@ class RevealRequiredBundlesAction extends AbstractVisualizationContextChangingAc
                 bundleContext.addRequiredBundleEdge(requiredBundleContext as BundleContext)
             ]
 //        }
-        return null
     }
     
 }

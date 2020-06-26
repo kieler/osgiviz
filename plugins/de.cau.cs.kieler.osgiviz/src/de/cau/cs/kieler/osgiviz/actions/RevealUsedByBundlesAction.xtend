@@ -34,8 +34,7 @@ class RevealUsedByBundlesAction extends AbstractVisualizationContextChangingActi
      */
     public static val String ID = RevealUsedByBundlesAction.name
     
-    override <M> IVisualizationContext<?>
-    changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
+    override <M> changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
         // The BundleContext element for the element that was clicked on.
         val bundleContext = modelVisualizationContext as BundleContext
         
@@ -70,7 +69,6 @@ class RevealUsedByBundlesAction extends AbstractVisualizationContextChangingActi
                 (usedByBundleContext as BundleContext).addRequiredBundleEdge(bundleContext)
             ]
 //        }
-        return null
     }
     
 }

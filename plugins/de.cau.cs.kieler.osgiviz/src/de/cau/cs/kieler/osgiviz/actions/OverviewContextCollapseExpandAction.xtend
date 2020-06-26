@@ -28,8 +28,7 @@ class OverviewContextCollapseExpandAction extends AbstractVisualizationContextCh
      */
     public static val String ID = OverviewContextCollapseExpandAction.name 
     
-    override <M> IVisualizationContext<?>
-    changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
+    override <M> changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
         if (!(modelVisualizationContext instanceof IOverviewVisualizationContext)) {
             throw new IllegalArgumentException("This action can only be called on a IOverviewVisualizationContext. "
                 + "Was called on " + modelVisualizationContext.class)
@@ -40,8 +39,6 @@ class OverviewContextCollapseExpandAction extends AbstractVisualizationContextCh
         
         // Also, toggle the expansion state in the viewer.
         actionContext.getActiveViewer().toggleExpansion(actionContext.getKNode());
-        
-        return null
     }
     
 }

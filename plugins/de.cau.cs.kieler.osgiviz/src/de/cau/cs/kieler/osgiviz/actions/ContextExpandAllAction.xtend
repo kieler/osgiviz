@@ -30,8 +30,7 @@ class ContextExpandAllAction extends AbstractVisualizationContextChangingAction 
      */
     public static val String ID = ContextExpandAllAction.name
     
-    override <M> IVisualizationContext<?>
-    changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
+    override <M> changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
         // This action will always be performed on an IOverviewVisualizationContext.
         if (!(modelVisualizationContext instanceof IOverviewVisualizationContext)) {
             throw new IllegalStateException("This action is performed on an element that is not inside an overview " +
@@ -43,7 +42,6 @@ class ContextExpandAllAction extends AbstractVisualizationContextChangingAction 
         collapsedElements.forEach [
             ovc.makeDetailed(it)
         ]
-        return null
     }
     
 }

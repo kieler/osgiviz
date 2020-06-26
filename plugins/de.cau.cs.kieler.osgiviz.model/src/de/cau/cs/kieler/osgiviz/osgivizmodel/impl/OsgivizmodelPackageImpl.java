@@ -1300,6 +1300,16 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * @generated
 	 */
 	@Override
+	public EReference getOsgiViz_Focus() {
+		return (EReference)osgiVizEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public OsgivizmodelFactory getOsgivizmodelFactory() {
 		return (OsgivizmodelFactory)getEFactoryInstance();
 	}
@@ -1447,6 +1457,7 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 		createEReference(osgiVizEClass, OSGI_VIZ__FEATURE_OVERVIEW_CONTEXT);
 		createEReference(osgiVizEClass, OSGI_VIZ__IMPORTED_PACKAGE_OVERVIEW_CONTEXT);
 		createEReference(osgiVizEClass, OSGI_VIZ__BUNDLE_CATEGORY_OVERVIEW_CONTEXT);
+		createEReference(osgiVizEClass, OSGI_VIZ__FOCUS);
 	}
 
 	/**
@@ -1716,6 +1727,10 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 		initEReference(getOsgiViz_FeatureOverviewContext(), this.getFeatureOverviewContext(), null, "featureOverviewContext", null, 0, 1, OsgiViz.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOsgiViz_ImportedPackageOverviewContext(), this.getPackageObjectOverviewContext(), null, "importedPackageOverviewContext", null, 0, 1, OsgiViz.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOsgiViz_BundleCategoryOverviewContext(), this.getBundleCategoryOverviewContext(), null, "bundleCategoryOverviewContext", null, 0, 1, OsgiViz.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(this.getIVisualizationContext());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		initEReference(getOsgiViz_Focus(), g1, null, "focus", null, 0, 1, OsgiViz.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

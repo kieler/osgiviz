@@ -19,6 +19,7 @@ import de.cau.cs.kieler.klighd.kgraph.util.KGraphUtil
 import de.cau.cs.kieler.osgiviz.OsgiSynthesisProperties
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz
 import org.eclipse.core.runtime.Status
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier
 import org.eclipse.ui.statushandlers.StatusManager
@@ -45,17 +46,11 @@ abstract class AbstractVisualizationContextChangingAction implements IAction {
         
         // Make a deep-copy of the current context and store it for the action to be the next canditate for the undo
         // function.
-        // To copy the current context, copy from the parent root context.
-        var rootVisualizationContext = currentVisualizationContext
-        while (rootVisualizationContext.parent !== null) {
-            rootVisualizationContext = rootVisualizationContext.parent
-        }
         
         // Copy the root context and the currently shown one from the same Copier to guarantee a completely copied
         // context with only the needed view on that.
         val Copier copier = new Copier
-        copier.copy(rootVisualizationContext) as IVisualizationContext<?>
-        val copiedVisualizationContext = copier.copy(currentVisualizationContext) as IVisualizationContext<?>
+        val copiedVisualizationContext = copier.copy(currentVisualizationContext) as OsgiViz
         copier.copyReferences
         
         // Remove this visualization context and all after that, a redo after an action is not possible anymore.
@@ -75,14 +70,11 @@ abstract class AbstractVisualizationContextChangingAction implements IAction {
         
         // Change the visualization.
         try {
-            var newContext = changeVisualization(modelVisualizationContext, context)
-            if (newContext === null) {
-                newContext = currentVisualizationContext
-            }
+            changeVisualization(modelVisualizationContext, context)
             
             // Put the old context, that will be updated below at the at index + 1 and remember that new index as the
             // current index.
-            visualizationContexts.add(index + 1, newContext)
+            visualizationContexts.add(index + 1, currentVisualizationContext)
             context.viewContext.setProperty(OsgiSynthesisProperties.CURRENT_VISUALIZATION_CONTEXT_INDEX, index + 1)
             
             return getActionResult(context)
@@ -109,10 +101,8 @@ abstract class AbstractVisualizationContextChangingAction implements IAction {
      * Modifies the visualization context towards a state that represents what this action should perform.
      * 
      * @param modelVisualizationContext The visualization context of the element that this action is performed on.
-     * @return The new main visualization context that will be used for the next synthesis or {@code null} if the
-     * visualization focus does not change.
      */
-    abstract def <M> IVisualizationContext<?> changeVisualization(
+    abstract def <M> void changeVisualization(
         IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext)
     
     /**

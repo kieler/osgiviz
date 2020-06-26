@@ -29,14 +29,14 @@ import org.eclipse.elk.graph.properties.Property
  */
 class OsgiSynthesisProperties {
     /** 
-     * Property pointing towards the list of saved {@link IVisualizationContext}s that are used to model the currently
+     * Property pointing towards the list of saved {@link OsgiViz}s that are used to model the currently
      * displayed view and all previously used contexts for undo/redo functionality.
      * Currently does not store a delta between the contexts, but a hard copy of every state used since the beginning
      * default view.
      */
-    public static final IProperty<List<IVisualizationContext<?>>> VISUALIZATION_CONTEXTS
-        = new Property<List<IVisualizationContext<?>>>("osgimodel.visualizationContexts",
-            new LinkedList<IVisualizationContext<?>>)
+    public static final IProperty<List<OsgiViz>> VISUALIZATION_CONTEXTS
+        = new Property<List<OsgiViz>>("osgimodel.visualizationContexts",
+            new LinkedList<OsgiViz>)
     
     /**
      * Property pointing towards which index points towards the currently used visualization context in the

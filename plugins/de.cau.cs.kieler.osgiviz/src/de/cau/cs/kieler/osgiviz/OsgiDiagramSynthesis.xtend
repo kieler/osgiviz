@@ -127,7 +127,7 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
         // a new one for the general OSGi model overview and store that for later use.
         val visualizationContexts = usedContext.getProperty(OsgiSynthesisProperties.VISUALIZATION_CONTEXTS)
         var index = usedContext.getProperty(OsgiSynthesisProperties.CURRENT_VISUALIZATION_CONTEXT_INDEX)
-        var IVisualizationContext<?> visualizationContext = null
+        var OsgiViz visualizationContext = null
         
         if (!visualizationContexts.empty && index !== null) {
             visualizationContext = visualizationContexts.get(index)
@@ -144,7 +144,7 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
 
         // Make this variable final here for later usage in the lambda.
         val visContext = visualizationContext
-        if (visContext instanceof OsgiViz) {
+        if (visContext.focus === null) {
             // This synthesis can be used.
             
             // The overview of the entire OSGi Project.
@@ -180,7 +180,7 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
             
         } else {
             // Delegate the view model generation to another subsynthesis that can show the requested visualization context.
-            val children = transformSubModel(visualizationContext)
+            val children = transformSubModel(visualizationContext.focus)
             
             modelNode.children += children
             

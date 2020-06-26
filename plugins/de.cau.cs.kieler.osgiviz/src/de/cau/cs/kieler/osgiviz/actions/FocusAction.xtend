@@ -16,8 +16,10 @@ package de.cau.cs.kieler.osgiviz.actions
 
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
 
+import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
+
 /**
- * Focuses the element this action is issued on and replaces the view model with the focused element.
+ * Focuses the element this action is issued on by setting the 'focus' attribute on the root visualization.
  * 
  * @author nre
  */
@@ -28,9 +30,8 @@ class FocusAction extends AbstractVisualizationContextChangingAction {
     public static val String ID = FocusAction.name
     
     override <M> changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
-        // Changing the focus element is exactly what returning a non-null visualization context to the
-        // AbstractVisualizationContextChangingAction does, so just return the given context.
-        return modelVisualizationContext
+        val rootVisualization = modelVisualizationContext.rootVisualization
+        rootVisualization.focus = modelVisualizationContext
     }
     
     override protected ActionResult getActionResult(ActionContext context) {

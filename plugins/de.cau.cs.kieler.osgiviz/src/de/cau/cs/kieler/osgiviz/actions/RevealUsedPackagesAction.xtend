@@ -21,7 +21,6 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ProductContext
 import de.cau.cs.kieler.osgiviz.osgivizmodel.util.OsgivizmodelUtil
 import de.scheidtbachmann.osgimodel.Bundle
-import de.scheidtbachmann.osgimodel.OsgiProject
 import de.scheidtbachmann.osgimodel.PackageObject
 import de.scheidtbachmann.osgimodel.Product
 import java.util.ArrayList
@@ -44,8 +43,7 @@ class RevealUsedPackagesAction extends AbstractVisualizationContextChangingActio
      */
     public static val String ID = RevealUsedPackagesAction.name
     
-    override <M> IVisualizationContext<?>
-    changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
+    override <M> changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
         // The BundleContext element for the element that was clicked on.
         val bundleContext = modelVisualizationContext as BundleContext
         
@@ -169,7 +167,5 @@ class RevealUsedPackagesAction extends AbstractVisualizationContextChangingActio
             }
             bundleContext.addUsedPackageEdge(packageContext)
         ]
-        
-        return null
     }
 }

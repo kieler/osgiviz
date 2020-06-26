@@ -17,7 +17,7 @@ package de.cau.cs.kieler.osgiviz
 import com.google.inject.Inject
 import de.cau.cs.kieler.klighd.krendering.ViewSynthesisShared
 import de.cau.cs.kieler.klighd.syntheses.AbstractDiagramSynthesis
-import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
+import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz
 import de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl
 
 /**
@@ -50,7 +50,7 @@ class OsgiVizSynthesis extends AbstractDiagramSynthesis<OsgiVizImpl> {
         val visualizationContexts = usedContext.getProperty(OsgiSynthesisProperties.VISUALIZATION_CONTEXTS)
         var index = usedContext.getProperty(OsgiSynthesisProperties.CURRENT_VISUALIZATION_CONTEXT_INDEX)
         val rootVisualization = usedContext.getProperty(OsgiSynthesisProperties.MODEL_VISUALIZATION_CONTEXT)
-        var IVisualizationContext<?> visualizationContext = null
+        var OsgiViz visualizationContext = null
         
         if (!visualizationContexts.empty && index !== null) {
             visualizationContext = visualizationContexts.get(index)

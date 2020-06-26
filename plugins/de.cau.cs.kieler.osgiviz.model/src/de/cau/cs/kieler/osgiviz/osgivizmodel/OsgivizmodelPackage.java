@@ -2018,13 +2018,22 @@ public interface OsgivizmodelPackage extends EPackage {
 	int OSGI_VIZ__BUNDLE_CATEGORY_OVERVIEW_CONTEXT = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Focus</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OSGI_VIZ__FOCUS = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Osgi Viz</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OSGI_VIZ_FEATURE_COUNT = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 6;
+	int OSGI_VIZ_FEATURE_COUNT = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Osgi Viz</em>' class.
@@ -3159,6 +3168,17 @@ public interface OsgivizmodelPackage extends EPackage {
 	EReference getOsgiViz_BundleCategoryOverviewContext();
 
 	/**
+	 * Returns the meta object for the reference '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz#getFocus <em>Focus</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Focus</em>'.
+	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz#getFocus()
+	 * @see #getOsgiViz()
+	 * @generated
+	 */
+	EReference getOsgiViz_Focus();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4054,6 +4074,14 @@ public interface OsgivizmodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OSGI_VIZ__BUNDLE_CATEGORY_OVERVIEW_CONTEXT = eINSTANCE.getOsgiViz_BundleCategoryOverviewContext();
+
+		/**
+		 * The meta object literal for the '<em><b>Focus</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OSGI_VIZ__FOCUS = eINSTANCE.getOsgiViz_Focus();
 
 	}
 
