@@ -2,7 +2,7 @@
 <site>
 
    <description name="OpenKieler (Nightly Builds)" url="http://rtsys.informatik.uni-kiel.de/~kieler/updatesite/nightly-openkieler/">
-      Update site for the OpenKieler nightly builds.
+      Update site for the OpenKieler 0.2.0.v20200629 release.
    </description>
 
    <!-- CATEGORY DEFINITIONS -->
