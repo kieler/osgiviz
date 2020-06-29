@@ -7,7 +7,7 @@ The generator is built into the main Maven build of osgiviz and can therefore be
 Alternatively, this can be build in the usual development Eclipse set up with [the Oomph osgiviz setup](https://github.com/OpenKieler/config/blob/master/OsgiViz.setup) and executed as a Java application with using ConfigAndExecuteCli as the main class.
 
 ## How to download
-Building the fat jar is also included in our nightly build, so instead of building this for yourself, you can also download the generator of the latest nightly build directly from [https://rtsys.informatik.uni-kiel.de/~kieler/files/nightly/osgiviz/cli/](https://rtsys.informatik.uni-kiel.de/~kieler/files/nightly/osgiviz/cli/).
+Building the fat jar is also included in our nightly build, so instead of building this for yourself, you can also download the generator of the latest nightly build directly from [https://rtsys.informatik.uni-kiel.de/~kieler/files/nightly/osgiviz/cli/](https://rtsys.informatik.uni-kiel.de/~kieler/files/nightly/osgiviz/cli/) or from a previous release from [https://github.com/kieler/osgiviz/releases](https://github.com/kieler/osgiviz/releases).
 
 ## How to use
 To execute the model generator, you need to feed it with the follwing parameters:
