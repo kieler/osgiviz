@@ -37,7 +37,7 @@
       </activation>
       
       <modules>
-        <module>de.cau.cs.kieler.openkieler.targetplatform</module>
+        <module>de.cau.cs.kieler.osgiviz.targetplatform</module>
         <module>../plugins/de.cau.cs.kieler.osgiviz</module>
         <module>../plugins/de.cau.cs.kieler.osgiviz.model</module>
         <module>../plugins/de.scheidtbachmann.osgimodel.model</module>
@@ -87,7 +87,7 @@
           <target>
             <artifact>
               <groupId>de.cau.cs.kieler.osgiviz</groupId>
-              <artifactId>de.cau.cs.kieler.openkieler.targetplatform</artifactId>
+              <artifactId>de.cau.cs.kieler.osgiviz.targetplatform</artifactId>
               <version>${openkieler-version}</version>
             </artifact>
           </target>
