@@ -13,7 +13,7 @@
    </category-def>
 
    <!-- OSGIVIZ -->
-   <feature url="features/de.cau.cs.kieler.osgiviz_0.1.0.qualifier.jar" id="de.cau.cs.kieler.osgiviz.feature" version="0.1.0.qualifier">
+   <feature url="features/de.cau.cs.kieler.osgiviz_0.2.1.qualifier.jar" id="de.cau.cs.kieler.osgiviz.feature" version="0.2.1.qualifier">
       <category name="osgiviz"/>
    </feature>
 
