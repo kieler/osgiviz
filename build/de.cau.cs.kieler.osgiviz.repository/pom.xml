@@ -17,9 +17,9 @@
   
   <properties>
     <update.site.name>OpenKieler OSGiViz</update.site.name>
-    <update.site.description>Nightly Build</update.site.description>
+    <update.site.description>Release Build 0.2.0</update.site.description>
     <update.site.version>${openkieler-version}</update.site.version>
-    <target.eclipse.version>Photon</target.eclipse.version>
+    <target.eclipse.version>2020-03</target.eclipse.version>
   </properties>
 
   <build>

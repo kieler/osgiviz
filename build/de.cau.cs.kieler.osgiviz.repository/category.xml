@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
 
-   <description name="OpenKieler (Nightly Builds)" url="http://rtsys.informatik.uni-kiel.de/~kieler/updatesite/nightly-openkieler/">
+   <description name="OpenKieler (Release 0.2.0)" url="http://rtsys.informatik.uni-kiel.de/~kieler/updatesite/openkieler/release_osgiviz_0.2.0/">
       Update site for the OpenKieler 0.2.0.v20200629 release.
    </description>
 
