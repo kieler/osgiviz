@@ -9,21 +9,20 @@ Model files can be generated with the included model generator plugin
 that currently works as a Maven mojo for OSGi projects using PDE tooling. See [the generator readme](./plugins/de.scheidtbachmann.osgimodel.model.generate/readme.md) for more details.
 
 ## Installing osgiviz
-As there is no release for this project yet,
-it has to be installed via our nightly update sites.
+This project can either be installed via the nightly update site for the latest updates or via the a release update site found at [https://github.com/kieler/osgiviz/releases](https://github.com/kieler/osgiviz/releases).
 For the visualization you need to install features in Eclipse from two different update sites.
-The visualization is available in the OpenKieler/osgiviz update site:
+The visualization is available as defined in the release page or in the kieler/osgiviz nightly update site:
 
 `http://rtsys.informatik.uni-kiel.de/~kieler/updatesite/nightly-openkieler/osgiviz/`
 
-Together with that the *KIELER Lightweight Diagrams Generic Diagram View* feature from the KIELER Pragmatics update site needs to be installed to install the view showing the diagrams:
+Together with that the *KIELER Lightweight Diagrams Generic Diagram View* feature from the KLighD update site needs to be installed to install the view showing the diagrams:
 
-`http://rtsys.informatik.uni-kiel.de/~kieler/updatesite/nightly/pragmatics/`
+`https://kieler.github.io/KLighD/v1.1.1/`
 
 These can be installed in Eclipse via the *Help -> Install new Software* menu.
 
-To view the diagram to a model,
-open said model with the now-installed *Osgimodel Model Editor*
+To view the diagram of a model,
+open said model with the now-installed *Sample Ecore Model Editor* of EMF
 and open the diagram view via *Window -> Show view -> Other... -> KIELER Lightweight Diagrams -> Diagram*.
 
 ## The OSGi models
