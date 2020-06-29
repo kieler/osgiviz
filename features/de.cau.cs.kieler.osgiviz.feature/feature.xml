@@ -2,7 +2,7 @@
 <feature
       id="de.cau.cs.kieler.osgiviz.feature"
       label="OSGiViz"
-      version="0.1.0.qualifier"
+      version="0.2.0.v20200629"
       provider-name="OpenKieler">
 
    <description url="https://github.com/OpenKieler">
