@@ -94,7 +94,7 @@ class OsgiOptions {
     
     /** Option indicating whether service elements should be shown in bundles. */
     public static final SynthesisOption BUNDLE_SHOW_SERVICES= SynthesisOption.createCheckOption(
-        "Services", true).setCategory(VIEW_FILTER_CATEGORY)
+        "Service Overviews in Bundles", true).setCategory(VIEW_FILTER_CATEGORY)
     
     /** Option that indicates if the cardinality label on referenced service interfaces are shown. */
     public static final SynthesisOption FILTER_CARDINALITY_LABEL = SynthesisOption.createCheckOption(

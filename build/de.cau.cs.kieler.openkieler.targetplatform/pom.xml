@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <version>0.1.0-SNAPSHOT</version>
-  <artifactId>de.cau.cs.kieler.openkieler.targetplatform</artifactId>
+  <artifactId>de.cau.cs.kieler.openkieler.osgiviz.targetplatform</artifactId>
   <packaging>eclipse-target-definition</packaging>
   <name>OSGiViz Target Platform</name>
 
