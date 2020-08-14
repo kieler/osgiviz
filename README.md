@@ -6,7 +6,7 @@ It uses the KIELER Lightweight Diagrams (KLighD) framework
 and provides a synthesis with interactivity
 that can be used to display a diagram of an OSGi model file within Eclipse applications. 
 Model files can be generated with the included model generator plugin
-that currently works as a Maven mojo for OSGi projects using PDE tooling. See [the generator readme](./plugins/de.scheidtbachmann.osgimodel.model.generate/readme.md) for more details.
+that currently works as a Maven mojo or a command line java executable for OSGi projects using PDE tooling. See [the generator readme](./plugins/de.scheidtbachmann.osgimodel.model.generate/readme.md) for more details.
 
 ## Installing osgiviz
 This project can either be installed via the nightly update site for the latest updates or via the a release update site found at [https://github.com/kieler/osgiviz/releases](https://github.com/kieler/osgiviz/releases).
