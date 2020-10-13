@@ -15,10 +15,16 @@
 package de.cau.cs.kieler.osgiviz
 
 import com.google.inject.Inject
+import com.google.inject.Injector
 import de.cau.cs.kieler.klighd.krendering.ViewSynthesisShared
 import de.cau.cs.kieler.klighd.syntheses.AbstractDiagramSynthesis
+import de.cau.cs.kieler.osgiviz.osgivizmodel.Option
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz
 import de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl
+import org.eclipse.elk.core.service.ILayoutConfigurationStore
+import org.eclipse.elk.core.service.LayoutConnectorsService
+
+import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
 
 /**
  * Diagram synthesis for predefined visualization models.
@@ -68,9 +74,46 @@ class OsgiVizSynthesis extends AbstractDiagramSynthesis<OsgiVizImpl> {
             visualizationContext = VisualizationReInitializer.reInitialize(model)
             visualizationContexts.add(visualizationContext)
             usedContext.setProperty(OsgiSynthesisProperties.MODEL_VISUALIZATION_CONTEXT, model)
+            
+            // Set synthesis and layout options according to the stored options.
+            setSynthesisOptions(model.getSynthesisOptions)
+            setLayoutOptions(model.getLayoutOptions)
+            
         }
         
         diagramSynthesisDelegate.transform(visualizationContext.getModelElement, usedContext)
+    }
+    
+    /**
+     * Configures the new synthesis options to be used during this synthesis.
+     * 
+     * @param newSynthesisOptions The new synthesis options to set.
+     */
+    protected def void setSynthesisOptions(Iterable<Option> newSynthesisOptions) {
+        val allSynthesisOptions = usedContext.displayedSynthesisOptions
+        for (storedOption : newSynthesisOptions) {
+            val option = allSynthesisOptions.findFirst [ id.equals(storedOption.id) ]
+            // Only configure options which are available.
+            if (option !== null) {
+                SynthesisUtils.configureSynthesisOption(option, storedOption.value, usedContext)
+            }
+        }
+    }
+    
+    /**
+     * Configures the new layout options to be used for layout runs on this model.
+     * 
+     * @param newLayoutOptions The new layout options to set.
+     */
+    protected def void setLayoutOptions(Iterable<Option> newLayoutOptions) {
+        val Injector injector = LayoutConnectorsService.instance.getInjector(null, usedContext)
+        val ILayoutConfigurationStore.Provider layoutConfigStoreProvider =
+            injector.getInstance(ILayoutConfigurationStore.Provider)
+        val ILayoutConfigurationStore layoutConfigStore =
+            layoutConfigStoreProvider.get(usedContext.diagramWorkbenchPart, usedContext.viewModel)
+        for (storedOptions : newLayoutOptions) {
+            layoutConfigStore.setOptionValue(storedOptions.id, storedOptions.value)
+        }
     }
     
 }

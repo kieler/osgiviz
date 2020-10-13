@@ -14,16 +14,23 @@
  */
 package de.cau.cs.kieler.osgiviz.actions
 
+import com.google.inject.Injector
 import de.cau.cs.kieler.klighd.IAction
+import de.cau.cs.kieler.klighd.ViewContext
 import de.cau.cs.kieler.osgiviz.OsgiSynthesisProperties
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz
+import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelFactory
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage
 import de.scheidtbachmann.osgimodel.OsgiProject
 import de.scheidtbachmann.osgimodel.OsgimodelPackage
 import java.text.SimpleDateFormat
 import java.util.Collections
 import java.util.Date
+import org.eclipse.elk.core.data.LayoutMetaDataService
+import org.eclipse.elk.core.service.ILayoutConfigurationStore
+import org.eclipse.elk.core.service.LayoutConfigurationManager
+import org.eclipse.elk.core.service.LayoutConnectorsService
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
@@ -69,6 +76,11 @@ class StoreModelAction implements IAction {
             }
         copier.copyReferences
         
+        // Persist the current state of KLighD's synthesis options in the model...
+        // ...the synthesis options
+        storeSynthesisOptions(copiedRoot, context.activeViewer.viewContext)
+        // ...and the layout options
+        storeLayoutOptions(copiedRoot, context.activeViewer.viewContext)
         
         // Store the model.
         
@@ -101,6 +113,52 @@ class StoreModelAction implements IAction {
         System.out.println("File stored successfully in " + filePath)
         
         return ActionResult.createResult(false)
+    }
+    
+    /**
+     * Stores the currently used synthesis options in the visualization context.
+     * 
+     * @param visualizationContext The context to save the current options to.
+     * @param viewContext The view context used to display the current diagram.
+     */
+    protected def void storeSynthesisOptions(OsgiViz visualizationContext, ViewContext viewContext) {
+        val synthesisOptions = viewContext.displayedSynthesisOptions
+        visualizationContext.synthesisOptions.clear
+        for (option : synthesisOptions) {
+            val storedOption = OsgivizmodelFactory.eINSTANCE.createOption => [
+                id = option.id
+                value = viewContext.getOptionValue(option).toString
+            ]
+            visualizationContext.synthesisOptions.add(storedOption)
+        }
+    }
+    
+    /**
+     * Stores the currently used layout options in the visualization context.
+     * 
+     * @param visualizationContext The context to save the current options to.
+     * @param viewContext The view context used to display the current diagram.
+     */
+    protected def void storeLayoutOptions(OsgiViz visualizationContext, ViewContext viewContext) {
+        val layoutOptions = viewContext.displayedLayoutOptions
+        visualizationContext.layoutOptions.clear
+        // We need to obtain the LayoutConfigurationManager responsible for the view context to get
+        // the current options.
+        val Injector injector = LayoutConnectorsService.instance.getInjector(null, viewContext)
+        val LayoutConfigurationManager layoutConfigManager = injector.getInstance(LayoutConfigurationManager)
+        val ILayoutConfigurationStore.Provider layoutConfigStoreProvider =
+            injector.getInstance(ILayoutConfigurationStore.Provider)
+        for (option : layoutOptions) {
+            val optionData = LayoutMetaDataService.instance.getOptionData(option.first.id)
+            val layoutConfigStore =
+                layoutConfigStoreProvider.get(viewContext.diagramWorkbenchPart, viewContext.viewModel)
+            val optionValue = layoutConfigManager.getOptionValue(optionData, layoutConfigStore)
+            val storedOption = OsgivizmodelFactory.eINSTANCE.createOption => [
+                id = option.first.id
+                value = optionValue.toString
+            ]
+            visualizationContext.layoutOptions.add(storedOption)
+        }
     }
     
 }

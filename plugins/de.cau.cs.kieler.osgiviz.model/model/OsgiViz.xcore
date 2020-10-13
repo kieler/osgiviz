@@ -112,6 +112,11 @@ class Pair<K,V> {
     refers V value
 }
 
+class Option {
+    String ^id
+    String value
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////
 // ------------------------------- Context Classes ----------------------------------//
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -644,6 +649,16 @@ class PackageObjectOverviewContext extends IOverviewVisualizationContext<Package
  * @author nre
  */
 class OsgiViz extends IVisualizationContext<OsgiProject> {
+    
+    /**
+     * KLighD's synthesis options for storing/restoring an equal view. 
+     */
+    contains Option[] synthesisOptions
+    
+    /**
+     * KLighD's layout options for storing/restoring an equal view.
+     */
+    contains Option[] layoutOptions
     
     /*
      * The context for the bundle overview.
