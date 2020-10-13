@@ -309,6 +309,52 @@ public interface OsgivizmodelPackage extends EPackage {
 	int PAIR_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OptionImpl <em>Option</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OptionImpl
+	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgivizmodelPackageImpl#getOption()
+	 * @generated
+	 */
+	int OPTION = 4;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTION__ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTION__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Option</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTION_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Option</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTION_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ProductContextImpl <em>Product Context</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -316,7 +362,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgivizmodelPackageImpl#getProductContext()
 	 * @generated
 	 */
-	int PRODUCT_CONTEXT = 4;
+	int PRODUCT_CONTEXT = 5;
 
 	/**
 	 * The feature id for the '<em><b>Child Contexts</b></em>' containment reference list.
@@ -407,7 +453,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgivizmodelPackageImpl#getFeatureContext()
 	 * @generated
 	 */
-	int FEATURE_CONTEXT = 5;
+	int FEATURE_CONTEXT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Child Contexts</b></em>' containment reference list.
@@ -480,7 +526,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgivizmodelPackageImpl#getBundleContext()
 	 * @generated
 	 */
-	int BUNDLE_CONTEXT = 6;
+	int BUNDLE_CONTEXT = 7;
 
 	/**
 	 * The feature id for the '<em><b>Child Contexts</b></em>' containment reference list.
@@ -589,7 +635,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgivizmodelPackageImpl#getBundleCategoryContext()
 	 * @generated
 	 */
-	int BUNDLE_CATEGORY_CONTEXT = 7;
+	int BUNDLE_CATEGORY_CONTEXT = 8;
 
 	/**
 	 * The feature id for the '<em><b>Child Contexts</b></em>' containment reference list.
@@ -662,7 +708,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgivizmodelPackageImpl#getClassContext()
 	 * @generated
 	 */
-	int CLASS_CONTEXT = 8;
+	int CLASS_CONTEXT = 9;
 
 	/**
 	 * The feature id for the '<em><b>Child Contexts</b></em>' containment reference list.
@@ -744,7 +790,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgivizmodelPackageImpl#getServiceComponentContext()
 	 * @generated
 	 */
-	int SERVICE_COMPONENT_CONTEXT = 9;
+	int SERVICE_COMPONENT_CONTEXT = 10;
 
 	/**
 	 * The feature id for the '<em><b>Child Contexts</b></em>' containment reference list.
@@ -844,7 +890,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgivizmodelPackageImpl#getServiceInterfaceContext()
 	 * @generated
 	 */
-	int SERVICE_INTERFACE_CONTEXT = 10;
+	int SERVICE_INTERFACE_CONTEXT = 11;
 
 	/**
 	 * The feature id for the '<em><b>Child Contexts</b></em>' containment reference list.
@@ -944,7 +990,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgivizmodelPackageImpl#getPackageObjectContext()
 	 * @generated
 	 */
-	int PACKAGE_OBJECT_CONTEXT = 11;
+	int PACKAGE_OBJECT_CONTEXT = 12;
 
 	/**
 	 * The feature id for the '<em><b>Child Contexts</b></em>' containment reference list.
@@ -1008,7 +1054,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgivizmodelPackageImpl#getUsedPackagesOfBundleEdgeConnection()
 	 * @generated
 	 */
-	int USED_PACKAGES_OF_BUNDLE_EDGE_CONNECTION = 12;
+	int USED_PACKAGES_OF_BUNDLE_EDGE_CONNECTION = 13;
 
 	/**
 	 * The feature id for the '<em><b>Source Bundle Context</b></em>' reference.
@@ -1072,7 +1118,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgivizmodelPackageImpl#getProductOverviewContext()
 	 * @generated
 	 */
-	int PRODUCT_OVERVIEW_CONTEXT = 13;
+	int PRODUCT_OVERVIEW_CONTEXT = 14;
 
 	/**
 	 * The feature id for the '<em><b>Child Contexts</b></em>' containment reference list.
@@ -1172,7 +1218,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgivizmodelPackageImpl#getFeatureOverviewContext()
 	 * @generated
 	 */
-	int FEATURE_OVERVIEW_CONTEXT = 14;
+	int FEATURE_OVERVIEW_CONTEXT = 15;
 
 	/**
 	 * The feature id for the '<em><b>Child Contexts</b></em>' containment reference list.
@@ -1272,7 +1318,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgivizmodelPackageImpl#getBundleOverviewContext()
 	 * @generated
 	 */
-	int BUNDLE_OVERVIEW_CONTEXT = 15;
+	int BUNDLE_OVERVIEW_CONTEXT = 16;
 
 	/**
 	 * The feature id for the '<em><b>Child Contexts</b></em>' containment reference list.
@@ -1408,7 +1454,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgivizmodelPackageImpl#getBundleCategoryOverviewContext()
 	 * @generated
 	 */
-	int BUNDLE_CATEGORY_OVERVIEW_CONTEXT = 16;
+	int BUNDLE_CATEGORY_OVERVIEW_CONTEXT = 17;
 
 	/**
 	 * The feature id for the '<em><b>Child Contexts</b></em>' containment reference list.
@@ -1526,7 +1572,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgivizmodelPackageImpl#getReferencedInterfaceEdgeConnection()
 	 * @generated
 	 */
-	int REFERENCED_INTERFACE_EDGE_CONNECTION = 17;
+	int REFERENCED_INTERFACE_EDGE_CONNECTION = 18;
 
 	/**
 	 * The feature id for the '<em><b>Service Component Context</b></em>' reference.
@@ -1581,7 +1627,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgivizmodelPackageImpl#getServiceOverviewContext()
 	 * @generated
 	 */
-	int SERVICE_OVERVIEW_CONTEXT = 18;
+	int SERVICE_OVERVIEW_CONTEXT = 19;
 
 	/**
 	 * The feature id for the '<em><b>Child Contexts</b></em>' containment reference list.
@@ -1825,7 +1871,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgivizmodelPackageImpl#getPackageObjectOverviewContext()
 	 * @generated
 	 */
-	int PACKAGE_OBJECT_OVERVIEW_CONTEXT = 19;
+	int PACKAGE_OBJECT_OVERVIEW_CONTEXT = 20;
 
 	/**
 	 * The feature id for the '<em><b>Child Contexts</b></em>' containment reference list.
@@ -1925,7 +1971,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgivizmodelPackageImpl#getOsgiViz()
 	 * @generated
 	 */
-	int OSGI_VIZ = 20;
+	int OSGI_VIZ = 21;
 
 	/**
 	 * The feature id for the '<em><b>Child Contexts</b></em>' containment reference list.
@@ -1964,13 +2010,31 @@ public interface OsgivizmodelPackage extends EPackage {
 	int OSGI_VIZ__CHILDREN_INITIALIZED = IVISUALIZATION_CONTEXT__CHILDREN_INITIALIZED;
 
 	/**
+	 * The feature id for the '<em><b>Synthesis Options</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OSGI_VIZ__SYNTHESIS_OPTIONS = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Layout Options</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OSGI_VIZ__LAYOUT_OPTIONS = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Bundle Overview Context</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OSGI_VIZ__BUNDLE_OVERVIEW_CONTEXT = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 0;
+	int OSGI_VIZ__BUNDLE_OVERVIEW_CONTEXT = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Product Overview Context</b></em>' reference.
@@ -1979,7 +2043,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OSGI_VIZ__PRODUCT_OVERVIEW_CONTEXT = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 1;
+	int OSGI_VIZ__PRODUCT_OVERVIEW_CONTEXT = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Service Overview Context</b></em>' reference.
@@ -1988,7 +2052,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OSGI_VIZ__SERVICE_OVERVIEW_CONTEXT = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 2;
+	int OSGI_VIZ__SERVICE_OVERVIEW_CONTEXT = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Feature Overview Context</b></em>' reference.
@@ -1997,7 +2061,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OSGI_VIZ__FEATURE_OVERVIEW_CONTEXT = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 3;
+	int OSGI_VIZ__FEATURE_OVERVIEW_CONTEXT = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Imported Package Overview Context</b></em>' reference.
@@ -2006,7 +2070,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OSGI_VIZ__IMPORTED_PACKAGE_OVERVIEW_CONTEXT = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 4;
+	int OSGI_VIZ__IMPORTED_PACKAGE_OVERVIEW_CONTEXT = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Bundle Category Overview Context</b></em>' reference.
@@ -2015,7 +2079,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OSGI_VIZ__BUNDLE_CATEGORY_OVERVIEW_CONTEXT = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 5;
+	int OSGI_VIZ__BUNDLE_CATEGORY_OVERVIEW_CONTEXT = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Focus</b></em>' reference.
@@ -2024,7 +2088,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OSGI_VIZ__FOCUS = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 6;
+	int OSGI_VIZ__FOCUS = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>Osgi Viz</em>' class.
@@ -2033,7 +2097,7 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OSGI_VIZ_FEATURE_COUNT = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 7;
+	int OSGI_VIZ_FEATURE_COUNT = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of operations of the '<em>Osgi Viz</em>' class.
@@ -2193,6 +2257,38 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPair_Value();
+
+	/**
+	 * Returns the meta object for class '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.Option <em>Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Option</em>'.
+	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.Option
+	 * @generated
+	 */
+	EClass getOption();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.Option#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.Option#getId()
+	 * @see #getOption()
+	 * @generated
+	 */
+	EAttribute getOption_Id();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.Option#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.Option#getValue()
+	 * @see #getOption()
+	 * @generated
+	 */
+	EAttribute getOption_Value();
 
 	/**
 	 * Returns the meta object for class '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.ProductContext <em>Product Context</em>}'.
@@ -3102,6 +3198,28 @@ public interface OsgivizmodelPackage extends EPackage {
 	EClass getOsgiViz();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz#getSynthesisOptions <em>Synthesis Options</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Synthesis Options</em>'.
+	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz#getSynthesisOptions()
+	 * @see #getOsgiViz()
+	 * @generated
+	 */
+	EReference getOsgiViz_SynthesisOptions();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz#getLayoutOptions <em>Layout Options</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Layout Options</em>'.
+	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz#getLayoutOptions()
+	 * @see #getOsgiViz()
+	 * @generated
+	 */
+	EReference getOsgiViz_LayoutOptions();
+
+	/**
 	 * Returns the meta object for the reference '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz#getBundleOverviewContext <em>Bundle Overview Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3320,6 +3438,32 @@ public interface OsgivizmodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PAIR__VALUE = eINSTANCE.getPair_Value();
+
+		/**
+		 * The meta object literal for the '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OptionImpl <em>Option</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OptionImpl
+		 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgivizmodelPackageImpl#getOption()
+		 * @generated
+		 */
+		EClass OPTION = eINSTANCE.getOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPTION__ID = eINSTANCE.getOption_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPTION__VALUE = eINSTANCE.getOption_Value();
 
 		/**
 		 * The meta object literal for the '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ProductContextImpl <em>Product Context</em>}' class.
@@ -4026,6 +4170,22 @@ public interface OsgivizmodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass OSGI_VIZ = eINSTANCE.getOsgiViz();
+
+		/**
+		 * The meta object literal for the '<em><b>Synthesis Options</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OSGI_VIZ__SYNTHESIS_OPTIONS = eINSTANCE.getOsgiViz_SynthesisOptions();
+
+		/**
+		 * The meta object literal for the '<em><b>Layout Options</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OSGI_VIZ__LAYOUT_OPTIONS = eINSTANCE.getOsgiViz_LayoutOptions();
 
 		/**
 		 * The meta object literal for the '<em><b>Bundle Overview Context</b></em>' reference feature.

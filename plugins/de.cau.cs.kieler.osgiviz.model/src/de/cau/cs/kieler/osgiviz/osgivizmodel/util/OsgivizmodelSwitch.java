@@ -11,6 +11,7 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.FeatureContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.FeatureOverviewContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IOverviewVisualizationContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext;
+import de.cau.cs.kieler.osgiviz.osgivizmodel.Option;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.PackageObjectContext;
@@ -107,6 +108,12 @@ public class OsgivizmodelSwitch<T> extends Switch<T> {
 			case OsgivizmodelPackage.PAIR: {
 				Pair<?, ?> pair = (Pair<?, ?>)theEObject;
 				T result = casePair(pair);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OsgivizmodelPackage.OPTION: {
+				Option option = (Option)theEObject;
+				T result = caseOption(option);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -294,6 +301,21 @@ public class OsgivizmodelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public <K, V> T casePair(Pair<K, V> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Option</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOption(Option object) {
 		return null;
 	}
 
