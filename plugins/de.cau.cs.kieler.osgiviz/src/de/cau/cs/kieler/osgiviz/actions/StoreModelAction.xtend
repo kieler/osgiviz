@@ -144,20 +144,34 @@ class StoreModelAction implements IAction {
         visualizationContext.layoutOptions.clear
         // We need to obtain the LayoutConfigurationManager responsible for the view context to get
         // the current options.
-        val Injector injector = LayoutConnectorsService.instance.getInjector(null, viewContext)
-        val LayoutConfigurationManager layoutConfigManager = injector.getInstance(LayoutConfigurationManager)
-        val ILayoutConfigurationStore.Provider layoutConfigStoreProvider =
-            injector.getInstance(ILayoutConfigurationStore.Provider)
-        for (option : layoutOptions) {
-            val optionData = LayoutMetaDataService.instance.getOptionData(option.first.id)
-            val layoutConfigStore =
-                layoutConfigStoreProvider.get(viewContext.diagramWorkbenchPart, viewContext.viewModel)
-            val optionValue = layoutConfigManager.getOptionValue(optionData, layoutConfigStore)
-            val storedOption = OsgivizmodelFactory.eINSTANCE.createOption => [
-                id = option.first.id
-                value = optionValue.toString
-            ]
-            visualizationContext.layoutOptions.add(storedOption)
+        
+        // This works in Eclipse-mode, but not in standalone-mode, as the returned injector is null
+        // This is because no org.eclipse.elk.core.service.layoutConnectors can be registered without a running 
+        // platform and Eclipse extension points (or so it seems).
+        // I probably need to find a way to correctly register everything from ELK in non-Eclipse-mode and also use that
+        // to configure the options in the LSP; currently that stores the layout config itself and does not use any ELK
+        // stuff for that.
+        // See ELK Issue #719 for details https://github.com/eclipse/elk/issues/719
+        try {
+            val Injector injector = LayoutConnectorsService.instance.getInjector(null, viewContext)
+            val LayoutConfigurationManager layoutConfigManager = injector.getInstance(LayoutConfigurationManager)
+            val ILayoutConfigurationStore.Provider layoutConfigStoreProvider =
+                injector.getInstance(ILayoutConfigurationStore.Provider)
+            for (option : layoutOptions) {
+                val optionData = LayoutMetaDataService.instance.getOptionData(option.first.id)
+                val layoutConfigStore =
+                    layoutConfigStoreProvider.get(viewContext.diagramWorkbenchPart, viewContext.viewModel)
+                val optionValue = layoutConfigManager.getOptionValue(optionData, layoutConfigStore)
+                val storedOption = OsgivizmodelFactory.eINSTANCE.createOption => [
+                    id = option.first.id
+                    value = optionValue.toString
+                ]
+                visualizationContext.layoutOptions.add(storedOption)
+            }
+        } catch (Throwable t) {
+            // Continue without storing the layout options, but log it on the console for now.
+            println("Cannot store the layout options for this model:")
+            t.printStackTrace
         }
     }
     

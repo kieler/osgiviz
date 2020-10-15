@@ -106,13 +106,19 @@ class OsgiVizSynthesis extends AbstractDiagramSynthesis<OsgiVizImpl> {
      * @param newLayoutOptions The new layout options to set.
      */
     protected def void setLayoutOptions(Iterable<Option> newLayoutOptions) {
-        val Injector injector = LayoutConnectorsService.instance.getInjector(null, usedContext)
-        val ILayoutConfigurationStore.Provider layoutConfigStoreProvider =
-            injector.getInstance(ILayoutConfigurationStore.Provider)
-        val ILayoutConfigurationStore layoutConfigStore =
-            layoutConfigStoreProvider.get(usedContext.diagramWorkbenchPart, usedContext.viewModel)
-        for (storedOptions : newLayoutOptions) {
-            layoutConfigStore.setOptionValue(storedOptions.id, storedOptions.value)
+        try {
+            val Injector injector = LayoutConnectorsService.instance.getInjector(null, usedContext)
+            val ILayoutConfigurationStore.Provider layoutConfigStoreProvider =
+                injector.getInstance(ILayoutConfigurationStore.Provider)
+            val ILayoutConfigurationStore layoutConfigStore =
+                layoutConfigStoreProvider.get(usedContext.diagramWorkbenchPart, usedContext.viewModel)
+            for (storedOptions : newLayoutOptions) {
+                layoutConfigStore.setOptionValue(storedOptions.id, storedOptions.value)
+            }
+        } catch (Throwable t) {
+            // Continue without loading the layout options, but log it on the console for now.
+            println("Cannot load the layout options for this model:")
+            t.printStackTrace
         }
     }
     
