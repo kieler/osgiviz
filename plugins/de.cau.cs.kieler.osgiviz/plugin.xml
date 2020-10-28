@@ -90,6 +90,10 @@
             class="de.cau.cs.kieler.osgiviz.actions.RevealInjectedServiceInterfacesAction"
             id="de.cau.cs.kieler.osgiviz.actions.RevealInjectedServiceInterfacesAction">
       </action>
+      <action
+            class="de.cau.cs.kieler.osgiviz.actions.NavigateToBundleAction"
+            id="de.cau.cs.kieler.osgiviz.actions.NavigateToBundleAction">
+      </action>
    </extension>
 
 </plugin>
