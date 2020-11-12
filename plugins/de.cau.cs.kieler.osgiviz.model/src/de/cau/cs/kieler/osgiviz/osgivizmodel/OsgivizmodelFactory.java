@@ -40,6 +40,15 @@ public interface OsgivizmodelFactory extends EFactory {
 	<K, V> Pair<K, V> createPair();
 
 	/**
+	 * Returns a new object of class '<em>Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Option</em>'.
+	 * @generated
+	 */
+	Option createOption();
+
+	/**
 	 * Returns a new object of class '<em>Product Context</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

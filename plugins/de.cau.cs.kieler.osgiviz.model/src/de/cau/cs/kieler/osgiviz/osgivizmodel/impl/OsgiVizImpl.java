@@ -6,6 +6,7 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryOverviewContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleOverviewContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.FeatureOverviewContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext;
+import de.cau.cs.kieler.osgiviz.osgivizmodel.Option;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.PackageObjectOverviewContext;
@@ -24,6 +25,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -40,6 +42,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl#getModelElement <em>Model Element</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl#isChildrenInitialized <em>Children Initialized</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl#getSynthesisOptions <em>Synthesis Options</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl#getLayoutOptions <em>Layout Options</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl#getBundleOverviewContext <em>Bundle Overview Context</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl#getProductOverviewContext <em>Product Overview Context</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl#getServiceOverviewContext <em>Service Overview Context</em>}</li>
@@ -91,6 +95,26 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * @ordered
 	 */
 	protected boolean childrenInitialized = CHILDREN_INITIALIZED_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getSynthesisOptions() <em>Synthesis Options</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSynthesisOptions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Option> synthesisOptions;
+
+	/**
+	 * The cached value of the '{@link #getLayoutOptions() <em>Layout Options</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLayoutOptions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Option> layoutOptions;
 
 	/**
 	 * The cached value of the '{@link #getBundleOverviewContext() <em>Bundle Overview Context</em>}' reference.
@@ -308,6 +332,32 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 		childrenInitialized = newChildrenInitialized;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.OSGI_VIZ__CHILDREN_INITIALIZED, oldChildrenInitialized, childrenInitialized));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Option> getSynthesisOptions() {
+		if (synthesisOptions == null) {
+			synthesisOptions = new EObjectContainmentEList<Option>(Option.class, this, OsgivizmodelPackage.OSGI_VIZ__SYNTHESIS_OPTIONS);
+		}
+		return synthesisOptions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Option> getLayoutOptions() {
+		if (layoutOptions == null) {
+			layoutOptions = new EObjectContainmentEList<Option>(Option.class, this, OsgivizmodelPackage.OSGI_VIZ__LAYOUT_OPTIONS);
+		}
+		return layoutOptions;
 	}
 
 	/**
@@ -621,6 +671,10 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 				return ((InternalEList<?>)getChildContexts()).basicRemove(otherEnd, msgs);
 			case OsgivizmodelPackage.OSGI_VIZ__PARENT:
 				return basicSetParent(null, msgs);
+			case OsgivizmodelPackage.OSGI_VIZ__SYNTHESIS_OPTIONS:
+				return ((InternalEList<?>)getSynthesisOptions()).basicRemove(otherEnd, msgs);
+			case OsgivizmodelPackage.OSGI_VIZ__LAYOUT_OPTIONS:
+				return ((InternalEList<?>)getLayoutOptions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -657,6 +711,10 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 				return basicGetParent();
 			case OsgivizmodelPackage.OSGI_VIZ__CHILDREN_INITIALIZED:
 				return isChildrenInitialized();
+			case OsgivizmodelPackage.OSGI_VIZ__SYNTHESIS_OPTIONS:
+				return getSynthesisOptions();
+			case OsgivizmodelPackage.OSGI_VIZ__LAYOUT_OPTIONS:
+				return getLayoutOptions();
 			case OsgivizmodelPackage.OSGI_VIZ__BUNDLE_OVERVIEW_CONTEXT:
 				if (resolve) return getBundleOverviewContext();
 				return basicGetBundleOverviewContext();
@@ -704,6 +762,14 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 			case OsgivizmodelPackage.OSGI_VIZ__CHILDREN_INITIALIZED:
 				setChildrenInitialized((Boolean)newValue);
 				return;
+			case OsgivizmodelPackage.OSGI_VIZ__SYNTHESIS_OPTIONS:
+				getSynthesisOptions().clear();
+				getSynthesisOptions().addAll((Collection<? extends Option>)newValue);
+				return;
+			case OsgivizmodelPackage.OSGI_VIZ__LAYOUT_OPTIONS:
+				getLayoutOptions().clear();
+				getLayoutOptions().addAll((Collection<? extends Option>)newValue);
+				return;
 			case OsgivizmodelPackage.OSGI_VIZ__BUNDLE_OVERVIEW_CONTEXT:
 				setBundleOverviewContext((BundleOverviewContext)newValue);
 				return;
@@ -749,6 +815,12 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 			case OsgivizmodelPackage.OSGI_VIZ__CHILDREN_INITIALIZED:
 				setChildrenInitialized(CHILDREN_INITIALIZED_EDEFAULT);
 				return;
+			case OsgivizmodelPackage.OSGI_VIZ__SYNTHESIS_OPTIONS:
+				getSynthesisOptions().clear();
+				return;
+			case OsgivizmodelPackage.OSGI_VIZ__LAYOUT_OPTIONS:
+				getLayoutOptions().clear();
+				return;
 			case OsgivizmodelPackage.OSGI_VIZ__BUNDLE_OVERVIEW_CONTEXT:
 				setBundleOverviewContext((BundleOverviewContext)null);
 				return;
@@ -790,6 +862,10 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 				return basicGetParent() != null;
 			case OsgivizmodelPackage.OSGI_VIZ__CHILDREN_INITIALIZED:
 				return childrenInitialized != CHILDREN_INITIALIZED_EDEFAULT;
+			case OsgivizmodelPackage.OSGI_VIZ__SYNTHESIS_OPTIONS:
+				return synthesisOptions != null && !synthesisOptions.isEmpty();
+			case OsgivizmodelPackage.OSGI_VIZ__LAYOUT_OPTIONS:
+				return layoutOptions != null && !layoutOptions.isEmpty();
 			case OsgivizmodelPackage.OSGI_VIZ__BUNDLE_OVERVIEW_CONTEXT:
 				return bundleOverviewContext != null;
 			case OsgivizmodelPackage.OSGI_VIZ__PRODUCT_OVERVIEW_CONTEXT:

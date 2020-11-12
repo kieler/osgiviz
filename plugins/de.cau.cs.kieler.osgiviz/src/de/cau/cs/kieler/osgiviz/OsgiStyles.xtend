@@ -66,7 +66,7 @@ import static de.cau.cs.kieler.osgiviz.OsgiOptions.*
 
 import static extension de.cau.cs.kieler.klighd.microlayout.PlacementUtil.*
 import static extension de.cau.cs.kieler.klighd.syntheses.DiagramSyntheses.*
-import de.cau.cs.kieler.osgiviz.actions.NavigateToBundleAction
+import de.cau.cs.kieler.osgiviz.actions.OpenBundleManifestAction
 
 /**
  * The renderings and styles of OsgiModels.
@@ -747,7 +747,7 @@ class OsgiStyles {
     def KRoundedRectangle addBundleRendering(KNode node, Bundle b, boolean inOverview, boolean hasChildren,
         ViewContext context) {
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
-        	addDoubleClickAction(NavigateToBundleAction::ID)
+        	addDoubleClickAction(OpenBundleManifestAction::ID)
             if (b.isIsExternal) {
                 setBackgroundGradient(EXTERNAL_BUNDLE_COLOR_1.color, EXTERNAL_BUNDLE_COLOR_2.color, 90)
             } else {

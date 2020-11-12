@@ -6,15 +6,16 @@ Bundle-Version: 0.2.1.qualifier
 Export-Package: de.cau.cs.kieler.osgiviz,
  de.cau.cs.kieler.osgiviz.actions
 Require-Bundle: de.cau.cs.kieler.klighd,
- de.scheidtbachmann.osgimodel.model,
- de.cau.cs.kieler.osgiviz.model,
  de.cau.cs.kieler.klighd.krendering.extensions,
- org.eclipse.elk.core;bundle-version="0.5.0",
- org.eclipse.xtext.xbase.lib;bundle-version="2.16.0",
- com.google.inject;bundle-version="3.0.0",
- org.eclipse.elk.alg.layered;bundle-version="0.6.0",
- org.eclipse.xtend.lib;bundle-version="2.16.0",
- org.eclipse.emf.ecore.xmi;bundle-version="2.14.0"
+ de.cau.cs.kieler.osgiviz.model,
+ de.scheidtbachmann.osgimodel.model,
+ org.eclipse.elk.alg.layered,
+ org.eclipse.elk.core,
+ org.eclipse.elk.core.service,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.xtend.lib,
+ org.eclipse.xtext.xbase.lib,
+ com.google.inject;bundle-version="3.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: OpenKieler

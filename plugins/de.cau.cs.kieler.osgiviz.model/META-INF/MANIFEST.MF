@@ -1,17 +1,18 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
+Bundle-Name: KIELER Osgi Model Visualization Model
 Bundle-SymbolicName: de.cau.cs.kieler.osgiviz.model;singleton:=true
 Automatic-Module-Name: de.cau.cs.kieler.osgiviz.model
 Bundle-Version: 0.2.1.qualifier
 Bundle-ClassPath: .
-Bundle-Vendor: %providerName
+Bundle-Vendor: OpenKieler
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cau.cs.kieler.osgiviz.osgivizmodel,
  de.cau.cs.kieler.osgiviz.osgivizmodel.impl,
  de.cau.cs.kieler.osgiviz.osgivizmodel.util
-Require-Bundle: de.scheidtbachmann.osgimodel.model;visibility:=reexport,
+Require-Bundle: de.cau.cs.kieler.klighd,
+ de.scheidtbachmann.osgimodel.model;visibility:=reexport,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.xtext.xbase.lib,

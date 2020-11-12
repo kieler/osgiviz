@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: KIELER OSGiViz Language Server
+Bundle-SymbolicName: de.cau.cs.kieler.osgiviz.language.server;singleton:=true
+Bundle-Version: 0.2.1.qualifier
+Bundle-ClassPath: .
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: Kiel University
+Bundle-Localization: plugin
+Bundle-ActivationPolicy: lazy
+Require-Bundle: de.cau.cs.kieler.kgraph.text.ide,
+ de.cau.cs.kieler.klighd,
+ de.cau.cs.kieler.klighd.ide,
+ de.cau.cs.kieler.klighd.incremental,
+ de.cau.cs.kieler.klighd.lsp,
+ de.cau.cs.kieler.klighd.standalone,
+ de.cau.cs.kieler.osgiviz.model,
+ de.scheidtbachmann.osgimodel.model,
+ org.eclipse.lsp4j,
+ org.eclipse.lsp4j.jsonrpc,
+ org.eclipse.xtend.lib,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.lib
+Export-Package: de.cau.cs.kieler.osgiviz.language.server

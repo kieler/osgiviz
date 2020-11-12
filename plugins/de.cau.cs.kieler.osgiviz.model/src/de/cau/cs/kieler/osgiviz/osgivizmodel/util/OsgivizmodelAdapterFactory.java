@@ -11,6 +11,7 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.FeatureContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.FeatureOverviewContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IOverviewVisualizationContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext;
+import de.cau.cs.kieler.osgiviz.osgivizmodel.Option;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.PackageObjectContext;
@@ -101,6 +102,10 @@ public class OsgivizmodelAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public <K, V> Adapter casePair(Pair<K, V> object) {
 				return createPairAdapter();
+			}
+			@Override
+			public Adapter caseOption(Option object) {
+				return createOptionAdapter();
 			}
 			@Override
 			public Adapter caseProductContext(ProductContext object) {
@@ -243,6 +248,20 @@ public class OsgivizmodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPairAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.Option <em>Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.Option
+	 * @generated
+	 */
+	public Adapter createOptionAdapter() {
 		return null;
 	}
 

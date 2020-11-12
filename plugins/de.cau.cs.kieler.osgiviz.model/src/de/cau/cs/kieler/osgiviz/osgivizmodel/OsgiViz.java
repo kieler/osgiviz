@@ -3,6 +3,7 @@
 package de.cau.cs.kieler.osgiviz.osgivizmodel;
 
 import de.scheidtbachmann.osgimodel.OsgiProject;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,6 +20,8 @@ import de.scheidtbachmann.osgimodel.OsgiProject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz#getSynthesisOptions <em>Synthesis Options</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz#getLayoutOptions <em>Layout Options</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz#getBundleOverviewContext <em>Bundle Overview Context</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz#getProductOverviewContext <em>Product Overview Context</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz#getServiceOverviewContext <em>Service Overview Context</em>}</li>
@@ -33,6 +36,38 @@ import de.scheidtbachmann.osgimodel.OsgiProject;
  * @generated
  */
 public interface OsgiViz extends IVisualizationContext<OsgiProject> {
+	/**
+	 * Returns the value of the '<em><b>Synthesis Options</b></em>' containment reference list.
+	 * The list contents are of type {@link de.cau.cs.kieler.osgiviz.osgivizmodel.Option}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * *
+	 * KLighD's synthesis options for storing/restoring an equal view.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Synthesis Options</em>' containment reference list.
+	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage#getOsgiViz_SynthesisOptions()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Option> getSynthesisOptions();
+
+	/**
+	 * Returns the value of the '<em><b>Layout Options</b></em>' containment reference list.
+	 * The list contents are of type {@link de.cau.cs.kieler.osgiviz.osgivizmodel.Option}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * *
+	 * KLighD's layout options for storing/restoring an equal view.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Layout Options</em>' containment reference list.
+	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage#getOsgiViz_LayoutOptions()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Option> getLayoutOptions();
+
 	/**
 	 * Returns the value of the '<em><b>Bundle Overview Context</b></em>' reference.
 	 * <!-- begin-user-doc -->

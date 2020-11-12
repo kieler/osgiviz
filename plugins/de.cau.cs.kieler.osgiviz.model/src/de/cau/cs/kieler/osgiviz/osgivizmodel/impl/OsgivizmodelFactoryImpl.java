@@ -9,6 +9,7 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleOverviewContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ClassContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.FeatureContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.FeatureOverviewContext;
+import de.cau.cs.kieler.osgiviz.osgivizmodel.Option;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelFactory;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
@@ -76,6 +77,7 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 		switch (eClass.getClassifierID()) {
 			case OsgivizmodelPackage.CLASS: return createClass();
 			case OsgivizmodelPackage.PAIR: return createPair();
+			case OsgivizmodelPackage.OPTION: return createOption();
 			case OsgivizmodelPackage.PRODUCT_CONTEXT: return createProductContext();
 			case OsgivizmodelPackage.FEATURE_CONTEXT: return createFeatureContext();
 			case OsgivizmodelPackage.BUNDLE_CONTEXT: return createBundleContext();
@@ -118,6 +120,17 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 	public <K, V> Pair<K, V> createPair() {
 		PairImpl<K, V> pair = new PairImpl<K, V>();
 		return pair;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Option createOption() {
+		OptionImpl option = new OptionImpl();
+		return option;
 	}
 
 	/**

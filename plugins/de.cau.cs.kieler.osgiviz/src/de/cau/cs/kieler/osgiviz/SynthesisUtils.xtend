@@ -4,7 +4,7 @@
  * A part of OpenKieler
  * https://github.com/OpenKieler
  * 
- * Copyright 2019 by
+ * Copyright 2019-2020 by
  * + Christian-Albrechts-University of Kiel
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
@@ -15,6 +15,7 @@
 package de.cau.cs.kieler.osgiviz
 
 import de.cau.cs.kieler.klighd.IAction.ActionContext
+import de.cau.cs.kieler.klighd.SynthesisOption
 import de.cau.cs.kieler.klighd.ViewContext
 import de.cau.cs.kieler.klighd.internal.util.KlighdInternalProperties
 import de.cau.cs.kieler.klighd.kgraph.KGraphElement
@@ -307,6 +308,49 @@ final class SynthesisUtils {
      */
     def static String displayedString(Class ei) {
         return ei.classPath.replace("\\", "/").split("/").last
+    }
+    
+    
+    
+    /**
+     * Configures the {@code option} of the {@code viewContext} with the new {@code value} while regarding some special
+     * cases that arise when using an arbitrary Object as the value.
+     * 
+     * @param option The synthesis option
+     * @param value The value for that option
+     * @param viewContext The current {@code ViewContext} in which the option is configured
+     */
+    def static void configureSynthesisOption(SynthesisOption option, String value, ViewContext viewContext) {
+        if (option.isChoiceOption) {
+            // If the string representation matches between an option value and the new value, use that.
+            var newOption = option.values.findFirst[toString.equals(value.toString)]
+            if (option.values.contains(newOption)) {
+                viewContext.configureOption(option, newOption)
+            }
+        } else if (option.isRangeOption) {
+            val lowerBound = option.range.first
+            val upperBound = option.range.second
+            val stepSize = option.stepSize
+            val initialValue = option.initialValue as Number
+            if (lowerBound.equals(lowerBound.intValue())
+                && upperBound.equals(upperBound.intValue())
+                && stepSize.equals(stepSize.intValue())
+                && initialValue.equals(initialValue.intValue())) {
+                // The option contains an Integer
+                viewContext.configureOption(option, Float.parseFloat(value).intValue)
+            } else {
+                // The option contains a Float
+                viewContext.configureOption(option, Float.parseFloat(value))
+            }
+        } else if (option.isCheckOption) {
+            viewContext.configureOption(option, Boolean.parseBoolean(value))
+        } else if (option.isCategory) {
+            viewContext.configureOption(option, Boolean.parseBoolean(value))
+        } else if (option.isTextOption) {
+            viewContext.configureOption(option, value)
+        } else if (option.isSeparator) {
+            // Do nothing, separators cannot be configured.
+        }
     }
     
 }

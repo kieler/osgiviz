@@ -11,6 +11,7 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.FeatureContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.FeatureOverviewContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IOverviewVisualizationContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext;
+import de.cau.cs.kieler.osgiviz.osgivizmodel.Option;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelFactory;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
@@ -69,6 +70,13 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * @generated
 	 */
 	private EClass pairEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass optionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -392,6 +400,36 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	@Override
 	public EReference getPair_Value() {
 		return (EReference)pairEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getOption() {
+		return optionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getOption_Id() {
+		return (EAttribute)optionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getOption_Value() {
+		return (EAttribute)optionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1240,7 +1278,7 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * @generated
 	 */
 	@Override
-	public EReference getOsgiViz_BundleOverviewContext() {
+	public EReference getOsgiViz_SynthesisOptions() {
 		return (EReference)osgiVizEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1250,7 +1288,7 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * @generated
 	 */
 	@Override
-	public EReference getOsgiViz_ProductOverviewContext() {
+	public EReference getOsgiViz_LayoutOptions() {
 		return (EReference)osgiVizEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1260,7 +1298,7 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * @generated
 	 */
 	@Override
-	public EReference getOsgiViz_ServiceOverviewContext() {
+	public EReference getOsgiViz_BundleOverviewContext() {
 		return (EReference)osgiVizEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -1270,7 +1308,7 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * @generated
 	 */
 	@Override
-	public EReference getOsgiViz_FeatureOverviewContext() {
+	public EReference getOsgiViz_ProductOverviewContext() {
 		return (EReference)osgiVizEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -1280,7 +1318,7 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * @generated
 	 */
 	@Override
-	public EReference getOsgiViz_ImportedPackageOverviewContext() {
+	public EReference getOsgiViz_ServiceOverviewContext() {
 		return (EReference)osgiVizEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -1290,7 +1328,7 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * @generated
 	 */
 	@Override
-	public EReference getOsgiViz_BundleCategoryOverviewContext() {
+	public EReference getOsgiViz_FeatureOverviewContext() {
 		return (EReference)osgiVizEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -1300,8 +1338,28 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * @generated
 	 */
 	@Override
-	public EReference getOsgiViz_Focus() {
+	public EReference getOsgiViz_ImportedPackageOverviewContext() {
 		return (EReference)osgiVizEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getOsgiViz_BundleCategoryOverviewContext() {
+		return (EReference)osgiVizEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getOsgiViz_Focus() {
+		return (EReference)osgiVizEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -1350,6 +1408,10 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 		pairEClass = createEClass(PAIR);
 		createEReference(pairEClass, PAIR__KEY);
 		createEReference(pairEClass, PAIR__VALUE);
+
+		optionEClass = createEClass(OPTION);
+		createEAttribute(optionEClass, OPTION__ID);
+		createEAttribute(optionEClass, OPTION__VALUE);
 
 		productContextEClass = createEClass(PRODUCT_CONTEXT);
 		createEReference(productContextEClass, PRODUCT_CONTEXT__FEATURE_OVERVIEW_CONTEXT);
@@ -1451,6 +1513,8 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 		createEReference(packageObjectOverviewContextEClass, PACKAGE_OBJECT_OVERVIEW_CONTEXT__PACKAGE_OBJECTS);
 
 		osgiVizEClass = createEClass(OSGI_VIZ);
+		createEReference(osgiVizEClass, OSGI_VIZ__SYNTHESIS_OPTIONS);
+		createEReference(osgiVizEClass, OSGI_VIZ__LAYOUT_OPTIONS);
 		createEReference(osgiVizEClass, OSGI_VIZ__BUNDLE_OVERVIEW_CONTEXT);
 		createEReference(osgiVizEClass, OSGI_VIZ__PRODUCT_OVERVIEW_CONTEXT);
 		createEReference(osgiVizEClass, OSGI_VIZ__SERVICE_OVERVIEW_CONTEXT);
@@ -1591,6 +1655,10 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 		g1 = createEGenericType(pairEClass_V);
 		initEReference(getPair_Value(), g1, null, "value", null, 0, 1, Pair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(optionEClass, Option.class, "Option", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getOption_Id(), theEcorePackage.getEString(), "id", null, 0, 1, Option.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOption_Value(), theEcorePackage.getEString(), "value", null, 0, 1, Option.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(productContextEClass, ProductContext.class, "ProductContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProductContext_FeatureOverviewContext(), this.getFeatureOverviewContext(), null, "featureOverviewContext", null, 0, 1, ProductContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProductContext_BundleOverviewContext(), this.getBundleOverviewContext(), null, "bundleOverviewContext", null, 0, 1, ProductContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1721,6 +1789,8 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 		initEReference(getPackageObjectOverviewContext_PackageObjects(), theOsgimodelPackage.getPackageObject(), null, "packageObjects", null, 0, -1, PackageObjectOverviewContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(osgiVizEClass, OsgiViz.class, "OsgiViz", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOsgiViz_SynthesisOptions(), this.getOption(), null, "synthesisOptions", null, 0, -1, OsgiViz.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOsgiViz_LayoutOptions(), this.getOption(), null, "layoutOptions", null, 0, -1, OsgiViz.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOsgiViz_BundleOverviewContext(), this.getBundleOverviewContext(), null, "bundleOverviewContext", null, 0, 1, OsgiViz.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOsgiViz_ProductOverviewContext(), this.getProductOverviewContext(), null, "productOverviewContext", null, 0, 1, OsgiViz.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOsgiViz_ServiceOverviewContext(), this.getServiceOverviewContext(), null, "serviceOverviewContext", null, 0, 1, OsgiViz.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
