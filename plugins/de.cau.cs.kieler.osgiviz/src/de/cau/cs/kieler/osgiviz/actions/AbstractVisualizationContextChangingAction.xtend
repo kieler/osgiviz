@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil.Copier
 import org.eclipse.ui.statushandlers.StatusManager
 
 import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
+import de.cau.cs.kieler.osgiviz.OsgiVizFileHandler
 
 /**
  * An abstract action that allows to change the {@link IVisualizationContext} for a model so that the old one is still
@@ -77,6 +78,7 @@ abstract class AbstractVisualizationContextChangingAction implements IAction {
             visualizationContexts.add(index + 1, currentVisualizationContext)
             context.viewContext.setProperty(OsgiSynthesisProperties.CURRENT_VISUALIZATION_CONTEXT_INDEX, index + 1)
             
+            OsgiVizFileHandler.updateTempFile(context)
             return getActionResult(context)
             
         } catch (Exception e) {

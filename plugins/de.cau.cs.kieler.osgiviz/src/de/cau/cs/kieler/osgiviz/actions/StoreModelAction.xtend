@@ -14,13 +14,11 @@
  */
 package de.cau.cs.kieler.osgiviz.actions
 
-import com.google.inject.Injector
 import de.cau.cs.kieler.klighd.IAction
-import de.cau.cs.kieler.klighd.ViewContext
 import de.cau.cs.kieler.osgiviz.OsgiSynthesisProperties
+import de.cau.cs.kieler.osgiviz.OsgiVizFileHandler
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz
-import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelFactory
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage
 import de.scheidtbachmann.osgimodel.OsgiProject
 import de.scheidtbachmann.osgimodel.OsgimodelPackage
@@ -28,10 +26,6 @@ import java.text.SimpleDateFormat
 import java.util.Collections
 import java.util.Date
 import java.util.List
-import org.eclipse.elk.core.data.LayoutMetaDataService
-import org.eclipse.elk.core.service.ILayoutConfigurationStore
-import org.eclipse.elk.core.service.LayoutConfigurationManager
-import org.eclipse.elk.core.service.LayoutConnectorsService
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
@@ -50,7 +44,9 @@ import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtens
  * 
  * @author nre, ldi
  */
-class StoreModelAction implements IAction {
+class StoreModelAction extends OsgiVizFileHandler implements IAction {
+	
+	
     /**
      * This action's ID.
      */
@@ -84,7 +80,6 @@ class StoreModelAction implements IAction {
         storeLayoutOptions(copiedRoot, context.activeViewer.viewContext)
         
         // Store the model.
-        
         val r = Resource.Factory.Registry.INSTANCE
         val extensionFactories = r.getExtensionToFactoryMap
         val osgivizFileEnding = "osgiviz"
@@ -96,7 +91,7 @@ class StoreModelAction implements IAction {
         resSet.packageRegistry.put(OsgimodelPackage.eNS_URI, OsgimodelPackage.eINSTANCE)
         
         // build URI for osgiviz file
-        var relativeURI = rootModel.eResource().getURI().trimSegments(1)
+        val relativeURI = rootModel.eResource().getURI().trimSegments(1)
         val projectName = rootModel.projectName
         val timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date) 
         val fileName = projectName + "-visualization-" + timeStamp + "." + osgivizFileEnding 	
@@ -115,65 +110,4 @@ class StoreModelAction implements IAction {
         
         return ActionResult.createResult(false)
     }
-    
-    /**
-     * Stores the currently used synthesis options in the visualization context.
-     * 
-     * @param visualizationContext The context to save the current options to.
-     * @param viewContext The view context used to display the current diagram.
-     */
-    protected def void storeSynthesisOptions(OsgiViz visualizationContext, ViewContext viewContext) {
-        val synthesisOptions = viewContext.displayedSynthesisOptions
-        visualizationContext.synthesisOptions.clear
-        for (option : synthesisOptions) {
-            val storedOption = OsgivizmodelFactory.eINSTANCE.createOption => [
-                id = option.id
-                value = viewContext.getOptionValue(option).toString
-            ]
-            visualizationContext.synthesisOptions.add(storedOption)
-        }
-    }
-    
-    /**
-     * Stores the currently used layout options in the visualization context.
-     * 
-     * @param visualizationContext The context to save the current options to.
-     * @param viewContext The view context used to display the current diagram.
-     */
-    protected def void storeLayoutOptions(OsgiViz visualizationContext, ViewContext viewContext) {
-        val layoutOptions = viewContext.displayedLayoutOptions
-        visualizationContext.layoutOptions.clear
-        // We need to obtain the LayoutConfigurationManager responsible for the view context to get
-        // the current options.
-        
-        // This works in Eclipse-mode, but not in standalone-mode, as the returned injector is null
-        // This is because no org.eclipse.elk.core.service.layoutConnectors can be registered without a running 
-        // platform and Eclipse extension points (or so it seems).
-        // I probably need to find a way to correctly register everything from ELK in non-Eclipse-mode and also use that
-        // to configure the options in the LSP; currently that stores the layout config itself and does not use any ELK
-        // stuff for that.
-        // See ELK Issue #719 for details https://github.com/eclipse/elk/issues/719
-        try {
-            val Injector injector = LayoutConnectorsService.instance.getInjector(null, viewContext)
-            val LayoutConfigurationManager layoutConfigManager = injector.getInstance(LayoutConfigurationManager)
-            val ILayoutConfigurationStore.Provider layoutConfigStoreProvider =
-                injector.getInstance(ILayoutConfigurationStore.Provider)
-            for (option : layoutOptions) {
-                val optionData = LayoutMetaDataService.instance.getOptionData(option.first.id)
-                val layoutConfigStore =
-                    layoutConfigStoreProvider.get(viewContext.diagramWorkbenchPart, viewContext.viewModel)
-                val optionValue = layoutConfigManager.getOptionValue(optionData, layoutConfigStore)
-                val storedOption = OsgivizmodelFactory.eINSTANCE.createOption => [
-                    id = option.first.id
-                    value = optionValue.toString
-                ]
-                visualizationContext.layoutOptions.add(storedOption)
-            }
-        } catch (Throwable t) {
-            // Continue without storing the layout options, but log it on the console for now.
-            println("Cannot store the layout options for this model:")
-            t.printStackTrace
-        }
-    }
-    
 }
