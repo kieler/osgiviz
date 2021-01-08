@@ -141,30 +141,19 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
             visualizationContext = OsgivizmodelUtil.createOsgiViz(model)
             visualizationContexts.add(visualizationContext)
         }
-		/** chances are, there is allready a osgiviz model 
-		 * in a temporary folder.
-		 * 
-		 * */
+        
+		// chances are, there is allready a osgiviz model in a temporary folder.
 		if(visualizationContexts.size === 1) {
             val String fileName = OsgiVizFileHandler.getSourceFileName(usedContext)
-//        	val tempViContext = OsgiVizFileHandler.getOsgivizFromTempFile(fileName)
-        	val tempViContext = OsgiVizFileHandler.getOsgivizFromTempFile(OsgiVizFileHandler.getPlattformTempURI(model), fileName)
+        	val tempViContext = OsgiVizFileHandler.getOsgivizFromTempFile(fileName)
         	if(tempViContext !== null){
-        		// modelElement loaded contains nothing but a URI
-//        		tempViContext.modelElement = model
-//        		visualizationContext = VisualizationReInitializer.reInitialize(tempViContext)
-				visualizationContext = tempViContext
+        		visualizationContext = VisualizationReInitializer.reInitialize(tempViContext)
 				// add loaded visualization
 				index++
 				usedContext.setProperty(OsgiSynthesisProperties.CURRENT_VISUALIZATION_CONTEXT_INDEX, index)
 				visualizationContexts.add(visualizationContext)	
 			}
         }
-		
-		val checkContexts = usedContext.getProperty(OsgiSynthesisProperties.VISUALIZATION_CONTEXTS)
-		val checkIndex = usedContext.getProperty(OsgiSynthesisProperties.CURRENT_VISUALIZATION_CONTEXT_INDEX)
-		val checkLength = checkContexts.length
-		val checkSize = checkContexts.size
 		
         // Make this variable final here for later usage in the lambda.
         val visContext = visualizationContext

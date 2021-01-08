@@ -78,9 +78,9 @@ abstract class AbstractVisualizationContextChangingAction implements IAction {
             visualizationContexts.add(index + 1, currentVisualizationContext)
             context.viewContext.setProperty(OsgiSynthesisProperties.CURRENT_VISUALIZATION_CONTEXT_INDEX, index + 1)
             
-            OsgiVizFileHandler.updateTempFile(context)
-            return getActionResult(context)
+            OsgiVizFileHandler.writeCurrentModelToFile(context, true)
             
+            return getActionResult(context)
         } catch (Exception e) {
             // Put an error model in the context and show that. // TODO.
 //            val errorModel = new ErrorModel("The action failed to execute and threw an exception.", e)

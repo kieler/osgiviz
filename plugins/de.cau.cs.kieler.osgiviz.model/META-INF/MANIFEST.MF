@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: KIELER Osgi Model Visualization Model
+Bundle-Name: %pluginName
 Bundle-SymbolicName: de.cau.cs.kieler.osgiviz.model;singleton:=true
 Automatic-Module-Name: de.cau.cs.kieler.osgiviz.model
 Bundle-Version: 0.2.1.qualifier
 Bundle-ClassPath: .
-Bundle-Vendor: OpenKieler
+Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cau.cs.kieler.osgiviz.osgivizmodel,
