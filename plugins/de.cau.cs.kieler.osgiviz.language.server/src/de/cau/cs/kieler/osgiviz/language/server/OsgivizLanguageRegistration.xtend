@@ -14,8 +14,8 @@ package de.cau.cs.kieler.osgiviz.language.server
 
 import de.cau.cs.kieler.kgraph.text.ide.KGraphLSSetup
 import de.cau.cs.kieler.klighd.lsp.launch.ILanguageRegistration
-import de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgivizmodelPackageImpl
-import de.scheidtbachmann.osgimodel.impl.OsgimodelPackageImpl
+import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage
+import de.scheidtbachmann.osgimodel.OsgimodelPackage
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 
@@ -27,9 +27,17 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 class OsgivizLanguageRegistration implements ILanguageRegistration {
     
     override bindAndRegisterLanguages() {
+        // There needs to be at least one XText language supported, as the KGraphLSExtension fails otherwise bc of that.
+        // "No Xtext languages have been registered. Please make sure you have added the languages\'s setup class in \'/META-INF/services/org.eclipse.xtext.ISetup\'
+        // in LanguageServerImpl.
         KGraphLSSetup.doLSSetup
-        OsgimodelPackageImpl.init
-        OsgivizmodelPackageImpl.init
+        // Initialize the model packages by making sure they have been called.
+        var osgimodelPackageInstance = OsgimodelPackage.eINSTANCE
+        var osgivizmodelPackageInstance = OsgivizmodelPackage.eINSTANCE
+        
+        // use the variables to remove unused warning
+        osgimodelPackageInstance = osgimodelPackageInstance
+        osgivizmodelPackageInstance = osgivizmodelPackageInstance
         
         Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap.put("model", new XMIResourceFactoryImpl);
         Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap.put("osgiviz", new XMIResourceFactoryImpl);
