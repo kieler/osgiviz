@@ -1,6 +1,10 @@
 # osgiviz
 
 osgiviz is a tool for automatic and interactive visualization and documentation of Java projects using the OSGi&trade; technology.
+Read this paper for more details:
+
+*Niklas Rentz, Christian Dams, and Reinhard von Hanxleden. "Interactive Visualization for OSGi-based Projects." 2020 Working Conference on Software Visualization (VISSOFT). IEEE, 2020.* [PDF](https://rtsys.informatik.uni-kiel.de/~biblio/downloads/papers/vissoft20.pdf)
+
 ![An example visualization of bundle and service dependencies in a project.](./doc/osgiviz_example.png)
 It uses the KIELER Lightweight Diagrams (KLighD) framework
 and provides a synthesis with interactivity
