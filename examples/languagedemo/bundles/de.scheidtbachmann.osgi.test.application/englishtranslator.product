@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.5"?>
+
+<product name="englishtranslator" uid="englishtranslator" useFeatures="true" includeLaunchers="true">
+
+
+   <configIni use="default">
+   </configIni>
+
+   <launcherArgs>
+      <programArgs>-console -clean
+      </programArgs>
+      <vmArgs>-Dosgi.noShutdown=true
+-Declipse.ignoreApp=true
+      </vmArgs>
+      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
+      </vmArgsMac>
+   </launcherArgs>
+
+   <windowImages/>
+
+   <launcher>
+      <win useIco="false">
+         <bmp/>
+      </win>
+   </launcher>
+
+
+   <vm>
+   </vm>
+
+   <plugins>
+      <plugin id="ch.qos.logback.classic"/>
+      <plugin id="ch.qos.logback.core"/>
+      <plugin id="ch.qos.logback.slf4j" fragment="true"/>
+      <plugin id="com.google.guava"/>
+      <plugin id="de.scheidtbachmann.osgi.application.services"/>
+      <plugin id="de.scheidtbachmann.osgi.config.manager.file"/>
+      <plugin id="de.scheidtbachmann.osgi.executor"/>
+      <plugin id="de.scheidtbachmann.osgi.gogo.scr.commands"/>
+      <plugin id="de.scheidtbachmann.osgi.test.application"/>
+      <plugin id="org.apache.felix.configadmin"/>
+      <plugin id="org.apache.felix.gogo.command"/>
+      <plugin id="org.apache.felix.gogo.runtime"/>
+      <plugin id="org.apache.felix.gogo.shell"/>
+      <plugin id="org.apache.felix.org.apache.felix.utils"/>
+      <plugin id="org.apache.felix.scr"/>
+      <plugin id="org.eclipse.equinox.console"/>
+      <plugin id="org.eclipse.osgi"/>
+      <plugin id="org.eclipse.osgi.services"/>
+      <plugin id="org.eclipse.osgi.util"/>
+      <plugin id="org.slf4j.api"/>
+   </plugins>
+
+   <features>
+      <feature id="de.scheidtbachmann.osgi.language.runtime.feature"/>
+      <feature id="org.eclipse.equinox.core.feature"/>
+      <feature id="de.scheidtbachmann.osgi.language.base.feature" installMode="root"/>
+      <feature id="de.scheidtbachmann.osgi.language.english.feature" installMode="root"/>
+   </features>
+
+   <configurations>
+      <plugin id="de.scheidtbachmann.osgi.language.database.provider.file" autoStart="true" startLevel="0" />
+      <plugin id="de.scheidtbachmann.osgi.language.german2english" autoStart="true" startLevel="0" />
+      <plugin id="de.scheidtbachmann.osgi.test.application" autoStart="true" startLevel="0" />
+      <plugin id="org.apache.felix.gogo.command" autoStart="true" startLevel="0" />
+      <plugin id="org.apache.felix.gogo.runtime" autoStart="true" startLevel="0" />
+      <plugin id="org.apache.felix.gogo.shell" autoStart="true" startLevel="0" />
+      <plugin id="org.apache.felix.scr" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.cm" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.console" autoStart="true" startLevel="0" />
+   </configurations>
+
+   <preferencesInfo>
+      <targetfile overwrite="false"/>
+   </preferencesInfo>
+
+   <cssInfo>
+   </cssInfo>
+
+</product>
