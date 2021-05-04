@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>de.scheidtbachmann.osgi.language.features</artifactId>
+	<packaging>pom</packaging>
+	<name>Features</name>
+	<description>OSGi features defining the software components.</description>
+
+	<parent>
+		<groupId>de.scheidtbachmann.osgi.demo</groupId>
+		<artifactId>de.scheidtbachmann.osgi.language.root</artifactId>
+		<version>0.1.8-SNAPSHOT</version>
+	</parent>
+
+	<modules>
+		<!-- Features -->
+		<module>de.scheidtbachmann.osgi.language.runtime.feature</module>
+		<module>de.scheidtbachmann.osgi.language.base.feature</module>
+		<module>de.scheidtbachmann.osgi.language.english.feature</module>
+		<module>de.scheidtbachmann.osgi.language.klingon.feature</module>
+
+	</modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <!-- Nothing do document here. -->
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

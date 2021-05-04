@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: de.scheidtbachmann.osgi.language.german2klingon
+Bundle-Name: German 2 English translation
+Bundle-Description: German 2 Klingon translation services
+Bundle-Category: translation
+Bundle-Version: 0.1.8.qualifier
+Automatic-Module-Name: de.scheidtbachmann.osgi.language.german2klingon
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Import-Package: de.scheidtbachmann.osgi.language.model,
+ de.scheidtbachmann.osgi.language.services.dataprovider,
+ de.scheidtbachmann.osgi.language.services.translator,
+ org.osgi.service.component.annotations;version="1.3.0"
+Bundle-ActivationPolicy: lazy
+Service-Component: OSGI-INF/de.scheidtbachmann.osgi.language.german2klingon.internal.German2KlingonTranslator.xml

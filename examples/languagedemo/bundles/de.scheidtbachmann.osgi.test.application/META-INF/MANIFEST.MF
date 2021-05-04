@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: de.scheidtbachmann.osgi.test.application
+Bundle-SymbolicName: de.scheidtbachmann.osgi.test.application
+Bundle-Category: example
+Bundle-Description: showcase bundle for demonstrating the gp osgi features
+Bundle-Version: 0.1.8.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Require-Bundle: org.eclipse.osgi.services;bundle-version="3.6.0",
+ de.scheidtbachmann.osgi.language.services;bundle-version="0.1.8"
+Service-Component: 
+ OSGI-INF/de.scheidtbachmann.osgi.test.application.TranslatorClient.xml
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: Scheidt & Bachmann System Technik GmbH
+Automatic-Module-Name: de.scheidtbachmann.osgi.test.application

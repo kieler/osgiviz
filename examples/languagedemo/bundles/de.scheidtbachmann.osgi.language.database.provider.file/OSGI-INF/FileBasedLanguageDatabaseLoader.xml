@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="FileBasedLanguageDatabaseLoader">
+   <service>
+      <provide interface="de.scheidtbachmann.osgi.language.services.dataprovider.LanguageDatabaseProvider"/>
+   </service>
+   <implementation class="de.scheidtbachmann.osgi.language.database.provider.file.internal.FileBasedLanguageDatabaseLoader"/>
+</scr:component>

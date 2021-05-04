@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde?>
+<!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
+<target name="de.scheidtbachmann.osgi.language.target" sequenceNumber="1575468066">
+  <locations>
+    <location includeMode="slicer" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.ui.ide" version="0.0.0"/>
+      <unit id="org.eclipse.ui.ide.source" version="0.0.0"/>
+      <unit id="org.eclipse.platform.ide" version="0.0.0"/>
+      <unit id="org.eclipse.e4.core.tools.feature.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.e4.core.tools.feature.source.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.equinox.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.jdt.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.jdt.source.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.pde.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.pde.source.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.rcp.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.rcp.source.feature.group" version="0.0.0"/>
+      <repository location="https://download.eclipse.org/eclipse/updates/4.19/"/>
+    </location>
+  </locations>
+</target>
