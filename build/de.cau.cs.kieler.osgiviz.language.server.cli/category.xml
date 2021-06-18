@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="KIELER OSGiViz Language Server CLI">
+      Artificial Update site for the KIELER OSGiViz Language Server CLI.
+   </description>
+   <bundle id="de.cau.cs.kieler.klighd.ide"/>
+   <bundle id="de.cau.cs.kieler.klighd.incremental"/>
+   <bundle id="de.cau.cs.kieler.klighd.lsp"/>
+   <bundle id="de.cau.cs.kieler.osgiviz"/>
+   <bundle id="de.cau.cs.kieler.osgiviz.language.server"/>
+   <bundle id="de.cau.cs.kieler.osgiviz.model"/>
+   <bundle id="de.scheidtbachmann.osgimodel.model"/>
+</site>
