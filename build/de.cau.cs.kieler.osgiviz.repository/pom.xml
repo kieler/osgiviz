@@ -50,8 +50,8 @@
               <associateSites>
                 <associateSite>https://download.eclipse.org/releases/2020-03</associateSite>
                 <associateSite>https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.20.0/</associateSite>
-                <associateSite>https://download.eclipse.org/elk/updates/releases/0.6.1/</associateSite>
-                <associateSite>https://kieler.github.io/KLighD/v1.1.1/</associateSite>
+                <associateSite>https://download.eclipse.org/elk/updates/releases/0.7.1/</associateSite>
+                <associateSite>https://kieler.github.io/KLighD/v2.1.0/</associateSite>
                 <associateSite>https://download.eclipse.org/tools/orbit/downloads/drops/R20200224183213/repository/</associateSite>
               </associateSites>
             </configuration>
