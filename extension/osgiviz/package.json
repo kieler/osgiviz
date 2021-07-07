@@ -1,15 +1,73 @@
-{
-  "name": "osgiviz",
-	"displayName": "osgiviz",
-	"description": "",
+{	
+	"name": "osgiviz",
+	"displayName": "OSGiViz VSCode",
+	"description": "KIELER OSGiViz extension for VSCode",
 	"version": "0.0.1",
+	"publisher": "kieler",
+	"author": "Kiel University <rt-kieler-devel@informatik.uni-kiel.de>",
+	"license": "EPL-1.0",
 	"engines": {
 		"vscode": "^1.57.0"
 	},
 	"categories": [
-		"Other"
+		"Visualization"
+	],
+	"activationEvents": [
+		"onLanguage:model",
+		"onLanguage:osgiviz"
 	],
 	"main": "./out/extension.js",
+	"contributes": {
+		"languages": [
+			{
+				"id": "model",
+				"configuration": "./language-configs/basic-configuration.json",
+				"aliases": [
+					"OSGi Model"
+				],
+				"extensions": [
+					".model"
+				]
+			},
+			{
+				"id": "osgiviz",
+				"configuration": "./language-configs/basic-configuration.json",
+				"aliases": [
+					"OSGiViz visualization model"
+				],
+				"extensions": [
+					".osgiviz"
+				]
+			}
+		],
+		"menus": {
+			"editor/title": [
+				{
+					"when": "resourceLangId == model || resourceLangId == osgiviz",
+					"command": "klighd-diagram.diagram.open",
+					"group": "navigation"
+				}
+			],
+			"editor/context": [
+				{
+					"when": "resourceLangId == model || resourceLangId == osgiviz",
+					"command": "klighd-diagram.diagram.open",
+					"group": "navigation"
+				}
+			],
+			"explorer/context": [
+				{
+					"when": "resourceLangId == model || resourceLangId == osgiviz",
+					"command": "klighd-diagram.diagram.open",
+					"group": "navigation"
+				}
+			]
+		},
+		"commands": []
+	},
+	"extensionDependencies": [
+		"kieler.klighd-diagram"
+	],
 	"scripts": {
 		"vscode:prepublish": "yarn run compile",
 		"compile": "tsc -p ./",
@@ -30,5 +88,8 @@
 		"mocha": "^8.4.0",
 		"typescript": "^4.3.2",
 		"vscode-test": "^1.5.2"
+	},
+	"dependencies": {
+		"vscode-languageclient": "^5.2.1"
 	}
 }
