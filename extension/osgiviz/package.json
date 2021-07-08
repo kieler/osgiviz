@@ -6,6 +6,7 @@
 	"publisher": "kieler",
 	"author": "Kiel University <rt-kieler-devel@informatik.uni-kiel.de>",
 	"license": "EPL-1.0",
+    "repository": {"type": "git", "url": "https://github.com/kieler/osgiviz"},
 	"engines": {
 		"vscode": "^1.57.0"
 	},
@@ -50,9 +51,9 @@
 		"vscode:prepublish": "yarn run compile",
 		"compile": "tsc -p ./",
 		"watch": "tsc -watch -p ./",
-		"pretest": "yarn run compile && yarn run lint",
 		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
+        "package": "vsce package --yarn",
+		"distribute": "vsce publish --yarn"
 	},
 	"devDependencies": {
 		"@types/vscode": "^1.57.0",
