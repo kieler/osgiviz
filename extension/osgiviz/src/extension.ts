@@ -27,7 +27,7 @@ export async function activate(context: vscode.ExtensionContext) {
     const serverOptions: ServerOptions = createServerOptions(context);
 
     const clientOptions: LanguageClientOptions = {
-        documentSelector: [{ scheme: "file", language: "model" }],
+        documentSelector: [{ scheme: "file", pattern: "**/*.{model,osgiviz}" }],
         synchronize: {
             fileEvents: vscode.workspace.createFileSystemWatcher("**/*.*"),
         },
@@ -40,7 +40,7 @@ export async function activate(context: vscode.ExtensionContext) {
     lsClient.clientOptions.errorHandler = new KeithErrorHandler(defaultErrorHandler);
 
     // Inform the KLighD extension about the LS client and supported file endings
-    const refId = await vscode.commands.executeCommand<string>(
+    await vscode.commands.executeCommand<string>(
         "klighd-diagram.setLanguageClient",
         lsClient,
         ["model", "osgiviz"]

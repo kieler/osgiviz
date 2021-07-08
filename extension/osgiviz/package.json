@@ -13,51 +13,28 @@
 		"Visualization"
 	],
 	"activationEvents": [
-		"onLanguage:model",
-		"onLanguage:osgiviz"
+		"workspaceContains:**/*.{osgiviz,model}"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"languages": [
-			{
-				"id": "model",
-				"configuration": "./language-configs/basic-configuration.json",
-				"aliases": [
-					"OSGi Model"
-				],
-				"extensions": [
-					".model"
-				]
-			},
-			{
-				"id": "osgiviz",
-				"configuration": "./language-configs/basic-configuration.json",
-				"aliases": [
-					"OSGiViz visualization model"
-				],
-				"extensions": [
-					".osgiviz"
-				]
-			}
-		],
 		"menus": {
 			"editor/title": [
 				{
-					"when": "resourceLangId == model || resourceLangId == osgiviz",
+					"when": "resourceExtname == .model || resourceExtname == .osgiviz",
 					"command": "klighd-diagram.diagram.open",
 					"group": "navigation"
 				}
 			],
 			"editor/context": [
 				{
-					"when": "resourceLangId == model || resourceLangId == osgiviz",
+					"when": "resourceExtname == .model || resourceExtname == .osgiviz",
 					"command": "klighd-diagram.diagram.open",
 					"group": "navigation"
 				}
 			],
 			"explorer/context": [
 				{
-					"when": "resourceLangId == model || resourceLangId == osgiviz",
+					"when": "resourceExtname == .model || resourceExtname == .osgiviz",
 					"command": "klighd-diagram.diagram.open",
 					"group": "navigation"
 				}
@@ -66,7 +43,8 @@
 		"commands": []
 	},
 	"extensionDependencies": [
-		"kieler.klighd-diagram"
+		"kieler.klighd-diagram",
+		"redhat.vscode-xml"
 	],
 	"scripts": {
 		"vscode:prepublish": "yarn run compile",
