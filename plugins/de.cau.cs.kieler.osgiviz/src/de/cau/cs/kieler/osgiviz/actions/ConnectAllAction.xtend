@@ -57,7 +57,6 @@ class ConnectAllAction extends AbstractVisualizationContextChangingAction {
         val revealUsedPackagesAction = kdm.getActionById(RevealUsedPackagesAction.ID) as RevealUsedPackagesAction
         val revealInjectedInterfacesAction = kdm.getActionById(RevealInjectedServiceInterfacesAction.ID)
             as RevealInjectedServiceInterfacesAction
-		val OpenBundleManifestAction = kdm.getActionById(OpenBundleManifestAction.ID) as OpenBundleManifestAction
 		        
         if (!(modelVisualizationContext instanceof IOverviewVisualizationContext)) {
             throw new IllegalStateException("The ConnectAllAction is only callable on IOverviewVisualizationContexts,"
@@ -85,7 +84,6 @@ class ConnectAllAction extends AbstractVisualizationContextChangingAction {
                         revealUsedByBundlesAction  .changeVisualization(childContext, actionContext)
                         revealUsedPackagesAction   .changeVisualization(childContext, actionContext)
                     }
-                    OpenBundleManifestAction .execute(actionContext)
                 }
                 FeatureContext: {
                     // Do nothing.

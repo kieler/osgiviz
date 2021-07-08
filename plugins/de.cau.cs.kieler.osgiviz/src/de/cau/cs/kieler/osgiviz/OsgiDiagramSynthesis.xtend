@@ -142,8 +142,8 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
             visualizationContexts.add(visualizationContext)
         }
         
-		// chances are, there is allready a osgiviz model in a temporary folder.
-		if(visualizationContexts.size === 1) {
+		// chances are, there is already an osgiviz model in a temporary folder.
+        if (visualizationContexts.size === 1) {
             val String fileName = OsgiVizFileHandler.getSourceFileName(usedContext)
         	val tempViContext = OsgiVizFileHandler.getOsgivizFromTempFile(fileName)
         	if(tempViContext !== null){

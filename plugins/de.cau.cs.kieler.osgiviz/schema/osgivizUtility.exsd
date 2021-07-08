@@ -64,7 +64,7 @@
          <meta.section type="since"/>
       </appinfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         0.3.0
       </documentation>
    </annotation>
 
@@ -73,7 +73,7 @@
          <meta.section type="examples"/>
       </appinfo>
       <documentation>
-         [Enter extension point usage example here.]
+         [Enter API information here.]
       </documentation>
    </annotation>
 
@@ -95,5 +95,26 @@
       </documentation>
    </annotation>
 
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         /*
+ * OsgiViz - Kieler Visualization for Projects using the OSGi Technology
+ * 
+ * A part of OpenKieler
+ * https://github.com/OpenKieler
+ * 
+ * Copyright 2021 by
+ * + Christian-Albrechts-University of Kiel
+ *   + Department of Computer Science
+ *     + Real-Time and Embedded Systems Group
+ * 
+ * This code is provided under the terms of the Eclipse Public License (EPL).
+ * See the file epl-v10.html for the license text.
+ */
+      </documentation>
+   </annotation>
 
 </schema>

@@ -41,6 +41,7 @@ import de.cau.cs.kieler.osgiviz.actions.ContextCollapseExpandAction
 import de.cau.cs.kieler.osgiviz.actions.ContextExpandAllAction
 import de.cau.cs.kieler.osgiviz.actions.ContextRemoveAction
 import de.cau.cs.kieler.osgiviz.actions.FocusAction
+import de.cau.cs.kieler.osgiviz.actions.OpenBundleManifestAction
 import de.cau.cs.kieler.osgiviz.actions.OverviewContextCollapseExpandAction
 import de.cau.cs.kieler.osgiviz.actions.RevealImplementedServiceInterfacesAction
 import de.cau.cs.kieler.osgiviz.actions.RevealImplementingServiceComponentsAction
@@ -66,7 +67,6 @@ import static de.cau.cs.kieler.osgiviz.OsgiOptions.*
 
 import static extension de.cau.cs.kieler.klighd.microlayout.PlacementUtil.*
 import static extension de.cau.cs.kieler.klighd.syntheses.DiagramSyntheses.*
-import de.cau.cs.kieler.osgiviz.actions.OpenBundleManifestAction
 
 /**
  * The renderings and styles of OsgiModels.
