@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Model
+Bundle-Category: model
+Bundle-Description: Model Classes for the language database
+Bundle-SymbolicName: de.scheidtbachmann.osgi.language.model
+Bundle-Version: 0.1.8.qualifier
+Automatic-Module-Name: de.scheidtbachmann.osgi.language.model
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: de.scheidtbachmann.osgi.language.model,
+ de.scheidtbachmann.osgi.language.model.impl

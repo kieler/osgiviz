@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: German 2 English translation
+Bundle-Description: German 2 English translation services
+Bundle-Category: translation
+Bundle-SymbolicName: de.scheidtbachmann.osgi.language.german2english
+Bundle-Version: 0.1.8.qualifier
+Automatic-Module-Name: de.scheidtbachmann.osgi.german2english
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Import-Package: de.scheidtbachmann.osgi.language.services.dataprovider,
+ de.scheidtbachmann.osgi.language.services.translator,
+ org.osgi.service.component.annotations;version="1.3.0"
+Service-Component: OSGI-INF/de.scheidtbachmann.osgi.language.german2english.internal.German2EnglishTranslator.xml
+Bundle-ActivationPolicy: lazy
+Require-Bundle: de.scheidtbachmann.osgi.language.model;bundle-version="0.1.8"

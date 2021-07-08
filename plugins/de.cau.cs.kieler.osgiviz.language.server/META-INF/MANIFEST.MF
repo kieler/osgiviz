@@ -8,16 +8,27 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Vendor: Kiel University
 Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
-Require-Bundle: de.cau.cs.kieler.kgraph.text.ide,
+Require-Bundle: com.google.gson,
+ de.cau.cs.kieler.kgraph.text,
+ de.cau.cs.kieler.kgraph.text.ide,
  de.cau.cs.kieler.klighd,
  de.cau.cs.kieler.klighd.ide,
  de.cau.cs.kieler.klighd.incremental,
+ de.cau.cs.kieler.klighd.krendering.extensions,
  de.cau.cs.kieler.klighd.lsp,
+ de.cau.cs.kieler.klighd.piccolo,
  de.cau.cs.kieler.klighd.standalone,
  de.cau.cs.kieler.osgiviz.model,
  de.scheidtbachmann.osgimodel.model,
+ org.apache.log4j;bundle-version="1.2.15",
+ org.eclipse.elk.alg.common,
+ org.eclipse.elk.alg.layered,
+ org.eclipse.elk.alg.rectpacking,
+ org.eclipse.elk.core,
+ org.eclipse.elk.core.service,
  org.eclipse.lsp4j,
  org.eclipse.lsp4j.jsonrpc,
+ org.eclipse.sprotty,
  org.eclipse.xtend.lib,
  org.eclipse.xtext.ide,
  org.eclipse.xtext.xbase.lib

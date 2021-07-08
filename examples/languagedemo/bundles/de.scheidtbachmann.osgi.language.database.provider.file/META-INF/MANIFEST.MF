@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Loader for language databases
+Bundle-Category: persistence
+Bundle-Description: File Based Loader for language databases
+Bundle-SymbolicName: de.scheidtbachmann.osgi.language.database.provider.file
+Bundle-Version: 0.1.8.qualifier
+Automatic-Module-Name: de.scheidtbachmann.osgi.language.database.provider
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Service-Component: OSGI-INF/FileBasedLanguageDatabaseLoader.xml
+Bundle-ActivationPolicy: lazy
+Import-Package: de.scheidtbachmann.osgi.language.model,
+ de.scheidtbachmann.osgi.language.model.impl,
+ de.scheidtbachmann.osgi.language.services.dataprovider,
+ org.osgi.service.component.annotations;version="1.3.0"

@@ -12,7 +12,7 @@
   <properties>
     <targetJdk>1.8</targetJdk>
     <tycho-version>1.7.0</tycho-version>
-    <xtext-version>2.22.0</xtext-version>
+    <xtext-version>2.25.0</xtext-version>
     <openkieler-version>${project.version}</openkieler-version>
     
     <!-- chsch: copied from https://eclipse.googlesource.com/recommenders/org.eclipse.recommenders/+/3dae4575d3370da2da25a1cbce3dfcff198f0611/features/pom.xml -->
@@ -47,6 +47,19 @@
         <module>../plugins/de.scheidtbachmann.osgimodel.model.generate</module>
         <module>../features/de.cau.cs.kieler.osgiviz.feature</module>
         <module>de.cau.cs.kieler.osgiviz.repository</module>
+      </modules>
+    </profile>
+
+    <!-- The language server product. -->
+    <profile>
+      <id>ls</id>
+      <modules>
+        <module>de.cau.cs.kieler.osgiviz.targetplatform</module>
+        <module>../plugins/de.cau.cs.kieler.osgiviz</module>
+        <module>../plugins/de.cau.cs.kieler.osgiviz.language.server</module>
+        <module>../plugins/de.cau.cs.kieler.osgiviz.model</module>
+        <module>../plugins/de.scheidtbachmann.osgimodel.model</module>
+        <module>de.cau.cs.kieler.osgiviz.language.server.cli</module>
       </modules>
     </profile>
   </profiles>
@@ -123,6 +136,25 @@
             <goals>
               <goal>plugin-source</goal>
             </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Produces a list of all direct and transient dependencies for each module -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.1.1</version>
+        <executions>
+          <execution>
+            <id>tree</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>tree</goal>
+            </goals>
+            <configuration>
+              <outputFile>dependencies.txt</outputFile>
+            </configuration>
           </execution>
         </executions>
       </plugin>
