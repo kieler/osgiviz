@@ -41,6 +41,7 @@ import de.cau.cs.kieler.osgiviz.actions.ContextCollapseExpandAction
 import de.cau.cs.kieler.osgiviz.actions.ContextExpandAllAction
 import de.cau.cs.kieler.osgiviz.actions.ContextRemoveAction
 import de.cau.cs.kieler.osgiviz.actions.FocusAction
+import de.cau.cs.kieler.osgiviz.actions.OpenBundleManifestAction
 import de.cau.cs.kieler.osgiviz.actions.OverviewContextCollapseExpandAction
 import de.cau.cs.kieler.osgiviz.actions.RevealImplementedServiceInterfacesAction
 import de.cau.cs.kieler.osgiviz.actions.RevealImplementingServiceComponentsAction
@@ -746,6 +747,7 @@ class OsgiStyles {
     def KRoundedRectangle addBundleRendering(KNode node, Bundle b, boolean inOverview, boolean hasChildren,
         ViewContext context) {
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
+        	addDoubleClickAction(OpenBundleManifestAction::ID)
             if (b.isIsExternal) {
                 setBackgroundGradient(EXTERNAL_BUNDLE_COLOR_1.color, EXTERNAL_BUNDLE_COLOR_2.color, 90)
             } else {

@@ -15,14 +15,15 @@
 package de.cau.cs.kieler.osgiviz.actions
 
 import de.cau.cs.kieler.klighd.IAction
+import de.cau.cs.kieler.klighd.Klighd
 import de.cau.cs.kieler.klighd.kgraph.util.KGraphUtil
 import de.cau.cs.kieler.osgiviz.OsgiSynthesisProperties
+import de.cau.cs.kieler.osgiviz.OsgiVizFileHandler
 import de.cau.cs.kieler.osgiviz.SynthesisUtils
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz
 import org.eclipse.core.runtime.Status
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier
-import org.eclipse.ui.statushandlers.StatusManager
 
 import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
 
@@ -77,8 +78,9 @@ abstract class AbstractVisualizationContextChangingAction implements IAction {
             visualizationContexts.add(index + 1, currentVisualizationContext)
             context.viewContext.setProperty(OsgiSynthesisProperties.CURRENT_VISUALIZATION_CONTEXT_INDEX, index + 1)
             
-            return getActionResult(context)
+            OsgiVizFileHandler.writeCurrentModelToFile(context.viewContext, true)
             
+            return getActionResult(context)
         } catch (Exception e) {
             // Put an error model in the context and show that. // TODO.
 //            val errorModel = new ErrorModel("The action failed to execute and threw an exception.", e)
@@ -86,13 +88,10 @@ abstract class AbstractVisualizationContextChangingAction implements IAction {
 //            context.viewContext.setProperty(OsgiSynthesisProperties.CURRENT_VISUALIZATION_CONTEXT_INDEX, index + 1)
             
             // Show the exception, but continue normally.
-//            e.printStackTrace
-            // TODO: remove this eclipse ui dependency once this is possible via a service.
-            StatusManager.getManager().handle(new Status(Status.ERROR, "de.cau.cs.kieler.osgiviz",
+            Klighd.handle(new Status(Status.ERROR, "de.cau.cs.kieler.osgiviz",
                 "Something went wrong while executing the " + this.class.canonicalName + " action.\n" + 
                 "Please view the error log and send the stack trace and the way to " +
-                "reproduce this error to the developer.", e), 
-                StatusManager.SHOW.bitwiseOr(StatusManager.LOG));
+                "reproduce this error to the developer.", e));
             return getActionResult(context)
         }
     }

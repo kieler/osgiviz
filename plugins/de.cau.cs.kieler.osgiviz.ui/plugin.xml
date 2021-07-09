@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="osgivizUtility" name="Osgiviz utilities registrering point" schema="schema/osgivizUtility.exsd"/>
    <extension
          point="de.cau.cs.kieler.klighd.extensions">
       <startupHook
-            class="de.cau.cs.kieler.osgiviz.OsgivizKlighdSetup">
+            class="de.cau.cs.kieler.osgiviz.ui.OsgivizUiKlighdSetup">
       </startupHook>
    </extension>
-
 </plugin>

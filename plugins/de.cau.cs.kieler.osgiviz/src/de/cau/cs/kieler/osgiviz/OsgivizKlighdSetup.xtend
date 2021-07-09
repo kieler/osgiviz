@@ -35,6 +35,7 @@ import de.cau.cs.kieler.osgiviz.actions.RevealUsedPackagesAction
 import de.cau.cs.kieler.osgiviz.actions.SelectRelatedAction
 import de.cau.cs.kieler.osgiviz.actions.StoreModelAction
 import de.cau.cs.kieler.osgiviz.actions.UndoAction
+import de.cau.cs.kieler.osgiviz.actions.OpenBundleManifestAction
 
 /**
  * Setup registering all KLighD extensions required to run this bundle.
@@ -62,6 +63,7 @@ class OsgivizKlighdSetup implements IKlighdStartupHook {
             .registerAction(RevealReferencingServiceComponentsAction.ID, new RevealReferencingServiceComponentsAction)
             .registerAction(RevealReferencedServiceInterfacesAction.ID, new RevealReferencedServiceInterfacesAction)
             .registerAction(RevealInjectedServiceInterfacesAction.ID, new RevealInjectedServiceInterfacesAction)
+            .registerAction(OpenBundleManifestAction.ID, new OpenBundleManifestAction)
             .registerDiagramSynthesisClass(OsgiDiagramSynthesis.name, OsgiDiagramSynthesis)
             .registerDiagramSynthesisClass(OsgiVizSynthesis.name, OsgiVizSynthesis)
     }
