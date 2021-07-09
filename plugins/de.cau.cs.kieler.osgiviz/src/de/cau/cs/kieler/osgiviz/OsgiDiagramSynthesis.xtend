@@ -132,27 +132,32 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
         if (!visualizationContexts.empty && index !== null) {
             visualizationContext = visualizationContexts.get(index)
         }
+        
+        val tempModel = usedContext.getProperty(OsgiSynthesisProperties.TEMP_MODEL)
         // If the visualization context is for another model than the model this method was called for or does not exist
         // yet, reset the contexts.
-        if (visualizationContext === null || !visualizationContext.isRootModel(model)) {
+        if (visualizationContext === null || !visualizationContext.isRootModel(model) && tempModel !== model) {
             visualizationContexts.removeIf [ true ]
             index = 0
             usedContext.setProperty(OsgiSynthesisProperties.CURRENT_VISUALIZATION_CONTEXT_INDEX, index)
+            usedContext.setProperty(OsgiSynthesisProperties.TEMP_MODEL, null)
             visualizationContext = OsgivizmodelUtil.createOsgiViz(model)
             visualizationContexts.add(visualizationContext)
-        }
-        
-		// chances are, there is already an osgiviz model in a temporary folder.
-        if (visualizationContexts.size === 1) {
+            
+            
+    		// Chances are, there is already an osgiviz model in a temporary folder. If there is, initialize a second
+    		// context with that temp file and remember this context belongs to the current model.
             val String fileName = OsgiVizFileHandler.getSourceFileName(usedContext)
         	val tempViContext = OsgiVizFileHandler.getOsgivizFromTempFile(fileName)
-        	if(tempViContext !== null){
+        	if (tempViContext !== null) {
         		visualizationContext = VisualizationReInitializer.reInitialize(tempViContext)
 				// add loaded visualization
 				index++
 				usedContext.setProperty(OsgiSynthesisProperties.CURRENT_VISUALIZATION_CONTEXT_INDEX, index)
+				usedContext.setProperty(OsgiSynthesisProperties.TEMP_MODEL, model)
 				visualizationContexts.add(visualizationContext)	
-			}
+            }
+        
         }
 		
         // Make this variable final here for later usage in the lambda.

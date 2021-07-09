@@ -50,7 +50,10 @@ import org.eclipse.core.runtime.IStatus
  * 
  * @author ldi
  */
-abstract class OsgiVizFileHandler {
+class OsgiVizFileHandler {
+    
+    /** No instanciation of this class, only static use. */
+    private new() {}
 
     static URI tempDirURI = null;
 
@@ -74,7 +77,11 @@ abstract class OsgiVizFileHandler {
     def static String getSourceFileName(ViewContext viewContext) {
         val obj = viewContext.getInputModel() as EObject
         val URI uri = obj.eResource.URI
-        val fileName = uri.lastSegment().replace('.', '')
+        var fileName = uri.lastSegment()
+        val stripFileEnding = ".model"
+        if (fileName.endsWith(stripFileEnding)) {
+            fileName = fileName.substring(0, fileName.lastIndexOf(stripFileEnding)) + ".osgiviz"
+        }
         return fileName
     }
 

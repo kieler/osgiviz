@@ -4,7 +4,7 @@
  * A part of OpenKieler
  * https://github.com/OpenKieler
  * 
- * Copyright 2019 by
+ * Copyright 2019,2021 by
  * + Christian-Albrechts-University of Kiel
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
@@ -15,8 +15,8 @@
 package de.cau.cs.kieler.osgiviz
 
 import de.cau.cs.kieler.klighd.ViewContext
-import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz
+import de.scheidtbachmann.osgimodel.OsgiProject
 import java.util.LinkedList
 import java.util.List
 import org.eclipse.elk.graph.properties.IProperty
@@ -54,5 +54,10 @@ class OsgiSynthesisProperties {
      */
     public static final IProperty<OsgiViz> MODEL_VISUALIZATION_CONTEXT
         = new Property<OsgiViz>("osgimodel.modelVisualizationContext", null)
+    
+    /**
+     * The current model for that a visualization from a temp file was loaded.
+     */
+    public static final IProperty<OsgiProject> TEMP_MODEL = new Property<OsgiProject>("osgimodel.tempModel", null)
     
 }
