@@ -14,23 +14,24 @@
  */
 package de.cau.cs.kieler.osgiviz.ui
 
+import de.cau.cs.kieler.klighd.Klighd
 import de.cau.cs.kieler.osgiviz.IOpenFileHandler
-import java.net.URI
+import org.eclipse.core.resources.IFile
 import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.ResourcesPlugin
+import org.eclipse.core.runtime.IStatus
+import org.eclipse.core.runtime.Status
+import org.eclipse.ui.IEditorDescriptor
 import org.eclipse.ui.IWorkbench
 import org.eclipse.ui.IWorkbenchPage
 import org.eclipse.ui.PartInitException
 import org.eclipse.ui.PlatformUI
-import org.eclipse.ui.ide.IDE
-import de.cau.cs.kieler.klighd.Klighd
-import org.eclipse.core.runtime.Status
-import org.eclipse.core.runtime.IStatus
+import org.eclipse.ui.part.FileEditorInput
 
 /**
  * Opens the manifest file related to the given bundle name from the Eclipse workspace.
  * 
- * @author ldi
+ * @author ldi, nre
  */
 class OpenBundleManifestEclipse implements IOpenFileHandler {
 
@@ -44,17 +45,23 @@ class OpenBundleManifestEclipse implements IOpenFileHandler {
     override void openFile(String artifactId) {
         val IProject bundleProject = ResourcesPlugin.getWorkspace().getRoot().getProject(artifactId);
         if (bundleProject.exists() && bundleProject.isOpen) {
-            val URI uri = new URI("file://" + bundleProject.getDescription().getLocationURI().getPath() +
-                "/META-INF/MANIFEST.MF")
+            val IFile file = bundleProject.getFile("META-INF/MANIFEST.MF")
             val IWorkbench workbench = PlatformUI.getWorkbench()
             val IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage()
-            // TODO: this does not use the manifest editor, but the default text editor.
-            val String editorID = workbench.getEditorRegistry().getDefaultEditor("MANIFEST.MF").getId()
+            
             try {
-                // TODO: this editor does not allow tracing back to its source file, it just opens.
-                IDE.openEditor(page, uri, editorID, true)
-            } catch (PartInitException e) {
-                Klighd.log(new Status(IStatus.ERROR, "de.cau.cs.kieler.osgiviz.ui", "Could not open file: " + uri, e));
+                // Try and open the file with the Eclipse PDE manifest editor.
+                page.openEditor(new FileEditorInput(file), "org.eclipse.pde.ui.manifestEditor");
+            } catch (Throwable t) {
+                // If the manifest editor did not work, try the default editor (which is not the manifest editor, reason
+                // unknown.
+                try {
+                    val IEditorDescriptor desc = workbench.getEditorRegistry().getDefaultEditor(file.getName());
+                    page.openEditor(new FileEditorInput(file), desc.getId());
+                } catch (PartInitException e) {
+                    Klighd.log(
+                        new Status(IStatus.ERROR, "de.cau.cs.kieler.osgiviz.ui", "Could not open file: " + file.name, e));
+                }
             }
         } else {
             Klighd.log(new Status(IStatus.INFO, "de.cau.cs.kieler.osgiviz.ui", "No project found with name: " + artifactId));
