@@ -33,7 +33,7 @@ class ResetViewAction implements IAction {
         // Just set the current index pointing towards the current visualization to 0.
         context.viewContext.setProperty(OsgiSynthesisProperties.CURRENT_VISUALIZATION_CONTEXT_INDEX, Integer.valueOf(0))
         
-        OsgiVizFileHandler.writeCurrentModelToFile(context, true)
+        OsgiVizFileHandler.writeCurrentModelToFile(context.viewContext, true)
         
         return ActionResult.createResult(true).doSynthesis.doZoomToFit
     }

@@ -15,19 +15,22 @@
 package de.cau.cs.kieler.osgiviz
 
 import com.google.inject.Injector
-import de.cau.cs.kieler.klighd.IAction.ActionContext
+import de.cau.cs.kieler.klighd.Klighd
 import de.cau.cs.kieler.klighd.ViewContext
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelFactory
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage
 import de.scheidtbachmann.osgimodel.OsgiProject
 import de.scheidtbachmann.osgimodel.OsgimodelPackage
+import java.io.File
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.text.SimpleDateFormat
 import java.util.Collections
 import java.util.Date
 import java.util.List
+import org.eclipse.core.runtime.IStatus
+import org.eclipse.core.runtime.Status
 import org.eclipse.elk.core.data.LayoutMetaDataService
 import org.eclipse.elk.core.service.ILayoutConfigurationStore
 import org.eclipse.elk.core.service.LayoutConfigurationManager
@@ -40,9 +43,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil.Copier
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 
 import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
-import de.cau.cs.kieler.klighd.Klighd
-import org.eclipse.core.runtime.Status
-import org.eclipse.core.runtime.IStatus
 
 /**
  * Writes to and reads from a temporary file, which contains the current {@link OsgiViz}.
@@ -58,9 +58,7 @@ class OsgiVizFileHandler {
     static URI tempDirURI = null;
 
     /**
-     * TODO: deleteOnExits() cannot remove the temp folder, possibly because the folder is not empty.
-     * <p>
-     * create a temporary folder for this session and stores the URI in tempDirURI
+     * Create a temporary folder for this session.
      */
     def static void createTempFolder() {
         val systempTempPath = Paths.get(System.getProperty("java.io.tmpdir"))
@@ -86,8 +84,6 @@ class OsgiVizFileHandler {
     }
 
     /**
-     * TODO: OsgiViz.modelElement loaded contains nothing but a URI to the model.
-     * <p>
      * Reads and returns a OsgiViz from the related temp file, if it exists.
      * 
      * @param name
@@ -114,25 +110,21 @@ class OsgiVizFileHandler {
     }
 
     /**
-     * TODO: context.activeViewer.viewContext vs context.viewContext
-     * <p>
-     * TODO: check if there is a better way to store this model
-     * <p>
      * (over)writes the current OsgiViz into the (temp) file.
      * 
-     * @param context
-     *  	an {@link ActionContext}
+     * @param viewContext
+     *  	The ViewContext for which its model should be saved.
      * @param isTemp
-     *      a boolean. File is saved in a temporary directory (always the same file) if true and 
-     *      next to original (always a new file) if false.
+     *      If {@code true}, the file is saved in a temporary directory (always the same file), or
+     *      next to original (always a new file) otherwise.
      */
-    def static void writeCurrentModelToFile(ActionContext context, boolean isTemp) {
+    def static void writeCurrentModelToFile(ViewContext viewContext, boolean isTemp) {
         if (isTemp && tempDirURI === null) createTempFolder()
 
         try {
             // Get the currently viewed model from the context.
-            val int index = context.viewContext.getProperty(OsgiSynthesisProperties.CURRENT_VISUALIZATION_CONTEXT_INDEX)
-            val List<OsgiViz> contexts = context.viewContext.getProperty(OsgiSynthesisProperties.VISUALIZATION_CONTEXTS)
+            val int index = viewContext.getProperty(OsgiSynthesisProperties.CURRENT_VISUALIZATION_CONTEXT_INDEX)
+            val List<OsgiViz> contexts = viewContext.getProperty(OsgiSynthesisProperties.VISUALIZATION_CONTEXTS)
             val OsgiViz currentContext = contexts.get(index)
 
             // Also get the osgimodel referred by the osgiviz and store that as well.
@@ -152,9 +144,9 @@ class OsgiVizFileHandler {
 
             // Persist the current state of KLighD's synthesis options in the model...
             // ...the synthesis options
-            storeSynthesisOptions(copiedRoot, context.activeViewer.viewContext)
+            storeSynthesisOptions(copiedRoot, viewContext)
             // ...and the layout options
-            storeLayoutOptions(copiedRoot, context.activeViewer.viewContext)
+            storeLayoutOptions(copiedRoot, viewContext)
 
             // Store the model.
             val r = Resource.Factory.Registry.INSTANCE
@@ -170,9 +162,11 @@ class OsgiVizFileHandler {
             // build URI for osgiviz file
             var URI writeURI
             if (isTemp) {
-                val sourceName = getSourceFileName(context.viewContext)
+                val sourceName = getSourceFileName(viewContext)
                 writeURI = tempDirURI
                 writeURI = writeURI.appendSegment(sourceName)
+                // Clear up the temp files during shutdown.
+                new File(writeURI.toFileString).deleteOnExit
             } else {
                 writeURI = rootModel.eResource().getURI().trimSegments(1)
                 val projectName = rootModel.projectName

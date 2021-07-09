@@ -78,7 +78,7 @@ abstract class AbstractVisualizationContextChangingAction implements IAction {
             visualizationContexts.add(index + 1, currentVisualizationContext)
             context.viewContext.setProperty(OsgiSynthesisProperties.CURRENT_VISUALIZATION_CONTEXT_INDEX, index + 1)
             
-            OsgiVizFileHandler.writeCurrentModelToFile(context, true)
+            OsgiVizFileHandler.writeCurrentModelToFile(context.viewContext, true)
             
             return getActionResult(context)
         } catch (Exception e) {

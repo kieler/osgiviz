@@ -37,7 +37,7 @@ class StoreModelAction implements IAction {
     public static val String ID = StoreModelAction.name
     
     override execute(ActionContext context) {
-    	OsgiVizFileHandler.writeCurrentModelToFile(context, false)
+    	OsgiVizFileHandler.writeCurrentModelToFile(context.viewContext, false)
         return ActionResult.createResult(false)
     }
 }
