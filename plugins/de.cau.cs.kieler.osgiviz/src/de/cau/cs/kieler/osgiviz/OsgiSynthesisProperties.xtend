@@ -1,8 +1,8 @@
 /*
  * OsgiViz - Kieler Visualization for Projects using the OSGi Technology
  * 
- * A part of OpenKieler
- * https://github.com/OpenKieler
+ * A part of kieler
+ * https://github.com/kieler
  * 
  * Copyright 2019,2021 by
  * + Christian-Albrechts-University of Kiel

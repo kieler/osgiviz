@@ -30,4 +30,4 @@ open said model with the now-installed *Sample Ecore Model Editor* of EMF
 and open the diagram view via *Window -> Show view -> Other... -> KIELER Lightweight Diagrams -> Diagram*.
 
 ## The OSGi models
-To generate a model file visualizable with osgiviz, have a look at the readme in the [osgimodel.model.generate bundle](https://github.com/OpenKieler/osgiviz/tree/master/plugins/de.scheidtbachmann.osgimodel.model.generate).
+To generate a model file visualizable with osgiviz, have a look at the readme in the [osgimodel.model.generate bundle](https://github.com/kieler/osgiviz/tree/master/plugins/de.scheidtbachmann.osgimodel.model.generate).

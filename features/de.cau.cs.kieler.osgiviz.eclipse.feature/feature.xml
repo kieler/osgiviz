@@ -3,9 +3,9 @@
       id="de.cau.cs.kieler.osgiviz.eclipse.feature"
       label="OSGiViz"
       version="0.2.1.qualifier"
-      provider-name="OpenKieler">
+      provider-name="kieler">
 
-   <description url="https://github.com/OpenKieler">
+   <description url="https://github.com/kieler">
       Visualization of OSGi diagrams using KIELER Lightweight Diagrams (KLighD).
    </description>
 
@@ -214,7 +214,7 @@ litigation.
    </license>
 
    <url>
-      <update label="OpenKieler Nightly Builds" url="http://rtsys.informatik.uni-kiel.de/~kieler/updatesite/nightly-openkieler/"/>
+      <update label="kieler Nightly Builds" url="http://rtsys.informatik.uni-kiel.de/~kieler/updatesite/nightly-openkieler/"/>
    </url>
 
    <requires>

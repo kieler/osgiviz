@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
 
-   <description name="OpenKieler (Nightly Builds)" url="http://rtsys.informatik.uni-kiel.de/~kieler/updatesite/nightly-openkieler/">
-      Update site for the OpenKieler nightly builds.
+   <description name="kieler (Nightly Builds)" url="http://rtsys.informatik.uni-kiel.de/~kieler/updatesite/nightly-openkieler/">
+      Update site for the kieler nightly builds.
    </description>
 
    <!-- CATEGORY DEFINITIONS -->
    <category-def name="osgiviz" label="OSGi Diagram Visualization">
       <description>
-         OpenKieler components for the generation of OSGi diagrams.
+         Kieler components for the generation of OSGi diagrams.
       </description>
    </category-def>
 

@@ -13,7 +13,7 @@
     <targetJdk>11</targetJdk>
     <tycho-version>1.7.0</tycho-version>
     <xtext-version>2.25.0</xtext-version>
-    <openkieler-version>${project.version}</openkieler-version>
+    <kieler-version>${project.version}</kieler-version>
     
     <!-- chsch: copied from https://eclipse.googlesource.com/recommenders/org.eclipse.recommenders/+/3dae4575d3370da2da25a1cbce3dfcff198f0611/features/pom.xml -->
     <!-- Non-breakable space, as normal spaces are trimmed. -->
@@ -104,7 +104,7 @@
             <artifact>
               <groupId>de.cau.cs.kieler.osgiviz</groupId>
               <artifactId>de.cau.cs.kieler.osgiviz.targetplatform</artifactId>
-              <version>${openkieler-version}</version>
+              <version>${kieler-version}</version>
             </artifact>
           </target>
           <environments>

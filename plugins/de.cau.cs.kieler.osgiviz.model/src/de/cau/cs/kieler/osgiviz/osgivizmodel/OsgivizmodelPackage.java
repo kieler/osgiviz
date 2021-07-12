@@ -22,8 +22,8 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- begin-model-doc -->
  * OsgiViz - Kieler Visualization for Projects using the OSGi Technology
  * 
- * A part of OpenKieler
- * https://github.com/OpenKieler
+ * A part of kieler
+ * https://github.com/kieler
  * 
  * Copyright 2020 by
  * + Christian-Albrechts-University of Kiel
