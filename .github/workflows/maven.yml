@@ -1,0 +1,44 @@
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: CI
+
+on:
+  push:
+    branches: [ ci ] # TODO: switch to master again once this is working as intended.
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  Checkout and Build Update Site:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      - name: Build with Maven
+        run: MAVEN_OPTS="-Xmx2048M" mvn clean package --file build/pom.xml
+      
+      - name: Archive OSGiViz Repository Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: OSGiViz Repository Artifact
+          path: build/de.cau.cs.kieler.osgiviz.repository/target/repository/
+      - name: Archive OSGimodel Generator CLI
+        uses: actions/upload-artifact@v2
+        with:
+          name: OSGimodel Generator CLI
+          path: plugins/de.scheidtbachmann.osgimodel.model.generate/target/de.scheidtbachmann.osgimodel.model.generate-*.jar
+  
+  extension:
+    needs: Checkout and Build Update Site
+
+    runs-on: ubuntu-latest
+
+    steps:
+      # TODO: Setup the extension build
