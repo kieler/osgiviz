@@ -96,7 +96,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: OSGiViz Language Server
-          path: server/
+          path: extension/osgiviz/server/
 
       # Build
       
