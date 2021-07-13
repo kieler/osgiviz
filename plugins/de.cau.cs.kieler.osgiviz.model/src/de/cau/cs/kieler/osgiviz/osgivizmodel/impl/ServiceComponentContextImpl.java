@@ -1,11 +1,28 @@
 /**
+ * OsgiViz - Kieler Visualization for Projects using the OSGi Technology
+ * 
+ * A part of kieler
+ * https://github.com/kieler
+ * 
+ * Copyright 2021 by
+ * + Christian-Albrechts-University of Kiel
+ *   + Department of Computer Science
+ *     + Real-Time and Embedded Systems Group
+ * 
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ * 
+ * SPDX-License-Identifier: EPL-2.0
  */
 package de.cau.cs.kieler.osgiviz.osgivizmodel.impl;
 
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceComponentContext;
+
 import de.scheidtbachmann.osgimodel.ServiceComponent;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -189,7 +206,6 @@ public class ServiceComponentContextImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<IVisualizationContext<?>> getChildContexts() {
 		if (childContexts == null) {
 			childContexts = new EObjectContainmentWithInverseEList<IVisualizationContext<?>>(IVisualizationContext.class, this, OsgivizmodelPackage.SERVICE_COMPONENT_CONTEXT__CHILD_CONTEXTS, OsgivizmodelPackage.IVISUALIZATION_CONTEXT__PARENT);
@@ -202,7 +218,6 @@ public class ServiceComponentContextImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public ServiceComponent getModelElement() {
 		if (modelElement != null && ((EObject)modelElement).eIsProxy()) {
 			InternalEObject oldModelElement = (InternalEObject)modelElement;
@@ -229,7 +244,6 @@ public class ServiceComponentContextImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setModelElement(ServiceComponent newModelElement) {
 		ServiceComponent oldModelElement = modelElement;
 		modelElement = newModelElement;
@@ -242,7 +256,6 @@ public class ServiceComponentContextImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public IVisualizationContext<?> getParent() {
 		if (eContainerFeatureID() != OsgivizmodelPackage.SERVICE_COMPONENT_CONTEXT__PARENT) return null;
 		return (IVisualizationContext<?>)eContainer();
@@ -273,7 +286,6 @@ public class ServiceComponentContextImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setParent(IVisualizationContext<?> newParent) {
 		if (newParent != eInternalContainer() || (eContainerFeatureID() != OsgivizmodelPackage.SERVICE_COMPONENT_CONTEXT__PARENT && newParent != null)) {
 			if (EcoreUtil.isAncestor(this, newParent))
@@ -295,7 +307,6 @@ public class ServiceComponentContextImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isChildrenInitialized() {
 		return childrenInitialized;
 	}
@@ -305,7 +316,6 @@ public class ServiceComponentContextImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setChildrenInitialized(boolean newChildrenInitialized) {
 		boolean oldChildrenInitialized = childrenInitialized;
 		childrenInitialized = newChildrenInitialized;
@@ -318,7 +328,6 @@ public class ServiceComponentContextImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isAllImplementedInterfacesShownPlain() {
 		return allImplementedInterfacesShownPlain;
 	}
@@ -328,7 +337,6 @@ public class ServiceComponentContextImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setAllImplementedInterfacesShownPlain(boolean newAllImplementedInterfacesShownPlain) {
 		boolean oldAllImplementedInterfacesShownPlain = allImplementedInterfacesShownPlain;
 		allImplementedInterfacesShownPlain = newAllImplementedInterfacesShownPlain;
@@ -341,7 +349,6 @@ public class ServiceComponentContextImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isAllImplementedInterfacesShownInBundles() {
 		return allImplementedInterfacesShownInBundles;
 	}
@@ -351,7 +358,6 @@ public class ServiceComponentContextImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setAllImplementedInterfacesShownInBundles(boolean newAllImplementedInterfacesShownInBundles) {
 		boolean oldAllImplementedInterfacesShownInBundles = allImplementedInterfacesShownInBundles;
 		allImplementedInterfacesShownInBundles = newAllImplementedInterfacesShownInBundles;
@@ -364,7 +370,6 @@ public class ServiceComponentContextImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isAllReferencedInterfacesShownPlain() {
 		return allReferencedInterfacesShownPlain;
 	}
@@ -374,7 +379,6 @@ public class ServiceComponentContextImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setAllReferencedInterfacesShownPlain(boolean newAllReferencedInterfacesShownPlain) {
 		boolean oldAllReferencedInterfacesShownPlain = allReferencedInterfacesShownPlain;
 		allReferencedInterfacesShownPlain = newAllReferencedInterfacesShownPlain;
@@ -387,7 +391,6 @@ public class ServiceComponentContextImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isAllReferencedInterfacesShownInBundles() {
 		return allReferencedInterfacesShownInBundles;
 	}
@@ -397,7 +400,6 @@ public class ServiceComponentContextImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setAllReferencedInterfacesShownInBundles(boolean newAllReferencedInterfacesShownInBundles) {
 		boolean oldAllReferencedInterfacesShownInBundles = allReferencedInterfacesShownInBundles;
 		allReferencedInterfacesShownInBundles = newAllReferencedInterfacesShownInBundles;

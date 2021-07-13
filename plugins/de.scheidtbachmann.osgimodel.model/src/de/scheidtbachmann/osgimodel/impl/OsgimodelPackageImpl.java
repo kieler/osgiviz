@@ -1,4 +1,16 @@
 /**
+ * // ******************************************************************************
+ * //
+ * // Copyright (c) 2018 by
+ * // Scheidt & Bachmann System Technik GmbH, 24145 Kiel
+ * //
+ * // This program and the accompanying materials are made available under the
+ * // terms of the Eclipse Public License 2.0 which is available at
+ * // http://www.eclipse.org/legal/epl-2.0.
+ * // 
+ * // SPDX-License-Identifier: EPL-2.0
+ * //
+ * // ******************************************************************************
  */
 package de.scheidtbachmann.osgimodel.impl;
 
@@ -684,16 +696,6 @@ public class OsgimodelPackageImpl extends EPackageImpl implements OsgimodelPacka
 	 * @generated
 	 */
 	@Override
-	public EReference getServiceInterface_ServiceComponent() {
-		return (EReference)serviceInterfaceEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getServiceInterface_Name() {
 		return (EAttribute)serviceInterfaceEClass.getEStructuralFeatures().get(0);
 	}
@@ -716,6 +718,16 @@ public class OsgimodelPackageImpl extends EPackageImpl implements OsgimodelPacka
 	@Override
 	public EReference getServiceInterface_ImplementedIn() {
 		return (EReference)serviceInterfaceEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getServiceInterface_ServiceComponent() {
+		return (EReference)serviceInterfaceEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**

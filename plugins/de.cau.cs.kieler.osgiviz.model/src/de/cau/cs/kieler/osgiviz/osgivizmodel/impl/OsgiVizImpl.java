@@ -1,4 +1,19 @@
 /**
+ * OsgiViz - Kieler Visualization for Projects using the OSGi Technology
+ * 
+ * A part of kieler
+ * https://github.com/kieler
+ * 
+ * Copyright 2021 by
+ * + Christian-Albrechts-University of Kiel
+ *   + Department of Computer Science
+ *     + Real-Time and Embedded Systems Group
+ * 
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ * 
+ * SPDX-License-Identifier: EPL-2.0
  */
 package de.cau.cs.kieler.osgiviz.osgivizmodel.impl;
 
@@ -12,10 +27,14 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.PackageObjectOverviewContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ProductOverviewContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext;
+
 import de.scheidtbachmann.osgimodel.OsgiProject;
+
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -210,7 +229,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<IVisualizationContext<?>> getChildContexts() {
 		if (childContexts == null) {
 			childContexts = new EObjectContainmentWithInverseEList<IVisualizationContext<?>>(IVisualizationContext.class, this, OsgivizmodelPackage.OSGI_VIZ__CHILD_CONTEXTS, OsgivizmodelPackage.IVISUALIZATION_CONTEXT__PARENT);
@@ -223,7 +241,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public OsgiProject getModelElement() {
 		if (modelElement != null && ((EObject)modelElement).eIsProxy()) {
 			InternalEObject oldModelElement = (InternalEObject)modelElement;
@@ -250,7 +267,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setModelElement(OsgiProject newModelElement) {
 		OsgiProject oldModelElement = modelElement;
 		modelElement = newModelElement;
@@ -263,7 +279,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public IVisualizationContext<?> getParent() {
 		if (eContainerFeatureID() != OsgivizmodelPackage.OSGI_VIZ__PARENT) return null;
 		return (IVisualizationContext<?>)eContainer();
@@ -294,7 +309,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setParent(IVisualizationContext<?> newParent) {
 		if (newParent != eInternalContainer() || (eContainerFeatureID() != OsgivizmodelPackage.OSGI_VIZ__PARENT && newParent != null)) {
 			if (EcoreUtil.isAncestor(this, newParent))
@@ -316,7 +330,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isChildrenInitialized() {
 		return childrenInitialized;
 	}
@@ -326,7 +339,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setChildrenInitialized(boolean newChildrenInitialized) {
 		boolean oldChildrenInitialized = childrenInitialized;
 		childrenInitialized = newChildrenInitialized;
@@ -339,7 +351,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<Option> getSynthesisOptions() {
 		if (synthesisOptions == null) {
 			synthesisOptions = new EObjectContainmentEList<Option>(Option.class, this, OsgivizmodelPackage.OSGI_VIZ__SYNTHESIS_OPTIONS);
@@ -352,7 +363,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<Option> getLayoutOptions() {
 		if (layoutOptions == null) {
 			layoutOptions = new EObjectContainmentEList<Option>(Option.class, this, OsgivizmodelPackage.OSGI_VIZ__LAYOUT_OPTIONS);
@@ -365,7 +375,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public BundleOverviewContext getBundleOverviewContext() {
 		if (bundleOverviewContext != null && bundleOverviewContext.eIsProxy()) {
 			InternalEObject oldBundleOverviewContext = (InternalEObject)bundleOverviewContext;
@@ -392,7 +401,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setBundleOverviewContext(BundleOverviewContext newBundleOverviewContext) {
 		BundleOverviewContext oldBundleOverviewContext = bundleOverviewContext;
 		bundleOverviewContext = newBundleOverviewContext;
@@ -405,7 +413,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public ProductOverviewContext getProductOverviewContext() {
 		if (productOverviewContext != null && productOverviewContext.eIsProxy()) {
 			InternalEObject oldProductOverviewContext = (InternalEObject)productOverviewContext;
@@ -432,7 +439,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setProductOverviewContext(ProductOverviewContext newProductOverviewContext) {
 		ProductOverviewContext oldProductOverviewContext = productOverviewContext;
 		productOverviewContext = newProductOverviewContext;
@@ -445,7 +451,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public ServiceOverviewContext getServiceOverviewContext() {
 		if (serviceOverviewContext != null && serviceOverviewContext.eIsProxy()) {
 			InternalEObject oldServiceOverviewContext = (InternalEObject)serviceOverviewContext;
@@ -472,7 +477,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setServiceOverviewContext(ServiceOverviewContext newServiceOverviewContext) {
 		ServiceOverviewContext oldServiceOverviewContext = serviceOverviewContext;
 		serviceOverviewContext = newServiceOverviewContext;
@@ -485,7 +489,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public FeatureOverviewContext getFeatureOverviewContext() {
 		if (featureOverviewContext != null && featureOverviewContext.eIsProxy()) {
 			InternalEObject oldFeatureOverviewContext = (InternalEObject)featureOverviewContext;
@@ -512,7 +515,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setFeatureOverviewContext(FeatureOverviewContext newFeatureOverviewContext) {
 		FeatureOverviewContext oldFeatureOverviewContext = featureOverviewContext;
 		featureOverviewContext = newFeatureOverviewContext;
@@ -525,7 +527,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public PackageObjectOverviewContext getImportedPackageOverviewContext() {
 		if (importedPackageOverviewContext != null && importedPackageOverviewContext.eIsProxy()) {
 			InternalEObject oldImportedPackageOverviewContext = (InternalEObject)importedPackageOverviewContext;
@@ -552,7 +553,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setImportedPackageOverviewContext(PackageObjectOverviewContext newImportedPackageOverviewContext) {
 		PackageObjectOverviewContext oldImportedPackageOverviewContext = importedPackageOverviewContext;
 		importedPackageOverviewContext = newImportedPackageOverviewContext;
@@ -565,7 +565,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public BundleCategoryOverviewContext getBundleCategoryOverviewContext() {
 		if (bundleCategoryOverviewContext != null && bundleCategoryOverviewContext.eIsProxy()) {
 			InternalEObject oldBundleCategoryOverviewContext = (InternalEObject)bundleCategoryOverviewContext;
@@ -592,7 +591,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setBundleCategoryOverviewContext(BundleCategoryOverviewContext newBundleCategoryOverviewContext) {
 		BundleCategoryOverviewContext oldBundleCategoryOverviewContext = bundleCategoryOverviewContext;
 		bundleCategoryOverviewContext = newBundleCategoryOverviewContext;
@@ -605,7 +603,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public IVisualizationContext<?> getFocus() {
 		if (focus != null && focus.eIsProxy()) {
 			InternalEObject oldFocus = (InternalEObject)focus;
@@ -632,7 +629,6 @@ public class OsgiVizImpl extends MinimalEObjectImpl.Container implements OsgiViz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setFocus(IVisualizationContext<?> newFocus) {
 		IVisualizationContext<?> oldFocus = focus;
 		focus = newFocus;

@@ -40,6 +40,13 @@ public class ReferenceItemProvider
 		IItemLabelProvider,
 		IItemPropertySource {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "// ******************************************************************************\n//\n// Copyright (c) 2018 by\n// Scheidt & Bachmann System Technik GmbH, 24145 Kiel\n//\n// This program and the accompanying materials are made available under the\n// terms of the Eclipse Public License 2.0 which is available at\n// http://www.eclipse.org/legal/epl-2.0.\n// \n// SPDX-License-Identifier: EPL-2.0\n//\n// ******************************************************************************";
+
+	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -5,7 +5,7 @@
 	"version": "0.0.1",
 	"publisher": "kieler",
 	"author": "Kiel University <rt-kieler-devel@informatik.uni-kiel.de>",
-	"license": "EPL-1.0",
+	"license": "EPL-2.0",
     "repository": {"type": "git", "url": "https://github.com/kieler/osgiviz"},
 	"engines": {
 		"vscode": "^1.57.0"

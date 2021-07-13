@@ -1,4 +1,19 @@
 /**
+ * OsgiViz - Kieler Visualization for Projects using the OSGi Technology
+ * 
+ * A part of kieler
+ * https://github.com/kieler
+ * 
+ * Copyright 2021 by
+ * + Christian-Albrechts-University of Kiel
+ *   + Department of Computer Science
+ *     + Real-Time and Embedded Systems Group
+ * 
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ * 
+ * SPDX-License-Identifier: EPL-2.0
  */
 package de.cau.cs.kieler.osgiviz.osgivizmodel.impl;
 
@@ -11,9 +26,12 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.ReferencedInterfaceEdgeConnection;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceComponentContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceInterfaceContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext;
+
 import de.scheidtbachmann.osgimodel.ServiceComponent;
 import de.scheidtbachmann.osgimodel.ServiceInterface;
+
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -353,7 +371,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<IVisualizationContext<?>> getChildContexts() {
 		if (childContexts == null) {
 			childContexts = new EObjectContainmentWithInverseEList<IVisualizationContext<?>>(IVisualizationContext.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__CHILD_CONTEXTS, OsgivizmodelPackage.IVISUALIZATION_CONTEXT__PARENT);
@@ -367,7 +384,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
 	public EList<Object> getModelElement() {
 		if (modelElement != null && ((EObject)modelElement).eIsProxy()) {
 			InternalEObject oldModelElement = (InternalEObject)modelElement;
@@ -394,7 +410,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setModelElement(EList<Object> newModelElement) {
 		EList<Object> oldModelElement = modelElement;
 		modelElement = newModelElement;
@@ -407,7 +422,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public IVisualizationContext<?> getParent() {
 		if (eContainerFeatureID() != OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__PARENT) return null;
 		return (IVisualizationContext<?>)eContainer();
@@ -438,7 +452,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setParent(IVisualizationContext<?> newParent) {
 		if (newParent != eInternalContainer() || (eContainerFeatureID() != OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__PARENT && newParent != null)) {
 			if (EcoreUtil.isAncestor(this, newParent))
@@ -460,7 +473,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isChildrenInitialized() {
 		return childrenInitialized;
 	}
@@ -470,7 +482,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setChildrenInitialized(boolean newChildrenInitialized) {
 		boolean oldChildrenInitialized = childrenInitialized;
 		childrenInitialized = newChildrenInitialized;
@@ -483,7 +494,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isExpanded() {
 		return expanded;
 	}
@@ -493,7 +503,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setExpanded(boolean newExpanded) {
 		boolean oldExpanded = expanded;
 		expanded = newExpanded;
@@ -506,7 +515,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<ServiceComponentContext> getCollapsedServiceComponentContexts() {
 		if (collapsedServiceComponentContexts == null) {
 			collapsedServiceComponentContexts = new EObjectResolvingEList<ServiceComponentContext>(ServiceComponentContext.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__COLLAPSED_SERVICE_COMPONENT_CONTEXTS);
@@ -519,7 +527,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<ServiceComponentContext> getDetailedServiceComponentContexts() {
 		if (detailedServiceComponentContexts == null) {
 			detailedServiceComponentContexts = new EObjectResolvingEList<ServiceComponentContext>(ServiceComponentContext.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__DETAILED_SERVICE_COMPONENT_CONTEXTS);
@@ -532,7 +539,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<ServiceInterfaceContext> getCollapsedServiceInterfaceContexts() {
 		if (collapsedServiceInterfaceContexts == null) {
 			collapsedServiceInterfaceContexts = new EObjectResolvingEList<ServiceInterfaceContext>(ServiceInterfaceContext.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__COLLAPSED_SERVICE_INTERFACE_CONTEXTS);
@@ -545,7 +551,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<ServiceInterfaceContext> getDetailedServiceInterfaceContexts() {
 		if (detailedServiceInterfaceContexts == null) {
 			detailedServiceInterfaceContexts = new EObjectResolvingEList<ServiceInterfaceContext>(ServiceInterfaceContext.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__DETAILED_SERVICE_INTERFACE_CONTEXTS);
@@ -558,7 +563,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<ClassContext> getCollapsedClassContexts() {
 		if (collapsedClassContexts == null) {
 			collapsedClassContexts = new EObjectResolvingEList<ClassContext>(ClassContext.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__COLLAPSED_CLASS_CONTEXTS);
@@ -571,7 +575,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<de.cau.cs.kieler.osgiviz.osgivizmodel.Class> getClasses() {
 		if (classes == null) {
 			classes = new EObjectContainmentEList<de.cau.cs.kieler.osgiviz.osgivizmodel.Class>(de.cau.cs.kieler.osgiviz.osgivizmodel.Class.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__CLASSES);
@@ -584,7 +587,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<ClassContext> getDetailedClassContexts() {
 		if (detailedClassContexts == null) {
 			detailedClassContexts = new EObjectResolvingEList<ClassContext>(ClassContext.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__DETAILED_CLASS_CONTEXTS);
@@ -597,7 +599,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<BundleContext> getCollapsedReferencedBundleContexts() {
 		if (collapsedReferencedBundleContexts == null) {
 			collapsedReferencedBundleContexts = new EObjectResolvingEList<BundleContext>(BundleContext.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__COLLAPSED_REFERENCED_BUNDLE_CONTEXTS);
@@ -610,7 +611,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<BundleContext> getDetailedReferencedBundleContexts() {
 		if (detailedReferencedBundleContexts == null) {
 			detailedReferencedBundleContexts = new EObjectResolvingEList<BundleContext>(BundleContext.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__DETAILED_REFERENCED_BUNDLE_CONTEXTS);
@@ -623,7 +623,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<Pair<ServiceComponentContext, ServiceInterfaceContext>> getImplementedInterfaceEdgesPlain() {
 		if (implementedInterfaceEdgesPlain == null) {
 			implementedInterfaceEdgesPlain = new EObjectContainmentEList<Pair<ServiceComponentContext, ServiceInterfaceContext>>(Pair.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__IMPLEMENTED_INTERFACE_EDGES_PLAIN);
@@ -636,7 +635,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<Pair<ServiceComponentContext, ServiceInterfaceContext>> getImplementedInterfaceEdgesInBundles() {
 		if (implementedInterfaceEdgesInBundles == null) {
 			implementedInterfaceEdgesInBundles = new EObjectContainmentEList<Pair<ServiceComponentContext, ServiceInterfaceContext>>(Pair.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__IMPLEMENTED_INTERFACE_EDGES_IN_BUNDLES);
@@ -649,7 +647,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<ReferencedInterfaceEdgeConnection> getReferencedInterfaceEdgesPlain() {
 		if (referencedInterfaceEdgesPlain == null) {
 			referencedInterfaceEdgesPlain = new EObjectContainmentEList<ReferencedInterfaceEdgeConnection>(ReferencedInterfaceEdgeConnection.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__REFERENCED_INTERFACE_EDGES_PLAIN);
@@ -662,7 +659,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<ReferencedInterfaceEdgeConnection> getReferencedInterfaceEdgesInBundles() {
 		if (referencedInterfaceEdgesInBundles == null) {
 			referencedInterfaceEdgesInBundles = new EObjectContainmentEList<ReferencedInterfaceEdgeConnection>(ReferencedInterfaceEdgeConnection.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__REFERENCED_INTERFACE_EDGES_IN_BUNDLES);
@@ -675,7 +671,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<Pair<ClassContext, ServiceInterfaceContext>> getInjectedInterfaceEdgesPlain() {
 		if (injectedInterfaceEdgesPlain == null) {
 			injectedInterfaceEdgesPlain = new EObjectContainmentEList<Pair<ClassContext, ServiceInterfaceContext>>(Pair.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__INJECTED_INTERFACE_EDGES_PLAIN);
@@ -688,7 +683,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<Pair<ClassContext, ServiceInterfaceContext>> getInjectedInterfaceEdgesInBundles() {
 		if (injectedInterfaceEdgesInBundles == null) {
 			injectedInterfaceEdgesInBundles = new EObjectContainmentEList<Pair<ClassContext, ServiceInterfaceContext>>(Pair.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__INJECTED_INTERFACE_EDGES_IN_BUNDLES);
@@ -701,7 +695,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<ServiceComponent> getServiceComponents() {
 		if (serviceComponents == null) {
 			serviceComponents = new EObjectResolvingEList<ServiceComponent>(ServiceComponent.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__SERVICE_COMPONENTS);
@@ -714,7 +707,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<ServiceInterface> getServiceInterfaces() {
 		if (serviceInterfaces == null) {
 			serviceInterfaces = new EObjectResolvingEList<ServiceInterface>(ServiceInterface.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__SERVICE_INTERFACES);
@@ -727,7 +719,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<de.cau.cs.kieler.osgiviz.osgivizmodel.Class> getClassesWithInjections() {
 		if (classesWithInjections == null) {
 			classesWithInjections = new EObjectResolvingEList<de.cau.cs.kieler.osgiviz.osgivizmodel.Class>(de.cau.cs.kieler.osgiviz.osgivizmodel.Class.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__CLASSES_WITH_INJECTIONS);
@@ -740,7 +731,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isAllowInBundleConnections() {
 		return allowInBundleConnections;
 	}
@@ -750,7 +740,6 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setAllowInBundleConnections(boolean newAllowInBundleConnections) {
 		boolean oldAllowInBundleConnections = allowInBundleConnections;
 		allowInBundleConnections = newAllowInBundleConnections;

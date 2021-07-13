@@ -34,6 +34,13 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  */
 public class OsgimodelItemProviderAdapterFactory extends OsgimodelAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "// ******************************************************************************\n//\n// Copyright (c) 2018 by\n// Scheidt & Bachmann System Technik GmbH, 24145 Kiel\n//\n// This program and the accompanying materials are made available under the\n// terms of the Eclipse Public License 2.0 which is available at\n// http://www.eclipse.org/legal/epl-2.0.\n// \n// SPDX-License-Identifier: EPL-2.0\n//\n// ******************************************************************************";
+
+	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

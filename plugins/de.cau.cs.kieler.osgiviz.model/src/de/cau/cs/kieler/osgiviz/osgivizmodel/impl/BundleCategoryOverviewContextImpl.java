@@ -1,4 +1,19 @@
 /**
+ * OsgiViz - Kieler Visualization for Projects using the OSGi Technology
+ * 
+ * A part of kieler
+ * https://github.com/kieler
+ * 
+ * Copyright 2021 by
+ * + Christian-Albrechts-University of Kiel
+ *   + Department of Computer Science
+ *     + Real-Time and Embedded Systems Group
+ * 
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ * 
+ * SPDX-License-Identifier: EPL-2.0
  */
 package de.cau.cs.kieler.osgiviz.osgivizmodel.impl;
 
@@ -6,8 +21,11 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleCategoryOverviewContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
+
 import de.scheidtbachmann.osgimodel.BundleCategory;
+
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -192,7 +210,6 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<IVisualizationContext<?>> getChildContexts() {
 		if (childContexts == null) {
 			childContexts = new EObjectContainmentWithInverseEList<IVisualizationContext<?>>(IVisualizationContext.class, this, OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__CHILD_CONTEXTS, OsgivizmodelPackage.IVISUALIZATION_CONTEXT__PARENT);
@@ -206,7 +223,6 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
 	public EList<BundleCategory> getModelElement() {
 		if (modelElement != null && ((EObject)modelElement).eIsProxy()) {
 			InternalEObject oldModelElement = (InternalEObject)modelElement;
@@ -233,7 +249,6 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setModelElement(EList<BundleCategory> newModelElement) {
 		EList<BundleCategory> oldModelElement = modelElement;
 		modelElement = newModelElement;
@@ -246,7 +261,6 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public IVisualizationContext<?> getParent() {
 		if (eContainerFeatureID() != OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__PARENT) return null;
 		return (IVisualizationContext<?>)eContainer();
@@ -277,7 +291,6 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setParent(IVisualizationContext<?> newParent) {
 		if (newParent != eInternalContainer() || (eContainerFeatureID() != OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__PARENT && newParent != null)) {
 			if (EcoreUtil.isAncestor(this, newParent))
@@ -299,7 +312,6 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isChildrenInitialized() {
 		return childrenInitialized;
 	}
@@ -309,7 +321,6 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setChildrenInitialized(boolean newChildrenInitialized) {
 		boolean oldChildrenInitialized = childrenInitialized;
 		childrenInitialized = newChildrenInitialized;
@@ -322,7 +333,6 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isExpanded() {
 		return expanded;
 	}
@@ -332,7 +342,6 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setExpanded(boolean newExpanded) {
 		boolean oldExpanded = expanded;
 		expanded = newExpanded;
@@ -345,7 +354,6 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<BundleCategoryContext> getCollapsedBundleCategoryContexts() {
 		if (collapsedBundleCategoryContexts == null) {
 			collapsedBundleCategoryContexts = new EObjectResolvingEList<BundleCategoryContext>(BundleCategoryContext.class, this, OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__COLLAPSED_BUNDLE_CATEGORY_CONTEXTS);
@@ -358,7 +366,6 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<BundleCategoryContext> getDetailedBundleCategoryContexts() {
 		if (detailedBundleCategoryContexts == null) {
 			detailedBundleCategoryContexts = new EObjectResolvingEList<BundleCategoryContext>(BundleCategoryContext.class, this, OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__DETAILED_BUNDLE_CATEGORY_CONTEXTS);
@@ -371,7 +378,6 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<BundleCategory> getBundleCategories() {
 		if (bundleCategories == null) {
 			bundleCategories = new EObjectResolvingEList<BundleCategory>(BundleCategory.class, this, OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__BUNDLE_CATEGORIES);
@@ -384,7 +390,6 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public BundleCategoryContext getUncategorized() {
 		return uncategorized;
 	}
@@ -409,7 +414,6 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setUncategorized(BundleCategoryContext newUncategorized) {
 		if (newUncategorized != uncategorized) {
 			NotificationChain msgs = null;
@@ -429,7 +433,6 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isDetailedUncategorized() {
 		return detailedUncategorized;
 	}
@@ -439,7 +442,6 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setDetailedUncategorized(boolean newDetailedUncategorized) {
 		boolean oldDetailedUncategorized = detailedUncategorized;
 		detailedUncategorized = newDetailedUncategorized;

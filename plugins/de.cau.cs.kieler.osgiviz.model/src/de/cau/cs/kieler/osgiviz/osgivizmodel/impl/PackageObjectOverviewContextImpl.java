@@ -1,4 +1,19 @@
 /**
+ * OsgiViz - Kieler Visualization for Projects using the OSGi Technology
+ * 
+ * A part of kieler
+ * https://github.com/kieler
+ * 
+ * Copyright 2021 by
+ * + Christian-Albrechts-University of Kiel
+ *   + Department of Computer Science
+ *     + Real-Time and Embedded Systems Group
+ * 
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ * 
+ * SPDX-License-Identifier: EPL-2.0
  */
 package de.cau.cs.kieler.osgiviz.osgivizmodel.impl;
 
@@ -6,8 +21,11 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.PackageObjectContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.PackageObjectOverviewContext;
+
 import de.scheidtbachmann.osgimodel.PackageObject;
+
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -160,7 +178,6 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<IVisualizationContext<?>> getChildContexts() {
 		if (childContexts == null) {
 			childContexts = new EObjectContainmentWithInverseEList<IVisualizationContext<?>>(IVisualizationContext.class, this, OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__CHILD_CONTEXTS, OsgivizmodelPackage.IVISUALIZATION_CONTEXT__PARENT);
@@ -174,7 +191,6 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
 	public EList<PackageObject> getModelElement() {
 		if (modelElement != null && ((EObject)modelElement).eIsProxy()) {
 			InternalEObject oldModelElement = (InternalEObject)modelElement;
@@ -201,7 +217,6 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setModelElement(EList<PackageObject> newModelElement) {
 		EList<PackageObject> oldModelElement = modelElement;
 		modelElement = newModelElement;
@@ -214,7 +229,6 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public IVisualizationContext<?> getParent() {
 		if (eContainerFeatureID() != OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__PARENT) return null;
 		return (IVisualizationContext<?>)eContainer();
@@ -245,7 +259,6 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setParent(IVisualizationContext<?> newParent) {
 		if (newParent != eInternalContainer() || (eContainerFeatureID() != OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__PARENT && newParent != null)) {
 			if (EcoreUtil.isAncestor(this, newParent))
@@ -267,7 +280,6 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isChildrenInitialized() {
 		return childrenInitialized;
 	}
@@ -277,7 +289,6 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setChildrenInitialized(boolean newChildrenInitialized) {
 		boolean oldChildrenInitialized = childrenInitialized;
 		childrenInitialized = newChildrenInitialized;
@@ -290,7 +301,6 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isExpanded() {
 		return expanded;
 	}
@@ -300,7 +310,6 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setExpanded(boolean newExpanded) {
 		boolean oldExpanded = expanded;
 		expanded = newExpanded;
@@ -313,7 +322,6 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<PackageObjectContext> getCollapsedPackageObjectContexts() {
 		if (collapsedPackageObjectContexts == null) {
 			collapsedPackageObjectContexts = new EObjectResolvingEList<PackageObjectContext>(PackageObjectContext.class, this, OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__COLLAPSED_PACKAGE_OBJECT_CONTEXTS);
@@ -326,7 +334,6 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<PackageObjectContext> getDetailedPackageObjectContexts() {
 		if (detailedPackageObjectContexts == null) {
 			detailedPackageObjectContexts = new EObjectResolvingEList<PackageObjectContext>(PackageObjectContext.class, this, OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__DETAILED_PACKAGE_OBJECT_CONTEXTS);
@@ -339,7 +346,6 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<PackageObject> getPackageObjects() {
 		if (packageObjects == null) {
 			packageObjects = new EObjectResolvingEList<PackageObject>(PackageObject.class, this, OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__PACKAGE_OBJECTS);

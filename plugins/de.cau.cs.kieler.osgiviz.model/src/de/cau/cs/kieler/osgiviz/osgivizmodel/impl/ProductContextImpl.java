@@ -1,4 +1,19 @@
 /**
+ * OsgiViz - Kieler Visualization for Projects using the OSGi Technology
+ * 
+ * A part of kieler
+ * https://github.com/kieler
+ * 
+ * Copyright 2021 by
+ * + Christian-Albrechts-University of Kiel
+ *   + Department of Computer Science
+ *     + Real-Time and Embedded Systems Group
+ * 
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ * 
+ * SPDX-License-Identifier: EPL-2.0
  */
 package de.cau.cs.kieler.osgiviz.osgivizmodel.impl;
 
@@ -8,10 +23,14 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ProductContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext;
+
 import de.scheidtbachmann.osgimodel.Product;
+
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -139,7 +158,6 @@ public class ProductContextImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<IVisualizationContext<?>> getChildContexts() {
 		if (childContexts == null) {
 			childContexts = new EObjectContainmentWithInverseEList<IVisualizationContext<?>>(IVisualizationContext.class, this, OsgivizmodelPackage.PRODUCT_CONTEXT__CHILD_CONTEXTS, OsgivizmodelPackage.IVISUALIZATION_CONTEXT__PARENT);
@@ -152,7 +170,6 @@ public class ProductContextImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Product getModelElement() {
 		if (modelElement != null && ((EObject)modelElement).eIsProxy()) {
 			InternalEObject oldModelElement = (InternalEObject)modelElement;
@@ -179,7 +196,6 @@ public class ProductContextImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setModelElement(Product newModelElement) {
 		Product oldModelElement = modelElement;
 		modelElement = newModelElement;
@@ -192,7 +208,6 @@ public class ProductContextImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public IVisualizationContext<?> getParent() {
 		if (eContainerFeatureID() != OsgivizmodelPackage.PRODUCT_CONTEXT__PARENT) return null;
 		return (IVisualizationContext<?>)eContainer();
@@ -223,7 +238,6 @@ public class ProductContextImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setParent(IVisualizationContext<?> newParent) {
 		if (newParent != eInternalContainer() || (eContainerFeatureID() != OsgivizmodelPackage.PRODUCT_CONTEXT__PARENT && newParent != null)) {
 			if (EcoreUtil.isAncestor(this, newParent))
@@ -245,7 +259,6 @@ public class ProductContextImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isChildrenInitialized() {
 		return childrenInitialized;
 	}
@@ -255,7 +268,6 @@ public class ProductContextImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setChildrenInitialized(boolean newChildrenInitialized) {
 		boolean oldChildrenInitialized = childrenInitialized;
 		childrenInitialized = newChildrenInitialized;
@@ -268,7 +280,6 @@ public class ProductContextImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public FeatureOverviewContext getFeatureOverviewContext() {
 		if (featureOverviewContext != null && featureOverviewContext.eIsProxy()) {
 			InternalEObject oldFeatureOverviewContext = (InternalEObject)featureOverviewContext;
@@ -295,7 +306,6 @@ public class ProductContextImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setFeatureOverviewContext(FeatureOverviewContext newFeatureOverviewContext) {
 		FeatureOverviewContext oldFeatureOverviewContext = featureOverviewContext;
 		featureOverviewContext = newFeatureOverviewContext;
@@ -308,7 +318,6 @@ public class ProductContextImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public BundleOverviewContext getBundleOverviewContext() {
 		if (bundleOverviewContext != null && bundleOverviewContext.eIsProxy()) {
 			InternalEObject oldBundleOverviewContext = (InternalEObject)bundleOverviewContext;
@@ -335,7 +344,6 @@ public class ProductContextImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setBundleOverviewContext(BundleOverviewContext newBundleOverviewContext) {
 		BundleOverviewContext oldBundleOverviewContext = bundleOverviewContext;
 		bundleOverviewContext = newBundleOverviewContext;
@@ -348,7 +356,6 @@ public class ProductContextImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public ServiceOverviewContext getServiceOverviewContext() {
 		if (serviceOverviewContext != null && serviceOverviewContext.eIsProxy()) {
 			InternalEObject oldServiceOverviewContext = (InternalEObject)serviceOverviewContext;
@@ -375,7 +382,6 @@ public class ProductContextImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setServiceOverviewContext(ServiceOverviewContext newServiceOverviewContext) {
 		ServiceOverviewContext oldServiceOverviewContext = serviceOverviewContext;
 		serviceOverviewContext = newServiceOverviewContext;

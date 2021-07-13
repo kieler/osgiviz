@@ -3,6 +3,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="osgimodel" nsURI="de.scheidtbachmann.osgimodel" nsPrefix="osgimodel">
   <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
     <details key="modelDirectory" value="de.scheidtbachmann.osgimodel.model/src"/>
+    <details key="copyrightText" value="// ******************************************************************************&#xA;//&#xA;// Copyright (c) 2018 by&#xA;// Scheidt &amp; Bachmann System Technik GmbH, 24145 Kiel&#xA;//&#xA;// This program and the accompanying materials are made available under the&#xA;// terms of the Eclipse Public License 2.0 which is available at&#xA;// http://www.eclipse.org/legal/epl-2.0.&#xA;// &#xA;// SPDX-License-Identifier: EPL-2.0&#xA;//&#xA;// ******************************************************************************"/>
     <details key="basePackage" value="de.scheidtbachmann"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="OsgiProject">
@@ -36,11 +37,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BasicOsgiObject" abstract="true" eSuperTypes="#//Identifiable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="uniqueId" unique="false"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="unique id"/>
-      </eAnnotations>
-    </eStructuralFeatures>
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="descriptiveName" unique="false"
         eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" unique="false"

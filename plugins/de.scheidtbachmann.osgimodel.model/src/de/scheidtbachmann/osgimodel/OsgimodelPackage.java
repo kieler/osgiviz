@@ -1,4 +1,16 @@
 /**
+ * // ******************************************************************************
+ * //
+ * // Copyright (c) 2018 by
+ * // Scheidt & Bachmann System Technik GmbH, 24145 Kiel
+ * //
+ * // This program and the accompanying materials are made available under the
+ * // terms of the Eclipse Public License 2.0 which is available at
+ * // http://www.eclipse.org/legal/epl-2.0.
+ * // 
+ * // SPDX-License-Identifier: EPL-2.0
+ * //
+ * // ******************************************************************************
  */
 package de.scheidtbachmann.osgimodel;
 
@@ -1636,17 +1648,6 @@ public interface OsgimodelPackage extends EPackage {
 	EClass getServiceInterface();
 
 	/**
-	 * Returns the meta object for the reference list '{@link de.scheidtbachmann.osgimodel.ServiceInterface#getServiceComponent <em>Service Component</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Service Component</em>'.
-	 * @see de.scheidtbachmann.osgimodel.ServiceInterface#getServiceComponent()
-	 * @see #getServiceInterface()
-	 * @generated
-	 */
-	EReference getServiceInterface_ServiceComponent();
-
-	/**
 	 * Returns the meta object for the attribute '{@link de.scheidtbachmann.osgimodel.ServiceInterface#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1678,6 +1679,17 @@ public interface OsgimodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getServiceInterface_ImplementedIn();
+
+	/**
+	 * Returns the meta object for the reference list '{@link de.scheidtbachmann.osgimodel.ServiceInterface#getServiceComponent <em>Service Component</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Service Component</em>'.
+	 * @see de.scheidtbachmann.osgimodel.ServiceInterface#getServiceComponent()
+	 * @see #getServiceInterface()
+	 * @generated
+	 */
+	EReference getServiceInterface_ServiceComponent();
 
 	/**
 	 * Returns the meta object for the reference list '{@link de.scheidtbachmann.osgimodel.ServiceInterface#getReferencedBy <em>Referenced By</em>}'.
@@ -2296,14 +2308,6 @@ public interface OsgimodelPackage extends EPackage {
 		EClass SERVICE_INTERFACE = eINSTANCE.getServiceInterface();
 
 		/**
-		 * The meta object literal for the '<em><b>Service Component</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SERVICE_INTERFACE__SERVICE_COMPONENT = eINSTANCE.getServiceInterface_ServiceComponent();
-
-		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2326,6 +2330,14 @@ public interface OsgimodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SERVICE_INTERFACE__IMPLEMENTED_IN = eINSTANCE.getServiceInterface_ImplementedIn();
+
+		/**
+		 * The meta object literal for the '<em><b>Service Component</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVICE_INTERFACE__SERVICE_COMPONENT = eINSTANCE.getServiceInterface_ServiceComponent();
 
 		/**
 		 * The meta object literal for the '<em><b>Referenced By</b></em>' reference list feature.

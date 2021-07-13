@@ -1,4 +1,16 @@
 /**
+ * // ******************************************************************************
+ * //
+ * // Copyright (c) 2018 by
+ * // Scheidt & Bachmann System Technik GmbH, 24145 Kiel
+ * //
+ * // This program and the accompanying materials are made available under the
+ * // terms of the Eclipse Public License 2.0 which is available at
+ * // http://www.eclipse.org/legal/epl-2.0.
+ * // 
+ * // SPDX-License-Identifier: EPL-2.0
+ * //
+ * // ******************************************************************************
  */
 package de.scheidtbachmann.osgimodel.impl;
 
@@ -17,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -44,6 +57,7 @@ public class FeatureImpl extends BasicOsgiObjectImpl implements Feature {
 	 * @ordered
 	 */
 	protected static final boolean IS_EXTERNAL_EDEFAULT = false;
+
 	/**
 	 * The cached value of the '{@link #isIsExternal() <em>Is External</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -53,6 +67,7 @@ public class FeatureImpl extends BasicOsgiObjectImpl implements Feature {
 	 * @ordered
 	 */
 	protected boolean isExternal = IS_EXTERNAL_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getBundles() <em>Bundles</em>}' reference list.
 	 * <!-- begin-user-doc -->

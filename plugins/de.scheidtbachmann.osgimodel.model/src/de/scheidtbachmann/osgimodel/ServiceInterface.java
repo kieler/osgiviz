@@ -1,4 +1,16 @@
 /**
+ * // ******************************************************************************
+ * //
+ * // Copyright (c) 2018 by
+ * // Scheidt & Bachmann System Technik GmbH, 24145 Kiel
+ * //
+ * // This program and the accompanying materials are made available under the
+ * // terms of the Eclipse Public License 2.0 which is available at
+ * // http://www.eclipse.org/legal/epl-2.0.
+ * // 
+ * // SPDX-License-Identifier: EPL-2.0
+ * //
+ * // ******************************************************************************
  */
 package de.scheidtbachmann.osgimodel;
 
@@ -25,20 +37,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface ServiceInterface extends Identifiable {
-	/**
-	 * Returns the value of the '<em><b>Service Component</b></em>' reference list.
-	 * The list contents are of type {@link de.scheidtbachmann.osgimodel.ServiceComponent}.
-	 * It is bidirectional and its opposite is '{@link de.scheidtbachmann.osgimodel.ServiceComponent#getServiceInterfaces <em>Service Interfaces</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Service Component</em>' reference list.
-	 * @see de.scheidtbachmann.osgimodel.OsgimodelPackage#getServiceInterface_ServiceComponent()
-	 * @see de.scheidtbachmann.osgimodel.ServiceComponent#getServiceInterfaces
-	 * @model opposite="serviceInterfaces"
-	 * @generated
-	 */
-	EList<ServiceComponent> getServiceComponent();
-
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -104,6 +102,20 @@ public interface ServiceInterface extends Identifiable {
 	 * @generated
 	 */
 	void setImplementedIn(Bundle value);
+
+	/**
+	 * Returns the value of the '<em><b>Service Component</b></em>' reference list.
+	 * The list contents are of type {@link de.scheidtbachmann.osgimodel.ServiceComponent}.
+	 * It is bidirectional and its opposite is '{@link de.scheidtbachmann.osgimodel.ServiceComponent#getServiceInterfaces <em>Service Interfaces</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Service Component</em>' reference list.
+	 * @see de.scheidtbachmann.osgimodel.OsgimodelPackage#getServiceInterface_ServiceComponent()
+	 * @see de.scheidtbachmann.osgimodel.ServiceComponent#getServiceInterfaces
+	 * @model opposite="serviceInterfaces"
+	 * @generated
+	 */
+	EList<ServiceComponent> getServiceComponent();
 
 	/**
 	 * Returns the value of the '<em><b>Referenced By</b></em>' reference list.

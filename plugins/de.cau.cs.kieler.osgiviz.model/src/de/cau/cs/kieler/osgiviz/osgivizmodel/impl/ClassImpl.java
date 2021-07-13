@@ -1,10 +1,27 @@
 /**
+ * OsgiViz - Kieler Visualization for Projects using the OSGi Technology
+ * 
+ * A part of kieler
+ * https://github.com/kieler
+ * 
+ * Copyright 2021 by
+ * + Christian-Albrechts-University of Kiel
+ *   + Department of Computer Science
+ *     + Real-Time and Embedded Systems Group
+ * 
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ * 
+ * SPDX-License-Identifier: EPL-2.0
  */
 package de.cau.cs.kieler.osgiviz.osgivizmodel.impl;
 
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
+
 import de.scheidtbachmann.osgimodel.Bundle;
 import de.scheidtbachmann.osgimodel.ServiceInterface;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -99,7 +116,6 @@ public class ClassImpl extends MinimalEObjectImpl.Container implements de.cau.cs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Bundle getBundle() {
 		if (bundle != null && bundle.eIsProxy()) {
 			InternalEObject oldBundle = (InternalEObject)bundle;
@@ -126,7 +142,6 @@ public class ClassImpl extends MinimalEObjectImpl.Container implements de.cau.cs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setBundle(Bundle newBundle) {
 		Bundle oldBundle = bundle;
 		bundle = newBundle;
@@ -139,7 +154,6 @@ public class ClassImpl extends MinimalEObjectImpl.Container implements de.cau.cs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getClassPath() {
 		return classPath;
 	}
@@ -149,7 +163,6 @@ public class ClassImpl extends MinimalEObjectImpl.Container implements de.cau.cs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setClassPath(String newClassPath) {
 		String oldClassPath = classPath;
 		classPath = newClassPath;
@@ -162,7 +175,6 @@ public class ClassImpl extends MinimalEObjectImpl.Container implements de.cau.cs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<ServiceInterface> getInjectedInterfaces() {
 		if (injectedInterfaces == null) {
 			injectedInterfaces = new EObjectResolvingEList<ServiceInterface>(ServiceInterface.class, this, OsgivizmodelPackage.CLASS__INJECTED_INTERFACES);

@@ -1,4 +1,19 @@
 /**
+ * OsgiViz - Kieler Visualization for Projects using the OSGi Technology
+ * 
+ * A part of kieler
+ * https://github.com/kieler
+ * 
+ * Copyright 2021 by
+ * + Christian-Albrechts-University of Kiel
+ *   + Department of Computer Science
+ *     + Real-Time and Embedded Systems Group
+ * 
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ * 
+ * SPDX-License-Identifier: EPL-2.0
  */
 package de.cau.cs.kieler.osgiviz.osgivizmodel.impl;
 
@@ -6,11 +21,14 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext;
+
 import de.scheidtbachmann.osgimodel.Bundle;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -191,7 +209,6 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<IVisualizationContext<?>> getChildContexts() {
 		if (childContexts == null) {
 			childContexts = new EObjectContainmentWithInverseEList<IVisualizationContext<?>>(IVisualizationContext.class, this, OsgivizmodelPackage.BUNDLE_CONTEXT__CHILD_CONTEXTS, OsgivizmodelPackage.IVISUALIZATION_CONTEXT__PARENT);
@@ -204,7 +221,6 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Bundle getModelElement() {
 		if (modelElement != null && ((EObject)modelElement).eIsProxy()) {
 			InternalEObject oldModelElement = (InternalEObject)modelElement;
@@ -231,7 +247,6 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setModelElement(Bundle newModelElement) {
 		Bundle oldModelElement = modelElement;
 		modelElement = newModelElement;
@@ -244,7 +259,6 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public IVisualizationContext<?> getParent() {
 		if (eContainerFeatureID() != OsgivizmodelPackage.BUNDLE_CONTEXT__PARENT) return null;
 		return (IVisualizationContext<?>)eContainer();
@@ -275,7 +289,6 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setParent(IVisualizationContext<?> newParent) {
 		if (newParent != eInternalContainer() || (eContainerFeatureID() != OsgivizmodelPackage.BUNDLE_CONTEXT__PARENT && newParent != null)) {
 			if (EcoreUtil.isAncestor(this, newParent))
@@ -297,7 +310,6 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isChildrenInitialized() {
 		return childrenInitialized;
 	}
@@ -307,7 +319,6 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setChildrenInitialized(boolean newChildrenInitialized) {
 		boolean oldChildrenInitialized = childrenInitialized;
 		childrenInitialized = newChildrenInitialized;
@@ -320,7 +331,6 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<de.cau.cs.kieler.osgiviz.osgivizmodel.Class> getClassesWithInjections() {
 		if (classesWithInjections == null) {
 			classesWithInjections = new EObjectContainmentEList<de.cau.cs.kieler.osgiviz.osgivizmodel.Class>(de.cau.cs.kieler.osgiviz.osgivizmodel.Class.class, this, OsgivizmodelPackage.BUNDLE_CONTEXT__CLASSES_WITH_INJECTIONS);
@@ -333,7 +343,6 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isAllRequiredBundlesShown() {
 		return allRequiredBundlesShown;
 	}
@@ -343,7 +352,6 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setAllRequiredBundlesShown(boolean newAllRequiredBundlesShown) {
 		boolean oldAllRequiredBundlesShown = allRequiredBundlesShown;
 		allRequiredBundlesShown = newAllRequiredBundlesShown;
@@ -356,7 +364,6 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isAllRequiringBundlesShown() {
 		return allRequiringBundlesShown;
 	}
@@ -366,7 +373,6 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setAllRequiringBundlesShown(boolean newAllRequiringBundlesShown) {
 		boolean oldAllRequiringBundlesShown = allRequiringBundlesShown;
 		allRequiringBundlesShown = newAllRequiringBundlesShown;
@@ -379,7 +385,6 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isAllUsedPackagesShown() {
 		return allUsedPackagesShown;
 	}
@@ -389,7 +394,6 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setAllUsedPackagesShown(boolean newAllUsedPackagesShown) {
 		boolean oldAllUsedPackagesShown = allUsedPackagesShown;
 		allUsedPackagesShown = newAllUsedPackagesShown;
@@ -402,7 +406,6 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public ServiceOverviewContext getServiceOverviewContext() {
 		if (serviceOverviewContext != null && serviceOverviewContext.eIsProxy()) {
 			InternalEObject oldServiceOverviewContext = (InternalEObject)serviceOverviewContext;
@@ -429,7 +432,6 @@ public class BundleContextImpl extends MinimalEObjectImpl.Container implements B
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setServiceOverviewContext(ServiceOverviewContext newServiceOverviewContext) {
 		ServiceOverviewContext oldServiceOverviewContext = serviceOverviewContext;
 		serviceOverviewContext = newServiceOverviewContext;

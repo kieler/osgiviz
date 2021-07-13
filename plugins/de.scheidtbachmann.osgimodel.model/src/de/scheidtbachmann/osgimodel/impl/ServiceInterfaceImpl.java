@@ -1,4 +1,16 @@
 /**
+ * // ******************************************************************************
+ * //
+ * // Copyright (c) 2018 by
+ * // Scheidt & Bachmann System Technik GmbH, 24145 Kiel
+ * //
+ * // This program and the accompanying materials are made available under the
+ * // terms of the Eclipse Public License 2.0 which is available at
+ * // http://www.eclipse.org/legal/epl-2.0.
+ * // 
+ * // SPDX-License-Identifier: EPL-2.0
+ * //
+ * // ******************************************************************************
  */
 package de.scheidtbachmann.osgimodel.impl;
 
@@ -19,6 +31,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -135,19 +148,6 @@ public class ServiceInterfaceImpl extends IdentifiableImpl implements ServiceInt
 	 * @generated
 	 */
 	@Override
-	public EList<ServiceComponent> getServiceComponent() {
-		if (serviceComponent == null) {
-			serviceComponent = new EObjectWithInverseResolvingEList.ManyInverse<ServiceComponent>(ServiceComponent.class, this, OsgimodelPackage.SERVICE_INTERFACE__SERVICE_COMPONENT, OsgimodelPackage.SERVICE_COMPONENT__SERVICE_INTERFACES);
-		}
-		return serviceComponent;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public String getName() {
 		return name;
 	}
@@ -226,6 +226,19 @@ public class ServiceInterfaceImpl extends IdentifiableImpl implements ServiceInt
 		implementedIn = newImplementedIn;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, OsgimodelPackage.SERVICE_INTERFACE__IMPLEMENTED_IN, oldImplementedIn, implementedIn));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<ServiceComponent> getServiceComponent() {
+		if (serviceComponent == null) {
+			serviceComponent = new EObjectWithInverseResolvingEList.ManyInverse<ServiceComponent>(ServiceComponent.class, this, OsgimodelPackage.SERVICE_INTERFACE__SERVICE_COMPONENT, OsgimodelPackage.SERVICE_COMPONENT__SERVICE_INTERFACES);
+		}
+		return serviceComponent;
 	}
 
 	/**

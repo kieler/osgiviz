@@ -6,8 +6,11 @@
 #   + Department of Computer Science
 #     + Real-Time and Embedded Systems Group
 #
-# This code is provided under the terms of the Eclipse Public License (EPL).
-# See the file epl-v10.html for the license text.
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License 2.0 which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# SPDX-License-Identifier: EPL-2.0
 
 #
 # This script bundles a self-contained eclipse update site into an executable uber-jar (no shading!) and several platform specific executable scripts bundling the jar.
@@ -92,7 +95,7 @@ IGNORE_MERGE = [
     'modeling32.png',
     'icons/*.png', # Assuming icons are always the same if they have the same name or de.* overrides org.*
     'icons/*.gif',
-    'epl-v10.html',
+    'epl-v20.html',
     'org/osgi/service/log/*', # known duplicate in org.eclipse.osgi and org.eclipse.osgi.services,
     'META-INF/AL*',
     'META-INF/LGPL*',

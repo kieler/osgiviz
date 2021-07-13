@@ -1,4 +1,19 @@
 /**
+ * OsgiViz - Kieler Visualization for Projects using the OSGi Technology
+ * 
+ * A part of kieler
+ * https://github.com/kieler
+ * 
+ * Copyright 2021 by
+ * + Christian-Albrechts-University of Kiel
+ *   + Department of Computer Science
+ *     + Real-Time and Embedded Systems Group
+ * 
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ * 
+ * SPDX-License-Identifier: EPL-2.0
  */
 package de.cau.cs.kieler.osgiviz.osgivizmodel.impl;
 
@@ -25,7 +40,9 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceComponentContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceInterfaceContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.UsedPackagesOfBundleEdgeConnection;
+
 import de.scheidtbachmann.osgimodel.OsgimodelPackage;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
@@ -267,7 +284,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getIVisualizationContext() {
 		return iVisualizationContextEClass;
 	}
@@ -277,7 +293,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getIVisualizationContext_ChildContexts() {
 		return (EReference)iVisualizationContextEClass.getEStructuralFeatures().get(0);
 	}
@@ -287,7 +302,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getIVisualizationContext_ModelElement() {
 		return (EReference)iVisualizationContextEClass.getEStructuralFeatures().get(1);
 	}
@@ -297,7 +311,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getIVisualizationContext_Parent() {
 		return (EReference)iVisualizationContextEClass.getEStructuralFeatures().get(2);
 	}
@@ -307,7 +320,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getIVisualizationContext_ChildrenInitialized() {
 		return (EAttribute)iVisualizationContextEClass.getEStructuralFeatures().get(3);
 	}
@@ -317,7 +329,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getIOverviewVisualizationContext() {
 		return iOverviewVisualizationContextEClass;
 	}
@@ -327,7 +338,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getIOverviewVisualizationContext_Expanded() {
 		return (EAttribute)iOverviewVisualizationContextEClass.getEStructuralFeatures().get(0);
 	}
@@ -337,7 +347,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getClass_() {
 		return classEClass;
 	}
@@ -347,7 +356,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getClass_Bundle() {
 		return (EReference)classEClass.getEStructuralFeatures().get(0);
 	}
@@ -357,7 +365,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getClass_ClassPath() {
 		return (EAttribute)classEClass.getEStructuralFeatures().get(1);
 	}
@@ -367,7 +374,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getClass_InjectedInterfaces() {
 		return (EReference)classEClass.getEStructuralFeatures().get(2);
 	}
@@ -377,7 +383,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getPair() {
 		return pairEClass;
 	}
@@ -387,7 +392,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getPair_Key() {
 		return (EReference)pairEClass.getEStructuralFeatures().get(0);
 	}
@@ -397,7 +401,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getPair_Value() {
 		return (EReference)pairEClass.getEStructuralFeatures().get(1);
 	}
@@ -407,7 +410,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getOption() {
 		return optionEClass;
 	}
@@ -417,7 +419,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getOption_Id() {
 		return (EAttribute)optionEClass.getEStructuralFeatures().get(0);
 	}
@@ -427,7 +428,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getOption_Value() {
 		return (EAttribute)optionEClass.getEStructuralFeatures().get(1);
 	}
@@ -437,7 +437,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getProductContext() {
 		return productContextEClass;
 	}
@@ -447,7 +446,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getProductContext_FeatureOverviewContext() {
 		return (EReference)productContextEClass.getEStructuralFeatures().get(0);
 	}
@@ -457,7 +455,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getProductContext_BundleOverviewContext() {
 		return (EReference)productContextEClass.getEStructuralFeatures().get(1);
 	}
@@ -467,7 +464,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getProductContext_ServiceOverviewContext() {
 		return (EReference)productContextEClass.getEStructuralFeatures().get(2);
 	}
@@ -477,7 +473,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getFeatureContext() {
 		return featureContextEClass;
 	}
@@ -487,7 +482,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getFeatureContext_BundleOverviewContext() {
 		return (EReference)featureContextEClass.getEStructuralFeatures().get(0);
 	}
@@ -497,7 +491,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getBundleContext() {
 		return bundleContextEClass;
 	}
@@ -507,7 +500,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getBundleContext_ClassesWithInjections() {
 		return (EReference)bundleContextEClass.getEStructuralFeatures().get(0);
 	}
@@ -517,7 +509,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getBundleContext_AllRequiredBundlesShown() {
 		return (EAttribute)bundleContextEClass.getEStructuralFeatures().get(1);
 	}
@@ -527,7 +518,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getBundleContext_AllRequiringBundlesShown() {
 		return (EAttribute)bundleContextEClass.getEStructuralFeatures().get(2);
 	}
@@ -537,7 +527,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getBundleContext_AllUsedPackagesShown() {
 		return (EAttribute)bundleContextEClass.getEStructuralFeatures().get(3);
 	}
@@ -547,7 +536,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getBundleContext_ServiceOverviewContext() {
 		return (EReference)bundleContextEClass.getEStructuralFeatures().get(4);
 	}
@@ -557,7 +545,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getBundleCategoryContext() {
 		return bundleCategoryContextEClass;
 	}
@@ -567,7 +554,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getBundleCategoryContext_BundleOverviewContext() {
 		return (EReference)bundleCategoryContextEClass.getEStructuralFeatures().get(0);
 	}
@@ -577,7 +563,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getClassContext() {
 		return classContextEClass;
 	}
@@ -587,7 +572,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getClassContext_AllInjectedInterfacesShownPlain() {
 		return (EAttribute)classContextEClass.getEStructuralFeatures().get(0);
 	}
@@ -597,7 +581,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getClassContext_AllInjectedInterfacesShownInBundles() {
 		return (EAttribute)classContextEClass.getEStructuralFeatures().get(1);
 	}
@@ -607,7 +590,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getServiceComponentContext() {
 		return serviceComponentContextEClass;
 	}
@@ -617,7 +599,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getServiceComponentContext_AllImplementedInterfacesShownPlain() {
 		return (EAttribute)serviceComponentContextEClass.getEStructuralFeatures().get(0);
 	}
@@ -627,7 +608,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getServiceComponentContext_AllImplementedInterfacesShownInBundles() {
 		return (EAttribute)serviceComponentContextEClass.getEStructuralFeatures().get(1);
 	}
@@ -637,7 +617,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getServiceComponentContext_AllReferencedInterfacesShownPlain() {
 		return (EAttribute)serviceComponentContextEClass.getEStructuralFeatures().get(2);
 	}
@@ -647,7 +626,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getServiceComponentContext_AllReferencedInterfacesShownInBundles() {
 		return (EAttribute)serviceComponentContextEClass.getEStructuralFeatures().get(3);
 	}
@@ -657,7 +635,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getServiceInterfaceContext() {
 		return serviceInterfaceContextEClass;
 	}
@@ -667,7 +644,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getServiceInterfaceContext_AllImplementingComponentsShownPlain() {
 		return (EAttribute)serviceInterfaceContextEClass.getEStructuralFeatures().get(0);
 	}
@@ -677,7 +653,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getServiceInterfaceContext_AllImplementingComponentsShownInBundles() {
 		return (EAttribute)serviceInterfaceContextEClass.getEStructuralFeatures().get(1);
 	}
@@ -687,7 +662,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getServiceInterfaceContext_AllReferencingComponentsShownPlain() {
 		return (EAttribute)serviceInterfaceContextEClass.getEStructuralFeatures().get(2);
 	}
@@ -697,7 +671,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getServiceInterfaceContext_AllReferencingComponentsShownInBundles() {
 		return (EAttribute)serviceInterfaceContextEClass.getEStructuralFeatures().get(3);
 	}
@@ -707,7 +680,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getPackageObjectContext() {
 		return packageObjectContextEClass;
 	}
@@ -717,7 +689,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getUsedPackagesOfBundleEdgeConnection() {
 		return usedPackagesOfBundleEdgeConnectionEClass;
 	}
@@ -727,7 +698,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getUsedPackagesOfBundleEdgeConnection_SourceBundleContext() {
 		return (EReference)usedPackagesOfBundleEdgeConnectionEClass.getEStructuralFeatures().get(0);
 	}
@@ -737,7 +707,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getUsedPackagesOfBundleEdgeConnection_UsedPackages() {
 		return (EReference)usedPackagesOfBundleEdgeConnectionEClass.getEStructuralFeatures().get(1);
 	}
@@ -747,7 +716,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getUsedPackagesOfBundleEdgeConnection_Product() {
 		return (EReference)usedPackagesOfBundleEdgeConnectionEClass.getEStructuralFeatures().get(2);
 	}
@@ -757,7 +725,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getUsedPackagesOfBundleEdgeConnection_TargetBundleContext() {
 		return (EReference)usedPackagesOfBundleEdgeConnectionEClass.getEStructuralFeatures().get(3);
 	}
@@ -767,7 +734,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getProductOverviewContext() {
 		return productOverviewContextEClass;
 	}
@@ -777,7 +743,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getProductOverviewContext_DetailedProductContexts() {
 		return (EReference)productOverviewContextEClass.getEStructuralFeatures().get(0);
 	}
@@ -787,7 +752,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getProductOverviewContext_CollapsedProductContexts() {
 		return (EReference)productOverviewContextEClass.getEStructuralFeatures().get(1);
 	}
@@ -797,7 +761,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getProductOverviewContext_Products() {
 		return (EReference)productOverviewContextEClass.getEStructuralFeatures().get(2);
 	}
@@ -807,7 +770,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getFeatureOverviewContext() {
 		return featureOverviewContextEClass;
 	}
@@ -817,7 +779,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getFeatureOverviewContext_CollapsedFeatureContexts() {
 		return (EReference)featureOverviewContextEClass.getEStructuralFeatures().get(0);
 	}
@@ -827,7 +788,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getFeatureOverviewContext_DetailedFeatureContexts() {
 		return (EReference)featureOverviewContextEClass.getEStructuralFeatures().get(1);
 	}
@@ -837,7 +797,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getFeatureOverviewContext_Features() {
 		return (EReference)featureOverviewContextEClass.getEStructuralFeatures().get(2);
 	}
@@ -847,7 +806,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getBundleOverviewContext() {
 		return bundleOverviewContextEClass;
 	}
@@ -857,7 +815,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getBundleOverviewContext_RequiredBundleEdges() {
 		return (EReference)bundleOverviewContextEClass.getEStructuralFeatures().get(0);
 	}
@@ -867,7 +824,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getBundleOverviewContext_UsedPackagesOfBundleEdges() {
 		return (EReference)bundleOverviewContextEClass.getEStructuralFeatures().get(1);
 	}
@@ -877,7 +833,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getBundleOverviewContext_UsedPackageEdges() {
 		return (EReference)bundleOverviewContextEClass.getEStructuralFeatures().get(2);
 	}
@@ -887,7 +842,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getBundleOverviewContext_CollapsedBundleContexts() {
 		return (EReference)bundleOverviewContextEClass.getEStructuralFeatures().get(3);
 	}
@@ -897,7 +851,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getBundleOverviewContext_DetailedBundleContexts() {
 		return (EReference)bundleOverviewContextEClass.getEStructuralFeatures().get(4);
 	}
@@ -907,7 +860,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getBundleOverviewContext_UsedPackageContexts() {
 		return (EReference)bundleOverviewContextEClass.getEStructuralFeatures().get(5);
 	}
@@ -917,7 +869,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getBundleOverviewContext_Bundles() {
 		return (EReference)bundleOverviewContextEClass.getEStructuralFeatures().get(6);
 	}
@@ -927,7 +878,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getBundleCategoryOverviewContext() {
 		return bundleCategoryOverviewContextEClass;
 	}
@@ -937,7 +887,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getBundleCategoryOverviewContext_CollapsedBundleCategoryContexts() {
 		return (EReference)bundleCategoryOverviewContextEClass.getEStructuralFeatures().get(0);
 	}
@@ -947,7 +896,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getBundleCategoryOverviewContext_DetailedBundleCategoryContexts() {
 		return (EReference)bundleCategoryOverviewContextEClass.getEStructuralFeatures().get(1);
 	}
@@ -957,7 +905,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getBundleCategoryOverviewContext_BundleCategories() {
 		return (EReference)bundleCategoryOverviewContextEClass.getEStructuralFeatures().get(2);
 	}
@@ -967,7 +914,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getBundleCategoryOverviewContext_Uncategorized() {
 		return (EReference)bundleCategoryOverviewContextEClass.getEStructuralFeatures().get(3);
 	}
@@ -977,7 +923,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getBundleCategoryOverviewContext_DetailedUncategorized() {
 		return (EAttribute)bundleCategoryOverviewContextEClass.getEStructuralFeatures().get(4);
 	}
@@ -987,7 +932,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getReferencedInterfaceEdgeConnection() {
 		return referencedInterfaceEdgeConnectionEClass;
 	}
@@ -997,7 +941,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getReferencedInterfaceEdgeConnection_ServiceComponentContext() {
 		return (EReference)referencedInterfaceEdgeConnectionEClass.getEStructuralFeatures().get(0);
 	}
@@ -1007,7 +950,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getReferencedInterfaceEdgeConnection_ServiceInterfaceContext() {
 		return (EReference)referencedInterfaceEdgeConnectionEClass.getEStructuralFeatures().get(1);
 	}
@@ -1017,7 +959,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getReferencedInterfaceEdgeConnection_Reference() {
 		return (EReference)referencedInterfaceEdgeConnectionEClass.getEStructuralFeatures().get(2);
 	}
@@ -1027,7 +968,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getServiceOverviewContext() {
 		return serviceOverviewContextEClass;
 	}
@@ -1037,7 +977,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getServiceOverviewContext_CollapsedServiceComponentContexts() {
 		return (EReference)serviceOverviewContextEClass.getEStructuralFeatures().get(0);
 	}
@@ -1047,7 +986,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getServiceOverviewContext_DetailedServiceComponentContexts() {
 		return (EReference)serviceOverviewContextEClass.getEStructuralFeatures().get(1);
 	}
@@ -1057,7 +995,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getServiceOverviewContext_CollapsedServiceInterfaceContexts() {
 		return (EReference)serviceOverviewContextEClass.getEStructuralFeatures().get(2);
 	}
@@ -1067,7 +1004,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getServiceOverviewContext_DetailedServiceInterfaceContexts() {
 		return (EReference)serviceOverviewContextEClass.getEStructuralFeatures().get(3);
 	}
@@ -1077,7 +1013,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getServiceOverviewContext_CollapsedClassContexts() {
 		return (EReference)serviceOverviewContextEClass.getEStructuralFeatures().get(4);
 	}
@@ -1087,7 +1022,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getServiceOverviewContext_Classes() {
 		return (EReference)serviceOverviewContextEClass.getEStructuralFeatures().get(5);
 	}
@@ -1097,7 +1031,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getServiceOverviewContext_DetailedClassContexts() {
 		return (EReference)serviceOverviewContextEClass.getEStructuralFeatures().get(6);
 	}
@@ -1107,7 +1040,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getServiceOverviewContext_CollapsedReferencedBundleContexts() {
 		return (EReference)serviceOverviewContextEClass.getEStructuralFeatures().get(7);
 	}
@@ -1117,7 +1049,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getServiceOverviewContext_DetailedReferencedBundleContexts() {
 		return (EReference)serviceOverviewContextEClass.getEStructuralFeatures().get(8);
 	}
@@ -1127,7 +1058,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getServiceOverviewContext_ImplementedInterfaceEdgesPlain() {
 		return (EReference)serviceOverviewContextEClass.getEStructuralFeatures().get(9);
 	}
@@ -1137,7 +1067,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getServiceOverviewContext_ImplementedInterfaceEdgesInBundles() {
 		return (EReference)serviceOverviewContextEClass.getEStructuralFeatures().get(10);
 	}
@@ -1147,7 +1076,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getServiceOverviewContext_ReferencedInterfaceEdgesPlain() {
 		return (EReference)serviceOverviewContextEClass.getEStructuralFeatures().get(11);
 	}
@@ -1157,7 +1085,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getServiceOverviewContext_ReferencedInterfaceEdgesInBundles() {
 		return (EReference)serviceOverviewContextEClass.getEStructuralFeatures().get(12);
 	}
@@ -1167,7 +1094,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getServiceOverviewContext_InjectedInterfaceEdgesPlain() {
 		return (EReference)serviceOverviewContextEClass.getEStructuralFeatures().get(13);
 	}
@@ -1177,7 +1103,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getServiceOverviewContext_InjectedInterfaceEdgesInBundles() {
 		return (EReference)serviceOverviewContextEClass.getEStructuralFeatures().get(14);
 	}
@@ -1187,7 +1112,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getServiceOverviewContext_ServiceComponents() {
 		return (EReference)serviceOverviewContextEClass.getEStructuralFeatures().get(15);
 	}
@@ -1197,7 +1121,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getServiceOverviewContext_ServiceInterfaces() {
 		return (EReference)serviceOverviewContextEClass.getEStructuralFeatures().get(16);
 	}
@@ -1207,7 +1130,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getServiceOverviewContext_ClassesWithInjections() {
 		return (EReference)serviceOverviewContextEClass.getEStructuralFeatures().get(17);
 	}
@@ -1217,7 +1139,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getServiceOverviewContext_AllowInBundleConnections() {
 		return (EAttribute)serviceOverviewContextEClass.getEStructuralFeatures().get(18);
 	}
@@ -1227,7 +1148,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getPackageObjectOverviewContext() {
 		return packageObjectOverviewContextEClass;
 	}
@@ -1237,7 +1157,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getPackageObjectOverviewContext_CollapsedPackageObjectContexts() {
 		return (EReference)packageObjectOverviewContextEClass.getEStructuralFeatures().get(0);
 	}
@@ -1247,7 +1166,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getPackageObjectOverviewContext_DetailedPackageObjectContexts() {
 		return (EReference)packageObjectOverviewContextEClass.getEStructuralFeatures().get(1);
 	}
@@ -1257,7 +1175,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getPackageObjectOverviewContext_PackageObjects() {
 		return (EReference)packageObjectOverviewContextEClass.getEStructuralFeatures().get(2);
 	}
@@ -1267,7 +1184,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getOsgiViz() {
 		return osgiVizEClass;
 	}
@@ -1277,7 +1193,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getOsgiViz_SynthesisOptions() {
 		return (EReference)osgiVizEClass.getEStructuralFeatures().get(0);
 	}
@@ -1287,7 +1202,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getOsgiViz_LayoutOptions() {
 		return (EReference)osgiVizEClass.getEStructuralFeatures().get(1);
 	}
@@ -1297,7 +1211,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getOsgiViz_BundleOverviewContext() {
 		return (EReference)osgiVizEClass.getEStructuralFeatures().get(2);
 	}
@@ -1307,7 +1220,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getOsgiViz_ProductOverviewContext() {
 		return (EReference)osgiVizEClass.getEStructuralFeatures().get(3);
 	}
@@ -1317,7 +1229,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getOsgiViz_ServiceOverviewContext() {
 		return (EReference)osgiVizEClass.getEStructuralFeatures().get(4);
 	}
@@ -1327,7 +1238,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getOsgiViz_FeatureOverviewContext() {
 		return (EReference)osgiVizEClass.getEStructuralFeatures().get(5);
 	}
@@ -1337,7 +1247,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getOsgiViz_ImportedPackageOverviewContext() {
 		return (EReference)osgiVizEClass.getEStructuralFeatures().get(6);
 	}
@@ -1347,7 +1256,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getOsgiViz_BundleCategoryOverviewContext() {
 		return (EReference)osgiVizEClass.getEStructuralFeatures().get(7);
 	}
@@ -1357,7 +1265,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getOsgiViz_Focus() {
 		return (EReference)osgiVizEClass.getEStructuralFeatures().get(8);
 	}
@@ -1367,7 +1274,6 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public OsgivizmodelFactory getOsgivizmodelFactory() {
 		return (OsgivizmodelFactory)getEFactoryInstance();
 	}

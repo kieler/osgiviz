@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="de.scheidtbachmann.osgimodel.model/src" modelPluginID="de.scheidtbachmann.osgimodel.model"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="// ******************************************************************************&#xA;//&#xA;// Copyright (c) 2018 by&#xA;// Scheidt &amp; Bachmann System Technik GmbH, 24145 Kiel&#xA;//&#xA;// This program and the accompanying materials are made available under the&#xA;// terms of the Eclipse Public License 2.0 which is available at&#xA;// http://www.eclipse.org/legal/epl-2.0.&#xA;// &#xA;// SPDX-License-Identifier: EPL-2.0&#xA;//&#xA;// ******************************************************************************"
+    modelDirectory="de.scheidtbachmann.osgimodel.model/src" modelPluginID="de.scheidtbachmann.osgimodel.model"
     runtimeJar="true" modelName="OsgiModel" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     testsDirectory="" booleanFlagsField="eFlags" booleanFlagsReservedBits="8" importerID="org.eclipse.emf.ecore.xcore.importer"
     containmentProxies="true" complianceLevel="8.0" language="en" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"

@@ -1,4 +1,19 @@
 /**
+ * OsgiViz - Kieler Visualization for Projects using the OSGi Technology
+ * 
+ * A part of kieler
+ * https://github.com/kieler
+ * 
+ * Copyright 2021 by
+ * + Christian-Albrechts-University of Kiel
+ *   + Department of Computer Science
+ *     + Real-Time and Embedded Systems Group
+ * 
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ * 
+ * SPDX-License-Identifier: EPL-2.0
  */
 package de.cau.cs.kieler.osgiviz.osgivizmodel.impl;
 
@@ -6,8 +21,11 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ReferencedInterfaceEdgeConnection;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceComponentContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceInterfaceContext;
+
 import de.scheidtbachmann.osgimodel.Reference;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -84,7 +102,6 @@ public class ReferencedInterfaceEdgeConnectionImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public ServiceComponentContext getServiceComponentContext() {
 		if (serviceComponentContext != null && serviceComponentContext.eIsProxy()) {
 			InternalEObject oldServiceComponentContext = (InternalEObject)serviceComponentContext;
@@ -111,7 +128,6 @@ public class ReferencedInterfaceEdgeConnectionImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setServiceComponentContext(ServiceComponentContext newServiceComponentContext) {
 		ServiceComponentContext oldServiceComponentContext = serviceComponentContext;
 		serviceComponentContext = newServiceComponentContext;
@@ -124,7 +140,6 @@ public class ReferencedInterfaceEdgeConnectionImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public ServiceInterfaceContext getServiceInterfaceContext() {
 		if (serviceInterfaceContext != null && serviceInterfaceContext.eIsProxy()) {
 			InternalEObject oldServiceInterfaceContext = (InternalEObject)serviceInterfaceContext;
@@ -151,7 +166,6 @@ public class ReferencedInterfaceEdgeConnectionImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setServiceInterfaceContext(ServiceInterfaceContext newServiceInterfaceContext) {
 		ServiceInterfaceContext oldServiceInterfaceContext = serviceInterfaceContext;
 		serviceInterfaceContext = newServiceInterfaceContext;
@@ -164,7 +178,6 @@ public class ReferencedInterfaceEdgeConnectionImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Reference getReference() {
 		if (reference != null && reference.eIsProxy()) {
 			InternalEObject oldReference = (InternalEObject)reference;
@@ -191,7 +204,6 @@ public class ReferencedInterfaceEdgeConnectionImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setReference(Reference newReference) {
 		Reference oldReference = reference;
 		reference = newReference;

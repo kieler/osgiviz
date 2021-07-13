@@ -3,8 +3,11 @@
 // Copyright (c) 2018 by
 // Scheidt & Bachmann System Technik GmbH, 24145 Kiel
 //
-// This code is provided under the terms of the Eclipse Public License (EPL).
-// See the file epl-v10.html for the license text.
+// This program and the accompanying materials are made available under the
+// terms of the Eclipse Public License 2.0 which is available at
+// http://www.eclipse.org/legal/epl-2.0.
+// 
+// SPDX-License-Identifier: EPL-2.0
 //
 // ******************************************************************************
 

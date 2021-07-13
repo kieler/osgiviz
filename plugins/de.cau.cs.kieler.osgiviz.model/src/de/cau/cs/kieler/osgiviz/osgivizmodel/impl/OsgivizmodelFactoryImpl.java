@@ -1,4 +1,19 @@
 /**
+ * OsgiViz - Kieler Visualization for Projects using the OSGi Technology
+ * 
+ * A part of kieler
+ * https://github.com/kieler
+ * 
+ * Copyright 2021 by
+ * + Christian-Albrechts-University of Kiel
+ *   + Department of Computer Science
+ *     + Real-Time and Embedded Systems Group
+ * 
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ * 
+ * SPDX-License-Identifier: EPL-2.0
  */
 package de.cau.cs.kieler.osgiviz.osgivizmodel.impl;
 
@@ -23,6 +38,7 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceComponentContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceInterfaceContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.UsedPackagesOfBundleEdgeConnection;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -105,7 +121,6 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public de.cau.cs.kieler.osgiviz.osgivizmodel.Class createClass() {
 		ClassImpl class_ = new ClassImpl();
 		return class_;
@@ -116,7 +131,6 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public <K, V> Pair<K, V> createPair() {
 		PairImpl<K, V> pair = new PairImpl<K, V>();
 		return pair;
@@ -127,7 +141,6 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Option createOption() {
 		OptionImpl option = new OptionImpl();
 		return option;
@@ -138,7 +151,6 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public ProductContext createProductContext() {
 		ProductContextImpl productContext = new ProductContextImpl();
 		return productContext;
@@ -149,7 +161,6 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public FeatureContext createFeatureContext() {
 		FeatureContextImpl featureContext = new FeatureContextImpl();
 		return featureContext;
@@ -160,7 +171,6 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public BundleContext createBundleContext() {
 		BundleContextImpl bundleContext = new BundleContextImpl();
 		return bundleContext;
@@ -171,7 +181,6 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public BundleCategoryContext createBundleCategoryContext() {
 		BundleCategoryContextImpl bundleCategoryContext = new BundleCategoryContextImpl();
 		return bundleCategoryContext;
@@ -182,7 +191,6 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public ClassContext createClassContext() {
 		ClassContextImpl classContext = new ClassContextImpl();
 		return classContext;
@@ -193,7 +201,6 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public ServiceComponentContext createServiceComponentContext() {
 		ServiceComponentContextImpl serviceComponentContext = new ServiceComponentContextImpl();
 		return serviceComponentContext;
@@ -204,7 +211,6 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public ServiceInterfaceContext createServiceInterfaceContext() {
 		ServiceInterfaceContextImpl serviceInterfaceContext = new ServiceInterfaceContextImpl();
 		return serviceInterfaceContext;
@@ -215,7 +221,6 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public PackageObjectContext createPackageObjectContext() {
 		PackageObjectContextImpl packageObjectContext = new PackageObjectContextImpl();
 		return packageObjectContext;
@@ -226,7 +231,6 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public UsedPackagesOfBundleEdgeConnection createUsedPackagesOfBundleEdgeConnection() {
 		UsedPackagesOfBundleEdgeConnectionImpl usedPackagesOfBundleEdgeConnection = new UsedPackagesOfBundleEdgeConnectionImpl();
 		return usedPackagesOfBundleEdgeConnection;
@@ -237,7 +241,6 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public ProductOverviewContext createProductOverviewContext() {
 		ProductOverviewContextImpl productOverviewContext = new ProductOverviewContextImpl();
 		return productOverviewContext;
@@ -248,7 +251,6 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public FeatureOverviewContext createFeatureOverviewContext() {
 		FeatureOverviewContextImpl featureOverviewContext = new FeatureOverviewContextImpl();
 		return featureOverviewContext;
@@ -259,7 +261,6 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public BundleOverviewContext createBundleOverviewContext() {
 		BundleOverviewContextImpl bundleOverviewContext = new BundleOverviewContextImpl();
 		return bundleOverviewContext;
@@ -270,7 +271,6 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public BundleCategoryOverviewContext createBundleCategoryOverviewContext() {
 		BundleCategoryOverviewContextImpl bundleCategoryOverviewContext = new BundleCategoryOverviewContextImpl();
 		return bundleCategoryOverviewContext;
@@ -281,7 +281,6 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public ReferencedInterfaceEdgeConnection createReferencedInterfaceEdgeConnection() {
 		ReferencedInterfaceEdgeConnectionImpl referencedInterfaceEdgeConnection = new ReferencedInterfaceEdgeConnectionImpl();
 		return referencedInterfaceEdgeConnection;
@@ -292,7 +291,6 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public ServiceOverviewContext createServiceOverviewContext() {
 		ServiceOverviewContextImpl serviceOverviewContext = new ServiceOverviewContextImpl();
 		return serviceOverviewContext;
@@ -303,7 +301,6 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public PackageObjectOverviewContext createPackageObjectOverviewContext() {
 		PackageObjectOverviewContextImpl packageObjectOverviewContext = new PackageObjectOverviewContextImpl();
 		return packageObjectOverviewContext;
@@ -314,7 +311,6 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public OsgiViz createOsgiViz() {
 		OsgiVizImpl osgiViz = new OsgiVizImpl();
 		return osgiViz;
@@ -325,7 +321,6 @@ public class OsgivizmodelFactoryImpl extends EFactoryImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public OsgivizmodelPackage getOsgivizmodelPackage() {
 		return (OsgivizmodelPackage)getEPackage();
 	}

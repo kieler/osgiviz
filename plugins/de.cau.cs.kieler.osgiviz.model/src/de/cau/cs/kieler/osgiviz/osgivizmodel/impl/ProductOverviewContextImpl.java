@@ -1,4 +1,19 @@
 /**
+ * OsgiViz - Kieler Visualization for Projects using the OSGi Technology
+ * 
+ * A part of kieler
+ * https://github.com/kieler
+ * 
+ * Copyright 2021 by
+ * + Christian-Albrechts-University of Kiel
+ *   + Department of Computer Science
+ *     + Real-Time and Embedded Systems Group
+ * 
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ * 
+ * SPDX-License-Identifier: EPL-2.0
  */
 package de.cau.cs.kieler.osgiviz.osgivizmodel.impl;
 
@@ -6,8 +21,11 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ProductContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.ProductOverviewContext;
+
 import de.scheidtbachmann.osgimodel.Product;
+
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -160,7 +178,6 @@ public class ProductOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<IVisualizationContext<?>> getChildContexts() {
 		if (childContexts == null) {
 			childContexts = new EObjectContainmentWithInverseEList<IVisualizationContext<?>>(IVisualizationContext.class, this, OsgivizmodelPackage.PRODUCT_OVERVIEW_CONTEXT__CHILD_CONTEXTS, OsgivizmodelPackage.IVISUALIZATION_CONTEXT__PARENT);
@@ -174,7 +191,6 @@ public class ProductOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
 	public EList<Product> getModelElement() {
 		if (modelElement != null && ((EObject)modelElement).eIsProxy()) {
 			InternalEObject oldModelElement = (InternalEObject)modelElement;
@@ -201,7 +217,6 @@ public class ProductOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setModelElement(EList<Product> newModelElement) {
 		EList<Product> oldModelElement = modelElement;
 		modelElement = newModelElement;
@@ -214,7 +229,6 @@ public class ProductOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public IVisualizationContext<?> getParent() {
 		if (eContainerFeatureID() != OsgivizmodelPackage.PRODUCT_OVERVIEW_CONTEXT__PARENT) return null;
 		return (IVisualizationContext<?>)eContainer();
@@ -245,7 +259,6 @@ public class ProductOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setParent(IVisualizationContext<?> newParent) {
 		if (newParent != eInternalContainer() || (eContainerFeatureID() != OsgivizmodelPackage.PRODUCT_OVERVIEW_CONTEXT__PARENT && newParent != null)) {
 			if (EcoreUtil.isAncestor(this, newParent))
@@ -267,7 +280,6 @@ public class ProductOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isChildrenInitialized() {
 		return childrenInitialized;
 	}
@@ -277,7 +289,6 @@ public class ProductOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setChildrenInitialized(boolean newChildrenInitialized) {
 		boolean oldChildrenInitialized = childrenInitialized;
 		childrenInitialized = newChildrenInitialized;
@@ -290,7 +301,6 @@ public class ProductOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isExpanded() {
 		return expanded;
 	}
@@ -300,7 +310,6 @@ public class ProductOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setExpanded(boolean newExpanded) {
 		boolean oldExpanded = expanded;
 		expanded = newExpanded;
@@ -313,7 +322,6 @@ public class ProductOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<ProductContext> getDetailedProductContexts() {
 		if (detailedProductContexts == null) {
 			detailedProductContexts = new EObjectResolvingEList<ProductContext>(ProductContext.class, this, OsgivizmodelPackage.PRODUCT_OVERVIEW_CONTEXT__DETAILED_PRODUCT_CONTEXTS);
@@ -326,7 +334,6 @@ public class ProductOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<ProductContext> getCollapsedProductContexts() {
 		if (collapsedProductContexts == null) {
 			collapsedProductContexts = new EObjectResolvingEList<ProductContext>(ProductContext.class, this, OsgivizmodelPackage.PRODUCT_OVERVIEW_CONTEXT__COLLAPSED_PRODUCT_CONTEXTS);
@@ -339,7 +346,6 @@ public class ProductOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<Product> getProducts() {
 		if (products == null) {
 			products = new EObjectResolvingEList<Product>(Product.class, this, OsgivizmodelPackage.PRODUCT_OVERVIEW_CONTEXT__PRODUCTS);

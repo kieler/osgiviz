@@ -1,4 +1,19 @@
 /**
+ * OsgiViz - Kieler Visualization for Projects using the OSGi Technology
+ * 
+ * A part of kieler
+ * https://github.com/kieler
+ * 
+ * Copyright 2021 by
+ * + Christian-Albrechts-University of Kiel
+ *   + Department of Computer Science
+ *     + Real-Time and Embedded Systems Group
+ * 
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ * 
+ * SPDX-License-Identifier: EPL-2.0
  */
 package de.cau.cs.kieler.osgiviz.osgivizmodel.impl;
 
@@ -8,9 +23,9 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.Pair;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
@@ -74,7 +89,6 @@ public class PairImpl<K, V> extends MinimalEObjectImpl.Container implements Pair
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
 	public K getKey() {
 		if (key != null && ((EObject)key).eIsProxy()) {
 			InternalEObject oldKey = (InternalEObject)key;
@@ -101,7 +115,6 @@ public class PairImpl<K, V> extends MinimalEObjectImpl.Container implements Pair
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setKey(K newKey) {
 		K oldKey = key;
 		key = newKey;
@@ -115,7 +128,6 @@ public class PairImpl<K, V> extends MinimalEObjectImpl.Container implements Pair
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
 	public V getValue() {
 		if (value != null && ((EObject)value).eIsProxy()) {
 			InternalEObject oldValue = (InternalEObject)value;
@@ -142,7 +154,6 @@ public class PairImpl<K, V> extends MinimalEObjectImpl.Container implements Pair
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setValue(V newValue) {
 		V oldValue = value;
 		value = newValue;

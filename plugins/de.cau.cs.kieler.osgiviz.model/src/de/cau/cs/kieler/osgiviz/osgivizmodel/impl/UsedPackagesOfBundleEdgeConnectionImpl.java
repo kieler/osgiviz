@@ -1,12 +1,29 @@
 /**
+ * OsgiViz - Kieler Visualization for Projects using the OSGi Technology
+ * 
+ * A part of kieler
+ * https://github.com/kieler
+ * 
+ * Copyright 2021 by
+ * + Christian-Albrechts-University of Kiel
+ *   + Department of Computer Science
+ *     + Real-Time and Embedded Systems Group
+ * 
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ * 
+ * SPDX-License-Identifier: EPL-2.0
  */
 package de.cau.cs.kieler.osgiviz.osgivizmodel.impl;
 
 import de.cau.cs.kieler.osgiviz.osgivizmodel.BundleContext;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage;
 import de.cau.cs.kieler.osgiviz.osgivizmodel.UsedPackagesOfBundleEdgeConnection;
+
 import de.scheidtbachmann.osgimodel.PackageObject;
 import de.scheidtbachmann.osgimodel.Product;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -102,7 +119,6 @@ public class UsedPackagesOfBundleEdgeConnectionImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public BundleContext getSourceBundleContext() {
 		if (sourceBundleContext != null && sourceBundleContext.eIsProxy()) {
 			InternalEObject oldSourceBundleContext = (InternalEObject)sourceBundleContext;
@@ -129,7 +145,6 @@ public class UsedPackagesOfBundleEdgeConnectionImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setSourceBundleContext(BundleContext newSourceBundleContext) {
 		BundleContext oldSourceBundleContext = sourceBundleContext;
 		sourceBundleContext = newSourceBundleContext;
@@ -142,7 +157,6 @@ public class UsedPackagesOfBundleEdgeConnectionImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<PackageObject> getUsedPackages() {
 		if (usedPackages == null) {
 			usedPackages = new EObjectResolvingEList<PackageObject>(PackageObject.class, this, OsgivizmodelPackage.USED_PACKAGES_OF_BUNDLE_EDGE_CONNECTION__USED_PACKAGES);
@@ -155,7 +169,6 @@ public class UsedPackagesOfBundleEdgeConnectionImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Product getProduct() {
 		if (product != null && product.eIsProxy()) {
 			InternalEObject oldProduct = (InternalEObject)product;
@@ -182,7 +195,6 @@ public class UsedPackagesOfBundleEdgeConnectionImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setProduct(Product newProduct) {
 		Product oldProduct = product;
 		product = newProduct;
@@ -195,7 +207,6 @@ public class UsedPackagesOfBundleEdgeConnectionImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public BundleContext getTargetBundleContext() {
 		if (targetBundleContext != null && targetBundleContext.eIsProxy()) {
 			InternalEObject oldTargetBundleContext = (InternalEObject)targetBundleContext;
@@ -222,7 +233,6 @@ public class UsedPackagesOfBundleEdgeConnectionImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setTargetBundleContext(BundleContext newTargetBundleContext) {
 		BundleContext oldTargetBundleContext = targetBundleContext;
 		targetBundleContext = newTargetBundleContext;
