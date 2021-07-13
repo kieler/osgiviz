@@ -35,10 +35,10 @@ jobs:
           name: OSGimodel Generator CLI
           path: plugins/de.scheidtbachmann.osgimodel.model.generate/target/de.scheidtbachmann.osgimodel.model.generate-*.jar
   
-  extension:
-    needs: Checkout and Build Update Site
+  # extension:
+  #   needs: Checkout and Build Update Site
 
-    runs-on: ubuntu-latest
+  #   runs-on: ubuntu-latest
 
-    steps:
-      # TODO: Setup the extension build
+  #   steps:
+  #     # TODO: Setup the extension build
