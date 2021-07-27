@@ -31,3 +31,4 @@ and open the diagram view via *Window -> Show view -> Other... -> KIELER Lightwe
 
 ## The OSGi models
 To generate a model file visualizable with osgiviz, have a look at the readme in the [osgimodel.model.generate bundle](https://github.com/kieler/osgiviz/tree/master/plugins/de.scheidtbachmann.osgimodel.model.generate).
+An example OSGi project can be found in the subfolder `examples/languagedemo`, where a sample `.model` file for visualization as well as a preconfigured `.osgiviz` visualization file for that model is given.
