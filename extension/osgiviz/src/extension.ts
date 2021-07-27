@@ -45,7 +45,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
     // Inform the KLighD extension about the LS client and supported file endings
     await vscode.commands.executeCommand<string>(
-        "klighd-diagram.setLanguageClient",
+        "klighd-vscode.setLanguageClient",
         lsClient,
         ["model", "osgiviz"]
     );

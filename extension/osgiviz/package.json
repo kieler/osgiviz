@@ -22,21 +22,21 @@
 			"editor/title": [
 				{
 					"when": "resourceExtname == .model || resourceExtname == .osgiviz",
-					"command": "klighd-diagram.diagram.open",
+					"command": "klighd-vscode.diagram.open",
 					"group": "navigation"
 				}
 			],
 			"editor/context": [
 				{
 					"when": "resourceExtname == .model || resourceExtname == .osgiviz",
-					"command": "klighd-diagram.diagram.open",
+					"command": "klighd-vscode.diagram.open",
 					"group": "navigation"
 				}
 			],
 			"explorer/context": [
 				{
 					"when": "resourceExtname == .model || resourceExtname == .osgiviz",
-					"command": "klighd-diagram.diagram.open",
+					"command": "klighd-vscode.diagram.open",
 					"group": "navigation"
 				}
 			]
@@ -44,7 +44,7 @@
 		"commands": []
 	},
 	"extensionDependencies": [
-		"kieler.klighd-diagram",
+		"kieler.klighd-vscode",
 		"redhat.vscode-xml"
 	],
 	"scripts": {
