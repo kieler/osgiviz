@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="ASCII"?>
+<osgivizmodel:OsgiViz xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:osgimodel="de.scheidtbachmann.osgimodel" xmlns:osgivizmodel="de.cau.cs.kieler.osgiviz.osgivizmodel" childrenInitialized="true" bundleOverviewContext="//@childContexts.1" productOverviewContext="//@childContexts.0" serviceOverviewContext="//@childContexts.2" featureOverviewContext="//@childContexts.3" importedPackageOverviewContext="//@childContexts.4" bundleCategoryOverviewContext="//@childContexts.5">
+  <childContexts xsi:type="osgivizmodel:ProductOverviewContext" childrenInitialized="true" expanded="true" collapsedProductContexts="//@childContexts.0/@childContexts.0 //@childContexts.0/@childContexts.1">
+    <childContexts xsi:type="osgivizmodel:ProductContext">
+      <modelElement xsi:type="osgimodel:Product" href="LanguageDemo.model#Product_klingontranslator"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:ProductContext">
+      <modelElement xsi:type="osgimodel:Product" href="LanguageDemo.model#Product_englishtranslator"/>
+    </childContexts>
+    <products href="LanguageDemo.model#Product_klingontranslator"/>
+    <products href="LanguageDemo.model#Product_englishtranslator"/>
+  </childContexts>
+  <childContexts xsi:type="osgivizmodel:BundleOverviewContext" childrenInitialized="true" expanded="true" detailedBundleContexts="//@childContexts.1/@childContexts.0 //@childContexts.1/@childContexts.1 //@childContexts.1/@childContexts.2 //@childContexts.1/@childContexts.3 //@childContexts.1/@childContexts.4 //@childContexts.1/@childContexts.5 //@childContexts.1/@childContexts.6 //@childContexts.1/@childContexts.7 //@childContexts.1/@childContexts.8 //@childContexts.1/@childContexts.9 //@childContexts.1/@childContexts.10 //@childContexts.1/@childContexts.11" usedPackageContexts="//@childContexts.1/@childContexts.12">
+    <childContexts xsi:type="osgivizmodel:BundleContext" childrenInitialized="true" allUsedPackagesShown="true" serviceOverviewContext="//@childContexts.1/@childContexts.0/@childContexts.0">
+      <childContexts xsi:type="osgivizmodel:ServiceOverviewContext" childrenInitialized="true" collapsedServiceComponentContexts="//@childContexts.1/@childContexts.0/@childContexts.0/@childContexts.0" collapsedServiceInterfaceContexts="//@childContexts.1/@childContexts.0/@childContexts.0/@childContexts.1 //@childContexts.1/@childContexts.0/@childContexts.0/@childContexts.2">
+        <childContexts xsi:type="osgivizmodel:ServiceComponentContext">
+          <modelElement xsi:type="osgimodel:ServiceComponent" href="LanguageDemo.model#ServiceComponent_de.scheidtbachmann.osgi.language.german2klingon.internal.German2KlingonTranslator"/>
+        </childContexts>
+        <childContexts xsi:type="osgivizmodel:ServiceInterfaceContext">
+          <modelElement xsi:type="osgimodel:ServiceInterface" href="LanguageDemo.model#ServiceInterface_de.scheidtbachmann.osgi.language.services.dataprovider.LanguageDatabaseProvider"/>
+        </childContexts>
+        <childContexts xsi:type="osgivizmodel:ServiceInterfaceContext">
+          <modelElement xsi:type="osgimodel:ServiceInterface" href="LanguageDemo.model#ServiceInterface_de.scheidtbachmann.osgi.language.services.translator.TranslatorService"/>
+        </childContexts>
+        <serviceComponents href="LanguageDemo.model#ServiceComponent_de.scheidtbachmann.osgi.language.german2klingon.internal.German2KlingonTranslator"/>
+        <serviceInterfaces href="LanguageDemo.model#ServiceInterface_de.scheidtbachmann.osgi.language.services.dataprovider.LanguageDatabaseProvider"/>
+        <serviceInterfaces href="LanguageDemo.model#ServiceInterface_de.scheidtbachmann.osgi.language.services.translator.TranslatorService"/>
+      </childContexts>
+      <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_de.scheidtbachmann.osgi.language.german2klingon"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:BundleContext" childrenInitialized="true" allRequiredBundlesShown="true" allUsedPackagesShown="true" serviceOverviewContext="//@childContexts.1/@childContexts.1/@childContexts.0">
+      <childContexts xsi:type="osgivizmodel:ServiceOverviewContext" childrenInitialized="true" collapsedServiceComponentContexts="//@childContexts.1/@childContexts.1/@childContexts.0/@childContexts.0" collapsedServiceInterfaceContexts="//@childContexts.1/@childContexts.1/@childContexts.0/@childContexts.1 //@childContexts.1/@childContexts.1/@childContexts.0/@childContexts.2">
+        <childContexts xsi:type="osgivizmodel:ServiceComponentContext">
+          <modelElement xsi:type="osgimodel:ServiceComponent" href="LanguageDemo.model#ServiceComponent_de.scheidtbachmann.osgi.language.german2english.internal.German2EnglishTranslator"/>
+        </childContexts>
+        <childContexts xsi:type="osgivizmodel:ServiceInterfaceContext">
+          <modelElement xsi:type="osgimodel:ServiceInterface" href="LanguageDemo.model#ServiceInterface_de.scheidtbachmann.osgi.language.services.dataprovider.LanguageDatabaseProvider"/>
+        </childContexts>
+        <childContexts xsi:type="osgivizmodel:ServiceInterfaceContext">
+          <modelElement xsi:type="osgimodel:ServiceInterface" href="LanguageDemo.model#ServiceInterface_de.scheidtbachmann.osgi.language.services.translator.TranslatorService"/>
+        </childContexts>
+        <serviceComponents href="LanguageDemo.model#ServiceComponent_de.scheidtbachmann.osgi.language.german2english.internal.German2EnglishTranslator"/>
+        <serviceInterfaces href="LanguageDemo.model#ServiceInterface_de.scheidtbachmann.osgi.language.services.dataprovider.LanguageDatabaseProvider"/>
+        <serviceInterfaces href="LanguageDemo.model#ServiceInterface_de.scheidtbachmann.osgi.language.services.translator.TranslatorService"/>
+      </childContexts>
+      <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_de.scheidtbachmann.osgi.language.german2english"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:BundleContext" childrenInitialized="true" allRequiringBundlesShown="true" allUsedPackagesShown="true">
+      <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_de.scheidtbachmann.osgi.language.model"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:BundleContext" childrenInitialized="true" allUsedPackagesShown="true" serviceOverviewContext="//@childContexts.1/@childContexts.3/@childContexts.0">
+      <childContexts xsi:type="osgivizmodel:ServiceOverviewContext" childrenInitialized="true" collapsedServiceComponentContexts="//@childContexts.1/@childContexts.3/@childContexts.0/@childContexts.0" collapsedServiceInterfaceContexts="//@childContexts.1/@childContexts.3/@childContexts.0/@childContexts.1">
+        <childContexts xsi:type="osgivizmodel:ServiceComponentContext">
+          <modelElement xsi:type="osgimodel:ServiceComponent" href="LanguageDemo.model#ServiceComponent_FileBasedLanguageDatabaseLoader"/>
+        </childContexts>
+        <childContexts xsi:type="osgivizmodel:ServiceInterfaceContext">
+          <modelElement xsi:type="osgimodel:ServiceInterface" href="LanguageDemo.model#ServiceInterface_de.scheidtbachmann.osgi.language.services.dataprovider.LanguageDatabaseProvider"/>
+        </childContexts>
+        <serviceComponents href="LanguageDemo.model#ServiceComponent_FileBasedLanguageDatabaseLoader"/>
+        <serviceInterfaces href="LanguageDemo.model#ServiceInterface_de.scheidtbachmann.osgi.language.services.dataprovider.LanguageDatabaseProvider"/>
+      </childContexts>
+      <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_de.scheidtbachmann.osgi.language.database.provider.file"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:BundleContext" childrenInitialized="true" allRequiredBundlesShown="true" allUsedPackagesShown="true" serviceOverviewContext="//@childContexts.1/@childContexts.4/@childContexts.0">
+      <childContexts xsi:type="osgivizmodel:ServiceOverviewContext" childrenInitialized="true" collapsedServiceComponentContexts="//@childContexts.1/@childContexts.4/@childContexts.0/@childContexts.0" collapsedServiceInterfaceContexts="//@childContexts.1/@childContexts.4/@childContexts.0/@childContexts.1 //@childContexts.1/@childContexts.4/@childContexts.0/@childContexts.2">
+        <childContexts xsi:type="osgivizmodel:ServiceComponentContext">
+          <modelElement xsi:type="osgimodel:ServiceComponent" href="LanguageDemo.model#ServiceComponent_de.scheidtbachmann.osgi.test.application.TranslatorClient"/>
+        </childContexts>
+        <childContexts xsi:type="osgivizmodel:ServiceInterfaceContext">
+          <modelElement xsi:type="osgimodel:ServiceInterface" href="LanguageDemo.model#ServiceInterface_noInterface"/>
+        </childContexts>
+        <childContexts xsi:type="osgivizmodel:ServiceInterfaceContext">
+          <modelElement xsi:type="osgimodel:ServiceInterface" href="LanguageDemo.model#ServiceInterface_de.scheidtbachmann.osgi.language.services.translator.TranslatorService"/>
+        </childContexts>
+        <serviceComponents href="LanguageDemo.model#ServiceComponent_de.scheidtbachmann.osgi.test.application.TranslatorClient"/>
+        <serviceInterfaces href="LanguageDemo.model#ServiceInterface_noInterface"/>
+        <serviceInterfaces href="LanguageDemo.model#ServiceInterface_de.scheidtbachmann.osgi.language.services.translator.TranslatorService"/>
+      </childContexts>
+      <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_de.scheidtbachmann.osgi.test.application"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:BundleContext" childrenInitialized="true" allRequiringBundlesShown="true" allUsedPackagesShown="true">
+      <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_org.eclipse.osgi.services"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:BundleContext" childrenInitialized="true" allRequiringBundlesShown="true" allUsedPackagesShown="true">
+      <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_de.scheidtbachmann.osgi.language.services"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:BundleContext" childrenInitialized="true" allUsedPackagesShown="true">
+      <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_org.apache.commons.net"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:BundleContext" childrenInitialized="true" allUsedPackagesShown="true">
+      <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_org.apache.commons.io"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:BundleContext" childrenInitialized="true" allUsedPackagesShown="true">
+      <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_org.apache.felix.converter"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:BundleContext" childrenInitialized="true" allUsedPackagesShown="true">
+      <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_org.eclipse.equinox.cm"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:BundleContext" childrenInitialized="true" allUsedPackagesShown="true">
+      <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_com.google.guava"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:PackageObjectContext">
+      <modelElement xsi:type="osgimodel:PackageObject" href="LanguageDemo.model#//@importedPackages.3"/>
+    </childContexts>
+    <requiredBundleEdges key="//@childContexts.1/@childContexts.1" value="//@childContexts.1/@childContexts.2"/>
+    <requiredBundleEdges key="//@childContexts.1/@childContexts.4" value="//@childContexts.1/@childContexts.5"/>
+    <requiredBundleEdges key="//@childContexts.1/@childContexts.4" value="//@childContexts.1/@childContexts.6"/>
+    <usedPackagesOfBundleEdges sourceBundleContext="//@childContexts.1/@childContexts.0" targetBundleContext="//@childContexts.1/@childContexts.2">
+      <usedPackages href="LanguageDemo.model#//@importedPackages.0"/>
+      <product href="LanguageDemo.model#Product_klingontranslator"/>
+    </usedPackagesOfBundleEdges>
+    <usedPackagesOfBundleEdges sourceBundleContext="//@childContexts.1/@childContexts.0" targetBundleContext="//@childContexts.1/@childContexts.6">
+      <usedPackages href="LanguageDemo.model#//@importedPackages.1"/>
+      <usedPackages href="LanguageDemo.model#//@importedPackages.2"/>
+      <product href="LanguageDemo.model#Product_klingontranslator"/>
+    </usedPackagesOfBundleEdges>
+    <usedPackagesOfBundleEdges sourceBundleContext="//@childContexts.1/@childContexts.1" targetBundleContext="//@childContexts.1/@childContexts.6">
+      <usedPackages href="LanguageDemo.model#//@importedPackages.1"/>
+      <usedPackages href="LanguageDemo.model#//@importedPackages.2"/>
+      <product href="LanguageDemo.model#Product_englishtranslator"/>
+    </usedPackagesOfBundleEdges>
+    <usedPackagesOfBundleEdges sourceBundleContext="//@childContexts.1/@childContexts.3" targetBundleContext="//@childContexts.1/@childContexts.2">
+      <usedPackages href="LanguageDemo.model#//@importedPackages.0"/>
+      <usedPackages href="LanguageDemo.model#//@importedPackages.4"/>
+      <product href="LanguageDemo.model#Product_englishtranslator"/>
+    </usedPackagesOfBundleEdges>
+    <usedPackagesOfBundleEdges sourceBundleContext="//@childContexts.1/@childContexts.3" targetBundleContext="//@childContexts.1/@childContexts.6">
+      <usedPackages href="LanguageDemo.model#//@importedPackages.1"/>
+      <product href="LanguageDemo.model#Product_englishtranslator"/>
+    </usedPackagesOfBundleEdges>
+    <usedPackagesOfBundleEdges sourceBundleContext="//@childContexts.1/@childContexts.3" targetBundleContext="//@childContexts.1/@childContexts.2">
+      <usedPackages href="LanguageDemo.model#//@importedPackages.0"/>
+      <usedPackages href="LanguageDemo.model#//@importedPackages.4"/>
+      <product href="LanguageDemo.model#Product_klingontranslator"/>
+    </usedPackagesOfBundleEdges>
+    <usedPackagesOfBundleEdges sourceBundleContext="//@childContexts.1/@childContexts.3" targetBundleContext="//@childContexts.1/@childContexts.6">
+      <usedPackages href="LanguageDemo.model#//@importedPackages.1"/>
+      <product href="LanguageDemo.model#Product_klingontranslator"/>
+    </usedPackagesOfBundleEdges>
+    <usedPackagesOfBundleEdges sourceBundleContext="//@childContexts.1/@childContexts.6" targetBundleContext="//@childContexts.1/@childContexts.2">
+      <usedPackages href="LanguageDemo.model#//@importedPackages.0"/>
+      <product href="LanguageDemo.model#Product_englishtranslator"/>
+    </usedPackagesOfBundleEdges>
+    <usedPackagesOfBundleEdges sourceBundleContext="//@childContexts.1/@childContexts.6" targetBundleContext="//@childContexts.1/@childContexts.2">
+      <usedPackages href="LanguageDemo.model#//@importedPackages.0"/>
+      <product href="LanguageDemo.model#Product_klingontranslator"/>
+    </usedPackagesOfBundleEdges>
+    <usedPackageEdges key="//@childContexts.1/@childContexts.0" value="//@childContexts.1/@childContexts.12"/>
+    <usedPackageEdges key="//@childContexts.1/@childContexts.1" value="//@childContexts.1/@childContexts.12"/>
+    <usedPackageEdges key="//@childContexts.1/@childContexts.3" value="//@childContexts.1/@childContexts.12"/>
+    <bundles href="LanguageDemo.model#Bundle_de.scheidtbachmann.osgi.language.german2klingon"/>
+    <bundles href="LanguageDemo.model#Bundle_de.scheidtbachmann.osgi.language.german2english"/>
+    <bundles href="LanguageDemo.model#Bundle_de.scheidtbachmann.osgi.language.model"/>
+    <bundles href="LanguageDemo.model#Bundle_de.scheidtbachmann.osgi.language.database.provider.file"/>
+    <bundles href="LanguageDemo.model#Bundle_de.scheidtbachmann.osgi.test.application"/>
+    <bundles href="LanguageDemo.model#Bundle_org.eclipse.osgi.services"/>
+    <bundles href="LanguageDemo.model#Bundle_de.scheidtbachmann.osgi.language.services"/>
+    <bundles href="LanguageDemo.model#Bundle_org.apache.commons.net"/>
+    <bundles href="LanguageDemo.model#Bundle_org.apache.commons.io"/>
+    <bundles href="LanguageDemo.model#Bundle_org.apache.felix.converter"/>
+    <bundles href="LanguageDemo.model#Bundle_org.eclipse.equinox.cm"/>
+    <bundles href="LanguageDemo.model#Bundle_com.google.guava"/>
+  </childContexts>
+  <childContexts xsi:type="osgivizmodel:ServiceOverviewContext" childrenInitialized="true" collapsedServiceComponentContexts="//@childContexts.2/@childContexts.0 //@childContexts.2/@childContexts.1 //@childContexts.2/@childContexts.2 //@childContexts.2/@childContexts.3" collapsedServiceInterfaceContexts="//@childContexts.2/@childContexts.4 //@childContexts.2/@childContexts.5 //@childContexts.2/@childContexts.6" detailedReferencedBundleContexts="//@childContexts.2/@childContexts.7 //@childContexts.2/@childContexts.8 //@childContexts.2/@childContexts.9 //@childContexts.2/@childContexts.10" allowInBundleConnections="true">
+    <childContexts xsi:type="osgivizmodel:ServiceComponentContext">
+      <modelElement xsi:type="osgimodel:ServiceComponent" href="LanguageDemo.model#ServiceComponent_de.scheidtbachmann.osgi.language.german2klingon.internal.German2KlingonTranslator"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:ServiceComponentContext">
+      <modelElement xsi:type="osgimodel:ServiceComponent" href="LanguageDemo.model#ServiceComponent_de.scheidtbachmann.osgi.language.german2english.internal.German2EnglishTranslator"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:ServiceComponentContext">
+      <modelElement xsi:type="osgimodel:ServiceComponent" href="LanguageDemo.model#ServiceComponent_FileBasedLanguageDatabaseLoader"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:ServiceComponentContext">
+      <modelElement xsi:type="osgimodel:ServiceComponent" href="LanguageDemo.model#ServiceComponent_de.scheidtbachmann.osgi.test.application.TranslatorClient"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:ServiceInterfaceContext">
+      <modelElement xsi:type="osgimodel:ServiceInterface" href="LanguageDemo.model#ServiceInterface_noInterface"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:ServiceInterfaceContext">
+      <modelElement xsi:type="osgimodel:ServiceInterface" href="LanguageDemo.model#ServiceInterface_de.scheidtbachmann.osgi.language.services.translator.TranslatorService"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:ServiceInterfaceContext">
+      <modelElement xsi:type="osgimodel:ServiceInterface" href="LanguageDemo.model#ServiceInterface_de.scheidtbachmann.osgi.language.services.dataprovider.LanguageDatabaseProvider"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:BundleContext" childrenInitialized="true" serviceOverviewContext="//@childContexts.2/@childContexts.7/@childContexts.0">
+      <childContexts xsi:type="osgivizmodel:ServiceOverviewContext" childrenInitialized="true" expanded="true" collapsedServiceComponentContexts="//@childContexts.2/@childContexts.7/@childContexts.0/@childContexts.0">
+        <childContexts xsi:type="osgivizmodel:ServiceComponentContext">
+          <modelElement xsi:type="osgimodel:ServiceComponent" href="LanguageDemo.model#ServiceComponent_de.scheidtbachmann.osgi.language.german2klingon.internal.German2KlingonTranslator"/>
+        </childContexts>
+        <serviceComponents href="LanguageDemo.model#ServiceComponent_de.scheidtbachmann.osgi.language.german2klingon.internal.German2KlingonTranslator"/>
+      </childContexts>
+      <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_de.scheidtbachmann.osgi.language.german2klingon"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:BundleContext" childrenInitialized="true" serviceOverviewContext="//@childContexts.2/@childContexts.8/@childContexts.0">
+      <childContexts xsi:type="osgivizmodel:ServiceOverviewContext" childrenInitialized="true" expanded="true" collapsedServiceComponentContexts="//@childContexts.2/@childContexts.8/@childContexts.0/@childContexts.0">
+        <childContexts xsi:type="osgivizmodel:ServiceComponentContext">
+          <modelElement xsi:type="osgimodel:ServiceComponent" href="LanguageDemo.model#ServiceComponent_de.scheidtbachmann.osgi.language.german2english.internal.German2EnglishTranslator"/>
+        </childContexts>
+        <serviceComponents href="LanguageDemo.model#ServiceComponent_de.scheidtbachmann.osgi.language.german2english.internal.German2EnglishTranslator"/>
+      </childContexts>
+      <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_de.scheidtbachmann.osgi.language.german2english"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:BundleContext" childrenInitialized="true" serviceOverviewContext="//@childContexts.2/@childContexts.9/@childContexts.0">
+      <childContexts xsi:type="osgivizmodel:ServiceOverviewContext" childrenInitialized="true" expanded="true" collapsedServiceComponentContexts="//@childContexts.2/@childContexts.9/@childContexts.0/@childContexts.0">
+        <childContexts xsi:type="osgivizmodel:ServiceComponentContext">
+          <modelElement xsi:type="osgimodel:ServiceComponent" href="LanguageDemo.model#ServiceComponent_FileBasedLanguageDatabaseLoader"/>
+        </childContexts>
+        <serviceComponents href="LanguageDemo.model#ServiceComponent_FileBasedLanguageDatabaseLoader"/>
+      </childContexts>
+      <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_de.scheidtbachmann.osgi.language.database.provider.file"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:BundleContext" childrenInitialized="true" serviceOverviewContext="//@childContexts.2/@childContexts.10/@childContexts.0">
+      <childContexts xsi:type="osgivizmodel:ServiceOverviewContext" childrenInitialized="true" expanded="true" collapsedServiceComponentContexts="//@childContexts.2/@childContexts.10/@childContexts.0/@childContexts.0">
+        <childContexts xsi:type="osgivizmodel:ServiceComponentContext">
+          <modelElement xsi:type="osgimodel:ServiceComponent" href="LanguageDemo.model#ServiceComponent_de.scheidtbachmann.osgi.test.application.TranslatorClient"/>
+        </childContexts>
+        <serviceComponents href="LanguageDemo.model#ServiceComponent_de.scheidtbachmann.osgi.test.application.TranslatorClient"/>
+      </childContexts>
+      <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_de.scheidtbachmann.osgi.test.application"/>
+    </childContexts>
+    <serviceComponents href="LanguageDemo.model#ServiceComponent_de.scheidtbachmann.osgi.language.german2klingon.internal.German2KlingonTranslator"/>
+    <serviceComponents href="LanguageDemo.model#ServiceComponent_de.scheidtbachmann.osgi.language.german2english.internal.German2EnglishTranslator"/>
+    <serviceComponents href="LanguageDemo.model#ServiceComponent_FileBasedLanguageDatabaseLoader"/>
+    <serviceComponents href="LanguageDemo.model#ServiceComponent_de.scheidtbachmann.osgi.test.application.TranslatorClient"/>
+    <serviceInterfaces href="LanguageDemo.model#ServiceInterface_noInterface"/>
+    <serviceInterfaces href="LanguageDemo.model#ServiceInterface_de.scheidtbachmann.osgi.language.services.translator.TranslatorService"/>
+    <serviceInterfaces href="LanguageDemo.model#ServiceInterface_de.scheidtbachmann.osgi.language.services.dataprovider.LanguageDatabaseProvider"/>
+  </childContexts>
+  <childContexts xsi:type="osgivizmodel:FeatureOverviewContext" childrenInitialized="true" collapsedFeatureContexts="//@childContexts.3/@childContexts.0 //@childContexts.3/@childContexts.1 //@childContexts.3/@childContexts.2 //@childContexts.3/@childContexts.3 //@childContexts.3/@childContexts.4">
+    <childContexts xsi:type="osgivizmodel:FeatureContext">
+      <modelElement xsi:type="osgimodel:Feature" href="LanguageDemo.model#Feature_de.scheidtbachmann.osgi.language.runtime.feature"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:FeatureContext">
+      <modelElement xsi:type="osgimodel:Feature" href="LanguageDemo.model#Feature_de.scheidtbachmann.osgi.language.klingon.feature"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:FeatureContext">
+      <modelElement xsi:type="osgimodel:Feature" href="LanguageDemo.model#Feature_de.scheidtbachmann.osgi.language.base.feature"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:FeatureContext">
+      <modelElement xsi:type="osgimodel:Feature" href="LanguageDemo.model#Feature_de.scheidtbachmann.osgi.language.english.feature"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:FeatureContext">
+      <modelElement xsi:type="osgimodel:Feature" href="LanguageDemo.model#Feature_org.eclipse.equinox.core.feature"/>
+    </childContexts>
+    <features href="LanguageDemo.model#Feature_de.scheidtbachmann.osgi.language.runtime.feature"/>
+    <features href="LanguageDemo.model#Feature_de.scheidtbachmann.osgi.language.klingon.feature"/>
+    <features href="LanguageDemo.model#Feature_de.scheidtbachmann.osgi.language.base.feature"/>
+    <features href="LanguageDemo.model#Feature_de.scheidtbachmann.osgi.language.english.feature"/>
+    <features href="LanguageDemo.model#Feature_org.eclipse.equinox.core.feature"/>
+  </childContexts>
+  <childContexts xsi:type="osgivizmodel:PackageObjectOverviewContext">
+    <packageObjects href="LanguageDemo.model#//@importedPackages.0"/>
+    <packageObjects href="LanguageDemo.model#//@importedPackages.1"/>
+    <packageObjects href="LanguageDemo.model#//@importedPackages.2"/>
+    <packageObjects href="LanguageDemo.model#//@importedPackages.3"/>
+    <packageObjects href="LanguageDemo.model#//@importedPackages.4"/>
+  </childContexts>
+  <childContexts xsi:type="osgivizmodel:BundleCategoryOverviewContext" childrenInitialized="true" collapsedBundleCategoryContexts="//@childContexts.5/@childContexts.1 //@childContexts.5/@childContexts.2 //@childContexts.5/@childContexts.3 //@childContexts.5/@childContexts.4 //@childContexts.5/@childContexts.0">
+    <childContexts xsi:type="osgivizmodel:BundleCategoryContext" childrenInitialized="true" bundleOverviewContext="//@childContexts.5/@childContexts.0/@childContexts.0">
+      <childContexts xsi:type="osgivizmodel:BundleOverviewContext" childrenInitialized="true" collapsedBundleContexts="//@childContexts.5/@childContexts.0/@childContexts.0/@childContexts.0 //@childContexts.5/@childContexts.0/@childContexts.0/@childContexts.1 //@childContexts.5/@childContexts.0/@childContexts.0/@childContexts.2 //@childContexts.5/@childContexts.0/@childContexts.0/@childContexts.3 //@childContexts.5/@childContexts.0/@childContexts.0/@childContexts.4 //@childContexts.5/@childContexts.0/@childContexts.0/@childContexts.5 //@childContexts.5/@childContexts.0/@childContexts.0/@childContexts.6">
+        <childContexts xsi:type="osgivizmodel:BundleContext">
+          <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_org.eclipse.osgi.services"/>
+        </childContexts>
+        <childContexts xsi:type="osgivizmodel:BundleContext">
+          <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_de.scheidtbachmann.osgi.language.services"/>
+        </childContexts>
+        <childContexts xsi:type="osgivizmodel:BundleContext">
+          <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_org.apache.commons.net"/>
+        </childContexts>
+        <childContexts xsi:type="osgivizmodel:BundleContext">
+          <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_org.apache.commons.io"/>
+        </childContexts>
+        <childContexts xsi:type="osgivizmodel:BundleContext">
+          <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_org.apache.felix.converter"/>
+        </childContexts>
+        <childContexts xsi:type="osgivizmodel:BundleContext">
+          <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_org.eclipse.equinox.cm"/>
+        </childContexts>
+        <childContexts xsi:type="osgivizmodel:BundleContext">
+          <modelElement xsi:type="osgimodel:Bundle" href="LanguageDemo.model#Bundle_com.google.guava"/>
+        </childContexts>
+        <bundles href="LanguageDemo.model#Bundle_org.eclipse.osgi.services"/>
+        <bundles href="LanguageDemo.model#Bundle_de.scheidtbachmann.osgi.language.services"/>
+        <bundles href="LanguageDemo.model#Bundle_org.apache.commons.net"/>
+        <bundles href="LanguageDemo.model#Bundle_org.apache.commons.io"/>
+        <bundles href="LanguageDemo.model#Bundle_org.apache.felix.converter"/>
+        <bundles href="LanguageDemo.model#Bundle_org.eclipse.equinox.cm"/>
+        <bundles href="LanguageDemo.model#Bundle_com.google.guava"/>
+      </childContexts>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:BundleCategoryContext">
+      <modelElement xsi:type="osgimodel:BundleCategory" href="LanguageDemo.model#BundleCategory_translation"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:BundleCategoryContext">
+      <modelElement xsi:type="osgimodel:BundleCategory" href="LanguageDemo.model#BundleCategory_persistence"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:BundleCategoryContext">
+      <modelElement xsi:type="osgimodel:BundleCategory" href="LanguageDemo.model#BundleCategory_example"/>
+    </childContexts>
+    <childContexts xsi:type="osgivizmodel:BundleCategoryContext">
+      <modelElement xsi:type="osgimodel:BundleCategory" href="LanguageDemo.model#BundleCategory_model"/>
+    </childContexts>
+    <bundleCategories href="LanguageDemo.model#BundleCategory_translation"/>
+    <bundleCategories href="LanguageDemo.model#BundleCategory_persistence"/>
+    <bundleCategories href="LanguageDemo.model#BundleCategory_example"/>
+    <bundleCategories href="LanguageDemo.model#BundleCategory_model"/>
+  </childContexts>
+  <modelElement xsi:type="osgimodel:OsgiProject" href="LanguageDemo.model#/"/>
+  <synthesisOptions id="CHOICE1266095137" value="Id"/>
+  <synthesisOptions id="CHECK-385944663" value="true"/>
+  <synthesisOptions id="CATEGORY2104342424" value="true"/>
+  <synthesisOptions id="CATEGORY519100843" value="true"/>
+  <synthesisOptions id="CATEGORY1349471539" value="true"/>
+  <synthesisOptions id="CATEGORY187480080" value="true"/>
+  <synthesisOptions id="TEXT1006389205" value=""/>
+  <synthesisOptions id="TEXT1496690515" value=""/>
+  <synthesisOptions id="CHECK428280743" value="false"/>
+  <synthesisOptions id="CHECK1258563486" value="true"/>
+  <synthesisOptions id="CHECK1364757104" value="true"/>
+  <synthesisOptions id="CHECK826964391" value="true"/>
+  <synthesisOptions id="CHECK651655063" value="true"/>
+  <synthesisOptions id="CHECK-1465056300" value="true"/>
+  <synthesisOptions id="CHECK1678818072" value="true"/>
+  <synthesisOptions id="CHECK1876852627" value="true"/>
+  <synthesisOptions id="CHECK-730492532" value="true"/>
+  <synthesisOptions id="CHECK471806631" value="true"/>
+  <synthesisOptions id="CHECK-1905336894" value="true"/>
+  <synthesisOptions id="CHECK677071778" value="true"/>
+  <synthesisOptions id="RANGE-1131311371" value="41"/>
+  <synthesisOptions id="TEXT-1269441222" value="de."/>
+  <synthesisOptions id="CHECK-1843689469" value="true"/>
+  <synthesisOptions id="CHECK70476538" value="true"/>
+  <layoutOptions id="org.eclipse.elk.layered.highDegreeNodes.treatment" value="false"/>
+  <layoutOptions id="org.eclipse.elk.layered.crossingMinimization.strategy" value="LAYER_SWEEP"/>
+</osgivizmodel:OsgiViz>
