@@ -27,8 +27,6 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.impl.OsgiVizImpl
 import org.eclipse.elk.core.service.ILayoutConfigurationStore
 import org.eclipse.elk.core.service.LayoutConnectorsService
 
-import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtensions.*
-
 /**
  * Diagram synthesis for predefined visualization models.
  * 

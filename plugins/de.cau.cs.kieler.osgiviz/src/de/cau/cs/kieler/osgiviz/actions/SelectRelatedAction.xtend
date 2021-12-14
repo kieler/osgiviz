@@ -21,7 +21,6 @@ import de.cau.cs.kieler.klighd.IAction
 import de.cau.cs.kieler.klighd.kgraph.KEdge
 import de.cau.cs.kieler.klighd.kgraph.KLabel
 import de.cau.cs.kieler.klighd.kgraph.KNode
-import de.cau.cs.kieler.osgiviz.SynthesisUtils
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
 import java.util.ArrayList
 import java.util.List

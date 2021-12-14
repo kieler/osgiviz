@@ -33,12 +33,10 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext
 import de.scheidtbachmann.osgimodel.Bundle
 import de.scheidtbachmann.osgimodel.OsgiProject
 import java.util.EnumSet
-import org.eclipse.elk.core.options.BoxLayouterOptions
 import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.PortConstraints
 import org.eclipse.elk.core.options.PortSide
 import org.eclipse.elk.core.options.SizeConstraint
-import org.eclipse.elk.core.util.BoxLayoutProvider.PackingMode
 
 import static extension de.cau.cs.kieler.klighd.syntheses.DiagramSyntheses.*
 
