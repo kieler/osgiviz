@@ -19,7 +19,6 @@ package de.cau.cs.kieler.osgiviz.actions
 
 import de.cau.cs.kieler.klighd.IAction
 import de.cau.cs.kieler.osgiviz.OsgivizUtilityManager
-import de.cau.cs.kieler.osgiviz.SynthesisUtils
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
 import de.scheidtbachmann.osgimodel.Bundle
 
@@ -41,7 +40,7 @@ class OpenBundleManifestAction implements IAction {
      * @return always a false {@link ActionResult}, no changes on the diagram
      */
     override execute(ActionContext context) {
-        val modelVisualizationContext = SynthesisUtils.getDomainElement(context) as IVisualizationContext<?>
+        val modelVisualizationContext = context.getDomainElement(context.KNode) as IVisualizationContext<?>
         val modelElement = modelVisualizationContext.modelElement as Bundle
         val String bundleName = modelElement.uniqueId
         OsgivizUtilityManager.getInstance().openFile(bundleName)

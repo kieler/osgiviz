@@ -22,7 +22,6 @@ import de.cau.cs.kieler.klighd.Klighd
 import de.cau.cs.kieler.klighd.kgraph.util.KGraphUtil
 import de.cau.cs.kieler.osgiviz.OsgiSynthesisProperties
 import de.cau.cs.kieler.osgiviz.OsgiVizFileHandler
-import de.cau.cs.kieler.osgiviz.SynthesisUtils
 import de.cau.cs.kieler.osgiviz.osgivizmodel.IVisualizationContext
 import de.cau.cs.kieler.osgiviz.osgivizmodel.OsgiViz
 import org.eclipse.core.runtime.Status
@@ -65,7 +64,7 @@ abstract class AbstractVisualizationContextChangingAction implements IAction {
         visualizationContexts.add(index, copiedVisualizationContext)
         
         // The visualization context of the element that this action is performed on.
-        val modelVisualizationContext = SynthesisUtils.getDomainElement(context) as IVisualizationContext<?>
+        val modelVisualizationContext = context.getDomainElement(context.KNode) as IVisualizationContext<?>
         if (!currentVisualizationContext.isChildContextOrEqual(modelVisualizationContext)) {
             throw new IllegalStateException("This action is performed on an element that is not currently in the " +
                 "currently displayed visualization context:" + this.class

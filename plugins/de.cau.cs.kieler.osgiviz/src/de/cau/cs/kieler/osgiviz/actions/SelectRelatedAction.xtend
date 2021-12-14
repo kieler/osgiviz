@@ -63,7 +63,7 @@ class SelectRelatedAction implements IAction {
                 ]
                 
                 // Also select all nodes representing the same element.
-                var clickedModelElement = SynthesisUtils.getDomainElement(context, clickedElement)
+                var clickedModelElement = context.getDomainElement(clickedElement)
                 if (clickedModelElement instanceof IVisualizationContext<?>) {
                     clickedModelElement = clickedModelElement.modelElement
                 }
@@ -98,7 +98,7 @@ class SelectRelatedAction implements IAction {
      */
     private def void sameDomainElement(KNode node, Object domainElement, List<KNode> returnList,
         ActionContext context) {
-        var nodeDomainElement = SynthesisUtils.getDomainElement(context, node)
+        var nodeDomainElement = context.getDomainElement(node)
         if (nodeDomainElement instanceof IVisualizationContext<?>) {
            nodeDomainElement = nodeDomainElement.modelElement 
         }

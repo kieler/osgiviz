@@ -17,11 +17,8 @@
  */
 package de.cau.cs.kieler.osgiviz
 
-import de.cau.cs.kieler.klighd.IAction.ActionContext
 import de.cau.cs.kieler.klighd.SynthesisOption
 import de.cau.cs.kieler.klighd.ViewContext
-import de.cau.cs.kieler.klighd.internal.util.KlighdInternalProperties
-import de.cau.cs.kieler.klighd.kgraph.KGraphElement
 import de.cau.cs.kieler.klighd.kgraph.KNode
 import de.cau.cs.kieler.klighd.syntheses.DiagramSyntheses
 import de.cau.cs.kieler.osgiviz.osgivizmodel.Class
@@ -54,35 +51,6 @@ final class SynthesisUtils {
      * Utils class can not be instanciated.
      */
     private new() {}
-    
-    /**
-     * Returns the domain element the clicked KNode given its action context.
-     * Uses a fallback mechanism to work around the SourceModelTrackingAdapter that seems bugged for this synthesis.
-     * FIXME: find out why the usual way does not work all the time and remove the need for this method!
-     */
-    def static Object getDomainElement(ActionContext context) {
-        getDomainElement(context, context.KNode)
-    }
-    
-    /**
-     * Returns the domain element for any KNode given its action context.
-     * Uses a fallback mechanism to work around the SourceModelTrackingAdapter that seems bugged for this synthesis.
-     * FIXME: find out why the usual way does not work all the time and remove the need for this method!
-     */
-    def static Object getDomainElement(ActionContext context, KGraphElement kElement) {
-        // Default case, how it should work all the time.
-        var Object element
-        if (kElement instanceof KNode) {
-            element = context.getDomainElement(kElement)
-        }
-        
-        // Fallback by using the KLighD internal property set during the synthesis.
-        if (element === null) {
-            element = kElement.getProperty(KlighdInternalProperties.MODEL_ELEMEMT)
-        }
-        return element
-    }
-    
     
     /**
      * If the id should be truncated by the prefix of the {@link OsgiOptions#SHORTEN_BY} option, this returns a
