@@ -100,12 +100,17 @@ class PackageObjectOverviewSynthesis extends AbstractSubSynthesis<PackageObjectO
      */
     private def KNode transformCollapsedPackageObjectsOverview(
         PackageObjectOverviewContext packageObjectOverviewContext) {
-        val filteredCollapsedPackageObjectContexts = SynthesisUtils.filteredElementContexts(
-            packageObjectOverviewContext.collapsedElements as List<PackageObjectContext>, usedContext)
+        val shown = packageObjectOverviewContext.showCollapsedElements
+        val filteredCollapsedPackageObjectContexts = if (shown) {
+            SynthesisUtils.filteredElementContexts(
+                packageObjectOverviewContext.collapsedElements as List<PackageObjectContext>, usedContext)
+        } else {
+            #[]
+        }
         createNode => [
             associateWith(packageObjectOverviewContext)
             configureBoxLayout
-            addInvisibleContainerRendering
+            addOverviewOfCollapsedRendering(shown, usedContext)
             tooltip = packageObjectOverviewContext.overviewText
             
             filteredCollapsedPackageObjectContexts.sortBy [

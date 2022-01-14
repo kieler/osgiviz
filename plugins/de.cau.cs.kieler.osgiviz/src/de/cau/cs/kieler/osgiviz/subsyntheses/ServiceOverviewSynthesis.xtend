@@ -113,18 +113,35 @@ class ServiceOverviewSynthesis extends AbstractSubSynthesis<ServiceOverviewConte
      * @param serviceOverviewContext The overview context for all service elements in this subsynthesis.
      */
     private def KNode transformCollapsedServiceOverview(ServiceOverviewContext serviceOverviewContext) {
-        val filteredCollapsedServiceComponentContexts = SynthesisUtils.filteredElementContexts(
-            serviceOverviewContext.collapsedServiceComponentContexts, usedContext)
-        val filteredCollapsedServiceInterfaceContexts = SynthesisUtils.filteredElementContexts(
-            serviceOverviewContext.collapsedServiceInterfaceContexts, usedContext)
-        val filteredCollapsedClassContexts = SynthesisUtils.filteredElementContexts(
-            serviceOverviewContext.collapsedClassContexts, usedContext)
-        val filteredCollapsedBundleContexts = SynthesisUtils.filteredElementContexts(
-            serviceOverviewContext.collapsedReferencedBundleContexts, usedContext)
+        val shown = serviceOverviewContext.showCollapsedElements
+        val filteredCollapsedServiceComponentContexts = if (shown) {
+            SynthesisUtils.filteredElementContexts(
+                serviceOverviewContext.collapsedServiceComponentContexts, usedContext)
+        } else {
+            #[]
+        }
+        val filteredCollapsedServiceInterfaceContexts = if (shown) {
+            SynthesisUtils.filteredElementContexts(
+                serviceOverviewContext.collapsedServiceInterfaceContexts, usedContext)
+        } else {
+            #[]
+        }
+        val filteredCollapsedClassContexts = if (shown) {
+            SynthesisUtils.filteredElementContexts(
+                serviceOverviewContext.collapsedClassContexts, usedContext)
+        } else {
+            #[]
+        }
+        val filteredCollapsedBundleContexts = if (shown) {
+            SynthesisUtils.filteredElementContexts(
+                serviceOverviewContext.collapsedReferencedBundleContexts, usedContext)
+        } else {
+            #[]
+        }
         createNode => [
             associateWith(serviceOverviewContext)
             configureBoxLayout
-            addInvisibleContainerRendering
+            addOverviewOfCollapsedRendering(shown, usedContext)
             tooltip = serviceOverviewContext.overviewText
             
             val boolean currentVisualizationModeInBundles = usedContext

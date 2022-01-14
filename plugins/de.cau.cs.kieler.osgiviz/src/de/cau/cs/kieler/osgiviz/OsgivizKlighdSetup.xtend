@@ -24,6 +24,7 @@ import de.cau.cs.kieler.osgiviz.actions.ContextCollapseExpandAction
 import de.cau.cs.kieler.osgiviz.actions.ContextExpandAllAction
 import de.cau.cs.kieler.osgiviz.actions.ContextRemoveAction
 import de.cau.cs.kieler.osgiviz.actions.FocusAction
+import de.cau.cs.kieler.osgiviz.actions.OpenBundleManifestAction
 import de.cau.cs.kieler.osgiviz.actions.OverviewContextCollapseExpandAction
 import de.cau.cs.kieler.osgiviz.actions.RedoAction
 import de.cau.cs.kieler.osgiviz.actions.ResetViewAction
@@ -36,9 +37,9 @@ import de.cau.cs.kieler.osgiviz.actions.RevealRequiredBundlesAction
 import de.cau.cs.kieler.osgiviz.actions.RevealUsedByBundlesAction
 import de.cau.cs.kieler.osgiviz.actions.RevealUsedPackagesAction
 import de.cau.cs.kieler.osgiviz.actions.SelectRelatedAction
+import de.cau.cs.kieler.osgiviz.actions.ShowHideCollapsedAction
 import de.cau.cs.kieler.osgiviz.actions.StoreModelAction
 import de.cau.cs.kieler.osgiviz.actions.UndoAction
-import de.cau.cs.kieler.osgiviz.actions.OpenBundleManifestAction
 
 /**
  * Setup registering all KLighD extensions required to run this bundle.
@@ -66,6 +67,7 @@ class OsgivizKlighdSetup implements IKlighdStartupHook {
             .registerAction(RevealReferencingServiceComponentsAction.ID, new RevealReferencingServiceComponentsAction)
             .registerAction(RevealReferencedServiceInterfacesAction.ID, new RevealReferencedServiceInterfacesAction)
             .registerAction(RevealInjectedServiceInterfacesAction.ID, new RevealInjectedServiceInterfacesAction)
+            .registerAction(ShowHideCollapsedAction.ID, new ShowHideCollapsedAction)
             .registerAction(OpenBundleManifestAction.ID, new OpenBundleManifestAction)
             .registerDiagramSynthesisClass(OsgiDiagramSynthesis.name, OsgiDiagramSynthesis)
             .registerDiagramSynthesisClass(OsgiVizSynthesis.name, OsgiVizSynthesis)

@@ -347,6 +347,15 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getIOverviewVisualizationContext_ShowCollapsedElements() {
+		return (EAttribute)iOverviewVisualizationContextEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getClass_() {
 		return classEClass;
 	}
@@ -1305,6 +1314,7 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 
 		iOverviewVisualizationContextEClass = createEClass(IOVERVIEW_VISUALIZATION_CONTEXT);
 		createEAttribute(iOverviewVisualizationContextEClass, IOVERVIEW_VISUALIZATION_CONTEXT__EXPANDED);
+		createEAttribute(iOverviewVisualizationContextEClass, IOVERVIEW_VISUALIZATION_CONTEXT__SHOW_COLLAPSED_ELEMENTS);
 
 		classEClass = createEClass(CLASS);
 		createEReference(classEClass, CLASS__BUNDLE);
@@ -1549,6 +1559,7 @@ public class OsgivizmodelPackageImpl extends EPackageImpl implements Osgivizmode
 
 		initEClass(iOverviewVisualizationContextEClass, IOverviewVisualizationContext.class, "IOverviewVisualizationContext", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIOverviewVisualizationContext_Expanded(), theEcorePackage.getEBoolean(), "expanded", "false", 0, 1, IOverviewVisualizationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIOverviewVisualizationContext_ShowCollapsedElements(), theEcorePackage.getEBoolean(), "showCollapsedElements", "true", 0, 1, IOverviewVisualizationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(classEClass, de.cau.cs.kieler.osgiviz.osgivizmodel.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getClass_Bundle(), theOsgimodelPackage.getBundle(), null, "bundle", null, 0, 1, de.cau.cs.kieler.osgiviz.osgivizmodel.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

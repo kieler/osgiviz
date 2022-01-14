@@ -56,6 +56,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.PackageObjectOverviewContextImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.PackageObjectOverviewContextImpl#isChildrenInitialized <em>Children Initialized</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.PackageObjectOverviewContextImpl#isExpanded <em>Expanded</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.PackageObjectOverviewContextImpl#isShowCollapsedElements <em>Show Collapsed Elements</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.PackageObjectOverviewContextImpl#getCollapsedPackageObjectContexts <em>Collapsed Package Object Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.PackageObjectOverviewContextImpl#getDetailedPackageObjectContexts <em>Detailed Package Object Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.PackageObjectOverviewContextImpl#getPackageObjects <em>Package Objects</em>}</li>
@@ -123,6 +124,26 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 	 * @ordered
 	 */
 	protected boolean expanded = EXPANDED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isShowCollapsedElements() <em>Show Collapsed Elements</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isShowCollapsedElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SHOW_COLLAPSED_ELEMENTS_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isShowCollapsedElements() <em>Show Collapsed Elements</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isShowCollapsedElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean showCollapsedElements = SHOW_COLLAPSED_ELEMENTS_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getCollapsedPackageObjectContexts() <em>Collapsed Package Object Contexts</em>}' reference list.
@@ -322,6 +343,27 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isShowCollapsedElements() {
+		return showCollapsedElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setShowCollapsedElements(boolean newShowCollapsedElements) {
+		boolean oldShowCollapsedElements = showCollapsedElements;
+		showCollapsedElements = newShowCollapsedElements;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS, oldShowCollapsedElements, showCollapsedElements));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<PackageObjectContext> getCollapsedPackageObjectContexts() {
 		if (collapsedPackageObjectContexts == null) {
 			collapsedPackageObjectContexts = new EObjectResolvingEList<PackageObjectContext>(PackageObjectContext.class, this, OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__COLLAPSED_PACKAGE_OBJECT_CONTEXTS);
@@ -422,6 +464,8 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 				return isChildrenInitialized();
 			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__EXPANDED:
 				return isExpanded();
+			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				return isShowCollapsedElements();
 			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__COLLAPSED_PACKAGE_OBJECT_CONTEXTS:
 				return getCollapsedPackageObjectContexts();
 			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__DETAILED_PACKAGE_OBJECT_CONTEXTS:
@@ -456,6 +500,9 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 				return;
 			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__EXPANDED:
 				setExpanded((Boolean)newValue);
+				return;
+			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				setShowCollapsedElements((Boolean)newValue);
 				return;
 			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__COLLAPSED_PACKAGE_OBJECT_CONTEXTS:
 				getCollapsedPackageObjectContexts().clear();
@@ -496,6 +543,9 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__EXPANDED:
 				setExpanded(EXPANDED_EDEFAULT);
 				return;
+			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				setShowCollapsedElements(SHOW_COLLAPSED_ELEMENTS_EDEFAULT);
+				return;
 			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__COLLAPSED_PACKAGE_OBJECT_CONTEXTS:
 				getCollapsedPackageObjectContexts().clear();
 				return;
@@ -527,6 +577,8 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 				return childrenInitialized != CHILDREN_INITIALIZED_EDEFAULT;
 			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__EXPANDED:
 				return expanded != EXPANDED_EDEFAULT;
+			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				return showCollapsedElements != SHOW_COLLAPSED_ELEMENTS_EDEFAULT;
 			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__COLLAPSED_PACKAGE_OBJECT_CONTEXTS:
 				return collapsedPackageObjectContexts != null && !collapsedPackageObjectContexts.isEmpty();
 			case OsgivizmodelPackage.PACKAGE_OBJECT_OVERVIEW_CONTEXT__DETAILED_PACKAGE_OBJECT_CONTEXTS:
@@ -551,6 +603,8 @@ public class PackageObjectOverviewContextImpl extends MinimalEObjectImpl.Contain
 		result.append(childrenInitialized);
 		result.append(", expanded: ");
 		result.append(expanded);
+		result.append(", showCollapsedElements: ");
+		result.append(showCollapsedElements);
 		result.append(')');
 		return result.toString();
 	}

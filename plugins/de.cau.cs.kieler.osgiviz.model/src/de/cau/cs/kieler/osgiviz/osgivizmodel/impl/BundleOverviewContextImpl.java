@@ -60,6 +60,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleOverviewContextImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleOverviewContextImpl#isChildrenInitialized <em>Children Initialized</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleOverviewContextImpl#isExpanded <em>Expanded</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleOverviewContextImpl#isShowCollapsedElements <em>Show Collapsed Elements</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleOverviewContextImpl#getRequiredBundleEdges <em>Required Bundle Edges</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleOverviewContextImpl#getUsedPackagesOfBundleEdges <em>Used Packages Of Bundle Edges</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleOverviewContextImpl#getUsedPackageEdges <em>Used Package Edges</em>}</li>
@@ -131,6 +132,26 @@ public class BundleOverviewContextImpl extends MinimalEObjectImpl.Container impl
 	 * @ordered
 	 */
 	protected boolean expanded = EXPANDED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isShowCollapsedElements() <em>Show Collapsed Elements</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isShowCollapsedElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SHOW_COLLAPSED_ELEMENTS_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isShowCollapsedElements() <em>Show Collapsed Elements</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isShowCollapsedElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean showCollapsedElements = SHOW_COLLAPSED_ELEMENTS_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getRequiredBundleEdges() <em>Required Bundle Edges</em>}' containment reference list.
@@ -370,6 +391,27 @@ public class BundleOverviewContextImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isShowCollapsedElements() {
+		return showCollapsedElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setShowCollapsedElements(boolean newShowCollapsedElements) {
+		boolean oldShowCollapsedElements = showCollapsedElements;
+		showCollapsedElements = newShowCollapsedElements;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS, oldShowCollapsedElements, showCollapsedElements));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<Pair<BundleContext, BundleContext>> getRequiredBundleEdges() {
 		if (requiredBundleEdges == null) {
 			requiredBundleEdges = new EObjectContainmentEList<Pair<BundleContext, BundleContext>>(Pair.class, this, OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__REQUIRED_BUNDLE_EDGES);
@@ -524,6 +566,8 @@ public class BundleOverviewContextImpl extends MinimalEObjectImpl.Container impl
 				return isChildrenInitialized();
 			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__EXPANDED:
 				return isExpanded();
+			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				return isShowCollapsedElements();
 			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__REQUIRED_BUNDLE_EDGES:
 				return getRequiredBundleEdges();
 			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__USED_PACKAGES_OF_BUNDLE_EDGES:
@@ -566,6 +610,9 @@ public class BundleOverviewContextImpl extends MinimalEObjectImpl.Container impl
 				return;
 			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__EXPANDED:
 				setExpanded((Boolean)newValue);
+				return;
+			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				setShowCollapsedElements((Boolean)newValue);
 				return;
 			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__REQUIRED_BUNDLE_EDGES:
 				getRequiredBundleEdges().clear();
@@ -622,6 +669,9 @@ public class BundleOverviewContextImpl extends MinimalEObjectImpl.Container impl
 			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__EXPANDED:
 				setExpanded(EXPANDED_EDEFAULT);
 				return;
+			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				setShowCollapsedElements(SHOW_COLLAPSED_ELEMENTS_EDEFAULT);
+				return;
 			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__REQUIRED_BUNDLE_EDGES:
 				getRequiredBundleEdges().clear();
 				return;
@@ -665,6 +715,8 @@ public class BundleOverviewContextImpl extends MinimalEObjectImpl.Container impl
 				return childrenInitialized != CHILDREN_INITIALIZED_EDEFAULT;
 			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__EXPANDED:
 				return expanded != EXPANDED_EDEFAULT;
+			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				return showCollapsedElements != SHOW_COLLAPSED_ELEMENTS_EDEFAULT;
 			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__REQUIRED_BUNDLE_EDGES:
 				return requiredBundleEdges != null && !requiredBundleEdges.isEmpty();
 			case OsgivizmodelPackage.BUNDLE_OVERVIEW_CONTEXT__USED_PACKAGES_OF_BUNDLE_EDGES:
@@ -697,6 +749,8 @@ public class BundleOverviewContextImpl extends MinimalEObjectImpl.Container impl
 		result.append(childrenInitialized);
 		result.append(", expanded: ");
 		result.append(expanded);
+		result.append(", showCollapsedElements: ");
+		result.append(showCollapsedElements);
 		result.append(')');
 		return result.toString();
 	}

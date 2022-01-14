@@ -100,16 +100,22 @@ class BundleOverviewSynthesis extends AbstractSubSynthesis<BundleOverviewContext
     
     /**
      * The top part of the bundle overview rendering containing all collapsed bundle renderings in a box layout.
+     * Has an interactive button hovering in the corner to show or hide the contents of this node.
      * 
      * @param bundleOverviewContext The overview context for all bundles in this subsynthesis.
      */
     private def KNode transformCollapsedBundlesOverview(BundleOverviewContext bundleOverviewContext) {
-        val filteredCollapsedBundleContexts = SynthesisUtils.filteredElementContexts(
-            bundleOverviewContext.collapsedElements as List<BundleContext>, usedContext).toList
+        val shown = bundleOverviewContext.showCollapsedElements
+        val filteredCollapsedBundleContexts = if (shown) {
+            SynthesisUtils.filteredElementContexts(
+                bundleOverviewContext.collapsedElements as List<BundleContext>, usedContext).toList
+        } else {
+            #[]
+        }
         createNode => [
             associateWith(bundleOverviewContext)
             configureBoxLayout
-            addInvisibleContainerRendering
+            addOverviewOfCollapsedRendering(shown, usedContext)
             tooltip = bundleOverviewContext.overviewText
             
             filteredCollapsedBundleContexts.sortBy [

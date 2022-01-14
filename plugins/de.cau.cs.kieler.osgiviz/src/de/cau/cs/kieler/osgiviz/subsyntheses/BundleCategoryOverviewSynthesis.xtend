@@ -100,12 +100,17 @@ class BundleCategoryOverviewSynthesis extends AbstractSubSynthesis<BundleCategor
      */
     private def KNode transformCollapsedBundleCategoriesOverview(
         BundleCategoryOverviewContext bundleCategoryOverviewContext) {
-        val filteredCollapsedBundleCategoryContexts = SynthesisUtils.filteredElementContexts(
-            bundleCategoryOverviewContext.collapsedElements as List<BundleCategoryContext>, usedContext)
+        val shown = bundleCategoryOverviewContext.showCollapsedElements
+        val filteredCollapsedBundleCategoryContexts = if (shown) {
+            SynthesisUtils.filteredElementContexts(
+                bundleCategoryOverviewContext.collapsedElements as List<BundleCategoryContext>, usedContext)
+        } else {
+            #[]
+        }
         createNode => [
             associateWith(bundleCategoryOverviewContext)
             configureBoxLayout
-            addInvisibleContainerRendering
+            addOverviewOfCollapsedRendering(shown, usedContext)
             tooltip = bundleCategoryOverviewContext.overviewText
             
             filteredCollapsedBundleCategoryContexts.sortBy [

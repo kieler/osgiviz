@@ -207,13 +207,22 @@ public interface OsgivizmodelPackage extends EPackage {
 	int IOVERVIEW_VISUALIZATION_CONTEXT__EXPANDED = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Show Collapsed Elements</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IOVERVIEW_VISUALIZATION_CONTEXT__SHOW_COLLAPSED_ELEMENTS = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>IOverview Visualization Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IOVERVIEW_VISUALIZATION_CONTEXT_FEATURE_COUNT = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 1;
+	int IOVERVIEW_VISUALIZATION_CONTEXT_FEATURE_COUNT = IVISUALIZATION_CONTEXT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>IOverview Visualization Context</em>' class.
@@ -1183,6 +1192,15 @@ public interface OsgivizmodelPackage extends EPackage {
 	int PRODUCT_OVERVIEW_CONTEXT__EXPANDED = IOVERVIEW_VISUALIZATION_CONTEXT__EXPANDED;
 
 	/**
+	 * The feature id for the '<em><b>Show Collapsed Elements</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS = IOVERVIEW_VISUALIZATION_CONTEXT__SHOW_COLLAPSED_ELEMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Detailed Product Contexts</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1283,6 +1301,15 @@ public interface OsgivizmodelPackage extends EPackage {
 	int FEATURE_OVERVIEW_CONTEXT__EXPANDED = IOVERVIEW_VISUALIZATION_CONTEXT__EXPANDED;
 
 	/**
+	 * The feature id for the '<em><b>Show Collapsed Elements</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS = IOVERVIEW_VISUALIZATION_CONTEXT__SHOW_COLLAPSED_ELEMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Collapsed Feature Contexts</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1381,6 +1408,15 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int BUNDLE_OVERVIEW_CONTEXT__EXPANDED = IOVERVIEW_VISUALIZATION_CONTEXT__EXPANDED;
+
+	/**
+	 * The feature id for the '<em><b>Show Collapsed Elements</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUNDLE_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS = IOVERVIEW_VISUALIZATION_CONTEXT__SHOW_COLLAPSED_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Required Bundle Edges</b></em>' containment reference list.
@@ -1517,6 +1553,15 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int BUNDLE_CATEGORY_OVERVIEW_CONTEXT__EXPANDED = IOVERVIEW_VISUALIZATION_CONTEXT__EXPANDED;
+
+	/**
+	 * The feature id for the '<em><b>Show Collapsed Elements</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUNDLE_CATEGORY_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS = IOVERVIEW_VISUALIZATION_CONTEXT__SHOW_COLLAPSED_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Collapsed Bundle Category Contexts</b></em>' reference list.
@@ -1690,6 +1735,15 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SERVICE_OVERVIEW_CONTEXT__EXPANDED = IOVERVIEW_VISUALIZATION_CONTEXT__EXPANDED;
+
+	/**
+	 * The feature id for the '<em><b>Show Collapsed Elements</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS = IOVERVIEW_VISUALIZATION_CONTEXT__SHOW_COLLAPSED_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Collapsed Service Component Contexts</b></em>' reference list.
@@ -1934,6 +1988,15 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int PACKAGE_OBJECT_OVERVIEW_CONTEXT__EXPANDED = IOVERVIEW_VISUALIZATION_CONTEXT__EXPANDED;
+
+	/**
+	 * The feature id for the '<em><b>Show Collapsed Elements</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_OBJECT_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS = IOVERVIEW_VISUALIZATION_CONTEXT__SHOW_COLLAPSED_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Collapsed Package Object Contexts</b></em>' reference list.
@@ -2200,6 +2263,17 @@ public interface OsgivizmodelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getIOverviewVisualizationContext_Expanded();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.IOverviewVisualizationContext#isShowCollapsedElements <em>Show Collapsed Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Show Collapsed Elements</em>'.
+	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.IOverviewVisualizationContext#isShowCollapsedElements()
+	 * @see #getIOverviewVisualizationContext()
+	 * @generated
+	 */
+	EAttribute getIOverviewVisualizationContext_ShowCollapsedElements();
 
 	/**
 	 * Returns the meta object for class '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.Class <em>Class</em>}'.
@@ -3396,6 +3470,14 @@ public interface OsgivizmodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute IOVERVIEW_VISUALIZATION_CONTEXT__EXPANDED = eINSTANCE.getIOverviewVisualizationContext_Expanded();
+
+		/**
+		 * The meta object literal for the '<em><b>Show Collapsed Elements</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IOVERVIEW_VISUALIZATION_CONTEXT__SHOW_COLLAPSED_ELEMENTS = eINSTANCE.getIOverviewVisualizationContext_ShowCollapsedElements();
 
 		/**
 		 * The meta object literal for the '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ClassImpl <em>Class</em>}' class.

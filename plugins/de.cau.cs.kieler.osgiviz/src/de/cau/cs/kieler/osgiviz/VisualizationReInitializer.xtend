@@ -122,6 +122,7 @@ class VisualizationReInitializer {
         }
         // Restore the expanded state.
         newContext.expanded = oldContext.expanded
+        newContext.showCollapsedElements = oldContext.showCollapsedElements
         
         // Re-initialize all child contexts.
         reInitializeOverviewChildContexts(newContext, oldContext)
@@ -149,6 +150,7 @@ class VisualizationReInitializer {
         }
         // Restore the expanded state.
         newContext.expanded = oldContext.expanded
+        newContext.showCollapsedElements = oldContext.showCollapsedElements
         
         // Re-initialize all child contexts.
         reInitializeOverviewChildContexts(newContext, oldContext)
@@ -191,6 +193,7 @@ class VisualizationReInitializer {
         }
         // Restore the expanded state.
         newContext.expanded = oldContext.expanded
+        newContext.showCollapsedElements = oldContext.showCollapsedElements
         
         newContext.allowInBundleConnections = oldContext.allowInBundleConnections
         
@@ -215,6 +218,7 @@ class VisualizationReInitializer {
         
         // Restore the expanded state.
         newContext.expanded = oldContext.expanded
+        newContext.showCollapsedElements = oldContext.showCollapsedElements
         
         // Re-initialize all child contexts.
         reInitializeOverviewChildContexts(newContext, oldContext)
@@ -235,6 +239,7 @@ class VisualizationReInitializer {
         
         // Restore the expanded state.
         newContext.expanded = oldContext.expanded
+        newContext.showCollapsedElements = oldContext.showCollapsedElements
         
         // Re-initialize all child contexts.
         reInitializeOverviewChildContexts(newContext, oldContext)

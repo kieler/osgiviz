@@ -56,6 +56,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryOverviewContextImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryOverviewContextImpl#isChildrenInitialized <em>Children Initialized</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryOverviewContextImpl#isExpanded <em>Expanded</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryOverviewContextImpl#isShowCollapsedElements <em>Show Collapsed Elements</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryOverviewContextImpl#getCollapsedBundleCategoryContexts <em>Collapsed Bundle Category Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryOverviewContextImpl#getDetailedBundleCategoryContexts <em>Detailed Bundle Category Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.BundleCategoryOverviewContextImpl#getBundleCategories <em>Bundle Categories</em>}</li>
@@ -125,6 +126,26 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * @ordered
 	 */
 	protected boolean expanded = EXPANDED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isShowCollapsedElements() <em>Show Collapsed Elements</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isShowCollapsedElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SHOW_COLLAPSED_ELEMENTS_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isShowCollapsedElements() <em>Show Collapsed Elements</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isShowCollapsedElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean showCollapsedElements = SHOW_COLLAPSED_ELEMENTS_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getCollapsedBundleCategoryContexts() <em>Collapsed Bundle Category Contexts</em>}' reference list.
@@ -354,6 +375,27 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isShowCollapsedElements() {
+		return showCollapsedElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setShowCollapsedElements(boolean newShowCollapsedElements) {
+		boolean oldShowCollapsedElements = showCollapsedElements;
+		showCollapsedElements = newShowCollapsedElements;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS, oldShowCollapsedElements, showCollapsedElements));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<BundleCategoryContext> getCollapsedBundleCategoryContexts() {
 		if (collapsedBundleCategoryContexts == null) {
 			collapsedBundleCategoryContexts = new EObjectResolvingEList<BundleCategoryContext>(BundleCategoryContext.class, this, OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__COLLAPSED_BUNDLE_CATEGORY_CONTEXTS);
@@ -520,6 +562,8 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 				return isChildrenInitialized();
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__EXPANDED:
 				return isExpanded();
+			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				return isShowCollapsedElements();
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__COLLAPSED_BUNDLE_CATEGORY_CONTEXTS:
 				return getCollapsedBundleCategoryContexts();
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__DETAILED_BUNDLE_CATEGORY_CONTEXTS:
@@ -558,6 +602,9 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 				return;
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__EXPANDED:
 				setExpanded((Boolean)newValue);
+				return;
+			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				setShowCollapsedElements((Boolean)newValue);
 				return;
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__COLLAPSED_BUNDLE_CATEGORY_CONTEXTS:
 				getCollapsedBundleCategoryContexts().clear();
@@ -604,6 +651,9 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__EXPANDED:
 				setExpanded(EXPANDED_EDEFAULT);
 				return;
+			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				setShowCollapsedElements(SHOW_COLLAPSED_ELEMENTS_EDEFAULT);
+				return;
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__COLLAPSED_BUNDLE_CATEGORY_CONTEXTS:
 				getCollapsedBundleCategoryContexts().clear();
 				return;
@@ -641,6 +691,8 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 				return childrenInitialized != CHILDREN_INITIALIZED_EDEFAULT;
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__EXPANDED:
 				return expanded != EXPANDED_EDEFAULT;
+			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				return showCollapsedElements != SHOW_COLLAPSED_ELEMENTS_EDEFAULT;
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__COLLAPSED_BUNDLE_CATEGORY_CONTEXTS:
 				return collapsedBundleCategoryContexts != null && !collapsedBundleCategoryContexts.isEmpty();
 			case OsgivizmodelPackage.BUNDLE_CATEGORY_OVERVIEW_CONTEXT__DETAILED_BUNDLE_CATEGORY_CONTEXTS:
@@ -669,6 +721,8 @@ public class BundleCategoryOverviewContextImpl extends MinimalEObjectImpl.Contai
 		result.append(childrenInitialized);
 		result.append(", expanded: ");
 		result.append(expanded);
+		result.append(", showCollapsedElements: ");
+		result.append(showCollapsedElements);
 		result.append(", detailedUncategorized: ");
 		result.append(detailedUncategorized);
 		result.append(')');

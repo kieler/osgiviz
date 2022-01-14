@@ -56,6 +56,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ProductOverviewContextImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ProductOverviewContextImpl#isChildrenInitialized <em>Children Initialized</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ProductOverviewContextImpl#isExpanded <em>Expanded</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ProductOverviewContextImpl#isShowCollapsedElements <em>Show Collapsed Elements</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ProductOverviewContextImpl#getDetailedProductContexts <em>Detailed Product Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ProductOverviewContextImpl#getCollapsedProductContexts <em>Collapsed Product Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ProductOverviewContextImpl#getProducts <em>Products</em>}</li>
@@ -123,6 +124,26 @@ public class ProductOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * @ordered
 	 */
 	protected boolean expanded = EXPANDED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isShowCollapsedElements() <em>Show Collapsed Elements</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isShowCollapsedElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SHOW_COLLAPSED_ELEMENTS_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isShowCollapsedElements() <em>Show Collapsed Elements</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isShowCollapsedElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean showCollapsedElements = SHOW_COLLAPSED_ELEMENTS_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getDetailedProductContexts() <em>Detailed Product Contexts</em>}' reference list.
@@ -322,6 +343,27 @@ public class ProductOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isShowCollapsedElements() {
+		return showCollapsedElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setShowCollapsedElements(boolean newShowCollapsedElements) {
+		boolean oldShowCollapsedElements = showCollapsedElements;
+		showCollapsedElements = newShowCollapsedElements;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.PRODUCT_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS, oldShowCollapsedElements, showCollapsedElements));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<ProductContext> getDetailedProductContexts() {
 		if (detailedProductContexts == null) {
 			detailedProductContexts = new EObjectResolvingEList<ProductContext>(ProductContext.class, this, OsgivizmodelPackage.PRODUCT_OVERVIEW_CONTEXT__DETAILED_PRODUCT_CONTEXTS);
@@ -422,6 +464,8 @@ public class ProductOverviewContextImpl extends MinimalEObjectImpl.Container imp
 				return isChildrenInitialized();
 			case OsgivizmodelPackage.PRODUCT_OVERVIEW_CONTEXT__EXPANDED:
 				return isExpanded();
+			case OsgivizmodelPackage.PRODUCT_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				return isShowCollapsedElements();
 			case OsgivizmodelPackage.PRODUCT_OVERVIEW_CONTEXT__DETAILED_PRODUCT_CONTEXTS:
 				return getDetailedProductContexts();
 			case OsgivizmodelPackage.PRODUCT_OVERVIEW_CONTEXT__COLLAPSED_PRODUCT_CONTEXTS:
@@ -456,6 +500,9 @@ public class ProductOverviewContextImpl extends MinimalEObjectImpl.Container imp
 				return;
 			case OsgivizmodelPackage.PRODUCT_OVERVIEW_CONTEXT__EXPANDED:
 				setExpanded((Boolean)newValue);
+				return;
+			case OsgivizmodelPackage.PRODUCT_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				setShowCollapsedElements((Boolean)newValue);
 				return;
 			case OsgivizmodelPackage.PRODUCT_OVERVIEW_CONTEXT__DETAILED_PRODUCT_CONTEXTS:
 				getDetailedProductContexts().clear();
@@ -496,6 +543,9 @@ public class ProductOverviewContextImpl extends MinimalEObjectImpl.Container imp
 			case OsgivizmodelPackage.PRODUCT_OVERVIEW_CONTEXT__EXPANDED:
 				setExpanded(EXPANDED_EDEFAULT);
 				return;
+			case OsgivizmodelPackage.PRODUCT_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				setShowCollapsedElements(SHOW_COLLAPSED_ELEMENTS_EDEFAULT);
+				return;
 			case OsgivizmodelPackage.PRODUCT_OVERVIEW_CONTEXT__DETAILED_PRODUCT_CONTEXTS:
 				getDetailedProductContexts().clear();
 				return;
@@ -527,6 +577,8 @@ public class ProductOverviewContextImpl extends MinimalEObjectImpl.Container imp
 				return childrenInitialized != CHILDREN_INITIALIZED_EDEFAULT;
 			case OsgivizmodelPackage.PRODUCT_OVERVIEW_CONTEXT__EXPANDED:
 				return expanded != EXPANDED_EDEFAULT;
+			case OsgivizmodelPackage.PRODUCT_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				return showCollapsedElements != SHOW_COLLAPSED_ELEMENTS_EDEFAULT;
 			case OsgivizmodelPackage.PRODUCT_OVERVIEW_CONTEXT__DETAILED_PRODUCT_CONTEXTS:
 				return detailedProductContexts != null && !detailedProductContexts.isEmpty();
 			case OsgivizmodelPackage.PRODUCT_OVERVIEW_CONTEXT__COLLAPSED_PRODUCT_CONTEXTS:
@@ -551,6 +603,8 @@ public class ProductOverviewContextImpl extends MinimalEObjectImpl.Container imp
 		result.append(childrenInitialized);
 		result.append(", expanded: ");
 		result.append(expanded);
+		result.append(", showCollapsedElements: ");
+		result.append(showCollapsedElements);
 		result.append(')');
 		return result.toString();
 	}

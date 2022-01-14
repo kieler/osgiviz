@@ -101,12 +101,17 @@ class FeatureOverviewSynthesis extends AbstractSubSynthesis<FeatureOverviewConte
      * @param featureOverviewContext The overview context for all features in this subsynthesis.
      */
     private def KNode transformCollapsedFeaturesOverview(FeatureOverviewContext featureOverviewContext) {
-        val filteredCollapsedFeatureContexts = SynthesisUtils.filteredElementContexts(
-            featureOverviewContext.collapsedElements as List<FeatureContext>, usedContext)
+        val shown = featureOverviewContext.showCollapsedElements
+        val filteredCollapsedFeatureContexts = if (shown) {
+            SynthesisUtils.filteredElementContexts(
+                featureOverviewContext.collapsedElements as List<FeatureContext>, usedContext)
+        } else {
+            #[]
+        }
         createNode => [
             associateWith(featureOverviewContext)
             configureBoxLayout
-            addInvisibleContainerRendering
+            addOverviewOfCollapsedRendering(shown, usedContext)
             tooltip = featureOverviewContext.overviewText
             
             filteredCollapsedFeatureContexts.sortBy [

@@ -63,6 +63,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ServiceOverviewContextImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ServiceOverviewContextImpl#isChildrenInitialized <em>Children Initialized</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ServiceOverviewContextImpl#isExpanded <em>Expanded</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ServiceOverviewContextImpl#isShowCollapsedElements <em>Show Collapsed Elements</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ServiceOverviewContextImpl#getCollapsedServiceComponentContexts <em>Collapsed Service Component Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ServiceOverviewContextImpl#getDetailedServiceComponentContexts <em>Detailed Service Component Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.ServiceOverviewContextImpl#getCollapsedServiceInterfaceContexts <em>Collapsed Service Interface Contexts</em>}</li>
@@ -146,6 +147,26 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * @ordered
 	 */
 	protected boolean expanded = EXPANDED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isShowCollapsedElements() <em>Show Collapsed Elements</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isShowCollapsedElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SHOW_COLLAPSED_ELEMENTS_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isShowCollapsedElements() <em>Show Collapsed Elements</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isShowCollapsedElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean showCollapsedElements = SHOW_COLLAPSED_ELEMENTS_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getCollapsedServiceComponentContexts() <em>Collapsed Service Component Contexts</em>}' reference list.
@@ -515,6 +536,27 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isShowCollapsedElements() {
+		return showCollapsedElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setShowCollapsedElements(boolean newShowCollapsedElements) {
+		boolean oldShowCollapsedElements = showCollapsedElements;
+		showCollapsedElements = newShowCollapsedElements;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS, oldShowCollapsedElements, showCollapsedElements));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<ServiceComponentContext> getCollapsedServiceComponentContexts() {
 		if (collapsedServiceComponentContexts == null) {
 			collapsedServiceComponentContexts = new EObjectResolvingEList<ServiceComponentContext>(ServiceComponentContext.class, this, OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__COLLAPSED_SERVICE_COMPONENT_CONTEXTS);
@@ -830,6 +872,8 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 				return isChildrenInitialized();
 			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__EXPANDED:
 				return isExpanded();
+			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				return isShowCollapsedElements();
 			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__COLLAPSED_SERVICE_COMPONENT_CONTEXTS:
 				return getCollapsedServiceComponentContexts();
 			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__DETAILED_SERVICE_COMPONENT_CONTEXTS:
@@ -896,6 +940,9 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 				return;
 			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__EXPANDED:
 				setExpanded((Boolean)newValue);
+				return;
+			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				setShowCollapsedElements((Boolean)newValue);
 				return;
 			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__COLLAPSED_SERVICE_COMPONENT_CONTEXTS:
 				getCollapsedServiceComponentContexts().clear();
@@ -999,6 +1046,9 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__EXPANDED:
 				setExpanded(EXPANDED_EDEFAULT);
 				return;
+			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				setShowCollapsedElements(SHOW_COLLAPSED_ELEMENTS_EDEFAULT);
+				return;
 			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__COLLAPSED_SERVICE_COMPONENT_CONTEXTS:
 				getCollapsedServiceComponentContexts().clear();
 				return;
@@ -1078,6 +1128,8 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 				return childrenInitialized != CHILDREN_INITIALIZED_EDEFAULT;
 			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__EXPANDED:
 				return expanded != EXPANDED_EDEFAULT;
+			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				return showCollapsedElements != SHOW_COLLAPSED_ELEMENTS_EDEFAULT;
 			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__COLLAPSED_SERVICE_COMPONENT_CONTEXTS:
 				return collapsedServiceComponentContexts != null && !collapsedServiceComponentContexts.isEmpty();
 			case OsgivizmodelPackage.SERVICE_OVERVIEW_CONTEXT__DETAILED_SERVICE_COMPONENT_CONTEXTS:
@@ -1134,6 +1186,8 @@ public class ServiceOverviewContextImpl extends MinimalEObjectImpl.Container imp
 		result.append(childrenInitialized);
 		result.append(", expanded: ");
 		result.append(expanded);
+		result.append(", showCollapsedElements: ");
+		result.append(showCollapsedElements);
 		result.append(", allowInBundleConnections: ");
 		result.append(allowInBundleConnections);
 		result.append(')');

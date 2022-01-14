@@ -38,6 +38,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.IOverviewVisualizationContext#isExpanded <em>Expanded</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.IOverviewVisualizationContext#isShowCollapsedElements <em>Show Collapsed Elements</em>}</li>
  * </ul>
  *
  * @see de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage#getIOverviewVisualizationContext()
@@ -70,5 +71,32 @@ public interface IOverviewVisualizationContext<M> extends IVisualizationContext<
 	 * @generated
 	 */
 	void setExpanded(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Show Collapsed Elements</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * *
+	 * Indicates whether the collapsed elements in this overview should be shown
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Show Collapsed Elements</em>' attribute.
+	 * @see #setShowCollapsedElements(boolean)
+	 * @see de.cau.cs.kieler.osgiviz.osgivizmodel.OsgivizmodelPackage#getIOverviewVisualizationContext_ShowCollapsedElements()
+	 * @model default="true" unique="false"
+	 * @generated
+	 */
+	boolean isShowCollapsedElements();
+
+	/**
+	 * Sets the value of the '{@link de.cau.cs.kieler.osgiviz.osgivizmodel.IOverviewVisualizationContext#isShowCollapsedElements <em>Show Collapsed Elements</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Show Collapsed Elements</em>' attribute.
+	 * @see #isShowCollapsedElements()
+	 * @generated
+	 */
+	void setShowCollapsedElements(boolean value);
 
 } // IOverviewVisualizationContext

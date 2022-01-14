@@ -56,6 +56,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.FeatureOverviewContextImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.FeatureOverviewContextImpl#isChildrenInitialized <em>Children Initialized</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.FeatureOverviewContextImpl#isExpanded <em>Expanded</em>}</li>
+ *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.FeatureOverviewContextImpl#isShowCollapsedElements <em>Show Collapsed Elements</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.FeatureOverviewContextImpl#getCollapsedFeatureContexts <em>Collapsed Feature Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.FeatureOverviewContextImpl#getDetailedFeatureContexts <em>Detailed Feature Contexts</em>}</li>
  *   <li>{@link de.cau.cs.kieler.osgiviz.osgivizmodel.impl.FeatureOverviewContextImpl#getFeatures <em>Features</em>}</li>
@@ -123,6 +124,26 @@ public class FeatureOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * @ordered
 	 */
 	protected boolean expanded = EXPANDED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isShowCollapsedElements() <em>Show Collapsed Elements</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isShowCollapsedElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SHOW_COLLAPSED_ELEMENTS_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isShowCollapsedElements() <em>Show Collapsed Elements</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isShowCollapsedElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean showCollapsedElements = SHOW_COLLAPSED_ELEMENTS_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getCollapsedFeatureContexts() <em>Collapsed Feature Contexts</em>}' reference list.
@@ -322,6 +343,27 @@ public class FeatureOverviewContextImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isShowCollapsedElements() {
+		return showCollapsedElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setShowCollapsedElements(boolean newShowCollapsedElements) {
+		boolean oldShowCollapsedElements = showCollapsedElements;
+		showCollapsedElements = newShowCollapsedElements;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OsgivizmodelPackage.FEATURE_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS, oldShowCollapsedElements, showCollapsedElements));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<FeatureContext> getCollapsedFeatureContexts() {
 		if (collapsedFeatureContexts == null) {
 			collapsedFeatureContexts = new EObjectResolvingEList<FeatureContext>(FeatureContext.class, this, OsgivizmodelPackage.FEATURE_OVERVIEW_CONTEXT__COLLAPSED_FEATURE_CONTEXTS);
@@ -422,6 +464,8 @@ public class FeatureOverviewContextImpl extends MinimalEObjectImpl.Container imp
 				return isChildrenInitialized();
 			case OsgivizmodelPackage.FEATURE_OVERVIEW_CONTEXT__EXPANDED:
 				return isExpanded();
+			case OsgivizmodelPackage.FEATURE_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				return isShowCollapsedElements();
 			case OsgivizmodelPackage.FEATURE_OVERVIEW_CONTEXT__COLLAPSED_FEATURE_CONTEXTS:
 				return getCollapsedFeatureContexts();
 			case OsgivizmodelPackage.FEATURE_OVERVIEW_CONTEXT__DETAILED_FEATURE_CONTEXTS:
@@ -456,6 +500,9 @@ public class FeatureOverviewContextImpl extends MinimalEObjectImpl.Container imp
 				return;
 			case OsgivizmodelPackage.FEATURE_OVERVIEW_CONTEXT__EXPANDED:
 				setExpanded((Boolean)newValue);
+				return;
+			case OsgivizmodelPackage.FEATURE_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				setShowCollapsedElements((Boolean)newValue);
 				return;
 			case OsgivizmodelPackage.FEATURE_OVERVIEW_CONTEXT__COLLAPSED_FEATURE_CONTEXTS:
 				getCollapsedFeatureContexts().clear();
@@ -496,6 +543,9 @@ public class FeatureOverviewContextImpl extends MinimalEObjectImpl.Container imp
 			case OsgivizmodelPackage.FEATURE_OVERVIEW_CONTEXT__EXPANDED:
 				setExpanded(EXPANDED_EDEFAULT);
 				return;
+			case OsgivizmodelPackage.FEATURE_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				setShowCollapsedElements(SHOW_COLLAPSED_ELEMENTS_EDEFAULT);
+				return;
 			case OsgivizmodelPackage.FEATURE_OVERVIEW_CONTEXT__COLLAPSED_FEATURE_CONTEXTS:
 				getCollapsedFeatureContexts().clear();
 				return;
@@ -527,6 +577,8 @@ public class FeatureOverviewContextImpl extends MinimalEObjectImpl.Container imp
 				return childrenInitialized != CHILDREN_INITIALIZED_EDEFAULT;
 			case OsgivizmodelPackage.FEATURE_OVERVIEW_CONTEXT__EXPANDED:
 				return expanded != EXPANDED_EDEFAULT;
+			case OsgivizmodelPackage.FEATURE_OVERVIEW_CONTEXT__SHOW_COLLAPSED_ELEMENTS:
+				return showCollapsedElements != SHOW_COLLAPSED_ELEMENTS_EDEFAULT;
 			case OsgivizmodelPackage.FEATURE_OVERVIEW_CONTEXT__COLLAPSED_FEATURE_CONTEXTS:
 				return collapsedFeatureContexts != null && !collapsedFeatureContexts.isEmpty();
 			case OsgivizmodelPackage.FEATURE_OVERVIEW_CONTEXT__DETAILED_FEATURE_CONTEXTS:
@@ -551,6 +603,8 @@ public class FeatureOverviewContextImpl extends MinimalEObjectImpl.Container imp
 		result.append(childrenInitialized);
 		result.append(", expanded: ");
 		result.append(expanded);
+		result.append(", showCollapsedElements: ");
+		result.append(showCollapsedElements);
 		result.append(')');
 		return result.toString();
 	}
