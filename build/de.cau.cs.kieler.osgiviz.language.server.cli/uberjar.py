@@ -27,11 +27,9 @@
 from __future__ import print_function # python3 print
 
 import os
-import stat
 import sys
 import shutil
 import argparse
-import re
 from subprocess import check_call
 from fnmatch import fnmatch
 from os.path import isfile, isdir, join, abspath, relpath, dirname, basename
@@ -154,11 +152,7 @@ def main(args):
         stop('Stopping build due to merge conflicts.')
 
     # Bundle into jar
-    jar = bundle(args, target_dir, merged, klighd)
-
-    # Wrapper scripts
-    if args.scripts:
-        create_standalone_scripts(args, jar, target_dir,klighd)
+    bundle(args, target_dir, merged, klighd)
 
 def extract(args, extracted, merged, klighd):
     conflicts = False
@@ -286,62 +280,6 @@ def bundle(args, target_dir, merged, klighd):
     else:
         return jar
 
-def create_standalone_scripts(args, jar, target_dir, klighd):
-    # This is some magic found in the depth of the internet by chsch
-    print('-- Creating standalone scripts --')
-    java9_options = ' --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/jdk.internal.loader=ALL-UNNAMED'
-
-    if klighd:
-        jar_linux = jar['linux']
-        jar_win = jar['win']
-        jar_osx = jar['osx']
-    else:
-        jar_linux = jar_win = jar_osx = jar
-    
-    # linux
-    if jar_linux:
-        with open(jar_linux, 'rb') as jar_file:
-            code = jar_file.read()
-            linux_cmd = '#!/usr/bin/env bash\nexec java -Djava.system.class.loader=de.cau.cs.kieler.kicool.cli.CLILoader -Xmx512m %s -jar $0 "$@"\n'
-            
-            with open(join(target_dir, args.name + '-linux'), 'wb') as file:
-                write_script(file, linux_cmd % java9_options, code)
-            if args.java8:
-                with open(join(target_dir, args.name + '-linuxJava8'), 'wb') as file:
-                    write_script(file, linux_cmd % '', code)
-
-    # windows
-    if jar_win:
-        with open(jar_win, 'rb') as jar_file:
-            code = jar_file.read()
-            win_cmd = 'java -Djava.system.class.loader=de.cau.cs.kieler.kicool.cli.CLILoader -Xmx512m %s -jar %%0 %%* \r\n exit /b %%errorlevel%%\r\n' # escaped percent sign because of format string!
-            
-            with open(join(target_dir, args.name + '-win.bat'), 'wb') as file:
-                write_script(file, win_cmd % java9_options, code)
-            if args.java8:
-                with open(join(target_dir, args.name + '-winJava8.bat'), 'wb') as file:
-                    write_script(file, win_cmd % '', code)
-        
-    # osx
-    if jar_osx:
-        with open(jar_osx, 'rb') as jar_file:
-            code = jar_file.read()
-            osx_cmd = '#!/usr/bin/env bash\nexec java -Djava.system.class.loader=de.cau.cs.kieler.kicool.cli.CLILoader -XstartOnFirstThread -Xmx512m %s -jar $0 "$@" \n'
-            
-            with open(join(target_dir, args.name + '-osx'), 'wb') as file:
-                write_script(file, osx_cmd % java9_options, code)
-            if args.java8:
-                with open(join(target_dir, args.name + '-osxJava8'), 'wb') as file:
-                    write_script(file, osx_cmd % '', code)
-
-def write_script(file, command, code):
-    print('Creating script', basename(file.name))
-    file.write(command)
-    file.write(code)
-    flags = os.fstat(file.fileno()).st_mode
-    flags |= stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH
-    os.fchmod(file.fileno(), stat.S_IMODE(flags))
-
 def stop(msg):
     errPrint('[ERROR] ' + msg)
     sys.exit(2)
@@ -352,15 +290,14 @@ def errPrint(*args, **kwargs):
     sys.stderr.flush()
 
 if __name__ == '__main__':
-    argParser = argparse.ArgumentParser(description='This script bundles a self-contained eclipse update site into an executable uber-jar (no shading!) and several platform specific executable scripts bundling the jar.')
-    argParser.add_argument('-s', dest='scripts', action='store_true', help='create platform specific standalone scripts of the jar')
+    argParser = argparse.ArgumentParser(description='This script bundles a self-contained eclipse update site into an executable uber-jar (no shading!).')
     argParser.add_argument('-jar', default='jar', help='override jar command to adjust java version, e.g. /usr/lib/jvm/java-11-openjdk-amd64/bin/jar')
     argParser.add_argument('--java8', dest='java8', action='store_true', help='activate Java 8 support')
     argParser.add_argument('--ignore-conflicts', dest='ignore_conflicts', action='store_true', help='prevents failing if merge fail due to a conflict.')
     argParser.add_argument('source', help='directory containing all plugins that should be bundled (self-contained update site)')
     argParser.add_argument('name', help='name of the generated executable jar/script')
     argParser.add_argument('main', help='main class of the generated jar')
-    argParser.add_argument('target', help='target directory to store generated jar/ and scripts')
+    argParser.add_argument('target', help='target directory to store generated jars')
     argParser.add_argument('build', help='directory for storing intermediate results')
     try:
         main(argParser.parse_args())
