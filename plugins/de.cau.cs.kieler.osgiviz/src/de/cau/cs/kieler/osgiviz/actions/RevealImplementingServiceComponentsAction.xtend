@@ -4,7 +4,7 @@
  * A part of kieler
  * https://github.com/kieler
  * 
- * Copyright 2019 by
+ * Copyright 2019-2022 by
  * + Christian-Albrechts-University of Kiel
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
@@ -37,7 +37,7 @@ class RevealImplementingServiceComponentsAction extends AbstractRevealServiceCom
      */
     public static val String ID = RevealImplementingServiceComponentsAction.name
     
-    override <M> revealInServiceOverview(IVisualizationContext<M> elementContext,
+    override revealInServiceOverview(IVisualizationContext<?> elementContext,
         ServiceOverviewContext serviceOverviewContext) {
         val serviceInterfaceContext = elementContext as ServiceInterfaceContext
         val serviceInterface = serviceInterfaceContext.modelElement
@@ -92,7 +92,7 @@ class RevealImplementingServiceComponentsAction extends AbstractRevealServiceCom
         ]
     }
     
-    override <M> revealInIndependentBundle(IVisualizationContext<M> elementContext,
+    override revealInIndependentBundle(IVisualizationContext<?> elementContext,
         ServiceOverviewContext serviceOverviewContext) {
         val serviceInterfaceContext = elementContext as ServiceInterfaceContext
         val serviceInterface = serviceInterfaceContext.modelElement

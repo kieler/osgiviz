@@ -4,7 +4,7 @@
  * A part of kieler
  * https://github.com/kieler
  * 
- * Copyright 2019 by
+ * Copyright 2019-2022 by
  * + Christian-Albrechts-University of Kiel
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
@@ -35,7 +35,7 @@ class ContextRemoveAction extends AbstractVisualizationContextChangingAction {
      */
     public static val String ID = ContextRemoveAction.name
     
-    override <M> changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
+    override changeVisualization(IVisualizationContext<?> modelVisualizationContext, ActionContext actionContext) {
         // This action will always be performed on a child visualization context of a IOverviewVisualizationContext.
         val overviewVisContext = modelVisualizationContext.parent
         if (!(overviewVisContext instanceof IOverviewVisualizationContext)) {

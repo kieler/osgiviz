@@ -4,7 +4,7 @@
  * A part of kieler
  * https://github.com/kieler
  * 
- * Copyright 2019 by
+ * Copyright 2019-2022 by
  * + Christian-Albrechts-University of Kiel
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
@@ -46,7 +46,7 @@ class RevealUsedPackagesAction extends AbstractVisualizationContextChangingActio
      */
     public static val String ID = RevealUsedPackagesAction.name
     
-    override <M> changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
+    override changeVisualization(IVisualizationContext<?> modelVisualizationContext, ActionContext actionContext) {
         // The BundleContext element for the element that was clicked on.
         val bundleContext = modelVisualizationContext as BundleContext
         

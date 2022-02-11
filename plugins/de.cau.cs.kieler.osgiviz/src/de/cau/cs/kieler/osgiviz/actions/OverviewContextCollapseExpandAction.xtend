@@ -4,7 +4,7 @@
  * A part of kieler
  * https://github.com/kieler
  * 
- * Copyright 2019 by
+ * Copyright 2019-2022 by
  * + Christian-Albrechts-University of Kiel
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
@@ -31,13 +31,13 @@ class OverviewContextCollapseExpandAction extends AbstractVisualizationContextCh
      */
     public static val String ID = OverviewContextCollapseExpandAction.name 
     
-    override <M> changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
+    override changeVisualization(IVisualizationContext<?> modelVisualizationContext, ActionContext actionContext) {
         if (!(modelVisualizationContext instanceof IOverviewVisualizationContext)) {
             throw new IllegalArgumentException("This action can only be called on a IOverviewVisualizationContext. "
                 + "Was called on " + modelVisualizationContext.class)
         }
         // Just invert the expanded state.
-        val c = modelVisualizationContext as IOverviewVisualizationContext<M>
+        val c = modelVisualizationContext as IOverviewVisualizationContext<?>
         c.expanded = !c.expanded
         
         // Also, toggle the expansion state in the viewer.

@@ -4,7 +4,7 @@
  * A part of kieler
  * https://github.com/kieler
  * 
- * Copyright 2019 by
+ * Copyright 2019-2022 by
  * + Christian-Albrechts-University of Kiel
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
@@ -44,7 +44,7 @@ class ConnectAllAction extends AbstractVisualizationContextChangingAction {
      */
     public static val String ID = ConnectAllAction.name
     
-    override <M> changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
+    override changeVisualization(IVisualizationContext<?> modelVisualizationContext, ActionContext actionContext) {
         val kdm = KlighdDataManager.instance
         val revealImplementedServiceInterfacesAction = kdm.getActionById(RevealImplementedServiceInterfacesAction.ID)
             as RevealImplementedServiceInterfacesAction

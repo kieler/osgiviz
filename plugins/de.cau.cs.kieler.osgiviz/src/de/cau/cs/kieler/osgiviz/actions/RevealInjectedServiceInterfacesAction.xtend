@@ -4,7 +4,7 @@
  * A part of kieler
  * https://github.com/kieler
  * 
- * Copyright 2019 by
+ * Copyright 2019-2022 by
  * + Christian-Albrechts-University of Kiel
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
@@ -100,7 +100,7 @@ class RevealInjectedServiceInterfacesAction extends AbstractRevealServiceInterfa
         ]
     }
     
-    override protected <M> void revealInIndependentBundle(IVisualizationContext<M> elementContext,
+    override protected void revealInIndependentBundle(IVisualizationContext<?> elementContext,
         ServiceOverviewContext serviceOverviewContext) {
         val classContext = elementContext as ClassContext
         val theClass = classContext.modelElement

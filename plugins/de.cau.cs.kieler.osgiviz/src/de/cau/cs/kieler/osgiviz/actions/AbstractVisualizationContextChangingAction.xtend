@@ -4,7 +4,7 @@
  * A part of kieler
  * https://github.com/kieler
  * 
- * Copyright 2019 by
+ * Copyright 2019-2022 by
  * + Christian-Albrechts-University of Kiel
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
@@ -103,8 +103,8 @@ abstract class AbstractVisualizationContextChangingAction implements IAction {
      * 
      * @param modelVisualizationContext The visualization context of the element that this action is performed on.
      */
-    abstract def <M> void changeVisualization(
-        IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext)
+    abstract def void changeVisualization(
+        IVisualizationContext<?> modelVisualizationContext, ActionContext actionContext)
     
     /**
      * Returns a new {@link ActionResult} this action will return when executed. Should be overriden by individual

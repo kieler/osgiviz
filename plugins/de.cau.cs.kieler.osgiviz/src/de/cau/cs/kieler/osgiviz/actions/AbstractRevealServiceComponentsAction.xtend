@@ -4,7 +4,7 @@
  * A part of kieler
  * https://github.com/kieler
  * 
- * Copyright 2019 by
+ * Copyright 2019-2022 by
  * + Christian-Albrechts-University of Kiel
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
@@ -30,7 +30,7 @@ import de.cau.cs.kieler.osgiviz.osgivizmodel.ServiceOverviewContext
  */
 abstract class AbstractRevealServiceComponentsAction extends AbstractVisualizationContextChangingAction {
     
-    override <M> changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
+    override changeVisualization(IVisualizationContext<?> modelVisualizationContext, ActionContext actionContext) {
         // The overview context this element is shown in.
         val overviewContext = modelVisualizationContext.parent as ServiceOverviewContext
         
@@ -56,7 +56,7 @@ abstract class AbstractRevealServiceComponentsAction extends AbstractVisualizati
      * @param elementContext The context representing the service element that the connection is for.
      * @param serviceOverviewContext The service overview context this action is issued in.
      */
-    protected abstract def <M> void revealInServiceOverview(IVisualizationContext<M> elementContext,
+    protected abstract def void revealInServiceOverview(IVisualizationContext<?> elementContext,
         ServiceOverviewContext serviceOverviewContext)
     
     /**
@@ -66,7 +66,7 @@ abstract class AbstractRevealServiceComponentsAction extends AbstractVisualizati
      * @param elementContext The context representing the service element that the connection is for.
      * @param serviceOverviewContext The service overview context this action is issued in.
      */
-    protected abstract def <M> void revealInIndependentBundle(IVisualizationContext<M> elementContext,
+    protected abstract def void revealInIndependentBundle(IVisualizationContext<?> elementContext,
         ServiceOverviewContext serviceOverviewContext)
     
 }

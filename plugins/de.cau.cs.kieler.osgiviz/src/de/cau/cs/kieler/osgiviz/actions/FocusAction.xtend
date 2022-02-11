@@ -4,7 +4,7 @@
  * A part of kieler
  * https://github.com/kieler
  * 
- * Copyright 2019 by
+ * Copyright 2019-2022 by
  * + Christian-Albrechts-University of Kiel
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
@@ -32,7 +32,7 @@ class FocusAction extends AbstractVisualizationContextChangingAction {
      */
     public static val String ID = FocusAction.name
     
-    override <M> changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
+    override changeVisualization(IVisualizationContext<?> modelVisualizationContext, ActionContext actionContext) {
         val rootVisualization = modelVisualizationContext.rootVisualization
         rootVisualization.focus = modelVisualizationContext
     }

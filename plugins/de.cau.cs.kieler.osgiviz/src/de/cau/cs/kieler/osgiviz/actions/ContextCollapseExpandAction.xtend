@@ -4,7 +4,7 @@
  * A part of kieler
  * https://github.com/kieler
  * 
- * Copyright 2019 by
+ * Copyright 2019-2022 by
  * + Christian-Albrechts-University of Kiel
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
@@ -33,14 +33,14 @@ class ContextCollapseExpandAction extends AbstractVisualizationContextChangingAc
      */
     public static val String ID = ContextCollapseExpandAction.name
     
-    override <M> changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
+    override changeVisualization(IVisualizationContext<?> modelVisualizationContext, ActionContext actionContext) {
         // This action will always be performed on a child visualization context of a IOverviewVisualizationContext.
         val overviewVisContext = modelVisualizationContext.parent
         if (!(overviewVisContext instanceof IOverviewVisualizationContext)) {
             throw new IllegalStateException("This action is performed on an element that is not inside an overview " +
                 "visualization!")
         }
-        val ovc = (overviewVisContext as IOverviewVisualizationContext<M>)
+        val ovc = (overviewVisContext as IOverviewVisualizationContext<?>)
         
         if (ovc.collapsedElements.contains(modelVisualizationContext)) {
             ovc.makeDetailed(modelVisualizationContext)

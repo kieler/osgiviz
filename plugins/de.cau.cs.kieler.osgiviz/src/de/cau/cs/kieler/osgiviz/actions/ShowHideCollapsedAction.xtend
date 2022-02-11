@@ -31,11 +31,11 @@ class ShowHideCollapsedAction extends AbstractVisualizationContextChangingAction
      */
     public static val String ID = ShowHideCollapsedAction.name
     
-    override <M> changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
+    override changeVisualization(IVisualizationContext<?> modelVisualizationContext, ActionContext actionContext) {
         if (!(modelVisualizationContext instanceof IOverviewVisualizationContext)) {
             throw new IllegalStateException("This action is not performed on an overview visualization!")
         }
-        val ovc = (modelVisualizationContext as IOverviewVisualizationContext<M>)
+        val ovc = (modelVisualizationContext as IOverviewVisualizationContext<?>)
         
         ovc.showCollapsedElements = !ovc.showCollapsedElements
     }
