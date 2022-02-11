@@ -4,7 +4,7 @@
  * A part of kieler
  * https://github.com/kieler
  * 
- * Copyright 2019 by
+ * Copyright 2019-2022 by
  * + Christian-Albrechts-University of Kiel
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
@@ -30,14 +30,14 @@ import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtens
  * 
  * @author nre
  */
-class RevealUsedByBundlesAction extends AbstractVisualizationContextChangingAction {
+class RevealUsedByBundlesAction extends RevealAction<BundleContext> {
     
     /**
      * This action's ID.
      */
     public static val String ID = RevealUsedByBundlesAction.name
     
-    override <M> changeVisualization(IVisualizationContext<M> modelVisualizationContext, ActionContext actionContext) {
+    override changeVisualization(IVisualizationContext<?> modelVisualizationContext, ActionContext actionContext) {
         // The BundleContext element for the element that was clicked on.
         val bundleContext = modelVisualizationContext as BundleContext
         
@@ -57,7 +57,7 @@ class RevealUsedByBundlesAction extends AbstractVisualizationContextChangingActi
         
         // The bundle contexts in the overview that the usedByBundle connection can connect to.
         // Use the detailed bundle contexts only, as they are all made detailed above.
-        val usedByBundleContexts = bundleOverviewContext.detailedElements.filter [
+        newlyConnectedContexts = bundleOverviewContext.detailedElements.filter [
             bundle.usedByBundle.contains(it.modelElement)
         ].toList
         
@@ -68,10 +68,30 @@ class RevealUsedByBundlesAction extends AbstractVisualizationContextChangingActi
 //                ContextUtils.removeRequiredBundleEdge(usedByBundleContext as BundleContext, bundleContext)
 //            ]
 //        } else {
-            usedByBundleContexts.forEach [ usedByBundleContext |
+            newlyConnectedContexts.forEach [ usedByBundleContext |
                 (usedByBundleContext as BundleContext).addRequiredBundleEdge(bundleContext)
             ]
 //        }
+    }
+    
+    override applicableContext() {
+        return BundleContext
+    }
+    
+    /**
+     * Recursive version of the parent class's action, revealing all elements using the same connection type connected.
+     */
+    static class Recursive extends RecursiveRevealAction<BundleContext, RevealUsedByBundlesAction> {
+        
+        /**
+         * This action's ID.
+         */
+        public static val String ID = Recursive.name
+        
+        override revealActionClass() {
+            return RevealUsedByBundlesAction
+        }
+        
     }
     
 }

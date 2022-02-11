@@ -4,7 +4,7 @@
  * A part of kieler
  * https://github.com/kieler
  * 
- * Copyright 2019 by
+ * Copyright 2019-2022 by
  * + Christian-Albrechts-University of Kiel
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
@@ -865,27 +865,29 @@ class OsgiStyles {
     
     /**
      * The rendering of a port that connects the bundles used by this component. Issues the
-     * {@link RevealUsedByBundlesAction} if clicked.
+     * {@link RevealUsedByBundlesAction} or {@link RevealUsedByBundlesAction.Recursive}  if clicked.
      */
     def KRectangle addUsedByBundlesPortRendering(KPort port, int numUsedByBundles, boolean allShown) {
         return port.addRectangle => [
             background = if (allShown) ALL_SHOWN_COLOR.color else NOT_ALL_SHOWN_COLOR.color
             val tooltipText = "Show bundles that require this bundle (" + numUsedByBundles + " total)."
             tooltip = tooltipText
-            addSingleClickAction(RevealUsedByBundlesAction::ID)
+            addSingleClickAction(RevealUsedByBundlesAction::ID, ModifierState.DONT_CARE, ModifierState.NOT_PRESSED, ModifierState.DONT_CARE)
+            addSingleClickAction(RevealUsedByBundlesAction.Recursive::ID, ModifierState.DONT_CARE, ModifierState.PRESSED, ModifierState.DONT_CARE)
         ]
     }
     
     /**
      * The rendering of a port that connects the bundles required by this component. Issues the
-     * {@link RevealRequiredBundlesAction} if clicked.
+     * {@link RevealRequiredBundlesAction} or {@link RevealRequiredBundlesAction.Recursive} if clicked.
      */
     def KRectangle addRequiredBundlesPortRendering(KPort port, int numReqBundles, boolean allShown) {
         return port.addRectangle => [
             background = if (allShown) ALL_SHOWN_COLOR.color else NOT_ALL_SHOWN_COLOR.color
             val tooltipText = "Show required bundles (" + numReqBundles + " total)."
             tooltip = tooltipText
-            addSingleClickAction(RevealRequiredBundlesAction::ID)
+            addSingleClickAction(RevealRequiredBundlesAction::ID, ModifierState.DONT_CARE, ModifierState.NOT_PRESSED, ModifierState.DONT_CARE)
+            addSingleClickAction(RevealRequiredBundlesAction.Recursive::ID, ModifierState.DONT_CARE, ModifierState.PRESSED, ModifierState.DONT_CARE)
         ]
     }
     

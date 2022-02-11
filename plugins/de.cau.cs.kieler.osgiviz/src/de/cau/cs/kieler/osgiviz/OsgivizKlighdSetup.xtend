@@ -4,7 +4,7 @@
  * A part of kieler
  * https://github.com/kieler
  * 
- * Copyright 2020 by
+ * Copyright 2020-2022 by
  * + Christian-Albrechts-University of Kiel
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
@@ -60,7 +60,9 @@ class OsgivizKlighdSetup implements IKlighdStartupHook {
             .registerAction(OverviewContextCollapseExpandAction.ID, new OverviewContextCollapseExpandAction)
             .registerAction(ConnectAllAction.ID, new ConnectAllAction)
             .registerAction(RevealRequiredBundlesAction.ID, new RevealRequiredBundlesAction)
+            .registerAction(RevealRequiredBundlesAction.Recursive.ID, new RevealRequiredBundlesAction.Recursive)
             .registerAction(RevealUsedByBundlesAction.ID, new RevealUsedByBundlesAction)
+            .registerAction(RevealUsedByBundlesAction.Recursive.ID, new RevealUsedByBundlesAction.Recursive)
             .registerAction(RevealUsedPackagesAction.ID, new RevealUsedPackagesAction)
             .registerAction(RevealImplementingServiceComponentsAction.ID, new RevealImplementingServiceComponentsAction)
             .registerAction(RevealImplementedServiceInterfacesAction.ID, new RevealImplementedServiceInterfacesAction)
