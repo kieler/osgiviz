@@ -126,6 +126,8 @@ class OsgiDiagramSynthesis extends AbstractDiagramSynthesis<OsgiProject> {
     override transform(OsgiProject model) {
         val modelNode = createNode.associateWith(model)
         
+        modelNode.configureDefaultRenderings
+        
         // Create a view with the currently stored visualization context in mind. If there is no current context, create
         // a new one for the general OSGi model overview and store that for later use.
         val visualizationContexts = usedContext.getProperty(OsgiSynthesisProperties.VISUALIZATION_CONTEXTS)

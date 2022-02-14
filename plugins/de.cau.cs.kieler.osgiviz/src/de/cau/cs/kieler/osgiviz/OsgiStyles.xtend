@@ -28,6 +28,7 @@ import de.cau.cs.kieler.klighd.krendering.KContainerRendering
 import de.cau.cs.kieler.klighd.krendering.KEllipse
 import de.cau.cs.kieler.klighd.krendering.KPolyline
 import de.cau.cs.kieler.klighd.krendering.KRectangle
+import de.cau.cs.kieler.klighd.krendering.KRenderingFactory
 import de.cau.cs.kieler.klighd.krendering.KRoundedRectangle
 import de.cau.cs.kieler.klighd.krendering.KText
 import de.cau.cs.kieler.klighd.krendering.LineStyle
@@ -37,6 +38,7 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KColorExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KContainerRenderingExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KEdgeExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KLabelExtensions
+import de.cau.cs.kieler.klighd.krendering.extensions.KLibraryExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KPolylineExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KRenderingExtensions
 import de.cau.cs.kieler.osgiviz.actions.ConnectAllAction
@@ -83,8 +85,11 @@ class OsgiStyles {
     @Inject extension KContainerRenderingExtensions
     @Inject extension KEdgeExtensions
     @Inject extension KLabelExtensions
+    @Inject extension KLibraryExtensions
     @Inject extension KPolylineExtensions
     @Inject extension KRenderingExtensions
+    
+    extension KRenderingFactory = KRenderingFactory.eINSTANCE
     
     // The colors used for the background of all visualized elements.
     public static final String BUNDLE_COLOR_1            = "#E0F7FF" // HSV 195 12 100
@@ -121,6 +126,42 @@ class OsgiStyles {
     
     /** The roundness of visualized rounded rectangles. */
     static final int ROUNDNESS = 4
+    
+    
+    // ------------------------------------ Library renderings ------------------------------------
+    
+    /**
+     * Default rendering for dependency edges contained in the rendering library.
+     */
+    KPolyline requiredBundleEdgeRendering
+    static final String requiredBundleEdgeRenderingId = "requiredBundleEdgeRendering"
+    
+    def void configureDefaultRenderings(KNode graph) {
+        val library = createKRenderingLibrary
+        graph.data += library
+        
+        requiredBundleEdgeRendering = createKPolyline => [
+            id = requiredBundleEdgeRenderingId
+            lineWidth = 2
+            addHeadArrowDecorator => [
+                lineWidth = 1
+                background = "black".color
+                foreground = "black".color
+                selectionLineWidth = 1.5f
+                selectionForeground = SELECTION_COLOR.color
+                selectionBackground = SELECTION_COLOR.color
+//                addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
+//                    ModifierState.NOT_PRESSED)
+                suppressSelectablility
+            ]
+            lineStyle = LineStyle.DASH
+            selectionLineWidth = 3
+            selectionForeground = SELECTION_COLOR.color
+//            addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
+//                ModifierState.NOT_PRESSED)
+        ]
+        library.renderings += requiredBundleEdgeRendering
+    }
     
     // ------------------------------------- Generic renderings -------------------------------------
     
@@ -895,25 +936,29 @@ class OsgiStyles {
      * Adds the rendering for an edge showing a bundle requirement.
      */
     def addRequiredBundleEdgeRendering(KEdge edge) {
-        edge.addPolyline => [
-            lineWidth = 2
-            addHeadArrowDecorator => [
-                lineWidth = 1
-                background = "black".color
-                foreground = "black".color
-                selectionLineWidth = 1.5f
-                selectionForeground = SELECTION_COLOR.color
-                selectionBackground = SELECTION_COLOR.color
-                addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
-                    ModifierState.NOT_PRESSED)
-                suppressSelectablility
-            ]
-            lineStyle = LineStyle.DASH
-            selectionLineWidth = 3
-            selectionForeground = SELECTION_COLOR.color
-            addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
-                ModifierState.NOT_PRESSED)
-        ]
+        val rendering = edge.addRenderingRef(requiredBundleEdgeRendering)
+        rendering.addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
+            ModifierState.NOT_PRESSED)
+        
+//        edge.addPolyline => [
+//            lineWidth = 2
+//            addHeadArrowDecorator => [
+//                lineWidth = 1
+//                background = "black".color
+//                foreground = "black".color
+//                selectionLineWidth = 1.5f
+//                selectionForeground = SELECTION_COLOR.color
+//                selectionBackground = SELECTION_COLOR.color
+//                addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
+//                    ModifierState.NOT_PRESSED)
+//                suppressSelectablility
+//            ]
+//            lineStyle = LineStyle.DASH
+//            selectionLineWidth = 3
+//            selectionForeground = SELECTION_COLOR.color
+//            addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
+//                ModifierState.NOT_PRESSED)
+//        ]
     }
     
     /**
