@@ -4,7 +4,7 @@
  * A part of kieler
  * https://github.com/kieler
  * 
- * Copyright 2019 by
+ * Copyright 2019-2022 by
  * + Christian-Albrechts-University of Kiel
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
@@ -67,7 +67,8 @@ class BundleCategoryOverviewSynthesis extends AbstractSubSynthesis<BundleCategor
                 setLayoutOption(it, CoreOptions::ALGORITHM, "org.eclipse.elk.layered")
                 setLayoutOption(it, CoreOptions::DIRECTION, Direction.DOWN)
                 setLayoutOption(CoreOptions::NODE_SIZE_CONSTRAINTS, EnumSet.of(SizeConstraint.MINIMUM_SIZE))
-                addOverviewRendering("Bundle Categories", bundleCategoryOverviewContext.overviewText, false, usedContext)
+                val isFocus = bundleCategoryOverviewContext.rootVisualization.focus === bundleCategoryOverviewContext
+                addOverviewRendering("Bundle Categories", bundleCategoryOverviewContext.overviewText, false, isFocus, usedContext)
                 
                 // remove the padding of the invisible container.
                 addLayoutParam(CoreOptions.PADDING, new ElkPadding(0, 0, 0, 0))

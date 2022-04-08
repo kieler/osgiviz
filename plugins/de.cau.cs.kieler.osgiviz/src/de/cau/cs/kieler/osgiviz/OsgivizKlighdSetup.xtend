@@ -23,6 +23,7 @@ import de.cau.cs.kieler.osgiviz.actions.ConnectAllAction
 import de.cau.cs.kieler.osgiviz.actions.ContextCollapseExpandAction
 import de.cau.cs.kieler.osgiviz.actions.ContextExpandAllAction
 import de.cau.cs.kieler.osgiviz.actions.ContextRemoveAction
+import de.cau.cs.kieler.osgiviz.actions.DefocusAction
 import de.cau.cs.kieler.osgiviz.actions.FocusAction
 import de.cau.cs.kieler.osgiviz.actions.OpenBundleManifestAction
 import de.cau.cs.kieler.osgiviz.actions.OverviewContextCollapseExpandAction
@@ -50,6 +51,7 @@ class OsgivizKlighdSetup implements IKlighdStartupHook {
         KlighdDataManager.instance
             .registerAction(SelectRelatedAction.ID, new SelectRelatedAction)
             .registerAction(FocusAction.ID, new FocusAction)
+            .registerAction(DefocusAction.ID, new DefocusAction)
             .registerAction(UndoAction.ID, new UndoAction)
             .registerAction(RedoAction.ID, new RedoAction)
             .registerAction(ResetViewAction.ID, new ResetViewAction)

@@ -4,7 +4,7 @@
  * A part of kieler
  * https://github.com/kieler
  * 
- * Copyright 2019 by
+ * Copyright 2019-2022 by
  * + Christian-Albrechts-University of Kiel
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
@@ -82,7 +82,8 @@ class ServiceOverviewSynthesis extends AbstractSubSynthesis<ServiceOverviewConte
                 setLayoutOption(it, CoreOptions::ALGORITHM, "org.eclipse.elk.layered")
                 setLayoutOption(it, CoreOptions::DIRECTION, Direction.DOWN)
                 setLayoutOption(CoreOptions::NODE_SIZE_CONSTRAINTS, EnumSet.of(SizeConstraint.MINIMUM_SIZE))
-                addOverviewRendering("Services", serviceOverviewContext.overviewText, true, usedContext)
+                val isFocus = serviceOverviewContext.rootVisualization.focus === serviceOverviewContext
+                addOverviewRendering("Services", serviceOverviewContext.overviewText, true, isFocus, usedContext)
                 
                 // remove the padding of the invisible container.
                 addLayoutParam(CoreOptions.PADDING, new ElkPadding(0, 0, 0, 0))

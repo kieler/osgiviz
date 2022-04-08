@@ -43,6 +43,7 @@ import de.cau.cs.kieler.osgiviz.actions.ConnectAllAction
 import de.cau.cs.kieler.osgiviz.actions.ContextCollapseExpandAction
 import de.cau.cs.kieler.osgiviz.actions.ContextExpandAllAction
 import de.cau.cs.kieler.osgiviz.actions.ContextRemoveAction
+import de.cau.cs.kieler.osgiviz.actions.DefocusAction
 import de.cau.cs.kieler.osgiviz.actions.FocusAction
 import de.cau.cs.kieler.osgiviz.actions.OpenBundleManifestAction
 import de.cau.cs.kieler.osgiviz.actions.OverviewContextCollapseExpandAction
@@ -152,10 +153,11 @@ class OsgiStyles {
      * @param headlineText The headline presenting this overview.
      * @param tooltipText What should be shown in a tooltip when hovering this overview.
      * @param isConnectable if the overview rendering contains connectable elements
+     * @param isFocused if the overview is currently focused
      * @param context The used ViewContext.
      */
     def void addOverviewRendering(KNode node, String headlineText, String tooltipText, boolean isConnectable,
-        ViewContext context) {
+        boolean isFocused, ViewContext context) {
         // Expanded
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
             setAsExpandedView
@@ -181,7 +183,11 @@ class OsgiStyles {
                 ]
                 if (interactiveButtons) {
                     addVerticalLine
-                    addFocusButton(context)
+                    if (isFocused) {
+                        addDefocusButton(context)
+                    } else {
+                        addFocusButton(context)
+                    }
                     addExpandAllButton(context)
                     if (isConnectable) {
                         addConnectAllButton(context)
@@ -457,6 +463,33 @@ class OsgiStyles {
                 ]
             } else {
                 val label = "Focus"
+                addButton(label, action)
+            }
+        ]
+    }
+    
+    /**
+     * Adds a button in grid placement that causes the {@link DefocusAction} to be called.
+     * 
+     * @param container The parent rendering this button should be added to.
+     * @param context The used ViewContext.
+     */
+    def KRectangle addDefocusButton(KContainerRendering container, ViewContext context) {
+        val action = DefocusAction::ID
+        return container.addRectangle => [
+            setGridPlacementData => [
+                flexibleWidth = false
+            ]
+            addSingleOrMultiClickAction(action)
+            lineWidth = 0
+            tooltip = "Remove the focus from this overview."
+            if (context.getOptionValue(SHOW_ICONS) as Boolean) {
+                addImage("de.cau.cs.kieler.osgiviz", "icons/loupe-crossed128.png") => [
+                    setPointPlacementData(RIGHT, 0, 0.5f, TOP, 0, 0.5f, H_CENTRAL, V_CENTRAL, 4f, 4f, 12, 12)
+                    addSingleOrMultiClickAction(action)
+                ]
+            } else {
+                val label = "Defocus"
                 addButton(label, action)
             }
         ]

@@ -4,7 +4,7 @@
  * A part of kieler
  * https://github.com/kieler
  * 
- * Copyright 2019 by
+ * Copyright 2019-2022 by
  * + Christian-Albrechts-University of Kiel
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
@@ -67,7 +67,8 @@ class ProductOverviewSynthesis extends AbstractSubSynthesis<ProductOverviewConte
                 configureBoxLayout
                 setLayoutOption(BoxLayouterOptions.BOX_PACKING_MODE, PackingMode.GROUP_MIXED)
                 setLayoutOption(CoreOptions::NODE_SIZE_CONSTRAINTS, EnumSet.of(SizeConstraint.MINIMUM_SIZE))
-                addOverviewRendering("Products", productOverviewContext.overviewText, false, usedContext)
+                val isFocus = productOverviewContext.rootVisualization.focus === productOverviewContext
+                addOverviewRendering("Products", productOverviewContext.overviewText, false, isFocus, usedContext)
                 
                 val filteredCollapsedProducts = SynthesisUtils.filteredElementContexts(
                     productOverviewContext.collapsedElements as List<ProductContext>, usedContext)
