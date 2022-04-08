@@ -84,16 +84,13 @@ abstract class AbstractVisualizationContextChangingAction implements IAction {
             
             return getActionResult(context)
         } catch (Exception e) {
-            // Put an error model in the context and show that. // TODO.
-//            val errorModel = new ErrorModel("The action failed to execute and threw an exception.", e)
-//            visualizationContexts.add(index + 1, errorModel) // TODO: Vis context of that.
-//            context.viewContext.setProperty(OsgiSynthesisProperties.CURRENT_VISUALIZATION_CONTEXT_INDEX, index + 1)
-            
             // Show the exception, but continue normally.
-            Klighd.handle(new Status(Status.ERROR, "de.cau.cs.kieler.osgiviz",
+            val errorStatus = new Status(Status.ERROR, "de.cau.cs.kieler.osgiviz",
                 "Something went wrong while executing the " + this.class.canonicalName + " action.\n" + 
                 "Please view the error log and send the stack trace and the way to " +
-                "reproduce this error to the developer.", e));
+                "reproduce this error to the developer.", e)
+            Klighd.show(errorStatus)
+            Klighd.log(errorStatus)
             return getActionResult(context)
         }
     }
