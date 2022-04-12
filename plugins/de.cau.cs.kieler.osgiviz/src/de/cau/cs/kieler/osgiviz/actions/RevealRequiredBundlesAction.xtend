@@ -26,7 +26,6 @@ import static extension de.cau.cs.kieler.osgiviz.osgivizmodel.util.ContextExtens
 /**
  * Expands the required bundles of any bundle and connects the bundles with an edge from the new bundle's
  * 'usedByBundles' port to this bundle's 'requiredBundles' port. 
- * If all required bundles are already shown, this action reverses its functionality and removes all bundles again.
  * 
  * @author nre
  */
@@ -61,16 +60,9 @@ class RevealRequiredBundlesAction extends RevealAction<BundleContext> {
             bundle.requiredBundles.contains(it.modelElement)
         ].toList
         
-        // If all bundles are already connected, remove them all. Otherwise, connect them all.
-//        if (ContextUtils.allConnected(bundleContext, requiredBundleContexts, bundleOverviewContext, true)) {
-//            requiredBundleContexts.forEach [ requiredBundleContext |
-//                ContextUtils.removeRequiredBundleEdge(bundleContext, requiredBundleContext as BundleContext)
-//            ]
-//        } else {
-            newlyConnectedContexts.forEach [ requiredBundleContext |
-                bundleContext.addRequiredBundleEdge(requiredBundleContext as BundleContext)
-            ]
-//        }
+        newlyConnectedContexts.forEach [ requiredBundleContext |
+            bundleContext.addRequiredBundleEdge(requiredBundleContext as BundleContext)
+        ]
     }
     
     override applicableContext() {

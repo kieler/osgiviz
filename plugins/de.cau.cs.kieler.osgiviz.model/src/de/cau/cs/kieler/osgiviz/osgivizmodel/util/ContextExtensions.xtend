@@ -4,7 +4,7 @@
  * A part of kieler
  * https://github.com/kieler
  * 
- * Copyright 2019 by
+ * Copyright 2019-2022 by
  * + Christian-Albrechts-University of Kiel
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
@@ -41,7 +41,6 @@ import de.scheidtbachmann.osgimodel.Bundle
 import de.scheidtbachmann.osgimodel.BundleCategory
 import de.scheidtbachmann.osgimodel.Feature
 import de.scheidtbachmann.osgimodel.OsgiProject
-import de.scheidtbachmann.osgimodel.OsgimodelFactory
 import de.scheidtbachmann.osgimodel.PackageObject
 import de.scheidtbachmann.osgimodel.Product
 import de.scheidtbachmann.osgimodel.Reference
@@ -1029,6 +1028,37 @@ class ContextExtensions {
         
         return possiblyConnectedContexts.size === conntectedContexts.size &&
             possiblyConnectedContexts.containsAll(conntectedContexts)
+    }
+    
+    /**
+     * Determines if the given bundle context is currently in no connection to any other element within this parent
+     * context.
+     * 
+     * @param parent The parent context to check any connection in.
+     * @param bundleContext The bundle context to check if it is connected
+     * @return {@code} true, if there is no connection related to the {@code bundleContext} in this parent context.
+     */
+    def static /*dispatch*/ boolean hasNoConnections(BundleOverviewContext parent, BundleContext bundleContext) {
+       if (parent.requiredBundleEdges.exists[ edge |
+           edge.key === bundleContext ||
+           edge.value === bundleContext
+       ]) {
+           return false
+       }
+       
+       if (parent.usedPackagesOfBundleEdges.exists[ edge |
+           edge.sourceBundleContext === bundleContext ||
+           edge.targetBundleContext === bundleContext
+       ]) {
+           return false
+       }
+       
+       if (parent.usedPackageEdges.exists [ edge |
+           edge.key === bundleContext
+       ]) {
+           return false
+       }
+       return true
     }
     
     final static String DIFFERENT_PARENT_ERROR_MSG = "The element contexts both have to have the same parent context!"

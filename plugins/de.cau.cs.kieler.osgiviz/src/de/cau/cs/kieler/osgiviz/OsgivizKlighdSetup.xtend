@@ -28,6 +28,8 @@ import de.cau.cs.kieler.osgiviz.actions.FocusAction
 import de.cau.cs.kieler.osgiviz.actions.OpenBundleManifestAction
 import de.cau.cs.kieler.osgiviz.actions.OverviewContextCollapseExpandAction
 import de.cau.cs.kieler.osgiviz.actions.RedoAction
+import de.cau.cs.kieler.osgiviz.actions.RemoveRequiredBundlesAction
+import de.cau.cs.kieler.osgiviz.actions.RemoveUsedByBundlesAction
 import de.cau.cs.kieler.osgiviz.actions.ResetViewAction
 import de.cau.cs.kieler.osgiviz.actions.RevealImplementedServiceInterfacesAction
 import de.cau.cs.kieler.osgiviz.actions.RevealImplementingServiceComponentsAction
@@ -63,8 +65,10 @@ class OsgivizKlighdSetup implements IKlighdStartupHook {
             .registerAction(ConnectAllAction.ID, new ConnectAllAction)
             .registerAction(RevealRequiredBundlesAction.ID, new RevealRequiredBundlesAction)
             .registerAction(RevealRequiredBundlesAction.Recursive.ID, new RevealRequiredBundlesAction.Recursive)
+            .registerAction(RemoveRequiredBundlesAction.ID, new RemoveRequiredBundlesAction)
             .registerAction(RevealUsedByBundlesAction.ID, new RevealUsedByBundlesAction)
             .registerAction(RevealUsedByBundlesAction.Recursive.ID, new RevealUsedByBundlesAction.Recursive)
+            .registerAction(RemoveUsedByBundlesAction.ID, new RemoveUsedByBundlesAction)
             .registerAction(RevealUsedPackagesAction.ID, new RevealUsedPackagesAction)
             .registerAction(RevealImplementingServiceComponentsAction.ID, new RevealImplementingServiceComponentsAction)
             .registerAction(RevealImplementedServiceInterfacesAction.ID, new RevealImplementedServiceInterfacesAction)

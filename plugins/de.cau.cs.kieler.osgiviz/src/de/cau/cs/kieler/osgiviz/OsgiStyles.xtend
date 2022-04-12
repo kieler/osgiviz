@@ -47,6 +47,8 @@ import de.cau.cs.kieler.osgiviz.actions.DefocusAction
 import de.cau.cs.kieler.osgiviz.actions.FocusAction
 import de.cau.cs.kieler.osgiviz.actions.OpenBundleManifestAction
 import de.cau.cs.kieler.osgiviz.actions.OverviewContextCollapseExpandAction
+import de.cau.cs.kieler.osgiviz.actions.RemoveRequiredBundlesAction
+import de.cau.cs.kieler.osgiviz.actions.RemoveUsedByBundlesAction
 import de.cau.cs.kieler.osgiviz.actions.RevealImplementedServiceInterfacesAction
 import de.cau.cs.kieler.osgiviz.actions.RevealImplementingServiceComponentsAction
 import de.cau.cs.kieler.osgiviz.actions.RevealInjectedServiceInterfacesAction
@@ -898,28 +900,42 @@ class OsgiStyles {
     
     /**
      * The rendering of a port that connects the bundles used by this component. Issues the
-     * {@link RevealUsedByBundlesAction} or {@link RevealUsedByBundlesAction.Recursive}  if clicked.
+     * {@link RevealUsedByBundlesAction} or {@link RevealUsedByBundlesAction.Recursive} if
+     * clicked when not all requiring bundles are shown, or the {@link RemoveRequiredBundlesAction}
+     * if all are already shown.
      */
     def KRectangle addUsedByBundlesPortRendering(KPort port, int numUsedByBundles, boolean allShown) {
         return port.addRectangle => [
-            background = if (allShown) ALL_SHOWN_COLOR.color else NOT_ALL_SHOWN_COLOR.color
-            val tooltipText = "Show bundles that require this bundle (" + numUsedByBundles + " total)."
-            tooltip = tooltipText
-            addSingleClickAction(RevealUsedByBundlesAction::ID, ModifierState.DONT_CARE, ModifierState.NOT_PRESSED, ModifierState.DONT_CARE)
+            if (allShown) {
+                background = ALL_SHOWN_COLOR.color
+                tooltip = "Remove bundles that require this bundle."
+                addSingleClickAction(RemoveUsedByBundlesAction::ID, ModifierState.DONT_CARE, ModifierState.NOT_PRESSED, ModifierState.DONT_CARE)
+            } else {
+                background = NOT_ALL_SHOWN_COLOR.color
+                tooltip = "Show bundles that require this bundle (" + numUsedByBundles + " total)."
+                addSingleClickAction(RevealUsedByBundlesAction::ID, ModifierState.DONT_CARE, ModifierState.NOT_PRESSED, ModifierState.DONT_CARE)
+            }
             addSingleClickAction(RevealUsedByBundlesAction.Recursive::ID, ModifierState.DONT_CARE, ModifierState.PRESSED, ModifierState.DONT_CARE)
         ]
     }
     
     /**
      * The rendering of a port that connects the bundles required by this component. Issues the
-     * {@link RevealRequiredBundlesAction} or {@link RevealRequiredBundlesAction.Recursive} if clicked.
+     * {@link RevealRequiredBundlesAction} or {@link RevealRequiredBundlesAction.Recursive} if
+     * clicked when not all required bundles are shown, or the {@link RemoveRequiredBundlesAction}
+     * if all are already shown.
      */
     def KRectangle addRequiredBundlesPortRendering(KPort port, int numReqBundles, boolean allShown) {
         return port.addRectangle => [
-            background = if (allShown) ALL_SHOWN_COLOR.color else NOT_ALL_SHOWN_COLOR.color
-            val tooltipText = "Show required bundles (" + numReqBundles + " total)."
-            tooltip = tooltipText
-            addSingleClickAction(RevealRequiredBundlesAction::ID, ModifierState.DONT_CARE, ModifierState.NOT_PRESSED, ModifierState.DONT_CARE)
+            if (allShown) {
+                background = ALL_SHOWN_COLOR.color
+                tooltip = "Remove required bundles"
+                addSingleClickAction(RemoveRequiredBundlesAction::ID, ModifierState.DONT_CARE, ModifierState.NOT_PRESSED, ModifierState.DONT_CARE)
+            } else {
+                background = NOT_ALL_SHOWN_COLOR.color
+                tooltip = "Show required bundles (" + numReqBundles + " total)."
+                addSingleClickAction(RevealRequiredBundlesAction::ID, ModifierState.DONT_CARE, ModifierState.NOT_PRESSED, ModifierState.DONT_CARE)
+            }
             addSingleClickAction(RevealRequiredBundlesAction.Recursive::ID, ModifierState.DONT_CARE, ModifierState.PRESSED, ModifierState.DONT_CARE)
         ]
     }
