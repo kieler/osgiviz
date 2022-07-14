@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="de.cau.cs.kieler.osgiviz.eclipse.feature"
-      label="OSGiViz"
+      label="OSGiViz for Eclipse"
       version="0.2.1.qualifier"
       provider-name="kieler">
 
    <description url="https://github.com/kieler">
-      Visualization of OSGi diagrams using KIELER Lightweight Diagrams (KLighD).
+      Eclipse integration for OSGiViz.
    </description>
 
    <copyright>
