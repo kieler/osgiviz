@@ -48,11 +48,13 @@
             
               <!-- this adds repository references to the update site's content.xml -->
               <associateSites>
-                <associateSite>https://download.eclipse.org/releases/2020-03</associateSite>
-                <associateSite>https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.20.0/</associateSite>
-                <associateSite>https://download.eclipse.org/elk/updates/releases/0.7.1/</associateSite>
-                <associateSite>https://kieler.github.io/KLighD/v2.1.0/</associateSite>
-                <associateSite>https://download.eclipse.org/tools/orbit/downloads/drops/R20200224183213/repository/</associateSite>
+                <associateSite>https://download.eclipse.org/releases/2021-06</associateSite>
+                <associateSite>https://archive.eclipse.org/lsp4j/updates/releases/0.10.0/</associateSite>
+                <associateSite>https://download.eclipse.org/tools/orbit/downloads/drops/R20210602031627/repository/</associateSite>
+                <associateSite>https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.25.0/</associateSite>
+                <associateSite>https://download.eclipse.org/elk/updates/releases/0.8.1/</associateSite>
+                <associateSite>https://kieler.github.io/KLighD/v2.2.0/</associateSite>
+                <associateSite>https://rtsys.informatik.uni-kiel.de/~kieler/updatesite/sprotty/0.9.0/</associateSite>
               </associateSites>
             </configuration>
           </execution>
