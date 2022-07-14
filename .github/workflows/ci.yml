@@ -35,7 +35,7 @@ jobs:
 
       # Maven build update site
       - name: build update site
-        run: MAVEN_OPTS="-Xmx2048M" mvn clean package --file build/pom.xml --update-snapshots -X
+        run: MAVEN_OPTS="-Xmx2048M" mvn clean package --file build/pom.xml --update-snapshots
 
       # Maven build language server
       - name: build language server

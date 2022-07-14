@@ -39,6 +39,7 @@
             </goals>
             <configuration>
               <siteTemplateFolder>siteTemplate</siteTemplateFolder>
+              <skipBuildInfo>true</skipBuildInfo>
               <symbols>
                 <update.site.name>${update.site.name}</update.site.name>
                 <update.site.description>${update.site.description}</update.site.description>
