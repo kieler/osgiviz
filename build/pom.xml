@@ -11,7 +11,7 @@
   <!-- Define a few properties used throughout all build profiles. -->
   <properties>
     <targetJdk>11</targetJdk>
-    <tycho-version>1.7.0</tycho-version>
+    <tycho-version>2.5.0</tycho-version>
     <xtext-version>2.25.0</xtext-version>
     <kieler-version>${project.version}</kieler-version>
     
@@ -72,7 +72,7 @@
     <pluginRepository>
       <id>jboss-public-repository-group</id>
       <name>JBoss Public Repository Group</name>
-      <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+      <url>https://repository.jboss.org/nexus/content/groups/public/</url>
     </pluginRepository>
     <pluginRepository>
       <id>jboss-snapshots-repository</id>
