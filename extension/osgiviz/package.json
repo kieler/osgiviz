@@ -2,7 +2,7 @@
 	"name": "osgiviz",
 	"displayName": "OSGiViz VSCode",
 	"description": "KIELER OSGiViz extension for VSCode",
-	"version": "0.0.1",
+	"version": "0.3.0",
 	"publisher": "kieler",
 	"author": "Kiel University <rt-kieler-devel@informatik.uni-kiel.de>",
 	"license": "EPL-2.0",
