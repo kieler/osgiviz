@@ -21,7 +21,7 @@ The visualization is available as defined in the release page or in the kieler/o
 
 Together with that the *KIELER Lightweight Diagrams Generic Diagram View* feature from the KLighD update site needs to be installed to install the view showing the diagrams:
 
-`https://kieler.github.io/KLighD/v1.1.1/`
+`https://kieler.github.io/KLighD/v2.2.0/`
 
 These can be installed in Eclipse via the *Help -> Install new Software* menu.
 
