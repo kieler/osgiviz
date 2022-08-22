@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: de.cau.cs.kieler.osgiviz.model;singleton:=true
 Automatic-Module-Name: de.cau.cs.kieler.osgiviz.model
-Bundle-Version: 0.2.1.qualifier
+Bundle-Version: 0.3.1.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
