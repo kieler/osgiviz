@@ -5,13 +5,13 @@
   <parent>
     <groupId>de.cau.cs.kieler.osgiviz</groupId>
     <artifactId>parent</artifactId>
-    <version>0.2.1-SNAPSHOT</version>
+    <version>0.3.0.v20220822</version>
     <relativePath>../../build/pom.xml</relativePath>
   </parent>
 
   <groupId>de.cau.cs.kieler</groupId>
   <artifactId>de.cau.cs.kieler.osgiviz.model</artifactId>
-  <version>0.2.1-SNAPSHOT</version>
+  <version>0.3.0.v20220822</version>
   <packaging>eclipse-plugin</packaging>
 
   <build>

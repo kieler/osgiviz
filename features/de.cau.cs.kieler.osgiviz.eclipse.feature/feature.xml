@@ -2,7 +2,7 @@
 <feature
       id="de.cau.cs.kieler.osgiviz.eclipse.feature"
       label="OSGiViz for Eclipse"
-      version="0.2.1.qualifier"
+      version="0.3.0.v20220822"
       provider-name="kieler">
 
    <description url="https://github.com/kieler">
