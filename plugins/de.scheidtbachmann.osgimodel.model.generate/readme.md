@@ -4,7 +4,7 @@ The OSGi model generator is a tool for analyzing workspaces for projects using t
 ## How to build
 The generator is built into the main Maven build of osgiviz and can therefore be built with calling `mvn clean build` in the `build` folder of this repository. That will build the P2 update site for osgiviz as well as a fat jar for the model generation. That file will be located in `plugins/de.scheidtbachmann.osgimodel.model.generate/target/de.scheidtbachmann.osgimodel.model.generate-0.1.0-SNAPSHOT` after a successful build.
 
-Alternatively, this can be build in the usual development Eclipse set up with [the Oomph osgiviz setup](https://github.com/kieler/config/blob/master/OsgiViz.setup) and executed as a Java application with using ConfigAndExecuteCli as the main class.
+Alternatively, this can be build in the usual development Eclipse set up with [the Oomph osgiviz setup](https://github.com/kieler/osgiviz/blob/master/oomph/OsgiViz.setup) and executed as a Java application with using ConfigAndExecuteCli as the main class.
 
 ## How to download
 Building the fat jar is also included in our nightly build, so instead of building this for yourself, you can also download the generator of the latest nightly build directly from [https://rtsys.informatik.uni-kiel.de/~kieler/files/nightly/osgiviz/cli/](https://rtsys.informatik.uni-kiel.de/~kieler/files/nightly/osgiviz/cli/) or from a previous release from [https://github.com/kieler/osgiviz/releases](https://github.com/kieler/osgiviz/releases).
