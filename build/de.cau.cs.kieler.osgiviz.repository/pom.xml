@@ -14,52 +14,26 @@
     <version>0.2.1-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
-  
-  <properties>
-    <update.site.name>Kieler OSGiViz</update.site.name>
-    <update.site.description>Nightly Build</update.site.description>
-    <update.site.version>${kieler-version}</update.site.version>
-    <target.eclipse.version>Photon</target.eclipse.version>
-  </properties>
 
   <build>
+    <resources>
+      <resource>
+        <directory>siteTemplate</directory>
+      </resource>
+    </resources>
+
     <plugins>
       <plugin>
-        <groupId>org.jboss.tools.tycho-plugins</groupId>
-        <artifactId>repository-utils</artifactId>
-        <version>2.5.0</version>
-        <executions>
-        
-          <!-- creates index.html and other artifacts -->
-          <execution>
-            <id>generate-facade</id>
-            <phase>package</phase>
-            <goals>
-              <goal>generate-repository-facade</goal>
-            </goals>
-            <configuration>
-              <siteTemplateFolder>siteTemplate</siteTemplateFolder>
-              <skipBuildInfo>true</skipBuildInfo>
-              <symbols>
-                <update.site.name>${update.site.name}</update.site.name>
-                <update.site.description>${update.site.description}</update.site.description>
-                <update.site.version>${update.site.version}</update.site.version>
-                <target.eclipse.version>${target.eclipse.version}</target.eclipse.version>
-              </symbols>
-            
-              <!-- this adds repository references to the update site's content.xml -->
-              <associateSites>
-                <associateSite>https://download.eclipse.org/releases/2021-06</associateSite>
-                <associateSite>https://archive.eclipse.org/lsp4j/updates/releases/0.10.0/</associateSite>
-                <associateSite>https://download.eclipse.org/tools/orbit/downloads/drops/R20210602031627/repository/</associateSite>
-                <associateSite>https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.25.0/</associateSite>
-                <associateSite>https://download.eclipse.org/elk/updates/releases/0.8.1/</associateSite>
-                <associateSite>https://kieler.github.io/KLighD/v2.2.0/</associateSite>
-                <associateSite>https://rtsys.informatik.uni-kiel.de/~kieler/updatesite/sprotty/0.9.0/</associateSite>
-              </associateSites>
-            </configuration>
-          </execution>
-        </executions>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-p2-repository-plugin</artifactId>
+        <version>${tycho-version}</version>
+      </plugin>
+      <!-- do not publish this artifact to Maven repositories -->
+      <plugin>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
       </plugin>
     </plugins>
   </build>
