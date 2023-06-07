@@ -4,7 +4,7 @@
 	"description": "KIELER OSGiViz extension for VSCode",
 	"version": "0.0.1",
 	"publisher": "kieler",
-	"author": "Kiel University <rt-kieler-devel@informatik.uni-kiel.de>",
+	"author": "KIELER <kieler@rtsys.informatik.uni-kiel.de>",
 	"license": "EPL-2.0",
     "repository": {"type": "git", "url": "https://github.com/kieler/osgiviz"},
 	"engines": {
