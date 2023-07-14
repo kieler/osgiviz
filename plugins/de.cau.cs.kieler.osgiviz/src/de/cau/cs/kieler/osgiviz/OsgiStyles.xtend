@@ -821,11 +821,12 @@ class OsgiStyles {
      * @param inOverview If this bundle is shown in a bundle overview.
      * @param hasChildren If this rendering should leave space for a child area.
      * @param context The view context used in the synthesis.
+     * @param isProxy If this is the proxy representation of the bundle.
      * 
      * @return The entire rendering for a bundle.
      */
     def KRoundedRectangle addBundleRendering(KNode node, Bundle b, boolean inOverview, boolean hasChildren,
-        ViewContext context) {
+        ViewContext context, boolean isProxy) {
         node.addRoundedRectangle(ROUNDNESS, ROUNDNESS) => [
         	addDoubleClickAction(OpenBundleManifestAction::ID)
             if (b.isIsExternal) {
@@ -837,7 +838,7 @@ class OsgiStyles {
             addRectangle => [
                 val interactiveButtons = context.getOptionValue(INTERACTIVE_BUTTONS) as Boolean
                 var columns = 1
-                if (interactiveButtons) {
+                if (interactiveButtons && !isProxy) {
                     columns += 2
                 }
                 setGridPlacement(columns)
@@ -851,12 +852,20 @@ class OsgiStyles {
                     if (b.descriptiveName !== null) {
                         name += b.descriptiveName
                     }
-                    addSimpleLabel(name) => [
+                    // Shorten the name for proxies and add the long name as a hover tooltip
+                    var shortenedName = name
+                    if (shortenedName.length > 18) {
+                       shortenedName = shortenedName.substring(0, 15) + "..." 
+                    }
+                    val kText = addSimpleLabel(isProxy ? shortenedName : name) => [
                         fontBold = true
                         selectionFontBold = true
                     ]
+                    if (isProxy && shortenedName != name) {
+                        kText.tooltip = name
+                    }
                 ]
-                if (interactiveButtons) {
+                if (interactiveButtons && !isProxy) {
                     addVerticalLine
                     if (inOverview) {
                         addCollapseExpandButton(false, context)
@@ -865,36 +874,38 @@ class OsgiStyles {
                     }
                 }
             ]
-            addHorizontalSeperatorLine(1, 0)
-            addRectangle => [
-                invisible = true
-                addSimpleLabel("ID: " + SynthesisUtils.getId(b.uniqueId, context)) => [
-                    tooltip = b.uniqueId
-                    addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
-                        ModifierState.NOT_PRESSED)
-                ]
-            ]
-            if (context.getOptionValue(FILTER_DESCRIPTIONS) as Boolean) {
-                val desc = SynthesisUtils.descriptionLabel(b.about, context)
-                if (!desc.empty) {
-                    addRectangle => [
-                        invisible = true
-                        addSimpleLabel("Description: " + desc) => [
-                            tooltip = b.about
-                            addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
-                                ModifierState.NOT_PRESSED)
-                        ]
-                    ]
-                }
-            }
-            if (hasChildren) {
+            if (!isProxy) {
                 addHorizontalSeperatorLine(1, 0)
-                addChildArea
+                addRectangle => [
+                    invisible = true
+                    addSimpleLabel("ID: " + SynthesisUtils.getId(b.uniqueId, context)) => [
+                        tooltip = b.uniqueId
+                        addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
+                            ModifierState.NOT_PRESSED)
+                    ]
+                ]
+                if (context.getOptionValue(FILTER_DESCRIPTIONS) as Boolean) {
+                    val desc = SynthesisUtils.descriptionLabel(b.about, context)
+                    if (!desc.empty) {
+                        addRectangle => [
+                            invisible = true
+                            addSimpleLabel("Description: " + desc) => [
+                                tooltip = b.about
+                                addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
+                                    ModifierState.NOT_PRESSED)
+                            ]
+                        ]
+                    }
+                }
+                if (hasChildren) {
+                    addHorizontalSeperatorLine(1, 0)
+                    addChildArea
+                }
+                addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
+                    ModifierState.NOT_PRESSED)
+                setSelectionStyle
             }
             setShadow(SHADOW_COLOR.color, 4, 4)
-            addSingleClickAction(SelectRelatedAction::ID, ModifierState.NOT_PRESSED, ModifierState.NOT_PRESSED,
-                ModifierState.NOT_PRESSED)
-            setSelectionStyle
         ]
     }
     
