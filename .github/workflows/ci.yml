@@ -33,13 +33,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      # Maven build update site
+      # Maven build
       - name: build update site
         run: MAVEN_OPTS="-Xmx2048M" mvn clean package --file build/pom.xml --update-snapshots
-
-      # Maven build language server
-      - name: build language server
-        run: MAVEN_OPTS="-Xmx2048M" mvn clean package -P ls --file build/pom.xml --update-snapshots
       
       # TODO: find a good way to host this update site directly without zipping it for access for other builds.
       # For example this: https://github.com/marketplace/actions/deploy-to-github-pages
@@ -61,7 +57,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: OSGiViz Language Server
-          path: build/de.cau.cs.kieler.osgiviz.language.server.cli/target/exe/
+          path: plugins/de.cau.cs.kieler.osgiviz.language.server/target/osgiviz-language-server.jar
           if-no-files-found: error
 
 

@@ -3,15 +3,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>de.cau.cs.kieler.osgiviz</groupId>
-    <artifactId>parent</artifactId>
+    <groupId>de.cau.cs.kieler</groupId>
+    <artifactId>osgiviz-parent</artifactId>
     <version>0.3.1-SNAPSHOT</version>
     <relativePath>../../build/pom.xml</relativePath>
   </parent>
 
-  <groupId>de.cau.cs.kieler</groupId>
   <artifactId>de.scheidtbachmann.osgimodel.model.editor</artifactId>
-  <version>0.3.1-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
 
   <build>
