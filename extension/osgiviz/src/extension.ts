@@ -3,7 +3,7 @@
  *
  * http://rtsys.informatik.uni-kiel.de/kieler
  *
- * Copyright 2021 by
+ * Copyright 2021-2023 by
  * + Kiel University
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
@@ -91,26 +91,12 @@ export function deactivate() {
     } else {
         console.log("Spawning to language server as a process.");
         const lsPath = context.asAbsolutePath(
-            `server/osgiviz-language-server.${getPlattformType()}.jar`
+            `server/osgiviz-language-server.jar`
         );
 
         return {
             run: { command: "java", args: ["-jar", lsPath] },
             debug: { command: "java", args: ["-jar", lsPath] },
         };
-    }
-}
-
-/** Returns the codename used by KIELER for current OS plattform. */
-function getPlattformType(): "linux" | "win" | "osx" {
-    switch (process.platform) {
-        case "linux":
-            return "linux";
-        case "win32":
-            return "win";
-        case "darwin":
-            return "osx";
-        default:
-            throw new Error(`Unknown plattform "${process.platform}".`);
     }
 }

@@ -2,8 +2,8 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>de.cau.cs.kieler.osgiviz</groupId>
-  <artifactId>parent</artifactId>
+  <groupId>de.cau.cs.kieler</groupId>
+  <artifactId>osgiviz-parent</artifactId>
   <version>0.3.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   
@@ -11,9 +11,18 @@
   <!-- Define a few properties used throughout all build profiles. -->
   <properties>
     <targetJdk>11</targetJdk>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+
     <tycho-version>2.7.3</tycho-version>
-    <xtext-version>2.27.0</xtext-version>
-    <kieler-version>${project.version}</kieler-version>
+    <xtext-version>2.28.0</xtext-version>
+    <osgiviz-version>${project.version}</osgiviz-version>
+    <elk-version>0.8.1</elk-version>
+    <gson-version>2.9.0</gson-version>
+    <guice-version>5.1.0</guice-version>
+    <klighd-version>2.3.0.v20230606</klighd-version>
+    <lsp4j-version>0.15.0</lsp4j-version>
+    <xtend-version>2.28.0</xtend-version>
     
     <!-- chsch: copied from https://eclipse.googlesource.com/recommenders/org.eclipse.recommenders/+/3dae4575d3370da2da25a1cbce3dfcff198f0611/features/pom.xml -->
     <!-- Non-breakable space, as normal spaces are trimmed. -->
@@ -51,19 +60,6 @@
         <module>de.cau.cs.kieler.osgiviz.repository</module>
       </modules>
     </profile>
-
-    <!-- The language server product. -->
-    <profile>
-      <id>ls</id>
-      <modules>
-        <module>de.cau.cs.kieler.osgiviz.targetplatform</module>
-        <module>../plugins/de.cau.cs.kieler.osgiviz</module>
-        <module>../plugins/de.cau.cs.kieler.osgiviz.language.server</module>
-        <module>../plugins/de.cau.cs.kieler.osgiviz.model</module>
-        <module>../plugins/de.scheidtbachmann.osgimodel.model</module>
-        <module>de.cau.cs.kieler.osgiviz.language.server.cli</module>
-      </modules>
-    </profile>
   </profiles>
 
   <!-- Modify the build process to add Tycho and configure some utility plug-ins. -->
@@ -86,9 +82,9 @@
         <configuration>
           <target>
             <artifact>
-              <groupId>de.cau.cs.kieler.osgiviz</groupId>
+              <groupId>de.cau.cs.kieler</groupId>
               <artifactId>de.cau.cs.kieler.osgiviz.targetplatform</artifactId>
-              <version>${kieler-version}</version>
+              <version>${osgiviz-version}</version>
             </artifact>
           </target>
           <environments>
