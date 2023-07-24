@@ -22,7 +22,7 @@
 			"request": "launch",
 			"args": [
 				"--extensionDevelopmentPath=${workspaceFolder}",
-				"--extensionDevelopmentPath=/home/nre/git/klighd-vscode/applications/klighd-vscode"
+				"--extensionDevelopmentPath=${workspaceFolder}/../../../klighd-vscode/applications/klighd-vscode"
 			],
             "env": {
                 "OSGIVIZ_LS_PORT": "5007"
@@ -31,7 +31,7 @@
             "smartStep": true,
 			"outFiles": [
 				"${workspaceFolder}/out/**/*.js",
-				"/home/nre/git/klighd-vscode/applications/klighd-vscode/dist/**/*.js"
+				"${workspaceFolder}/../../../klighd-vscode/applications/klighd-vscode/dist/**/*.js"
 			]
 		},
 		{
