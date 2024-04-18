@@ -284,7 +284,6 @@ public class ReadProjectFiles {
 						bundle.getServiceComponents().add(serviceComponent);
 						project.getServiceComponents().add(serviceComponent);
 						serviceComponent.setPath(FilenameUtils.separatorsToUnix(serviceComponentFile.getAbsolutePath()));
-						final int i = 1;
 					}
 				}
 
@@ -798,7 +797,7 @@ public class ReadProjectFiles {
 
 	// use ASTParse to parse string of a java file
 	private void parseJavaFile(final String fileName, final String fileContent) {
-		final ASTParser parser = ASTParser.newParser(AST.JLS11);
+		final ASTParser parser = ASTParser.newParser(AST.getJLSLatest());
 		parser.setSource(fileContent.toCharArray());
 		parser.setKind(ASTParser.K_COMPILATION_UNIT);
 

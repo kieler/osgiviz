@@ -16,6 +16,7 @@ Require-Bundle: de.cau.cs.kieler.klighd,
  org.eclipse.xtend.lib,
  org.eclipse.xtext.xbase.lib,
  com.google.inject;bundle-version="3.0.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: Kiel University
+Automatic-Module-Name: de.cau.cs.kieler.osgiviz

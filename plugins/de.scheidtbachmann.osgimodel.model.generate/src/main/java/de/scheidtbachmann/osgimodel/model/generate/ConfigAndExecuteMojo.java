@@ -19,14 +19,8 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
-import org.eclipse.xtext.generator.AbstractFileSystemAccess;
-import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
-import org.eclipse.xtext.parser.IEncodingProvider;
-import org.eclipse.xtext.resource.IResourceServiceProvider.Registry;
 
 import de.scheidtbachmann.osgimodel.OsgiProject;
-import de.scheidtbachmann.osgimodel.model.generate.OsgiModelDataGenerator;
-import de.scheidtbachmann.osgimodel.model.generate.ReadProjectFiles;
 
 import java.io.File;
 import java.net.URL;
@@ -46,8 +40,6 @@ import java.util.Optional;
  */
 @Mojo(name = "generate-documentation")
 public class ConfigAndExecuteMojo extends AbstractMojo {
-
-	private static final String DEFAULT_OUTPUT = "DEFAULT_OUTPUT"; //$NON-NLS-1$
 
 	/**
 	 * The names of all projects, that should be documented.

@@ -8,7 +8,7 @@ Bundle-ClassPath: de.scheidtbachmann.osgimodel.model.edit.jar
 Bundle-Activator: de.scheidtbachmann.osgimodel.provider.OsgiModelEditPlugin$Implementation$Activator
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: de.scheidtbachmann.osgimodel.provider
 Require-Bundle: org.eclipse.core.runtime;resolution:=optional;x-installation:=greedy,
  de.scheidtbachmann.osgimodel.model;visibility:=reexport,
