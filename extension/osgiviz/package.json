@@ -2,13 +2,13 @@
 	"name": "osgiviz",
 	"displayName": "OSGiViz VSCode",
 	"description": "KIELER OSGiViz extension for VSCode",
-	"version": "0.0.1",
+	"version": "0.3.0",
 	"publisher": "kieler",
 	"author": "KIELER <kieler@rtsys.informatik.uni-kiel.de>",
 	"license": "EPL-2.0",
     "repository": {"type": "git", "url": "https://github.com/kieler/osgiviz"},
 	"engines": {
-		"vscode": "^1.70.0"
+		"vscode": "^1.89.1"
 	},
 	"categories": [
 		"Visualization"
@@ -52,26 +52,17 @@
 		"vscode:prepublish": "yarn run compile",
 		"compile": "tsc -p ./",
 		"watch": "tsc -watch -p ./",
-		"lint": "eslint src --ext ts",
         "package": "vsce package --yarn",
 		"distribute": "vsce publish --yarn && ovsx publish --yarn"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.70.0",
-		"@types/glob": "^7.2.0",
-		"@types/mocha": "^9.1.1",
-		"@types/node": "14.x",
-		"@typescript-eslint/eslint-plugin": "^5.33.1",
-		"@typescript-eslint/parser": "^5.33.1",
-		"@vscode/test-electron": "2.1.5",
-		"eslint": "^8.22.0",
-		"glob": "^8.0.3",
-		"mocha": "^10.0.0",
-		"typescript": "^4.7.4",
-        "vsce": "^2.10.2",
-		"ovsx": "^0.5.1"
+		"@types/vscode": "^1.89.1",
+		"@types/node": "^20.14.2",
+        "typescript": "^5.4.5",
+        "vsce": "^2.15.0",
+		"ovsx": "^0.9.1"
 	},
 	"dependencies": {
-		"vscode-languageclient": "^5.2.1"
+		"vscode-languageclient": "^9.0.1"
 	}
 }

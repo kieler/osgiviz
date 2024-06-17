@@ -3,7 +3,7 @@
  *
  * http://rtsys.informatik.uni-kiel.de/kieler
  *
- * Copyright 2021 by
+ * Copyright 2021-2024 by
  * + Kiel University
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
@@ -17,9 +17,9 @@
 
 import { window } from "vscode";
 import {
-    CloseAction,
-    ErrorAction,
+    CloseHandlerResult,
     ErrorHandler,
+    ErrorHandlerResult,
     Message,
 } from "vscode-languageclient";
 
@@ -30,14 +30,14 @@ import {
 export class KeithErrorHandler implements ErrorHandler {
     constructor(private defaultHandler: ErrorHandler) {}
 
-    error(error: Error, message: Message, count: number): ErrorAction {
+    error(error: Error, message: Message, count: number): ErrorHandlerResult | Promise<ErrorHandlerResult> {
         window.showErrorMessage("Connection to KIELER OSGiViz Language Server produced an error!");
         console.error(error);
 
         return this.defaultHandler.error(error, message, count);
     }
 
-    closed(): CloseAction {
+    closed(): CloseHandlerResult | Promise<CloseHandlerResult> {
         window.showErrorMessage("Connection to KIELER OSGiViz Language Server got closed!");
 
         return this.defaultHandler.closed();

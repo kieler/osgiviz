@@ -3,7 +3,7 @@
  *
  * http://rtsys.informatik.uni-kiel.de/kieler
  *
- * Copyright 2021-2023 by
+ * Copyright 2021-2024 by
  * + Kiel University
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
@@ -20,7 +20,7 @@ import {
     ServerOptions,
     LanguageClientOptions,
     StreamInfo,
-} from "vscode-languageclient";
+} from "vscode-languageclient/node";
 import { connect, NetConnectOpts, Socket } from "net";
 import { KeithErrorHandler } from "./error-handler";
 
