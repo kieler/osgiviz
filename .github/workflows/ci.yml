@@ -18,15 +18,15 @@ jobs:
 
     steps:
       # Setup
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Set up JDK 17
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'adopt'
       
       - name: Cache local Maven repository
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -42,19 +42,19 @@ jobs:
       # this: https://github.com/peaceiris/actions-gh-pages
       # or this: http://www.lorenzobettini.it/2021/03/publishing-an-eclipse-p2-composite-repository-on-github-pages/
       - name: Archive OSGiViz Repository Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: OSGiViz Repository Artifact
           path: build/de.cau.cs.kieler.osgiviz.repository/target/repository/
           if-no-files-found: error
       - name: Archive OSGimodel Generator CLI
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: OSGimodel Generator CLI
           path: plugins/de.scheidtbachmann.osgimodel.model.generate/target/de.scheidtbachmann.osgimodel.model.generate-*.jar
           if-no-files-found: error
       - name: Archive OSGiViz Language Server
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: OSGiViz Language Server
           path: plugins/de.cau.cs.kieler.osgiviz.language.server/target/osgiviz-language-server.jar
@@ -71,16 +71,16 @@ jobs:
 
     steps:
       # Setup
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 14.x
+          node-version: 20.x
         
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
@@ -91,7 +91,7 @@ jobs:
       # Copy LS from previous job
 
       - name: Retrieve Language Server
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: OSGiViz Language Server
           path: extension/osgiviz/server/
@@ -105,7 +105,7 @@ jobs:
       # Artifacts
 
       - name: Archive OSGiViz VS Code Extension vsix
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: OSGiViz VS Code Extension
           path: extension/osgiviz/osgiviz-*.vsix
