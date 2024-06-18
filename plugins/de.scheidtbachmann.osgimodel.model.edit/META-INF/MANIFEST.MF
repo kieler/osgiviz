@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: de.scheidtbachmann.osgimodel.model.edit;singleton:=true
 Automatic-Module-Name: de.scheidtbachmann.osgimodel.model.edit
-Bundle-Version: 0.3.1.qualifier
+Bundle-Version: 0.4.1.qualifier
 Bundle-ClassPath: de.scheidtbachmann.osgimodel.model.edit.jar
 Bundle-Activator: de.scheidtbachmann.osgimodel.provider.OsgiModelEditPlugin$Implementation$Activator
 Bundle-Vendor: %providerName
