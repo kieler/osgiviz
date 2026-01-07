@@ -1,6 +1,9 @@
-# osgiviz
+# Archived Repository
+This repository is archived and is no longer maintained. This project has been superseded by the [SPViz](https://github.com/kieler/SoftwareProjectViz) project, a software project visualization tool generator akin to OSGiViz. Generate a current version of this project with a similar feature set with the OSGi configuration from the corresponding [examples](https://github.com/kieler/SoftwareProjectViz-examples) respository.
 
-osgiviz is a tool for automatic and interactive visualization and documentation of Java projects using the OSGi&trade; technology.
+# OSGiViz
+
+OSGiViz is a tool for automatic and interactive visualization and documentation of Java projects using the OSGi&trade; technology.
 Read this paper for more details:
 
 *Niklas Rentz, Christian Dams, and Reinhard von Hanxleden. "Interactive Visualization for OSGi-based Projects." 2020 Working Conference on Software Visualization (VISSOFT). IEEE, 2020.* [PDF](https://rtsys.informatik.uni-kiel.de/~biblio/downloads/papers/vissoft20.pdf)
